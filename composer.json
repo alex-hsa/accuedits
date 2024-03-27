@@ -16,11 +16,16 @@
     ],
     "require": {
         "composer/installers": "^2.0",
+        "drupal/admin_toolbar": "^3.4",
         "drupal/core-composer-scaffold": "^10.2",
         "drupal/core-dev": "^10.2",
         "drupal/core-project-message": "^10.2",
         "drupal/core-recommended": "^10.2",
+        "drupal/layout_paragraphs": "^2.0",
+        "drupal/paragraphs": "^1.17",
         "drupal/storybook": "^1.0@beta",
+        "drupal/twig_field_value": "^2.0",
+        "drupal/twig_tweak": "^3.3",
         "drush/drush": "^12"
     },
     "conflict": {
