@@ -1,0 +1,22 @@
+name: sanfran
+type: theme
+'base theme': stable9
+starterkit: true
+version: VERSION
+libraries:
+  - sanfran/base
+  - sanfran/messages
+  - sanfran/main
+libraries-extend:
+  user/drupal.user:
+    - sanfran/user
+  core/drupal.dropbutton:
+    - sanfran/dropbutton
+  core/drupal.dialog:
+    - sanfran/dialog
+  file/drupal.file:
+    - sanfran/file
+  core/drupal.progress:
+    - sanfran/progress
+core_version_requirement: ^10
+generator: 'starterkit_theme:10.2.4'

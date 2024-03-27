@@ -1,0 +1,31 @@
+{# some/path/in/your/code/base/my-card.stories.twig #}
+{% stories hardcoded_demo with { title: 'AccuEdits/Examples/Hardcoded' } %}
+
+  {% story simple_html with {
+    name: '1. Simple HTML',
+  } %}
+    <h2>This is an example</h2>
+    <ul>
+        <li>This is dome demo content</li>
+    </ul>
+  {% endstory %}
+
+  {% story using_args with {
+    name: '2. Using Args',
+    args: {
+      header: 'A dynamic example'|t,
+      items: [{name: 'Foo', value: 'Bar'},
+              {name: 'Apple', value: 'Pie'}]
+    }
+  } %}
+  <h2>{{ header }}</h2>
+  <p>Authoring stories using JSON will not allow ...</p>
+
+  <ul>
+    {% for item in items %}
+      <li>This is some demo content: {{item.name}} => {{ item.value }}</li>
+    {% endfor %}
+  </ul>
+  {% endstory %}
+
+{% endstories %}

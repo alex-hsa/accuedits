@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.layout-container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 75rem;
+}
+
+.block-system-branding-block {
+  padding: 1rem 0;
+  width: 6rem;
+}
+
+.region-secondary-menu {
+    flex-direction: column;
+    align-items: flex-end;
+    top: 4rem;
+    display: flex;
+    font-size: .93rem;
+    margin-top: .5rem;
+    min-width: calc( 27ch + 3rem );
+    position: absolute;
+    right: 2rem;
+  }
+
+  .region-highlighted {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+
+  ul.menu {
+    margin-left: 0;
+  }
+
+  article {
+    @apply mb-8;
+  }

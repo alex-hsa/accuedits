@@ -1,0 +1,27 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: 'Card'
+status: 'stable'
+props:
+  type: object
+  properties:
+    image:
+      title: Media Image
+      description: Background image for the banner.
+      type: string
+    heading:
+      type: 'string'
+      title: 'Heading'
+    description:
+      type: 'string'
+      title: 'Description'
+    ctaText:
+      title: CTA Text
+      type: string
+      examples:
+        - Click me!
+    ctaHref:
+      title: CTA Href
+      type: string
+      examples:
+        - 'https://www.example.org'
+

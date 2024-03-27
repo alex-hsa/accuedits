@@ -1,0 +1,25 @@
+
+{#  variants: [default, neutral, primary, secondary, accent, ghost, link] #}
+{% stories at_picture with { 
+  title: 'AccuEdits/Atoms/Picture'
+} %}
+
+  {% story picture_default with {
+    name: 'Default',
+      args: {
+        image: 'https://picsum.photos/seed/affse3/1200/150',
+        imageAlt: 'Alternative text for this image',
+        ratio: '16/9',
+      }
+  } %}
+
+   {{ include('sanfran:figure', {
+      image,
+      imageAlt,
+      ratio,
+     })
+   }}
+
+  {% endstory %}
+
+{% endstories %}

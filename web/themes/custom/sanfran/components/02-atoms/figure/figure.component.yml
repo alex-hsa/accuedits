@@ -1,0 +1,18 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: 'Figure'
+status: 'stable'
+props:
+  type: object
+  properties:
+    image:
+      type: string
+      title: Media Image source
+      description: The source of the image.
+      examples:
+        - 'https://www.example.org/image.jpg'
+    imageAlt:
+      type: 'string'
+      title: 'Alternative text for image'
+    ratio:
+      type: 'string'
+      title: 'Aspect ratio of image'

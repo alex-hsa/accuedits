@@ -1,0 +1,31 @@
+{% stories card_single with { 
+  title: 'AccuEdits/Components/Card'
+} %}
+
+  {% story card_default with {
+    name: 'Default',
+      args: {
+        image: 'https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg',
+        imageAlt: 'Alt text for the image goes here',
+        heading: 'This Card Title',
+        headingLevel: '2',
+        description: 'If a dog chews shoes whose shoes does he choose?',
+        ctaText: 'Read more',
+        ctaHref: 'https://www.drupalgeek.com',
+      }
+  } %}
+
+   {{ include('sanfran:card', {
+      image,
+      imageAlt,
+      heading,
+      headingLevel,
+      description,
+      ctaText,
+      ctaHref,
+     })
+   }}
+
+  {% endstory %}
+
+{% endstories %}

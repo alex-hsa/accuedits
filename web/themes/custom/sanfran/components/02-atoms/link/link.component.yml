@@ -1,0 +1,19 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: 'Link'
+status: 'stable'
+description: 'A link component'
+props:
+  type: object
+  properties:
+    'text':
+      type: 'string'
+      title: 'Link Title'
+      description: 'Link title'
+      examples:
+        - 'Click me'
+    'url':
+      type: 'string'
+      title: 'URL'
+      description: 'Link URL'
+      examples:
+        - 'https://www.google.com'
