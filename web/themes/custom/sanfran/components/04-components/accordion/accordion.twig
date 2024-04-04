@@ -1,0 +1,16 @@
+<article {{ attributes.addClass('accordion') }}>
+
+    {{ include('sanfran:headings', {
+        level: '2',
+        text: heading,
+      })
+    }}
+
+    <div class="preview border-base-300 bg-base-100 rounded-b-box rounded-se-box flex min-h-[6rem] min-w-[18rem] flex-wrap items-center justify-center gap-2 overflow-x-hidden bg-cover bg-top w-full">
+        {% for key, item in accordion_items %}
+            {% if key|first != '#' %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    </div>
+</article>

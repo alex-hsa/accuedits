@@ -1,0 +1,38 @@
+{# Prepare presentational attributes #}
+
+
+{# Markup for the component #}
+
+<div class="featured flex flex-col h-full p-4 bg-amber-50 border-l-amber-200 border-l-8 rounded-lg">
+
+  {% if callout %}
+    <div class="callout">{{ callout }}</div>
+  {% endif %}
+
+  {% if heading %}
+    {{ include('sanfran:headings', {
+        level: level,
+        text: heading,
+      })
+    }}
+  {% endif %}
+
+  {% if description %}
+    {{ include('sanfran:wysiwyg', {
+        wysiwyg: description,
+      })
+    }}
+  {% endif %}
+
+  {% if ctaText %}
+    <div class="card-actions justify-start">
+      {{ include('sanfran:link', {
+        classes: 'link link-primary font-bold',
+        text: ctaText,
+        url: ctaHref,
+        })
+      }}
+    </div>
+  {% endif %}
+
+</div>

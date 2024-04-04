@@ -1,0 +1,39 @@
+
+<li class="mb-10 ms-12">
+  
+  <span class="absolute flex items-center justify-center w-16 h-16 bg-accent rounded-full -start-9 ring-4 ring-white">
+      {% if icon %}
+        <span class="flex items-center justify-center w-16 h-16 border text-4xl text-white rounded-full shrink-0">
+          {{ icon }}
+        </span>
+      {% else %}
+        <span class="flex items-center justify-center w-16 h-16 border text-2xl text-white rounded-full shrink-0">
+          {{ step_number }}
+        </span>
+      {% endif %}
+  </span>
+  <div class="border-2 border-accent p-6 rounded-md w-9/12">
+    {{ include('sanfran:headings', {
+        level: '3',
+        text: heading,
+      })
+    }}
+
+    {{ include('sanfran:wysiwyg', {
+        wysiwyg: description,
+      })
+    }}
+    {# {{ description|raw }} #}
+
+    {% if ctaText %}
+      <div class="hero--cta">
+        {{ include('sanfran:button', {
+          type: 'btn-accent',
+          ctaText,
+          ctaHref,
+          })
+        }}
+      </div>
+    {% endif %}
+  </div>
+</li>

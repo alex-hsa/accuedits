@@ -1,0 +1,21 @@
+material_icons.settings:
+  path: '/admin/config/content/material_icons'
+  defaults:
+    _form: '\Drupal\material_icons\Form\Settings'
+    _title: 'Material Icon Settings'
+  requirements:
+    _permission: 'administer material icons'
+material_icons.dialog:
+  path: '/material_icons/dialog'
+  defaults:
+    _form: '\Drupal\material_icons\Form\IconDialog'
+    _title: 'Select Material Icon'
+  requirements:
+    _permission: 'access content'
+material_icons.autocomplete:
+  path: '/material_icons/autocomplete'
+  defaults:
+    _controller: '\Drupal\material_icons\Controller\Autocomplete::handleAutocomplete'
+    _format: json
+  requirements:
+    _permission: 'access content'

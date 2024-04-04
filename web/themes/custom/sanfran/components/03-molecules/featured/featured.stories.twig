@@ -1,0 +1,31 @@
+{% stories featured with { 
+  title: 'AccuEdits/Molecules/Featured'
+} %}
+
+  {% story featured_default with {
+    name: 'Default',
+    args: {
+      heading: 'Join us at the conference',
+      text: '<ul><li>Live at home or in a shelter.</li><li>Receive Medi-Cal or <a href="https://www.dhcs.ca.gov/services/medi-cal/pages/doyouqualifyformedi-cal.aspx"><strong>qualify for Medi-Cal</strong></a>.</li><li>Demonstrate a need for help with activities of daily living.</li></ul>',
+        ctaText: 'Click me!',
+      ctaHref: 'https://www.sfhsa.org',
+    }
+  } %}
+
+    {% set hmtl_text = {
+      '#type':   'processed_text',
+      '#text':    text,
+      '#format':  'basic_html',
+    } %}
+
+    {{ include('sanfran:featured', {
+      heading,
+      level: '3',
+      description: hmtl_text,
+      ctaText,
+      ctaHref,
+    }) }}
+
+  {% endstory %}
+
+{% endstories %}

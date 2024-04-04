@@ -21,11 +21,16 @@
         "drupal/core-dev": "^10.2",
         "drupal/core-project-message": "^10.2",
         "drupal/core-recommended": "^10.2",
+        "drupal/focal_point": "^2.0",
+        "drupal/gin": "^3.0@RC",
+        "drupal/imagemagick": "^4.0@alpha",
         "drupal/layout_paragraphs": "^2.0",
+        "drupal/material_icons": "^2.0",
         "drupal/paragraphs": "^1.17",
         "drupal/storybook": "^1.0@beta",
         "drupal/twig_field_value": "^2.0",
         "drupal/twig_tweak": "^3.3",
+        "drupal/webp": "^1.0@RC",
         "drush/drush": "^12"
     },
     "conflict": {

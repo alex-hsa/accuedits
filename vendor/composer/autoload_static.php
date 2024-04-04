@@ -16,14 +16,14 @@ class ComposerStaticInit707f7590d632e07d7add8405a30a9cb8
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
-        'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
-        '23c18046f52bef3eea034657bafda50f' => __DIR__ . '/..' . '/symfony/polyfill-php81/bootstrap.php',
+        'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        '5897ea0ac4cccf14d323035e65887801' => __DIR__ . '/..' . '/symfony/polyfill-php82/bootstrap.php',
+        '23c18046f52bef3eea034657bafda50f' => __DIR__ . '/..' . '/symfony/polyfill-php81/bootstrap.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         '2f69d3914119f042cca9e44442d5ce95' => __DIR__ . '/../..' . '/web/core/includes/bootstrap.inc',
+        '5897ea0ac4cccf14d323035e65887801' => __DIR__ . '/..' . '/symfony/polyfill-php82/bootstrap.php',
         '8e92226780215d0ec758aa7b73e0ede9' => __DIR__ . '/..' . '/open-telemetry/context/fiber/initialize_fiber_handler.php',
         '9b38cf48e83f5d8f60375221cd213eee' => __DIR__ . '/..' . '/phpstan/phpstan/bootstrap.php',
         'c7b4a5d8b94d270f0f9a84f81e1dd63d' => __DIR__ . '/..' . '/open-telemetry/api/Trace/functions.php',
@@ -54,6 +54,10 @@ class ComposerStaticInit707f7590d632e07d7add8405a30a9cb8
         'm' => 
         array (
             'mglaman\\PHPStanDrupal\\' => 22,
+        ),
+        'l' => 
+        array (
+            'lsolesen\\pel\\' => 13,
         ),
         'W' => 
         array (
@@ -179,6 +183,11 @@ class ComposerStaticInit707f7590d632e07d7add8405a30a9cb8
             'GPBMetadata\\Opentelemetry\\' => 26,
             'GPBMetadata\\Google\\Protobuf\\' => 28,
         ),
+        'F' => 
+        array (
+            'FontLib\\' => 8,
+            'FileEye\\MimeMap\\' => 16,
+        ),
         'E' => 
         array (
             'Egulias\\EmailValidator\\' => 23,
@@ -186,6 +195,7 @@ class ComposerStaticInit707f7590d632e07d7add8405a30a9cb8
         'D' => 
         array (
             'Drush\\' => 6,
+            'Drupal\\sophron\\' => 15,
             'Drupal\\Core\\' => 12,
             'Drupal\\Composer\\Plugin\\Scaffold\\' => 32,
             'Drupal\\Composer\\Plugin\\ProjectMessage\\' => 38,
@@ -253,6 +263,10 @@ class ComposerStaticInit707f7590d632e07d7add8405a30a9cb8
         'mglaman\\PHPStanDrupal\\' => 
         array (
             0 => __DIR__ . '/..' . '/mglaman/phpstan-drupal/src',
+        ),
+        'lsolesen\\pel\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/fileeye/pel/src',
         ),
         'Webmozart\\Assert\\' => 
         array (
@@ -608,6 +622,14 @@ class ComposerStaticInit707f7590d632e07d7add8405a30a9cb8
         array (
             0 => __DIR__ . '/..' . '/google/protobuf/src/GPBMetadata/Google/Protobuf',
         ),
+        'FontLib\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phenx/php-font-lib/src/FontLib',
+        ),
+        'FileEye\\MimeMap\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/fileeye/mimemap/src',
+        ),
         'Egulias\\EmailValidator\\' => 
         array (
             0 => __DIR__ . '/..' . '/egulias/email-validator/src',
@@ -615,6 +637,10 @@ class ComposerStaticInit707f7590d632e07d7add8405a30a9cb8
         'Drush\\' => 
         array (
             0 => __DIR__ . '/..' . '/drush/drush/src',
+        ),
+        'Drupal\\sophron\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/web/modules/contrib/sophron/src',
         ),
         'Drupal\\Core\\' => 
         array (

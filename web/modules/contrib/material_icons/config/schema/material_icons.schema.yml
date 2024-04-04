@@ -1,0 +1,13 @@
+field.widget.settings.material_icons:
+  type: mapping
+  label: 'Material Icons widget settings'
+  mapping:
+    allow_style:
+      type: boolean
+      label: 'Allow Style Selection'
+    default_style:
+      type: 'string'
+      label: 'Default Icon Style'
+    allow_classes:
+      type: 'boolean'
+      label: 'Allow Extra Classes'

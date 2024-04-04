@@ -1,0 +1,30 @@
+{# Prepare presentational attributes #}
+
+
+{# Markup for the component #}
+{% if image is not empty %}
+  {% set attributes = attributes.setAttribute('style', 'background-size: cover; background-image: url("' ~ image|render|striptags|trim|default('') ~ '");') %}
+{% endif %}
+
+<article {{ attributes.addClass('hero w-full rounded flex flex-row') }}>
+
+  <div class="glass p-8 rounded w-1/2">
+    {{ include('sanfran:headings', {
+        level: '1',
+        text: heading,
+      })
+    }}
+    <p>{{ description }}</p>
+    <div class="hero--cta">
+      {% if ctaText is not empty %}
+        {{ include('sanfran:button', {
+          type: 'btn-accent',
+          ctaText,
+          ctaHref,
+          })
+        }}
+      {% endif %}
+    </div>
+  </div>
+
+</article>

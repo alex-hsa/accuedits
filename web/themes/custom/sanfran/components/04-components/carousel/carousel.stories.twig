@@ -1,0 +1,29 @@
+{% stories carousel with { 
+  title: 'AccuEdits/Components/Carousel'
+} %}
+
+  {% story carousel_default with {
+    name: 'Default',
+      args: {
+        heading: 'The Carousel Title',
+        carousel_items: [
+          {
+            image: 'https://accuedits.ddev.site/sites/default/files/2024-03/pexels-golden-gate-bridge-sausalito.jpeg', 
+            imageAlt: 'This is the Golden Gate Bridge'
+          },
+          {image: 'https://accuedits.ddev.site/sites/default/files/2024-03/pexels-victorian-homes-sf.jpeg', imageAlt: 'Victorian houses in San Francisco'},
+          {image: 'https://accuedits.ddev.site/sites/default/files/2024-03/pexels-sf-embarcedero.jpeg', imageAlt: 'Embacadero sklyline by night in San Francisco'}
+        ]
+      }
+  } %}
+
+  {{ include('sanfran:carousel', {
+    storybook: 'true',
+    heading,
+    carousel_items,
+  })
+}}
+
+  {% endstory %}
+
+{% endstories %}

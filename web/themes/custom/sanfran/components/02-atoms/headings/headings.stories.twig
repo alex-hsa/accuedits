@@ -3,23 +3,35 @@
 } %}
 
   {% story headings_default with {
-    name: 'Headings Examples', 
+    name: 'Plain Header', 
     args: {
-      level: '2',
-      text: 'Headings Example',
-      classes: 'h2',
+      heading: 'Plain Header',
+      classes: 'text-2xl',
     }
   } %}
 
-    <h2>{{ text }} | {{ level }}</h2>
-
     {{ include('sanfran:headings', {
-        level,
-        text,
-        classes,
-        url,
+        level: '1',
+        text: heading,
         })
     }}
   {% endstory %}
 
+
+  {% story headings_with_link with {
+    name: 'Header with link', 
+    args: {
+      heading: 'Header with link',
+      classes: 'font-bold',
+      url: 'https://www.google.com',
+    }
+  } %}
+
+    {{ include('sanfran:headings', {
+        level: '1',
+        text: heading,
+        url,
+        })
+    }}
+  {% endstory %}
 {% endstories %}

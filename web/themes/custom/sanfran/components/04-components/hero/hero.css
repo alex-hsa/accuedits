@@ -1,0 +1,33 @@
+.hero {
+  max-width: 1200px;
+  position: relative;
+  color: white;
+  width: 80%;
+  background-size: cover;
+  background: black;
+  padding: 2em;
+
+  p {
+    margin-bottom: 1rem;
+  }
+}
+
+
+.hero--header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hero--header h3 {
+  font-size: 2em;
+  margin: 0;
+}
+
+.hero--body > * {
+  margin-bottom: 0;
+}
+
+.hero--body > :first-child {
+  margin-top: 1em;
+}

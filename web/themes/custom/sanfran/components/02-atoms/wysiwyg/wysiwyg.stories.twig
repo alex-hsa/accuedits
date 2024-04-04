@@ -1,0 +1,29 @@
+{% stories wysiwyg with { 
+  title: 'AccuEdits/Atoms/Wysiwyg'
+} %}
+
+  {% story wysiwyg_default with {
+    name: 'Wysiwyg Examples', 
+    args: {
+      level: '3',
+      text: 'Headings Example',
+      classes: 'ext-2xl',
+      text: '<ul><li>Live at home or in a shelter.</li><li>Receive Medi-Cal or <a href="https://www.dhcs.ca.gov/services/medi-cal/pages/doyouqualifyformedi-cal.aspx"><strong>qualify for Medi-Cal</strong></a>.</li><li>Demonstrate a need for help with activities of daily living.</li></ul>',
+    }
+  } %}
+
+    {% set hmtl_text = {
+      '#type':   'processed_text',
+      '#text':    text,
+      '#format':  'basic_html',
+    } %}
+
+    {{ include('sanfran:wysiwyg', {
+        wysiwyg: hmtl_text,
+        classes,
+        })
+    }}
+
+  {% endstory %}
+
+{% endstories %}

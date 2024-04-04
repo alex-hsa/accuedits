@@ -1,0 +1,24 @@
+{
+  "name": "drupal/material_icons",
+  "description": "Material Icons support for fields and WYSIWYG",
+  "type": "drupal-module",
+  "homepage": "https://www.drupal.org/project/material_icons",
+  "keywords": ["Drupal", "Material Icons"],
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/material_icons",
+    "source": "https://www.drupal.org/project/material_icons"
+  },
+  "authors": [
+    {
+      "name": "Bryan Sharpe",
+      "homepage": "https://drupal.org/u/b_sharpe",
+      "role": "Maintainer"
+    }
+  ],
+  "require": {
+    "drupal/core": "^9.3 || ^10"
+  }
+}

@@ -1,0 +1,18 @@
+<article class="">
+
+    {{ include('sanfran:headings', {
+        level: '2',
+        text: heading,
+      })
+    }}
+
+    <br />
+
+    <ol class="border-s-8 border-accent relative left-4 pl-4">   
+        {% for key, item in steps_items %}
+            {% if key|first != '#' %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    </ol>
+</article>

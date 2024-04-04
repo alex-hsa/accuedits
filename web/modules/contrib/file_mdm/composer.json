@@ -1,0 +1,14 @@
+{
+    "name": "drupal/file_mdm",
+    "type": "drupal-module",
+    "description": "Provides a service to manage file metadata.",
+    "require": {
+        "drupal/core": "^10.2",
+        "phenx/php-font-lib": "^0.5.5",
+        "fileeye/pel": "^0.10.0"
+    },
+    "require-dev": {
+        "drupal/vendor_stream_wrapper": "^2.0.2",
+        "fileeye/linuxlibertine-fonts": "^5.3"
+    }
+}

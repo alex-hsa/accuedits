@@ -17,3 +17,9 @@ props:
       description: 'Link URL'
       examples:
         - 'https://www.google.com'
+    'classes':
+      type: 'string'
+      title: 'Class Title'
+      description: 'Classes applied to link'
+      examples:
+        - 'link link-primary'

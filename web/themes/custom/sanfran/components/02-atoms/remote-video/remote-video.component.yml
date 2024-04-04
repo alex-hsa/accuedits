@@ -1,0 +1,20 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: 'Figure'
+status: 'stable'
+props:
+  type: object
+  properties:
+    video_src:
+      type: string
+      title: Media video source
+      description: The source of the image.
+      examples:
+        - 'https://www.youtube.com/embed/BzIBNhnd85c'
+    ratio:
+      type: 'string'
+      title: 'Aspect ratio of image'
+    classes:
+      type: 'string'
+      title: 'List of TW classes'
+      examples:
+        - 'w-2/3'

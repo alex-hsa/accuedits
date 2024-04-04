@@ -1,0 +1,127 @@
+<?php
+
+/**
+ * @file
+ * Contains webp.module.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\File\Exception\FileException;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\file\Plugin\Field\FieldType\FileFieldItemList;
+use Drupal\image\Entity\ImageStyle;
+
+/**
+ * Implements hook_help().
+ */
+function webp_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the webp module.
+    case 'help.page.webp':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Generates WebP copies of image style derivatives.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_entity_insert().
+ */
+function webp_entity_insert(EntityInterface $entity) {
+  webp_flush_webp_derivatives($entity);
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function webp_entity_update(EntityInterface $entity) {
+  webp_flush_webp_derivatives($entity);
+}
+
+/**
+ * Implements template_preprocess_responsive_image().
+ */
+function webp_preprocess_responsive_image(&$variables) {
+  $webp_sources = [];
+  if (isset($variables['sources'])) {
+    foreach ($variables['sources'] as $source) {
+      /** @var \Drupal\Core\Template\Attribute $source */
+
+      // Blazy module is using another srcset attribute.
+      $srcset_attribute_key = FALSE;
+      if ($source->offsetExists('data-srcset')) {
+        $srcset_attribute_key = 'data-srcset';
+      }
+      elseif ($source->offsetExists('srcset')) {
+        $srcset_attribute_key = 'srcset';
+      }
+
+      if ($srcset_attribute_key !== FALSE) {
+        $srcset_orig = $source->offsetGet($srcset_attribute_key)->value();
+
+        /* @var \Drupal\webp\Webp $webp */
+        $webp = \Drupal::service('webp.webp');
+        $webp_srcset = $webp->getWebpSrcset($srcset_orig);
+
+        // Create a new source pointing to the webp URL.
+        $webp_source = clone $source;
+        $webp_source->offsetSet($srcset_attribute_key, $webp_srcset);
+        $webp_source->offsetSet('type', 'image/webp');
+        $webp_sources[] = $webp_source;
+      }
+    }
+
+    // Add the new sources at the top of the list.
+    $variables['sources'] = array_merge($webp_sources, $variables['sources']);
+
+    // Never output a single image tag, because
+    // we will always have at least two sources.
+    $variables['output_image_tag'] = FALSE;
+  }
+}
+
+/**
+ * Remove any outdated WebP derivatives.
+ */
+function webp_flush_webp_derivatives(EntityInterface $entity) {
+  if (isset($entity) && $entity instanceof FieldableEntityInterface) {
+    $styles = NULL;
+    $file_system = NULL;
+
+    // Loop all fields of the saved entity.
+    foreach ($entity->getFields() as $entity_fields) {
+      // If current field is FileField and use imageWidgetCrop.
+      if ($entity_fields instanceof FileFieldItemList) {
+        try {
+          $file_uri = $entity_fields->entity->getFileUri();
+        }
+        catch (\Throwable $th) {
+          // Continue if for some reason the file uri failed to get.
+          continue;
+        }
+
+        // Loop through each image style and check for webp derivatives.
+        $styles = ($styles) ?: ImageStyle::loadMultiple(); // Only load once.
+        $file_system = ($file_system) ?: \Drupal::service('file_system'); // Only load once.
+        foreach ($styles as $style) {
+          $derivative_uri = $style->buildUri($file_uri);
+          $derivative_webp_uri = preg_replace('/\.(png|jpg|jpeg)$/i', '.webp', $derivative_uri);
+
+          if (file_exists($derivative_webp_uri)) {
+            try {
+              // Remove the webp image style variation.
+              $file_system->delete($derivative_webp_uri);
+            }
+            catch (FileException $e) {
+              // Ignore failed deletes.
+            }
+          }
+        }
+      }
+    }
+  }
+}

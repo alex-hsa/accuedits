@@ -1,0 +1,52 @@
+baseline:
+  version: VERSION
+  css:
+    theme:
+      //fonts.googleapis.com/icon?family=Material+Icons: { type: external }
+outlined:
+  version: VERSION
+  css:
+    theme:
+      //fonts.googleapis.com/icon?family=Material+Icons+Outlined: { type: external }
+two-tone:
+  version: VERSION
+  css:
+    theme:
+      //fonts.googleapis.com/icon?family=Material+Icons+Two+Tone: { type: external }
+round:
+  version: VERSION
+  css:
+    theme:
+      //fonts.googleapis.com/icon?family=Material+Icons+Round: { type: external }
+sharp:
+  version: VERSION
+  css:
+    theme:
+      //fonts.googleapis.com/icon?family=Material+Icons+Sharp: { type: external }
+symbols__outlined:
+  version: VERSION
+  css:
+    theme:
+      //fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200: { type: external }
+symbols__rounded:
+  version: VERSION
+  css:
+    theme:
+      //fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200: { type: external }
+symbols__sharp:
+  version: VERSION
+  css:
+    theme:
+      //fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200: { type: external }
+
+cke.admin:
+  version: VERSION
+  css:
+    component:
+      css/cke-admin.css: { }
+
+editor:
+  js:
+    js/build/materialIcons.js: { preprocess: false, minified: true }
+  dependencies:
+    - ckeditor5/ckeditor5

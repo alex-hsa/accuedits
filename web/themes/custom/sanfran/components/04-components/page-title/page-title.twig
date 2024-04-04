@@ -1,0 +1,26 @@
+{# Prepare presentational attributes #}
+
+
+{# Markup for the component #}
+
+{% if background_color is not empty %}
+  {% set attributes = attributes.setAttribute('style', 'background-color: ' ~ background_color ~ ';') %}
+{% endif %}
+
+<article {{ attributes.addClass('w-full rounded flex flex-row') }}>
+
+  <div class="p-8 rounded w-full">
+    <div class="callout uppercase">{{ callout }}</div>
+    {{ include('sanfran:headings', {
+        level: '1',
+        text: heading,
+      })
+    }}
+    
+    {{ include('sanfran:wysiwyg', {
+        wysiwyg: description,
+      })
+    }}
+  </div>
+
+</article>

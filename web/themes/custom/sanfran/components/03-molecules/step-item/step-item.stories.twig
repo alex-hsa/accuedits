@@ -1,0 +1,38 @@
+{% stories step_items with { 
+  title: 'AccuEdits/Molecules/Step-Item'
+} %}
+
+    {% story step_items with {
+    name: 'Default',
+      args: {
+        icon: '<i class="material-icons-outlined text-4xl">check_circle</i>',
+        step_number: '1',
+        heading: 'Step Item Title',
+        headingLevel: '2',
+        text: '<ul><li>Live at home or in a shelter.</li><li>Receive Medi-Cal or <a href="https://www.dhcs.ca.gov/services/medi-cal/pages/doyouqualifyformedi-cal.aspx"><strong>qualify for Medi-Cal</strong></a>.</li><li>Demonstrate a need for help with activities of daily living.</li></ul>',
+        ctaText: 'Read more',
+        ctaHref: 'https://www.drupalgeek.com',
+      }
+  } %}
+
+    {% set hmtl_text = {
+      '#type':   'processed_text',
+      '#text':    text,
+      '#format':  'basic_html',
+    } %}
+
+   <ol class="border-s-8 border-accent relative left-4 pl-4"> 
+    {{ include('sanfran:step-item', {
+        icon: '',
+        step_number,
+        heading,
+        description: hmtl_text,
+        ctaText,
+        ctaHref,
+      })
+    }}
+    </ol>
+
+  {% endstory %}
+
+{% endstories %}

@@ -1,0 +1,44 @@
+{# Prepare presentational attributes #}
+
+{# Markup for the component #}
+<article class="spotlight grid gap-4 grid-cols-1 md:grid-cols-2 {{ type }}" >
+
+    <div class="spotlight-media">
+    
+      {% if image is not empty %} 
+        {{ include('sanfran:figure', {
+            image,
+            imageAlt,
+            ratio: '2/1',
+          })
+        }}
+      {% endif %}
+
+      {% if video_remote %} 
+        {{ include('sanfran:remote-video', {
+            video_remote,
+            })
+        }}
+      {% endif %}
+    </div>
+    <div class="spotlight-callout">
+    
+      {{ include('sanfran:headings', {
+          text: heading,
+          level: '2',
+            })
+      }}
+      
+      <p>{{ description }}</p>
+
+      {% if ctaText is not empty %}
+        {{ include('sanfran:button', {
+          type: 'btn-secondary',
+          ctaText,
+          ctaHref,
+          })
+        }}
+      {% endif %}
+    </div>
+
+</article>

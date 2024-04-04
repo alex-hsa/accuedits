@@ -1,0 +1,47 @@
+{{ include('sanfran:headings', {
+    level: '2',
+    text: heading,
+  })
+}}
+
+<article class="preview rounded-b-box rounded-se-box flex min-h-[6rem] min-w-[18rem] max-w-7xl flex-wrap items-center justify-center gap-2 overflow-x-hidden bg-cover bg-top p-4">
+  <div class="carousel carousel-center w-1/2 mx-auto text-center">
+      {% set item_count = 0 %}
+      {% for key, item in carousel_items %}
+          {% if key|first != '#' %}
+              {% set item_count = item_count + 1 %}
+          {% endif %}
+      {% endfor %}
+
+      {% for key, item in carousel_items %}
+          {% if key|first != '#' %}
+              {% if key == '0' %}
+                  {% set prev = item_count%}
+                  {% set number = key|number_format + 1 %}
+                  {% set next = number + 1 %}
+              {% elseif (key|number_format+1) == item_count %}
+                  {% set prev = key %}
+                  {% set number = item_count %}
+                  {% set next = 1 %}
+              {% else %}
+                  {% set prev = key %}
+                  {% set number = key|number_format + 1 %}
+                  {% set next = number + 1 %}
+              {% endif %}
+              <div id="slide{{number}}" class="carousel-item relative w-full">
+                  {% if storybook %}
+                    <img src="{{ item.image }}" alt="{{ item.imageAlt }}" class="w-full" />
+                  {% else %}
+                    {% set carousel_item_target_id = item['#media'].field_media_image.0.target_id %}
+                    {% set carousel_item_title = item['#media'].field_media_image.0.alt %}
+                    {{ drupal_image(carousel_item_target_id, '16_9_2xl_768x432', { alt: carousel_item_title, title: carousel_item_title, class: 'w-full rounded' } ) }}
+                  {% endif %}
+                  <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                      <a href="#slide{{prev}}" class="btn btn-circle">❮</a> 
+                      <a href="#slide{{next}}" class="btn btn-circle">❯</a>
+                  </div>
+              </div>
+          {% endif %}
+      {% endfor %}
+  </div>
+</article>
