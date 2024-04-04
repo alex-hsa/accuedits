@@ -5,6 +5,9 @@ dependencies:
   config:
     - field.field.node.page.body
     - field.field.node.page.field_components
+    - field.field.node.page.field_parent_page
+    - field.field.node.page.field_teaser_image
+    - field.field.node.page.field_teaser_text
     - node.type.page
   module:
     - entity_reference_revisions
@@ -25,10 +28,9 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-  links:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 1
-    region: content
 hidden:
   body: true
+  field_parent_page: true
+  field_teaser_image: true
+  field_teaser_text: true
+  links: true

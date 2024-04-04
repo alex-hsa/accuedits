@@ -13,6 +13,7 @@ dependencies:
     - paragraphs.paragraphs_type.spotlight
     - paragraphs.paragraphs_type.steps
     - paragraphs.paragraphs_type.table
+    - paragraphs.paragraphs_type.textbox
   module:
     - entity_reference_revisions
 id: node.page.field_components
@@ -37,6 +38,7 @@ settings:
       page_title: page_title
       steps: steps
       table: table
+      textbox: textbox
     negate: 0
     target_bundles_drag_drop:
       accordion:
@@ -74,5 +76,8 @@ settings:
         enabled: true
       table:
         weight: 24
+        enabled: true
+      textbox:
+        weight: 26
         enabled: true
 field_type: entity_reference_revisions

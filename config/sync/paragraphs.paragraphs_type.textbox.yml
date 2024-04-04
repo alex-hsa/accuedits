@@ -1,0 +1,10 @@
+uuid: 67a0aaea-ace1-47f0-8b7b-b5aa72e659f8
+langcode: en
+status: true
+dependencies: {  }
+id: textbox
+label: Textbox
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

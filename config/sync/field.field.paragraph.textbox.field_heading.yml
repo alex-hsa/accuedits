@@ -1,0 +1,19 @@
+uuid: 3eecde67-e499-4d31-a8f6-5c4c54a80fcd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_heading
+    - paragraphs.paragraphs_type.textbox
+id: paragraph.textbox.field_heading
+field_name: field_heading
+entity_type: paragraph
+bundle: textbox
+label: Heading
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

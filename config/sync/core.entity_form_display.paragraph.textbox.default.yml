@@ -1,0 +1,59 @@
+uuid: 20a6edbf-2bf6-45d9-92fb-c9d08c5457f7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.textbox.field_background_color
+    - field.field.paragraph.textbox.field_cta
+    - field.field.paragraph.textbox.field_description
+    - field.field.paragraph.textbox.field_heading
+    - field.field.paragraph.textbox.field_heading_level
+    - paragraphs.paragraphs_type.textbox
+  module:
+    - link
+    - text
+id: paragraph.textbox.default
+targetEntityType: paragraph
+bundle: textbox
+mode: default
+content:
+  field_background_color:
+    type: options_select
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_cta:
+    type: link_default
+    weight: 3
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_description:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_heading:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_heading_level:
+    type: number
+    weight: 0
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,36 @@
+{# Prepare presentational attributes #}
+
+
+{# Markup for the component #}
+
+
+  {% if background_color is not empty %}
+    {% set attributes = attributes.setAttribute('style', 'background-color: ' ~ background_color ~ ';') %}
+  {% endif %}
+  
+  <article {{ attributes.addClass('w-full rounded flex flex-row') }}>
+    <div class="p-8 rounded w-full">
+
+      {{ include('sanfran:headings', {
+          level,
+          text: heading,
+        })
+      }}
+
+      {{ include('sanfran:wysiwyg', {
+          wysiwyg: description,
+        })
+      }}
+      
+      {% if ctaText is not empty %}
+        <div class="hero--cta">
+          {{ include('sanfran:button', {
+            type: 'btn-primary',
+            ctaText,
+            ctaHref,
+            })
+          }}
+        </div>
+      {% endif %}
+    </div>
+  </article>
