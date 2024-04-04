@@ -45,6 +45,8 @@ module:
   page_cache: 0
   path: 0
   path_alias: 0
+  responsive_image: 0
+  responsive_tables_filter: 0
   sdc: 0
   search: 0
   serialization: 0

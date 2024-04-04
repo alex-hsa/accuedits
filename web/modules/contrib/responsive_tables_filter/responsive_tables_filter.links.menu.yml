@@ -1,0 +1,6 @@
+responsive_tables_filter.admin:
+  title: 'Responsive Tables'
+  parent: system.admin_config_content
+  description: Configure the Tablesaw responsive table behavior
+  route_name: responsive_tables_filter.settings
+  weight: 100

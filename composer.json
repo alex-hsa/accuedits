@@ -27,6 +27,7 @@
         "drupal/layout_paragraphs": "^2.0",
         "drupal/material_icons": "^2.0",
         "drupal/paragraphs": "^1.17",
+        "drupal/responsive_tables_filter": "^1.18",
         "drupal/storybook": "^1.0@beta",
         "drupal/twig_field_value": "^2.0",
         "drupal/twig_tweak": "^3.3",

@@ -1,0 +1,7 @@
+responsive_tables_filter.settings:
+  path: 'admin/config/content/responsive_tables_filter'
+  defaults:
+    _form: '\Drupal\responsive_tables_filter\Form\TablesawSettings'
+    _title: 'Responsive Tables'
+  requirements:
+    _permission: 'administer site configuration'

@@ -1,0 +1,34 @@
+uuid: 0251f0e7-1473-40ec-98a4-a404efca7d73
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.table.field_description
+    - field.field.paragraph.table.field_heading
+    - paragraphs.paragraphs_type.table
+  module:
+    - text
+id: paragraph.table.default
+targetEntityType: paragraph
+bundle: table
+mode: default
+content:
+  field_description:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_heading:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

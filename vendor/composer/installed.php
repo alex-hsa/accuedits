@@ -586,6 +586,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'drupal/responsive_tables_filter' => array(
+            'pretty_version' => '1.18.0',
+            'version' => '1.18.0.0',
+            'reference' => '8.x-1.18',
+            'type' => 'drupal-module',
+            'install_path' => __DIR__ . '/../../web/modules/contrib/responsive_tables_filter',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'drupal/sophron' => array(
             'pretty_version' => '2.0.2',
             'version' => '2.0.2.0',

@@ -3722,6 +3722,14 @@ details.collapse summary::-webkit-details-marker  {
   width: 66.666667%;
 }
 
+.w-3\/4  {
+  width: 75%;
+}
+
+.w-5\/6  {
+  width: 83.333333%;
+}
+
 .min-w-\[18rem\]  {
   min-width: 18rem;
 }
@@ -3794,6 +3802,10 @@ details.collapse summary::-webkit-details-marker  {
 
 .gap-y-8  {
   row-gap: 2rem;
+}
+
+.overflow-x-auto  {
+  overflow-x: auto;
 }
 
 .overflow-x-hidden  {

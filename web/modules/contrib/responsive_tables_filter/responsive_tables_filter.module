@@ -1,0 +1,93 @@
+<?php
+
+/**
+ * @file
+ * Contains responsive_tables_filter.module..
+ */
+
+use Drupal\Core\Url;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function responsive_tables_filter_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the responsive_tables_filter module.
+    case 'help.page.responsive_tables_filter':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+
+      $output .= '<dt>' . t('Basic Usage : text format') . '</dt>';
+      $output .= '<dd>' . t('Go to any of the defined formats on the <a href=":formats">Text formats page</a>. Enable "Apply responsive behavior to HTML tables" and save the form.', [':formats' => Url::fromRoute('filter.admin_overview')]) . '</dd>';
+      $output .= '<dd>' . t('Under "Filter processing order," make sure this is placed after any filters that would strip table-related tags or the "class" attribute.') . '</dd>';
+      $output .= '<dd>' . t('If the text format uses "Limit allowed HTML tags and correct faulty HTML," make sure all of the following are included in the allowed list:') . htmlentities(' <table> <th> <tr> <td> <thead> <tbody> <tfoot>') . '</dd>';
+      $output .= '<p>Any fields that use the text format(s) which have tables in them will now be responsive.</p>';
+      $output .= '<dt>' . t('Views tables') . '</dt>';
+      $output .= '<dd>' . t('The 8.x version of this module currently automatically makes Views tables responsive.') . '</dd>';
+
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements template_preprocess_views_view_table().
+ *
+ * Adds tablesaw JS when tables present and CSS/JS aggregation is off to table.
+ */
+function responsive_tables_filter_preprocess_views_view_table(&$variables) {
+  $config = \Drupal::config('responsive_tables_filter.settings');
+  if ($config->get('views_enabled')) {
+    $mode = $config->get('views_tablesaw_mode');
+    // Add shared tablesaw classes & data attribute.
+    // Only apply attributes if the View has not already specified classes,
+    // to allow sites to be able to override the tablesaw behavior on a per
+    // View basis.
+    if (empty($variables['attributes']['class'])) {
+      $variables['attributes']['class'][] = 'tablesaw';
+      $variables['attributes']['class'][] = 'tablesaw-' . $mode;
+    }
+    // Add required columntoggle- & swipe- specific attributes.
+    if (in_array($mode, ['columntoggle', 'swipe'])) {
+      $inc = 1;
+      foreach (array_keys($variables['header']) as $key) {
+        $variables['header'][$key]['attributes']['data-tablesaw-sortable-col'] = '';
+        $variables['header'][$key]['attributes']['data-tablesaw-priority'] = $inc;
+      }
+      $inc++;
+    }
+    $variables['attributes']['data-tablesaw-mode'] = $mode;
+    $variables['view']->element['#attached']['library'][] = 'responsive_tables_filter/tablesaw-filter';
+    $variables['#cache']['tags'][] = 'config:responsive_tables_filter.settings';
+  }
+}
+
+/**
+ * Implements hook_preprocess_table().
+ *
+ * Adds Tablesaw to all Drupal tables generated using the 'table' render.
+ */
+function responsive_tables_filter_preprocess_table(&$variables) {
+  $config = \Drupal::config('responsive_tables_filter.settings');
+  // Add tablesaw classes & data attribute to Drupal Views.
+  if ($config->get('views_enabled')) {
+    $mode = $config->get('views_tablesaw_mode');
+    // Some contexts do not define any classes (see #3274360), so ensure it is
+    // defined to avoid PHP notices.
+    if (!isset($variables['attributes']['class'])) {
+      $variables['attributes']['class'] = [];
+    }
+    // In case other processes have cast the `class` attribute to a string,
+    // cast it to an array (Drupal's expected data type for `class`).
+    if (is_string($variables['attributes']['class'])) {
+      $variables['attributes']['class'] = [$variables['attributes']['class']];
+    }
+    $variables['attributes']['class'][] = 'tablesaw';
+    $variables['attributes']['class'][] = 'tablesaw-' . $mode;
+    $variables['attributes']['data-tablesaw-mode'] = $mode;
+    $variables['#attached']['library'][] = 'responsive_tables_filter/tablesaw-filter';
+    $variables['#cache']['tags'][] = 'config:responsive_tables_filter.settings';
+  }
+}

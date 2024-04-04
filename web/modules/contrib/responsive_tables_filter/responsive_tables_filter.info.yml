@@ -1,0 +1,11 @@
+name: Responsive Tables Filter
+type: module
+description: Make tables in text format fields responsive
+core_version_requirement: '^9 || ^10'
+package: Other
+configure: responsive_tables_filter.settings
+
+# Information added by Drupal.org packaging script on 2023-09-05
+version: '8.x-1.18'
+project: 'responsive_tables_filter'
+datestamp: 1693937413
