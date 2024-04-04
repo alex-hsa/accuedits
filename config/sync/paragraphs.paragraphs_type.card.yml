@@ -1,0 +1,10 @@
+uuid: b8bdc9fa-62fd-4d3e-87f3-731dc6874fbd
+langcode: en
+status: true
+dependencies: {  }
+id: card
+label: Card
+icon_uuid: null
+icon_default: null
+description: 'The Card component provides the content placeholder to display 1 or more cards.'
+behavior_plugins: {  }

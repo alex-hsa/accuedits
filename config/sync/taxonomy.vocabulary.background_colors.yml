@@ -1,0 +1,8 @@
+uuid: ecdee4e2-e24f-4b83-9b78-705d160170c7
+langcode: en
+status: true
+dependencies: {  }
+name: 'Background Colors'
+vid: background_colors
+description: ''
+weight: 0

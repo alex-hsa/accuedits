@@ -1,0 +1,10 @@
+uuid: 0d9e6658-a469-4784-86bc-2de4dc553051
+langcode: en
+status: true
+dependencies: {  }
+id: accordion
+label: Accordion
+icon_uuid: null
+icon_default: null
+description: 'This component creates the Accordion feature.'
+behavior_plugins: {  }

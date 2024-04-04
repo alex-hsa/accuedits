@@ -1,0 +1,22 @@
+uuid: fa748989-0c8d-495d-ab6e-37480fe84f78
+langcode: en
+status: true
+dependencies:
+  theme:
+    - sanfran
+_core:
+  default_config_hash: nGE3EoPQQaQCuqTUtZgw0-KIzmrqdKDzdNQf2JyPUt4
+id: sanfran_primary_local_tasks
+theme: sanfran
+region: highlighted
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: false
+visibility: {  }

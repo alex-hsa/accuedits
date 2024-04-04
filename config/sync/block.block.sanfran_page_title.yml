@@ -1,0 +1,20 @@
+uuid: 1c4355ad-37bd-4a50-84bb-dfd7df1a09a9
+langcode: en
+status: false
+dependencies:
+  theme:
+    - sanfran
+_core:
+  default_config_hash: 6aOgWsNTXjqrDm98TXSAjP6qd2nCijD1xw45MrnbK-Y
+id: sanfran_page_title
+theme: sanfran
+region: sidebar_first
+weight: -8
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility: {  }

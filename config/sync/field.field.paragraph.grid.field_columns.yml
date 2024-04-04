@@ -1,0 +1,23 @@
+uuid: b636f5e9-717b-4b82-8f24-1009b049bb71
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_columns
+    - paragraphs.paragraphs_type.grid
+id: paragraph.grid.field_columns
+field_name: field_columns
+entity_type: paragraph
+bundle: grid
+label: Columns
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: 6
+  prefix: ''
+  suffix: ''
+field_type: integer

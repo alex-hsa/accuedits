@@ -1,0 +1,20 @@
+uuid: 1bfa2f87-f88f-45dc-9c0b-2a6562110bff
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - sanfran
+id: sanfran_poweredbydrupal
+theme: sanfran
+region: footer
+weight: -7
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

@@ -1,0 +1,10 @@
+uuid: 552734d7-51a9-4139-a916-638fdeeb5523
+langcode: en
+status: true
+dependencies: {  }
+id: grid
+label: Grid
+icon_uuid: null
+icon_default: null
+description: 'The Grid component allows adding other components to display them in responsive fashion.'
+behavior_plugins: {  }

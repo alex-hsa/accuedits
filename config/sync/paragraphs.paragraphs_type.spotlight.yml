@@ -1,0 +1,10 @@
+uuid: 05e72b30-e00b-4b98-8bb7-d7b31d1f51ea
+langcode: en
+status: true
+dependencies: {  }
+id: spotlight
+label: Spotlight
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

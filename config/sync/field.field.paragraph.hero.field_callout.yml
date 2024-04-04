@@ -1,0 +1,19 @@
+uuid: bd0f1668-1990-47db-8e33-fc7582d5b3e1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_callout
+    - paragraphs.paragraphs_type.hero
+id: paragraph.hero.field_callout
+field_name: field_callout
+entity_type: paragraph
+bundle: hero
+label: Callout
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

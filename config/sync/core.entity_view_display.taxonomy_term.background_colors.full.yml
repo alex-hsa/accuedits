@@ -1,0 +1,23 @@
+uuid: df5a7f29-3aaf-4f02-aab7-f3e30c11157d
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.full
+    - field.field.taxonomy_term.background_colors.field_hex_value
+    - taxonomy.vocabulary.background_colors
+id: taxonomy_term.background_colors.full
+targetEntityType: taxonomy_term
+bundle: background_colors
+mode: full
+content:
+  field_hex_value:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -4
+    region: content
+hidden:
+  description: true

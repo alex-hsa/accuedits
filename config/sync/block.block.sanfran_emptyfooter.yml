@@ -1,0 +1,25 @@
+uuid: 3c9011ab-33fa-4bf5-b800-8db30d0f2282
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:f461b615-362b-457e-896e-ea626968103e'
+  module:
+    - block_content
+  theme:
+    - sanfran
+id: sanfran_emptyfooter
+theme: sanfran
+region: footer
+weight: 0
+provider: null
+plugin: 'block_content:f461b615-362b-457e-896e-ea626968103e'
+settings:
+  id: 'block_content:f461b615-362b-457e-896e-ea626968103e'
+  label: 'Empty Footer'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

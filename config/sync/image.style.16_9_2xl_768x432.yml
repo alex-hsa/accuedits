@@ -1,0 +1,23 @@
+uuid: 3825d2ab-872a-4108-aa37-371d4957e64a
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: 16_9_2xl_768x432
+label: '16:9 2xl (768x432)'
+effects:
+  37cba44b-6bb9-457d-96e5-4f39307f7182:
+    uuid: 37cba44b-6bb9-457d-96e5-4f39307f7182
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 768
+      height: 432
+      crop_type: focal_point
+  8d8e3794-4266-4b88-b0f9-640dbd4d4ce3:
+    uuid: 8d8e3794-4266-4b88-b0f9-640dbd4d4ce3
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

@@ -1,0 +1,19 @@
+uuid: c341ba8d-ca14-43d2-88c9-87cd841dd695
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_heading
+    - paragraphs.paragraphs_type.featured
+id: paragraph.featured.field_heading
+field_name: field_heading
+entity_type: paragraph
+bundle: featured
+label: Heading
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

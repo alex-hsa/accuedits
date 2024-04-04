@@ -1,0 +1,23 @@
+uuid: 4757a8fb-cae5-430b-a177-9e56df69dc19
+langcode: en
+status: false
+dependencies:
+  module:
+    - search
+  theme:
+    - sanfran
+_core:
+  default_config_hash: imMyHD6LYci0gtXq56qr9ZKGHzbEG9uFydrN5EhKtSU
+id: sanfran_search_form_wide
+theme: sanfran
+region: secondary_menu
+weight: -5
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form (wide)'
+  label_display: '0'
+  provider: search
+  page_id: ''
+visibility: {  }

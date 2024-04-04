@@ -1,0 +1,69 @@
+uuid: b8306bd7-d10b-46b3-8367-1d03e6af4c5d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.spotlight.field_callout
+    - field.field.paragraph.spotlight.field_cta
+    - field.field.paragraph.spotlight.field_description
+    - field.field.paragraph.spotlight.field_heading
+    - field.field.paragraph.spotlight.field_media
+    - field.field.paragraph.spotlight.field_type
+    - paragraphs.paragraphs_type.spotlight
+  module:
+    - link
+    - media_library
+    - text
+id: paragraph.spotlight.default
+targetEntityType: paragraph
+bundle: spotlight
+mode: default
+content:
+  field_callout:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_cta:
+    type: link_default
+    weight: 3
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_description:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_heading:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_media:
+    type: media_library_widget
+    weight: 0
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_type:
+    type: options_select
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
