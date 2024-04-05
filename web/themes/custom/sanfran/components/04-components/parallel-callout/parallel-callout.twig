@@ -4,15 +4,13 @@
 {# Markup for the component #}
 
 
-
-{% if ('On' in horizontal) or (horizontal == 1) %}
-  {# Horizontal Textbox #}
   {% if background_color is not empty %}
     {% set attributes = attributes.setAttribute('style', 'border: 2px solid ' ~ background_color ~ ';') %}
   {% endif %}
+
   <article {{ attributes.addClass('textbox-horizontal flex flex-row p-4 rounded w-full') }}>
     
-    <div class="heading-text p-4 pr-8 text-center my-auto border-r-2 border-dashed border-red-500 w-2/3">
+    <div class="heading-text p-4 pr-8 text-center my-auto w-2/3">
       {{ include('sanfran:headings', {
           level,
           text: heading,
@@ -20,56 +18,15 @@
         })
       }}
     </div>
-    <div class="callout-text col-span-2 p-4 pl-8">
+    {% if background_color is not empty %}
+      {% set attributes = attributes.setAttribute('style', 'border-left: 2px dashed ' ~ background_color ~ ';') %}
+    {% endif %}
+    <div {{ attributes.addClass('callout-text col-span-2 p-4 pl-8') }}>
         {{ include('sanfran:wysiwyg', {
             wysiwyg: description,
             classes: 'mb-0',
           })
         }}
-        
-        {% if ctaText is  empty %}
-          <div class="hero--cta">
-            {{ include('sanfran:button', {
-              type: 'btn-primary',
-              ctaText,
-              ctaHref,
-              })
-            }}
-          </div>
-        {% endif %}
       </div>
     </div>
   </article>
-
-{% else %}
-  {# Vertical Textbox #}
-  {% if background_color is not empty %}
-    {% set attributes = attributes.setAttribute('style', 'background-color: ' ~ background_color ~ ';') %}
-  {% endif %}
-  <article {{ attributes.addClass('w-full rounded flex flex-row') }}>
-    <div class="p-8 rounded w-full">
-
-      {{ include('sanfran:headings', {
-          level,
-          text: heading,
-        })
-      }}
-
-      {{ include('sanfran:wysiwyg', {
-          wysiwyg: description,
-        })
-      }}
-      
-      {% if ctaText is not empty %}
-        <div class="hero--cta">
-          {{ include('sanfran:button', {
-            type: 'btn-primary',
-            ctaText,
-            ctaHref,
-            })
-          }}
-        </div>
-      {% endif %}
-    </div>
-  </article>
-{% endif %}

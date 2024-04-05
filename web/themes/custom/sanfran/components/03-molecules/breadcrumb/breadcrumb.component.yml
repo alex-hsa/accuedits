@@ -10,16 +10,16 @@ props:
       examples:
         - Join us at The Conference
       type: string
-    heading_level:
-      title: Heading level
-      type: number
-      examples:
-        - 2
     description:
       title: 'Description'
       type: 'string'
       examples:
         - This is a detailed and wordy example for the description field.
+    callout:
+      title: Callout
+      type: string
+      examples:
+        - This is a callout
     background_color:
       title: Background color
       type: string

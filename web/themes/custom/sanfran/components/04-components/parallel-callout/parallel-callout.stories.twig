@@ -1,0 +1,32 @@
+{% stories page_title with { 
+  title: 'AccuEdits/Components/Parallel Callout'
+} %}
+
+  {% story parallel_callout_default with {
+    name: 'Default',
+    args: {
+      heading: 'Parallel Callout',
+      text: '<ul><li>Live at home or in a shelter.</li><li>Receive Medi-Cal or <a href="https://www.dhcs.ca.gov/services/medi-cal/pages/doyouqualifyformedi-cal.aspx"><strong>qualify for Medi-Cal</strong></a>.</li><li>Demonstrate a need for help with activities of daily living.</li></ul>',
+      ctaText: 'Click me!',
+      ctaHref: 'https://www.sfhsa.org',
+      background_color: '#F7BF35',
+    }
+  } %}
+
+    {% set hmtl_text = {
+      '#type':   'processed_text',
+      '#text':    text,
+      '#format':  'basic_html',
+    } %}
+
+    {{ include('sanfran:parallel-callout', {
+      heading,
+      level: '2',
+      description: hmtl_text,
+      ctaText,
+      ctaHref,
+      background_color,
+    }) }}
+  {% endstory %}
+
+{% endstories %}

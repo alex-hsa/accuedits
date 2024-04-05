@@ -7,6 +7,9 @@ libraries:
   - sanfran/base
   - sanfran/messages
   - sanfran/main
+components:
+  namespaces:
+    sanfran: templates
 libraries-extend:
   user/drupal.user:
     - sanfran/user
@@ -20,3 +23,4 @@ libraries-extend:
     - sanfran/progress
 core_version_requirement: ^10
 generator: 'starterkit_theme:10.2.4'
+
