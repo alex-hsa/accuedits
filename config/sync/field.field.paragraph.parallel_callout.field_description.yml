@@ -1,0 +1,28 @@
+uuid: 9ed77a8a-0f46-4329-a643-5a9a0914d6dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_description
+    - filter.format.basic_html
+    - filter.format.full_html
+    - filter.format.restricted_html
+    - paragraphs.paragraphs_type.parallel_callout
+  module:
+    - text
+id: paragraph.parallel_callout.field_description
+field_name: field_description
+entity_type: paragraph
+bundle: parallel_callout
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+    - restricted_html
+    - full_html
+field_type: text_long

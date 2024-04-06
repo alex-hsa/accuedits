@@ -1,15 +1,25 @@
+.spotlight {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .image-left.no-border  {
     img,
     iframe  {
-        @apply rounded;
+        border-radius: 0.25rem;
     }
 }
 
 .image-left.with-border {
-    @apply border border-slate-300 rounded;
+    border-radius: 0.25rem;
+    border-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: rgb(203 213 225 / var(--tw-border-opacity));
     img,
     iframe {
-        @apply rounded-l;
+        border-top-left-radius: 0.25rem;
+        border-bottom-left-radius: 0.25rem;
     }
 }
 
@@ -18,7 +28,7 @@
         order: 2;
         img,
         iframe  {
-            @apply rounded;
+            border-radius: 0.25rem;
         }
     }
     .spotlight-callout {
@@ -27,12 +37,18 @@
 }
 
 .image-right.with-border {
-    @apply border border-slate-300 rounded;
+    /* @apply border border-slate-300 rounded; */
+    border-radius: 0.25rem;
+    border-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: rgb(203 213 225 / var(--tw-border-opacity));
+    
     .spotlight-media {
         order: 2;
         img,
         iframe  {
-            @apply rounded-r;
+            border-top-right-radius: 0.25rem;
+            border-bottom-right-radius: 0.25rem;
         }
     }
     .spotlight-callout {
@@ -42,6 +58,7 @@
 
 .spotlight-callout {
     padding: 1.5rem 2rem;
+
     h1 {
         font-size: 2.5rem;
         font-weight: 500;
@@ -49,9 +66,12 @@
         padding-bottom: 1rem;
     }
     h2 {
-        @apply text-4xl font-medium leading-5 py-4;
+        padding: 1.5rem 2rem 1rem 0;
+        font-size: 2.25rem;
+        font-weight: 500;
+        line-height: 1.25;
     }
     p {
-        @apply pb-4;
+        padding-bottom: 1rem;
     }
 }

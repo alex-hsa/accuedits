@@ -10,6 +10,7 @@ dependencies:
     - paragraphs.paragraphs_type.grid
     - paragraphs.paragraphs_type.hero
     - paragraphs.paragraphs_type.page_title
+    - paragraphs.paragraphs_type.parallel_callout
     - paragraphs.paragraphs_type.spotlight
     - paragraphs.paragraphs_type.steps
     - paragraphs.paragraphs_type.table
@@ -31,53 +32,57 @@ settings:
   handler_settings:
     target_bundles:
       accordion: accordion
+      carousel: carousel
       grid: grid
       hero: hero
-      carousel: carousel
-      spotlight: spotlight
       page_title: page_title
+      parallel_callout: parallel_callout
+      spotlight: spotlight
       steps: steps
       table: table
       textbox: textbox
     negate: 0
     target_bundles_drag_drop:
       accordion:
-        weight: -11
+        weight: -29
         enabled: true
       accordion_item:
-        weight: -10
+        weight: -28
         enabled: false
       card:
-        weight: -9
+        weight: -27
         enabled: false
       carousel:
-        weight: 11
+        weight: -26
         enabled: true
       featured:
-        weight: 17
+        weight: -25
         enabled: false
       grid:
-        weight: -8
+        weight: -24
         enabled: true
       hero:
-        weight: -7
+        weight: -23
         enabled: true
       page_title:
-        weight: 17
+        weight: -22
+        enabled: true
+      parallel_callout:
+        weight: -21
         enabled: true
       spotlight:
-        weight: 12
+        weight: -20
         enabled: true
       step_item:
-        weight: 18
+        weight: -18
         enabled: false
       steps:
-        weight: 17
+        weight: -19
         enabled: true
       table:
-        weight: 24
+        weight: -17
         enabled: true
       textbox:
-        weight: 26
+        weight: -16
         enabled: true
 field_type: entity_reference_revisions

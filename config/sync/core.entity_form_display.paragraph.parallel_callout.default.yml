@@ -1,0 +1,49 @@
+uuid: 481dc6e0-57f0-4a31-a4f7-43a1636ca273
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.parallel_callout.field_background_color
+    - field.field.paragraph.parallel_callout.field_description
+    - field.field.paragraph.parallel_callout.field_heading
+    - field.field.paragraph.parallel_callout.field_heading_level
+    - paragraphs.paragraphs_type.parallel_callout
+  module:
+    - text
+id: paragraph.parallel_callout.default
+targetEntityType: paragraph
+bundle: parallel_callout
+mode: default
+content:
+  field_background_color:
+    type: options_select
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_description:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_heading:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_heading_level:
+    type: number
+    weight: 0
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

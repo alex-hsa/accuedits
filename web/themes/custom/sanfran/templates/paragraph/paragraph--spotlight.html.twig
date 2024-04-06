@@ -29,7 +29,7 @@
 
 {% set heading = content.field_heading.0|default(title) %}
 {% set callout = content.field_callout.0|default(callout) %}
-{% set type = content.field_type.0|default(type) %}
+{% set type = content.field_type.0['#markup']|default(type) %}
 {% set description = content.field_description.0['#text']|striptags|default(paragraph) %}
 {% set ctaText = content.field_cta[0]['#title'] %}
 {% set ctaHref = content.field_cta[0]['#url']|default(button_url) %}
@@ -37,7 +37,6 @@
 {% set image =  media_image|file_url|default('') %}
 {% set imageAlt =  'Alt text for media image' %}
 {% set video_remote = content.field_media.0['#media'].field_media_oembed_video.0.value %}
-
 
 {{ include('sanfran:spotlight', {
   heading,

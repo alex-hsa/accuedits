@@ -1,8 +1,9 @@
-@import "../components/04-components/spotlight/spotlight.css";
+/* @import "../components/04-components/spotlight/spotlight.css"; */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 .layout-container {
   margin-left: auto;

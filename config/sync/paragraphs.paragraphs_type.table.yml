@@ -1,10 +1,12 @@
 uuid: a10cf388-2b0a-48b0-b5f0-93a53b46ec6a
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  content:
+    - 'file:file:d25fa533-61d9-425a-b3cc-22bd32795d94'
 id: table
 label: Table
-icon_uuid: null
-icon_default: null
+icon_uuid: d25fa533-61d9-425a-b3cc-22bd32795d94
+icon_default: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDhweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iNDhweCIgZmlsbD0iIzAwMDAwMCI+PHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTUgNWgxNXYzSDV6bTEyIDVoM3Y5aC0zem0tNyAwaDV2OWgtNXptLTUgMGgzdjlINXoiIG9wYWNpdHk9Ii4zIi8+PHBhdGggZD0iTTIwIDNINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNWMxLjEgMCAyLS45IDItMlY1YzAtMS4xLS45LTItMi0yek04IDE5SDV2LTloM3Y5em03IDBoLTV2LTloNXY5em01IDBoLTN2LTloM3Y5em0wLTExSDVWNWgxNXYzeiIvPjwvc3ZnPg=='
 description: ''
 behavior_plugins: {  }

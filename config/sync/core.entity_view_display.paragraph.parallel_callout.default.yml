@@ -1,0 +1,51 @@
+uuid: b6dea10b-eff1-4765-ad75-acdd6eb4006e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.parallel_callout.field_background_color
+    - field.field.paragraph.parallel_callout.field_description
+    - field.field.paragraph.parallel_callout.field_heading
+    - field.field.paragraph.parallel_callout.field_heading_level
+    - paragraphs.paragraphs_type.parallel_callout
+  module:
+    - text
+id: paragraph.parallel_callout.default
+targetEntityType: paragraph
+bundle: parallel_callout
+mode: default
+content:
+  field_background_color:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: full
+      link: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_heading:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_heading_level:
+    type: number_integer
+    label: hidden
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+hidden: {  }

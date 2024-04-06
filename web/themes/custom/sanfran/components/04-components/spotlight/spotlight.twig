@@ -1,7 +1,16 @@
 {# Prepare presentational attributes #}
 
 {# Markup for the component #}
-<article class="spotlight grid gap-4 grid-cols-1 md:grid-cols-2 {{ type }}" >
+{% set classes_spotlight = [
+    'spotlight ' ~ type,
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]|join(' ')|trim %}
+
+
+<article {{ attributes.addClass(classes_spotlight) }}>
 
     <div class="spotlight-media">
     

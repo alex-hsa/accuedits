@@ -2,7 +2,7 @@
 
 function admin_template_overrides_theme($existing, $type, $theme, $path) {
   return [
-    'paragraph__page-title' => [
+    'paragraph__page_title' => [
       'template' => 'paragraph--page-title',
       'base hook' => 'paragraph'
     ],
@@ -18,10 +18,9 @@ function admin_template_overrides_theme($existing, $type, $theme, $path) {
       'template' => 'paragraph--hero',
       'base hook' => 'paragraph'
     ],
-    'paragraph__spotlight22' => [
+    'paragraph__spotlight' => [
       'template' => 'paragraph--spotlight',
       'base hook' => 'paragraph'
     ],
   ];
 }
-

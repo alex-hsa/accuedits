@@ -2,12 +2,18 @@
 
 
 {# Markup for the component #}
+{% set classes_page_title = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]|join(' ')|trim %}
 
 {% if background_color is not empty %}
   {% set attributes = attributes.setAttribute('style', 'background-color: ' ~ background_color ~ ';') %}
 {% endif %}
 
-<article {{ attributes.addClass('w-full rounded flex flex-row') }}>
+<article {{ attributes.addClass(classes_page_title).addClass('w-full rounded flex flex-row') }}>
 
   <div class="p-8 rounded w-full">
     <div class="callout uppercase">{{ callout }}</div>

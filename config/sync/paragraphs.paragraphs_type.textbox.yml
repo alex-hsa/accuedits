@@ -1,10 +1,12 @@
 uuid: 67a0aaea-ace1-47f0-8b7b-b5aa72e659f8
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  content:
+    - 'file:file:afcb9103-4403-4292-9028-17bf468b6254'
 id: textbox
 label: Textbox
-icon_uuid: null
-icon_default: null
+icon_uuid: afcb9103-4403-4292-9028-17bf468b6254
+icon_default: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDI0IDI0IiBoZWlnaHQ9IjQ4cHgiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjQ4cHgiIGZpbGw9IiMwMDAwMDAiPjxnPjxyZWN0IGZpbGw9Im5vbmUiIGhlaWdodD0iMjQiIHdpZHRoPSIyNCIgeT0iMCIvPjxwYXRoIGQ9Ik01LDV2MTRoMTRWNUg1eiBNMTQsMTdIN3YtMmg3VjE3eiBNMTcsMTNIN3YtMmgxMFYxM3ogTTE3LDlIN1Y3aDEwVjl6IiBvcGFjaXR5PSIuMyIvPjxwYXRoIGQ9Ik0xOSwzSDVDMy45LDMsMywzLjksMyw1djE0YzAsMS4xLDAuOSwyLDIsMmgxNGMxLjEsMCwyLTAuOSwyLTJWNUMyMSwzLjksMjAuMSwzLDE5LDN6IE0xOSwxOUg1VjVoMTRWMTl6IE0xNywxM0g3di0yaDEwIFYxM3ogTTE3LDlIN1Y3aDEwVjl6IE0xNCwxN0g3di0yaDdWMTd6Ii8+PC9nPjwvc3ZnPg=='
 description: ''
 behavior_plugins: {  }

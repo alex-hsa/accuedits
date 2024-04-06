@@ -1,0 +1,12 @@
+uuid: b881ba0b-99d3-4f30-abbe-77f1dfdbfc5c
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'file:file:ab55f63d-297d-48ae-82f8-2b6586b55fd2'
+id: parallel_callout
+label: 'Parallel Callout'
+icon_uuid: ab55f63d-297d-48ae-82f8-2b6586b55fd2
+icon_default: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDhweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iNDhweCIgZmlsbD0iIzAwMDAwMCI+PHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTMgNmg4djEzSDN6IiBvcGFjaXR5PSIuMyIvPjxwYXRoIGQ9Ik0yMSA0SDNjLTEuMSAwLTIgLjktMiAydjEzYzAgMS4xLjkgMiAyIDJoMThjMS4xIDAgMi0uOSAyLTJWNmMwLTEuMS0uOS0yLTItMnpNMTEgMTlIM1Y2aDh2MTN6bTEwIDBoLThWNmg4djEzem0tNy05LjVoNlYxMWgtNnptMCAyLjVoNnYxLjVoLTZ6bTAgMi41aDZWMTZoLTZ6Ii8+PC9zdmc+'
+description: ''
+behavior_plugins: {  }
