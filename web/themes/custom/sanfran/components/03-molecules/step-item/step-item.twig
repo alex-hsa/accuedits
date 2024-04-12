@@ -1,18 +1,18 @@
 
 <li class="mb-10 ms-12">
   
-  <span class="absolute flex items-center justify-center w-16 h-16 bg-accent rounded-full -start-9 ring-4 ring-white">
+  <span class="absolute bg-base-blue  flex h-16 items-center justify-center rounded-full -start-9  w-16">
       {% if icon %}
-        <span class="flex items-center justify-center w-16 h-16 border text-4xl text-white rounded-full shrink-0">
+        <span class="border border-base-blue flex items-center h-16 justify-center rounded-full shrink-0 w-16 text-2xl text-white">
           {{ icon }}
         </span>
       {% else %}
-        <span class="flex items-center justify-center w-16 h-16 border text-2xl text-white rounded-full shrink-0">
+        <span class="border border-base-blue  flex items-center h-16 justify-center rounded-full shrink-0 w-16 text-2xl text-white">
           {{ step_number }}
         </span>
       {% endif %}
   </span>
-  <div class="border-2 border-accent p-6 rounded-md w-9/12">
+  <div class="bg-base-blue p-6 rounded-md w-9/12">
     {{ include('sanfran:headings', {
         level: '3',
         text: heading,
@@ -23,12 +23,11 @@
         wysiwyg: description,
       })
     }}
-    {# {{ description|raw }} #}
 
     {% if ctaText %}
       <div class="hero--cta">
         {{ include('sanfran:button', {
-          type: 'btn-accent',
+          type: 'btn-outline btn-primary',
           ctaText,
           ctaHref,
           })

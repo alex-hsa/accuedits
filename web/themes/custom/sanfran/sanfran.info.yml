@@ -1,4 +1,4 @@
-name: sanfran
+name: San Francisco
 type: theme
 'base theme': stable9
 starterkit: true
@@ -23,4 +23,19 @@ libraries-extend:
     - sanfran/progress
 core_version_requirement: ^10
 generator: 'starterkit_theme:10.2.4'
+regions:
+  header: Header
+  primary_menu: Primary menu
+  secondary_menu: Secondary menu
+  breadcrumb: Breadcrumb
+  highlighted: Highlighted
+  help: Help
+  content: Content
+  sidebar_first: Left sidebar
+  footer: Footer
+  page_top: Page top
+  page_bottom: Page bottom
+  sidebar_second: Right sidebar
+regions_hidden:
+  - sidebar_second
 

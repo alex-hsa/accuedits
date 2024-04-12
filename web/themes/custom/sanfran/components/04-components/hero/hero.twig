@@ -7,23 +7,30 @@
   ]|join(' ')|trim %}
 
 {% if image is not empty %}
-  {% set attributes = attributes.setAttribute('style', 'background-size: cover; background-image: url("' ~ image|render|striptags|trim|default('') ~ '");') %}
+  {% set attributes = attributes.setAttribute('style', 'background-size: cover; background-image: url("' ~ image|image_style('32_9_2xl_1536x432')|render|striptags|trim|default('') ~ '");') %}
 {% endif %}
 
-<article {{ attributes.addClass(classes_hero) }}>
+<article {{ attributes.addClass(classes_hero).addClass('grid grid-flow-row p-8 place-items-start rounded-lg') }}>
 
-  <div class="hero-glass hero-cta">
+  <div class="glass p-8 rounded-lg w-1/2">
     {{ include('sanfran:headings', {
         level: '1',
         text: heading,
       })
     }}
-    <p>{{ description }}</p>
-    
+
+    {% if description %}
+      {{ include('sanfran:wysiwyg', {
+          wysiwyg: description,
+          classes: 'mb-0',
+        })
+      }}
+    {% endif %}
+
     {% if ctaText is not empty %}
       <div class="hero--cta">
         {{ include('sanfran:button', {
-          type: 'btn-accent',
+          type: 'btn-primary',
           ctaText,
           ctaHref,
           })
@@ -33,3 +40,4 @@
   </div>
 
 </article>
+

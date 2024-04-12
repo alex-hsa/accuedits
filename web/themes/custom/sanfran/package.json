@@ -17,7 +17,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "dev": "npx tailwindcss -i css/tailwind.css -o dist/styles.css --watch",
-    "sdc": "npx tailwindcss -i components/04-components/spotlight/_spotlight.css -o components/04-components/spotlight/spotlight.css",
+    "sdc": "npx tailwindcss -i components/sdc-styles.css -o components/dist/sdc-styles.css",
     "build-tw": "npx tailwindcss -i css/tailwind.css -o dist/styles.css --minify"
   }
 }

@@ -9,8 +9,7 @@
     not paragraph.isPublished() ? 'paragraph--unpublished'
   ]|join(' ')|trim %}
 
-
-<article {{ attributes.addClass(classes_spotlight) }}>
+<article {{ attributes.addClass(classes_spotlight).addClass('grid grid-cols-2 gap-4') }}>
 
     <div class="spotlight-media">
     
@@ -30,7 +29,7 @@
         }}
       {% endif %}
     </div>
-    <div class="spotlight-callout">
+    <div class="spotlight-callout px-8 py-6">
     
       {{ include('sanfran:headings', {
           text: heading,
@@ -38,11 +37,16 @@
             })
       }}
       
-      <p>{{ description }}</p>
+      {% if description %}
+        {{ include('sanfran:wysiwyg', {
+            wysiwyg: description,
+          })
+        }}
+      {% endif %}
 
       {% if ctaText is not empty %}
         {{ include('sanfran:button', {
-          type: 'btn-secondary',
+          type: 'btn-accent',
           ctaText,
           ctaHref,
           })

@@ -1,10 +1,36 @@
-<div class="card card-compact bg-base-100 shadow-xl">
-  <figure class="aspect-[16/9]"><img src="{{ image }}" alt="{{ imageAlt }}" /></figure>
-  <div class="card-body">
-    <h3 class="card-title">{{ heading }}</h3>
-    {{ description }}
-    <div class="card-actions justify-start">
-      <button class="btn btn-primary" href="{{ ctaHref }}">{{ ctaText }}</button>
+
+
+{% set column_array = ['md:grid-cols-2','md:grid-cols-3','md:grid-cols-4'] %}
+
+{% set columns = content.field_columns.0['#markup'] %}
+{% set column_key = columns - 2 %}
+{% if (columns > 1) %}
+    {% set col_non_mobile = column_array[column_key] %}
+{% endif %}
+
+{% set classes_grid = [
+    'grid',
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]|join(' ')|trim %}
+
+
+<article {{ attributes.addClass(classes_grid) }}>
+
+    {{ include('sanfran:headings', {
+        level: '2',
+        text: heading
+      })
+    }}
+
+    <div class="grid gap-x-4 gap-y-8 grid-cols-1 {{ col_non_mobile }}">
+        {% for key, item in grid_items %}
+            {% if key|first != '#' %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
     </div>
-  </div>
-</div>
+
+</article>

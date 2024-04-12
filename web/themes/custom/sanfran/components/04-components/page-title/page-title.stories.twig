@@ -10,18 +10,21 @@
       description: 'This is a detailed and wordy example for the description field.',
       ctaText: 'Click me!',
       ctaHref: 'https://www.sfhsa.org',
-      background_color: '#F7BF35',
+      background_colors: ['lime','red','orange','yellow','green','teal','blue','purple','magenta','gray']
     }
   } %}
 
-    {{ include('sanfran:page-title', {
-      heading,
-      callout,
-      description,
-      ctaText,
-      ctaHref,
-      background_color,
-    }) }}
+    {% for key,background_color in background_colors %}
+      {{ include('sanfran:page-title', {
+        heading,
+        callout,
+        description,
+        ctaText,
+        ctaHref,
+        background_color,
+      }) }}
+    {% endfor %}
+
   {% endstory %}
 
 {% endstories %}

@@ -27,8 +27,8 @@
 
 {% set heading = content.field_heading.0 %}
 {% set callout = content.field_callout.0 %}
-{% set description = content.field_description.0['#text']|striptags %}
-{% set background_color = content.field_background_color|field_target_entity.field_hex_value.entity.field_hex_value.value %}
+{% set description = content.field_description.0 %}
+{% set background_color = content.field_background_color|field_target_entity.name.entity.name.value|lower %}
 
 {{ include('sanfran:page-title', {
     heading,

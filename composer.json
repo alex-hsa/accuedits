@@ -25,6 +25,7 @@
         "drupal/field_group": "^3.4",
         "drupal/focal_point": "^2.0",
         "drupal/gin": "^3.0@RC",
+        "drupal/gin_login": "^2.0",
         "drupal/imagemagick": "^4.0@alpha",
         "drupal/layout_paragraphs": "^2.0",
         "drupal/material_icons": "^2.0",

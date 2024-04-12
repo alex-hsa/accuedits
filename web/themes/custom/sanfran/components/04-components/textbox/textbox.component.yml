@@ -1,12 +1,12 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
-name: Page Title
-description: Page title with callout and description
+name: Text Shout
+description: Text with callout and description
 props:
   type: object
   properties:
     heading:
       title: Heading
-      description: The title for the banner text.
+      description: The title for the component.
       examples:
         - Join us at The Conference
       type: string
@@ -15,11 +15,6 @@ props:
       type: 'string'
       examples:
         - This is a detailed and wordy example for the description field.
-    callout:
-      title: Callout
-      type: string
-      examples:
-        - This is a callout
     background_color:
       title: Background color
       type: string

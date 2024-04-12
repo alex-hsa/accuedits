@@ -30,7 +30,8 @@
 {% set description = content.field_description.0 %}
 {% set ctaText = content.field_cta[0]['#title'] %}
 {% set ctaHref = content.field_cta[0]['#url'] %}
-{% set background_color = content.field_background_color|field_target_entity.field_hex_value.entity.field_hex_value.value %}
+{% set background_color = content.field_background_color|field_target_entity.name.entity.name.value|lower%}
+{# {% set background_color = content.field_background_color|field_target_entity.field_hex_value.entity.field_hex_value.value %} #}
 
 {{ include('sanfran:textbox', {
     heading,

@@ -1,9 +1,9 @@
 '$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
-name: "Carousel"
+name: "Accordion"
 status: "stable"
 slots:
-  carousel_items:
-    title: Carousel items
+  accordion_items:
+    title: Accordion items
 props:
   type: object
   properties:

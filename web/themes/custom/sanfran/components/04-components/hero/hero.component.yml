@@ -23,7 +23,7 @@ props:
       title: CTA Text
       type: string
       examples:
-        - Click me!
+        - 'Click me!'
     ctaHref:
       title: CTA Href
       type: string

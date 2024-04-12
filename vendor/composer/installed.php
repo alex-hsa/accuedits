@@ -559,6 +559,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'drupal/gin_login' => array(
+            'pretty_version' => '2.0.3',
+            'version' => '2.0.3.0',
+            'reference' => '2.0.3',
+            'type' => 'drupal-module',
+            'install_path' => __DIR__ . '/../../web/modules/contrib/gin_login',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'drupal/gin_toolbar' => array(
             'pretty_version' => '1.0.0-rc5',
             'version' => '1.0.0.0-RC5',

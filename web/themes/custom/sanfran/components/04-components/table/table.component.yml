@@ -5,12 +5,10 @@ props:
   type: object
   properties:
     heading:
-      type: string
       title: Heading
-      description: Component title
-      examples:
-        - "Main Title"
-    table:
       type: string
+      description: Component title
+    table:
       title: Table
+      type: string
       description: Contains table data

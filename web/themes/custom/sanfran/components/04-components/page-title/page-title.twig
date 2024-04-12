@@ -6,16 +6,13 @@
     'paragraph',
     'paragraph--type--' ~ paragraph.bundle|clean_class,
     view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-    not paragraph.isPublished() ? 'paragraph--unpublished'
+    not paragraph.isPublished() ? 'paragraph--unpublished',
+    'bg-base-' ~ background_color,
   ]|join(' ')|trim %}
 
-{% if background_color is not empty %}
-  {% set attributes = attributes.setAttribute('style', 'background-color: ' ~ background_color ~ ';') %}
-{% endif %}
+<article {{ attributes.addClass(classes_page_title).addClass('flex flex-row p-8 rounded-lg') }}>
 
-<article {{ attributes.addClass(classes_page_title).addClass('w-full rounded flex flex-row') }}>
-
-  <div class="p-8 rounded w-full">
+  <div class="rounded w-full">
     <div class="callout uppercase">{{ callout }}</div>
     {{ include('sanfran:headings', {
         level: '1',
@@ -23,10 +20,12 @@
       })
     }}
     
-    {{ include('sanfran:wysiwyg', {
-        wysiwyg: description,
-      })
-    }}
+    {% if description %}
+      {{ include('sanfran:wysiwyg', {
+          wysiwyg: description,
+        })
+      }}
+    {% endif %}
   </div>
 
 </article>

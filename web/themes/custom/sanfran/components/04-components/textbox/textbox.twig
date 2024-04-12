@@ -1,36 +1,41 @@
-{# Prepare presentational attributes #}
+{% set classes_textbox = [
+    'textbox',
+    'bg-' ~ background_color|lower ~ '-200',
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished',
+    'bg-base-' ~ background_color,
+  ]|join(' ')|trim %}
 
 
-{# Markup for the component #}
+<article {{ attributes.addClass(classes_textbox).addClass('p-8 rounded-lg') }}>
+  <div class="textbox-wrapper">
 
-
-  {% if background_color is not empty %}
-    {% set attributes = attributes.setAttribute('style', 'background-color: ' ~ background_color ~ ';') %}
-  {% endif %}
-  
-  <article {{ attributes.addClass('w-full rounded flex flex-row') }}>
-    <div class="p-8 rounded w-full">
-
+    {% if description %}
       {{ include('sanfran:headings', {
           level,
           text: heading,
         })
       }}
+    {% endif %}
 
+    {% if description %}
       {{ include('sanfran:wysiwyg', {
           wysiwyg: description,
         })
       }}
-      
-      {% if ctaText is not empty %}
-        <div class="hero--cta">
-          {{ include('sanfran:button', {
-            type: 'btn-primary',
-            ctaText,
-            ctaHref,
-            })
-          }}
-        </div>
-      {% endif %}
-    </div>
-  </article>
+    {% endif %}
+    
+    {% if ctaText is not empty %}
+      <div class="hero--cta">
+        {{ include('sanfran:button', {
+          type: 'btn-secondary',
+          ctaText,
+          ctaHref,
+          })
+        }}
+      </div>
+    {% endif %}
+   </div>
+</article>

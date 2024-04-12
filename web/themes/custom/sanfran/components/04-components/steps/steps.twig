@@ -1,18 +1,27 @@
-<article class="">
+{% set classes_steps = [
+    'spotlight ' ~ type,
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]|join(' ')|trim %}
 
-    {{ include('sanfran:headings', {
-        level: '2',
-        text: heading,
-      })
-    }}
+<article {{ attributes.addClass(classes_steps) }}>
+    <div class="step-wrapper px-4 py-0">
+        {{ include('sanfran:headings', {
+            level: '2',
+            text: heading,
+        })
+        }}
 
-    <br />
+        <br />
 
-    <ol class="border-s-8 border-accent relative left-4 pl-4">   
-        {% for key, item in steps_items %}
-            {% if key|first != '#' %}
-                {{ item }}
-            {% endif %}
-        {% endfor %}
-    </ol>
+        <ol class="border-s-8 border-base-blue relative left-4 pl-4">   
+            {% for key, item in steps_items %}
+                {% if key|first != '#' %}
+                    {{ item }}
+                {% endif %}
+            {% endfor %}
+        </ol>
+    </div>
 </article>

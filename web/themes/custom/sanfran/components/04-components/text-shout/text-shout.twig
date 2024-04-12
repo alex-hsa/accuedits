@@ -1,0 +1,28 @@
+  {% set classes_text_shout = [
+    'paragraph',
+    'bg-base-' ~ background_color,
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished',
+  ]|join(' ')|trim %}
+
+
+  <article {{ attributes.addClass(classes_text_shout).addClass('flex flex-row p-4 rounded-lg') }}>
+    
+    <div class="heading-text p-4 pr-8 text-center my-auto w-1/3">
+      {{ include('sanfran:headings', {
+          level,
+          text: heading,
+          classes: 'mb-0',
+        })
+      }}
+    </div>
+
+    <div class="border-{{background_color|lower}}-700 border-s-2 border-r-0 border-y-0 border-dashed callout-text col-span-2 p-4 pl-8">
+        {{ include('sanfran:wysiwyg', {
+            wysiwyg: description,
+            classes: 'mb-0',
+          })
+        }}
+    </div>
+  </article>

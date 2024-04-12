@@ -46,6 +46,21 @@ base:
         weight: -10
       css/components/ui-dialog.css:
         weight: -10
+back_to_top222:
+  css:
+    theme:
+      dist/css/back-to-top.css: {}
+  js:
+    dist/js/back-to-top.es6.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - sanfran/common
+sdc-components:
+  version: VERSION
+  css:
+    theme:
+      components/dist/sdc-styles.css: {}
 dialog:
   version: VERSION
   css:
@@ -79,6 +94,8 @@ main:
   css:
     theme:
       dist/styles.css: {}
+  dependencies:
+    - core/jquery
 messages:
   version: VERSION
   css:
