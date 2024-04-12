@@ -1,4 +1,4 @@
-uuid: 9ed77a8a-0f46-4329-a643-5a9a0914d6dc
+uuid: c7f33201-f078-4fb2-b534-81b61fa54847
 langcode: en
 status: true
 dependencies:
@@ -7,13 +7,13 @@ dependencies:
     - filter.format.basic_html
     - filter.format.full_html
     - filter.format.restricted_html
-    - paragraphs.paragraphs_type.parallel_callout
+    - paragraphs.paragraphs_type.text_shout
   module:
     - text
-id: paragraph.parallel_callout.field_description
+id: paragraph.text_shout.field_description
 field_name: field_description
 entity_type: paragraph
-bundle: parallel_callout
+bundle: text_shout
 label: Description
 description: ''
 required: false

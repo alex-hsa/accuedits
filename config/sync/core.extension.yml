@@ -30,6 +30,7 @@ module:
   file_mdm: 0
   filter: 0
   focal_point: 0
+  gin_login: 0
   help: 0
   history: 0
   image: 0
@@ -63,6 +64,7 @@ module:
   toolbar: 0
   twig_field_value: 0
   twig_tweak: 0
+  update: 0
   user: 0
   views_ui: 0
   webp: 0

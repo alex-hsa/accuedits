@@ -1,18 +1,18 @@
-uuid: b6dea10b-eff1-4765-ad75-acdd6eb4006e
+uuid: 0a37bab0-77e7-4ad4-8381-4856893f6100
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.parallel_callout.field_background_color
-    - field.field.paragraph.parallel_callout.field_description
-    - field.field.paragraph.parallel_callout.field_heading
-    - field.field.paragraph.parallel_callout.field_heading_level
-    - paragraphs.paragraphs_type.parallel_callout
+    - field.field.paragraph.text_shout.field_background_color
+    - field.field.paragraph.text_shout.field_description
+    - field.field.paragraph.text_shout.field_heading
+    - field.field.paragraph.text_shout.field_heading_level
+    - paragraphs.paragraphs_type.text_shout
   module:
     - text
-id: paragraph.parallel_callout.default
+id: paragraph.text_shout.default
 targetEntityType: paragraph
-bundle: parallel_callout
+bundle: text_shout
 mode: default
 content:
   field_background_color:

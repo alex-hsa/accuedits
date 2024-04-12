@@ -1,17 +1,17 @@
-uuid: f7df70ae-964b-4892-9dd7-aa20af2155bf
+uuid: 77853c19-5bbe-48b4-92c4-1d99bdca242b
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_heading_level
-    - paragraphs.paragraphs_type.parallel_callout
-id: paragraph.parallel_callout.field_heading_level
+    - paragraphs.paragraphs_type.text_shout
+id: paragraph.text_shout.field_heading_level
 field_name: field_heading_level
 entity_type: paragraph
-bundle: parallel_callout
+bundle: text_shout
 label: 'Heading Level'
 description: ''
-required: false
+required: true
 translatable: false
 default_value:
   -

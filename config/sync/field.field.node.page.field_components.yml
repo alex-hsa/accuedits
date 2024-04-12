@@ -10,10 +10,10 @@ dependencies:
     - paragraphs.paragraphs_type.grid
     - paragraphs.paragraphs_type.hero
     - paragraphs.paragraphs_type.page_title
-    - paragraphs.paragraphs_type.parallel_callout
     - paragraphs.paragraphs_type.spotlight
     - paragraphs.paragraphs_type.steps
     - paragraphs.paragraphs_type.table
+    - paragraphs.paragraphs_type.text_shout
     - paragraphs.paragraphs_type.textbox
   module:
     - entity_reference_revisions
@@ -36,11 +36,11 @@ settings:
       grid: grid
       hero: hero
       page_title: page_title
-      parallel_callout: parallel_callout
       spotlight: spotlight
       steps: steps
       table: table
       textbox: textbox
+      text_shout: text_shout
     negate: 0
     target_bundles_drag_drop:
       accordion:
@@ -67,9 +67,6 @@ settings:
       page_title:
         weight: -22
         enabled: true
-      parallel_callout:
-        weight: -21
-        enabled: true
       spotlight:
         weight: -20
         enabled: true
@@ -81,6 +78,9 @@ settings:
         enabled: true
       table:
         weight: -17
+        enabled: true
+      text_shout:
+        weight: 28
         enabled: true
       textbox:
         weight: -16

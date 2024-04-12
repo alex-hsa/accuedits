@@ -12,8 +12,8 @@ _core:
   default_config_hash: gmxYWWHmgbe0Pnv8y48ZLSLH5mEHejOjAP6RLxUfdzU
 id: sanfran_account_menu
 theme: sanfran
-region: secondary_menu
-weight: -4
+region: header
+weight: -6
 provider: null
 plugin: 'system_menu_block:account'
 settings:

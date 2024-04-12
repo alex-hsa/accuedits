@@ -1,14 +1,14 @@
-uuid: 56424766-4ef8-4699-9728-425072634724
+uuid: 4a6c0f9f-58ab-4899-981a-77f195bba0bb
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_heading
-    - paragraphs.paragraphs_type.parallel_callout
-id: paragraph.parallel_callout.field_heading
+    - paragraphs.paragraphs_type.text_shout
+id: paragraph.text_shout.field_heading
 field_name: field_heading
 entity_type: paragraph
-bundle: parallel_callout
+bundle: text_shout
 label: Heading
 description: ''
 required: false

@@ -47,8 +47,8 @@ content:
     weight: 2
     region: content
     settings:
-      allow_style: true
-      default_style: ''
+      allow_style: false
+      default_style: outlined
       allow_classes: true
     third_party_settings: {  }
   field_step_number:
