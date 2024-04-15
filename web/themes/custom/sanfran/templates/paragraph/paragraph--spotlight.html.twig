@@ -29,7 +29,7 @@
 
 {% set heading = content.field_heading.0|default(title) %}
 {% set callout = content.field_callout.0|default(callout) %}
-{% set type = content.field_type.0['#markup']|default(type) %}
+{% set variant = content.field_variant.0['#markup']|default(type) %}
 {% set description = content.field_description.0|default(paragraph) %}
 {% set ctaText = content.field_cta[0]['#title'] %}
 {% set ctaHref = content.field_cta[0]['#url']|default(button_url) %}
@@ -46,6 +46,6 @@
   ctaText,
   ctaHref,
   description,
-  type,
+  variant,
   })
 }}

@@ -1,15 +1,25 @@
-{# Prepare presentational attributes #}
+{% if variant == 'media-left' %}
+  {% set variant_classes = '[&>div.spotlight-media_img]:rounded-lg [&>div.spotlight-media_iframe]:rounded-lg' %}
+{% elseif variant == 'media-left-border'  %}
+  {% set variant_classes = '[&>div.spotlight-media_img]:rounded-l-lg [&>div.spotlight-media_iframe]:rounded-l-lg border border-gray-200 rounded-lg' %}
+{% elseif variant == 'media-right' %}
+  {% set variant_classes = '[&>div.spotlight-media_img]:rounded-lg [&>div.spotlight-media_iframe]:rounded-lg [&>div.spotlight-media]:order-2' %}
+{% elseif variant == 'media-right-border'  %}
+  {% set variant_classes = '[&>div.spotlight-media_img]:rounded-r-lg [&>div.spotlight-media_iframe]:rounded-r-lg [&>div.spotlight-media]:order-2 border border-gray-200 rounded-lg' %}
+{% endif %}
 
-{# Markup for the component #}
+
 {% set classes_spotlight = [
-    'spotlight ' ~ type,
+    'spotlight ' ~ variant_classes,
+    variant_classes ~ ' ',
     'paragraph',
     'paragraph--type--' ~ paragraph.bundle|clean_class,
     view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-    not paragraph.isPublished() ? 'paragraph--unpublished'
+    not paragraph.isPublished() ? 'paragraph--unpublished',
+    variant,
   ]|join(' ')|trim %}
 
-<article {{ attributes.addClass(classes_spotlight).addClass('grid grid-cols-2 gap-4') }}>
+<article {{ attributes.addClass(classes_spotlight).addClass('grid grid-cols-1 md:grid-cols-2 gap-4') }}>
 
     <div class="spotlight-media">
     

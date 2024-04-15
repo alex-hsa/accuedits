@@ -22,6 +22,10 @@ module.exports = {
     'border-yellow-700',
   ],
   theme: {
+    container: {
+      center: true,
+      padding: '1rem',
+    },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',

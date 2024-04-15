@@ -772,12 +772,6 @@ html {
     --tw-bg-opacity: 1;
     background-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-bg-opacity)));
   }
-
-  .table-zebra tr.hover:hover,
-  .table-zebra tr.hover:nth-child(even):hover {
-    --tw-bg-opacity: 1;
-    background-color: var(--fallback-b3,oklch(var(--b3)/var(--tw-bg-opacity)));
-  }
 }
 
 .btn {
@@ -2612,10 +2606,6 @@ details.collapse summary::-webkit-details-marker {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
-.grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
 .flex-row {
   flex-direction: row;
 }
@@ -2740,6 +2730,11 @@ details.collapse summary::-webkit-details-marker {
 .border-base-blue {
   --tw-border-opacity: 1;
   border-color: oklch(var(--base-blue) / var(--tw-border-opacity));
+}
+
+.border-gray-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(220 223 228 / var(--tw-border-opacity));
 }
 
 .border-gray-700 {
@@ -2923,11 +2918,6 @@ details.collapse summary::-webkit-details-marker {
   text-transform: capitalize;
 }
 
-.text-\[\#a9aeb1\] {
-  --tw-text-opacity: 1;
-  color: rgb(169 174 177 / var(--tw-text-opacity));
-}
-
 .shadow-xl {
   --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
@@ -2946,6 +2936,38 @@ details.collapse summary::-webkit-details-marker {
   .md\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
+}
+
+.\[\&\>div\.spotlight-media\]\:order-2>div.spotlight-media {
+  order: 2;
+}
+
+.\[\&\>div\.spotlight-media_iframe\]\:rounded-lg>div.spotlight-media iframe {
+  border-radius: 0.5rem;
+}
+
+.\[\&\>div\.spotlight-media_iframe\]\:rounded-l-lg>div.spotlight-media iframe {
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.\[\&\>div\.spotlight-media_iframe\]\:rounded-r-lg>div.spotlight-media iframe {
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.\[\&\>div\.spotlight-media_img\]\:rounded-lg>div.spotlight-media img {
+  border-radius: 0.5rem;
+}
+
+.\[\&\>div\.spotlight-media_img\]\:rounded-l-lg>div.spotlight-media img {
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.\[\&\>div\.spotlight-media_img\]\:rounded-r-lg>div.spotlight-media img {
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
 }
 
 
