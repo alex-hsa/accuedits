@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4ec73dc67d2cff553595103ccf1cf0d1",
+    "content-hash": "551ba84cc73a19e5a42f5410ee493da1",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2121,6 +2121,18 @@
             "time": "2024-02-05T11:35:39+00:00"
         },
         {
+            "name": "drmonty/smartmenus",
+            "version": "1.1.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://www.smartmenus.org/files/?file=smartmenus-jquery/smartmenus-1.1.1.zip"
+            },
+            "require": {
+                "composer/installers": "^2.0"
+            },
+            "type": "drupal-library"
+        },
+        {
             "name": "drupal/admin_toolbar",
             "version": "3.4.2",
             "source": {
@@ -3428,6 +3440,72 @@
             }
         },
         {
+            "name": "drupal/libraries",
+            "version": "4.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/libraries.git",
+                "reference": "4.0.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/libraries-4.0.4.zip",
+                "reference": "4.0.4",
+                "shasum": "45848ac6ebdfb77755305ece4c6cae436ca1b0cc"
+            },
+            "require": {
+                "drupal/core": "^9.4 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "4.0.4",
+                    "datestamp": "1687020889",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "joseph.olstad",
+                    "homepage": "https://www.drupal.org/user/1321830"
+                },
+                {
+                    "name": "podarok",
+                    "homepage": "https://www.drupal.org/user/116002"
+                },
+                {
+                    "name": "Pol",
+                    "homepage": "https://www.drupal.org/user/47194"
+                },
+                {
+                    "name": "rjacobs",
+                    "homepage": "https://www.drupal.org/user/422459"
+                },
+                {
+                    "name": "sun",
+                    "homepage": "https://www.drupal.org/user/54136"
+                },
+                {
+                    "name": "tstoeckler",
+                    "homepage": "https://www.drupal.org/user/107158"
+                }
+            ],
+            "description": "Allows version-dependent and shared usage of external libraries in Drupal.",
+            "homepage": "http://drupal.org/project/libraries",
+            "support": {
+                "source": "https://git.drupalcode.org/project/libraries",
+                "issues": "http://drupal.org/project/issues/libraries",
+                "irc": "irc://irc.freenode.org/drupal-contribute"
+            }
+        },
+        {
             "name": "drupal/material_icons",
             "version": "2.0.2",
             "source": {
@@ -3706,6 +3784,62 @@
             }
         },
         {
+            "name": "drupal/smartmenus",
+            "version": "2.0.1-beta2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/smartmenus.git",
+                "reference": "2.0.1-beta2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/smartmenus-2.0.1-beta2.zip",
+                "reference": "2.0.1-beta2",
+                "shasum": "0b74d9f67f62dfa5ab306bc35466ec09a79227c6"
+            },
+            "require": {
+                "drmonty/smartmenus": "1.1.1",
+                "drupal/core": "^8 || ^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.1-beta2",
+                    "datestamp": "1696970883",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jen Lampton",
+                    "homepage": "http://drupal.org/user/85586",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Vishwa Chikate",
+                    "homepage": "https://www.drupal.org/user/2857973",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "vishwac9",
+                    "homepage": "https://www.drupal.org/user/2857973"
+                }
+            ],
+            "description": "Responsive drop-down menus with the <a href=\"http://www.smartmenus.org/\">Smartmenus</a> jQuery plugin.",
+            "homepage": "https://www.drupal.org/project/smartmenus",
+            "support": {
+                "source": "http://cgit.drupalcode.org/smartmenus",
+                "issues": "https://www.drupal.org/project/issues/smartmenus"
+            }
+        },
+        {
             "name": "drupal/sophron",
             "version": "2.0.2",
             "source": {
@@ -3802,6 +3936,85 @@
             "homepage": "https://www.drupal.org/project/storybook",
             "support": {
                 "source": "https://git.drupalcode.org/project/storybook"
+            }
+        },
+        {
+            "name": "drupal/tb_megamenu",
+            "version": "3.0.0-alpha4",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/tb_megamenu.git",
+                "reference": "3.0.0-alpha4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/tb_megamenu-3.0.0-alpha4.zip",
+                "reference": "3.0.0-alpha4",
+                "shasum": "3a944fbcaaf5f1b28e0206ccfeb54a1bd24ee72f"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10 || ^11"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.0.0-alpha4",
+                    "datestamp": "1713052614",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Wade Stewart (themodularlab)",
+                    "homepage": "https://www.drupal.org/u/themodularlab",
+                    "role": "Owner"
+                },
+                {
+                    "name": "Michael Girgis (knaffles)",
+                    "homepage": "https://www.drupal.org/u/knaffles",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Andrew Olson (andrewozone)",
+                    "homepage": "https://www.drupal.org/u/andrewozone",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Justin Todd (quondam)",
+                    "homepage": "https://www.drupal.org/u/quondam",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Irene Dobbs (irene_dobbs)",
+                    "homepage": "https://www.drupal.org/u/irene_dobbs",
+                    "role": "Co-Maintainer"
+                },
+                {
+                    "name": "Henry Odiete (henry.odiete)",
+                    "homepage": "https://www.drupal.org/u/henry.odiete",
+                    "role": "Co-Maintainer"
+                },
+                {
+                    "name": "quondam",
+                    "homepage": "https://www.drupal.org/user/327869"
+                },
+                {
+                    "name": "themodularlab",
+                    "homepage": "https://www.drupal.org/user/3190381"
+                }
+            ],
+            "description": "Provides complex, multi-column mega menu solutions for Drupal.",
+            "homepage": "https://www.drupal.org/project/tb_megamenu",
+            "support": {
+                "source": "https://git.drupalcode.org/project/tb_megamenu",
+                "issues": "https://www.drupal.org/project/issues/tb_megamenu"
             }
         },
         {
@@ -13035,7 +13248,9 @@
     "stability-flags": {
         "drupal/gin": 5,
         "drupal/imagemagick": 15,
+        "drupal/smartmenus": 10,
         "drupal/storybook": 10,
+        "drupal/tb_megamenu": 15,
         "drupal/webp": 5
     },
     "prefer-stable": true,

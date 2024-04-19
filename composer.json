@@ -12,6 +12,21 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "drmonty/smartmenus",
+                "version": "1.1.1",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://www.smartmenus.org/files/?file=smartmenus-jquery/smartmenus-1.1.1.zip",
+                    "type": "zip"
+                },
+                "require": {
+                    "composer/installers": "^2.0"
+                }
+            }
         }
     ],
     "require": {
@@ -28,11 +43,14 @@
         "drupal/gin_login": "^2.0",
         "drupal/imagemagick": "^4.0@alpha",
         "drupal/layout_paragraphs": "^2.0",
+        "drupal/libraries": "^4.0",
         "drupal/material_icons": "^2.0",
         "drupal/paragraphs": "^1.17",
         "drupal/pathauto": "^1.12",
         "drupal/responsive_tables_filter": "^1.18",
+        "drupal/smartmenus": "^2.0@beta",
         "drupal/storybook": "^1.0@beta",
+        "drupal/tb_megamenu": "^3.0@alpha",
         "drupal/twig_field_value": "^2.0",
         "drupal/twig_tweak": "^3.3",
         "drupal/webp": "^1.0@RC",

@@ -40,12 +40,17 @@
       {% endif %}
     </div>
     <div class="spotlight-callout px-8 py-6">
-    
-      {{ include('sanfran:headings', {
-          text: heading,
-          level: '2',
-            })
-      }}
+      {% if callout %}
+        <div class="callout uppercase">{{ callout }}</div>
+      {% endif %}
+
+      {% if heading %}
+        {{ include('sanfran:headings', {
+            text: heading,
+            level: '2',
+              })
+        }}
+      {% endif %}
       
       {% if description %}
         {{ include('sanfran:wysiwyg', {

@@ -1,0 +1,6 @@
+smartmenus.smartmenus_settings_form:
+  title: 'Smartmenus'
+  route_name: smartmenus.smartmenus_settings_form
+  description: 'Smartmenus settings.'
+  parent: system.admin_config_system
+  weight: 99

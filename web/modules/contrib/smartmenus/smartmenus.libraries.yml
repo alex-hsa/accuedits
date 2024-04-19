@@ -1,0 +1,28 @@
+smartmenus-lib:
+  remote: https://github.com/vadikom/smartmenus
+  version: 1.1.1
+  header: false
+  license:
+    name: MIT
+    url: https://github.com/vadikom/smartmenus/blob/master/LICENSE-MIT
+  js:
+    /libraries/smartmenus/jquery.smartmenus.min.js: {}
+  css:
+    theme:
+      /libraries/smartmenus/css/sm-blue/sm-blue.css: {}
+      /libraries/smartmenus/css/sm-clean/sm-clean.css: {}
+      /libraries/smartmenus/css/sm-mint/sm-mint.css: {}
+      /libraries/smartmenus/css/sm-simple/sm-simple.css: {}
+      /libraries/smartmenus/css/sm-core-css.css: {}
+  dependencies:
+    - core/jquery
+    - core/once
+    - core/drupal
+smartmenus-custom:
+  js:
+    js/smartmenus.js: {}
+  css:
+    theme:
+      css/sm-menu-toggle.css: {}
+  dependencies:
+    - smartmenus/smartmenus-lib

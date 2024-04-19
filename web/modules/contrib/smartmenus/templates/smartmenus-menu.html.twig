@@ -1,0 +1,86 @@
+{#
+/**
+ * @file
+ * Theme override to display the main menu.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *   - is_expanded: TRUE if the link has visible children within the current
+ *     menu tree.
+ *   - is_collapsed: TRUE if the link has children within the current menu tree
+ *     that are not currently visible.
+ *   - in_active_trail: TRUE if the link is in the active trail.
+ */
+#}
+
+{% import _self as smartmenus %}
+
+{#
+  We call a macro which calls itself to render the full tree.
+  @see https://twig.symfony.com/doc/1.x/tags/macro.html
+
+  1. We use menu_name (see above) to create a CSS class name from it.
+  See https://www.drupal.org/node/2649076
+#}
+<nav class="main-nav smartmenus-nav" role="navigation">
+  {{ toggle }}
+  {{ smartmenus.menu_links(items, attributes, 0, menu_name) }} {# 1. #}
+</nav>
+
+{% macro menu_links(items, attributes, menu_level, menu_name) %} {# 1. #}
+  {% import _self as smartmenus %}
+  {# 1. #}
+  {%
+    set menu_classes = [
+    'sm sm-' ~ menu_name|clean_class,
+  ]
+  %}
+  {%
+    set submenu_classes = [
+    'sm-submenu',
+  ]
+  %}
+  {% if items %}
+    {% if menu_level == 0 %}
+      <ul id="sm-main-menu" {{ attributes.addClass(menu_classes).setAttribute('data-drupal-selector', 'smartmenu') }}> {# 1. #}
+    {% else %}
+      <ul {{ attributes.addClass(submenu_classes) }}>
+    {% endif %}
+    {% for item in items %}
+      {%
+        set item_classes = [
+          'sm-item',
+          item.is_expanded ? 'item-expanded',
+          item.is_collapsed ? 'item-collapsed',
+          item.in_active_trail ? 'item-active-trail',
+          loop.first and menu_level == 0 ? 'first',
+          loop.last and menu_level == 0 ? 'last'
+        ]
+      %}
+      {%
+        set link_classes = [
+        'sm-link',
+      ]
+      %}
+      <li{{ item.attributes.addClass(item_classes) }}>
+        {{
+        link(
+          item.title,
+          item.url,
+          item.attributes.removeClass(item_classes).addClass(link_classes)
+        )
+        }}
+        {% if item.below %}
+          {{ smartmenus.menu_links(item.below, attributes, menu_level + 1, menu_name) }}
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}

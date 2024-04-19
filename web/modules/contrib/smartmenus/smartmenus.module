@@ -1,0 +1,53 @@
+<?php
+
+/**
+ * @file
+ * Contains smartmenus.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function smartmenus_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the smartmenus module.
+    case 'help.page.smartmenus':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Responsive drop-down menus with the &lt;a href=&quot;http://www.smartmenus.org/&quot;&gt;Smartmenus&lt;/a&gt; jQuery plugin.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+function smartmenus_theme() {
+  return [
+    'smartmenus_block' => [
+      'variables' => [
+        'menu_tree' => NULL,
+        'attributes' => NULL
+      ]
+    ],
+    'smartmenus_menu' => [
+      'variables' => [
+        'items' => NULL,
+        'attributes' => NULL,
+        'menu_name' => NULL,
+        'depth' => NULL,
+        'toggle' => NULL
+      ]
+    ],
+    'smartmenus_toggle' => [
+      'variables' => [
+
+      ]
+    ]
+  ];
+}

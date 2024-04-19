@@ -13,12 +13,17 @@
 <article {{ attributes.addClass(classes_page_title).addClass('flex flex-row p-8 rounded-lg') }}>
 
   <div class="rounded w-full">
-    <div class="callout uppercase">{{ callout }}</div>
-    {{ include('sanfran:headings', {
-        level: '1',
-        text: heading,
-      })
-    }}
+    {% if callout %}
+      <div class="callout uppercase">{{ callout }}</div>
+    {% endif %}
+
+    {% if heading %}
+      {{ include('sanfran:headings', {
+          level: '1',
+          text: heading,
+        })
+      }}
+    {% endif %}
     
     {% if description %}
       {{ include('sanfran:wysiwyg', {

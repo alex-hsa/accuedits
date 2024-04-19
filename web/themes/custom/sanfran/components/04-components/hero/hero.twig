@@ -13,11 +13,17 @@
 <article {{ attributes.addClass(classes_hero).addClass('grid grid-flow-row p-8 place-items-start rounded-lg') }}>
 
   <div class="glass p-8 rounded-lg w-1/2">
-    {{ include('sanfran:headings', {
-        level: '1',
-        text: heading,
-      })
-    }}
+    {% if callout %}
+      <div class="callout uppercase">{{ callout }}</div>
+    {% endif %}
+
+    {% if heading %}
+      {{ include('sanfran:headings', {
+          level: '1',
+          text: heading,
+        })
+      }}
+    {% endif %}
 
     {% if description %}
       {{ include('sanfran:wysiwyg', {

@@ -27,16 +27,17 @@
 
 {# {% include '@components/my-banner/my-banner.twig' %} #}
 
-{% set heading = content.field_heading.0|default(title) %}
-{% set callout = content.field_callout.0|default(callout) %}
-{% set description = content.field_description.0|default(paragraph) %}
-{% set ctaText = content.field_cta[0]['#title'] %}
-{% set ctaHref = content.field_cta[0]['#url'] %}
+{% set heading = content.field_heading.0|default('') %}
+{% set callout = content.field_callout.0|default('') %}
+{% set description = content.field_description.0|default('') %}
+{% set ctaText = content.field_cta[0]['#title']|default('') %}
+{% set ctaHref = content.field_cta[0]['#url']|default('') %}
 {% set media_image = content.field_media|field_target_entity.field_media_image.entity.uri.value %}
-{% set image =  media_image %}
+{% set image =  media_image|default('') %}
 
 {{ include('sanfran:hero', {
   heading,
+  callout,
   image,
   ctaText,
   ctaHref,

@@ -1,0 +1,4 @@
+services:
+  smartmenus.util:
+    class: Drupal\smartmenus\SmartmenusUtil
+    arguments: ['@string_translation']
