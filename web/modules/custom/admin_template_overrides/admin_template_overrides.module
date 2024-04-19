@@ -30,6 +30,10 @@ function admin_template_overrides_theme($existing, $type, $theme, $path) {
       'template' => 'paragraph--hero',
       'base hook' => 'paragraph'
     ],
+    'paragraph__icon_card' => [
+      'template' => 'paragraph--icon-card',
+      'base hook' => 'paragraph'
+    ],
     'paragraph__page_title' => [
       'template' => 'paragraph--page-title',
       'base hook' => 'paragraph'

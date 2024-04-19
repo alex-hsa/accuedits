@@ -5,9 +5,19 @@
       ratio: '16/9',
      })
   }}
-  <div class="card-body">
-    <h3 class="card-title">{{ heading }} {{ headingLevel }}</h3>
-    {{ description }}
+
+
+    {% if heading %}
+      {# Todo: If heading, description and CTA all empty don't display 'card-body' div  #}
+      <div class="card-body">
+        <h3 class="card-title">{{ heading }} {{ headingLevel }}</h3>
+    {% endif %}
+    
+    {% if description %}
+      {{ description }}
+    {% endif %}
+
+    {% if ctaText %}
     <div class="card-actions justify-start">
       {{ include('sanfran:button', {
         type: 'btn-primary',
@@ -16,5 +26,10 @@
         })
       }}
     </div>
-  </div>
+    {% endif %}
+
+    {% if heading %}
+     {# Todo: If heading, description and CTA all empty don't display 'card-body' div  #}
+      </div>
+    {% endif %}
 </div>

@@ -1,0 +1,60 @@
+{% if type == 'elevated' %}
+  {% set icon_card_classes = 'shadow-xl' %}
+{% elseif type == 'filled'  %}
+  {% set icon_card_classes = 'bg-base-' ~ background_color %}
+{% else %}
+  {% set icon_card_classes = 'border-2 border-' ~ background_color %}
+{% endif %}
+
+{% if orientation == 'horizontal' %}
+  {% set orientation_class = 'flex-row space-x-8 [&>div:first-child]:self-center' %}
+{% else %}
+  {% set orientation_class = 'flex-col' %}
+{% endif %}
+
+{% if alignment == 'center' %}
+  {% set alignment_class = 'text-center self-center' %}
+{% elseif alignment == 'right' %}
+  {% set alignment_class = 'text-right self-end' %}
+{% else  %}
+  {% set alignment_class = 'text-left' %}
+{% endif %}
+
+<div class="icon-card flex {{ orientation_class }} h-full p-4 rounded-lg {{ icon_card_classes }}">
+
+  {% if icon %}
+    <div class="{{ alignment_class }} bg-base-{{ background_color }} h-16 inline-flex items-center justify-center mb-4 rounded-lg w-16 [&>i:first-child]:text-4xl text-{{ background_color }}">
+        {{ icon }}
+    </div>
+  {% endif %}
+
+  <div class="{{ alignment_class }}">
+  {% if heading %}
+    {{ include('sanfran:headings', {
+        level: '3',
+        text: heading,
+      })
+    }}
+  {% endif %}
+
+  {% if description %}
+    {{ include('sanfran:wysiwyg', {
+        wysiwyg: description,
+      })
+    }}
+  {% endif %}
+
+  {% if ctaText %}
+    {% set link_classes = 'text-' ~ background_color ~ ' font-bold' %}
+    <div class="{{ alignment_class }}">
+      {{ include('sanfran:link', {
+        classes: link_classes,
+        text: ctaText,
+        url: ctaHref,
+        })
+      }}
+    </div>
+  {% endif %}
+
+  </div>
+</div>

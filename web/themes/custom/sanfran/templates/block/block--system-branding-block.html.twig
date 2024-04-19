@@ -14,17 +14,24 @@
  */
 #}
 {% block content %}
-  {% if site_logo %}
-    <a href="{{ path('<front>') }}" rel="home" class="site-logo">
-      <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" fetchpriority="high" class="h-24 w-64" />
-    </a>
-  {% endif %}
-  {% if site_name %}
-    <div class="site-name">
-      <a href="{{ path('<front>') }}" rel="home">{{ site_name }}</a>
-    </div>
-  {% endif %}
-  {% if site_slogan %}
-    <div class="site-slogan">{{ site_slogan }}</div>
-  {% endif %}
+
+    {% if site_logo %}
+      <div class="site-logo">
+        <a href="{{ path('<front>') }}" rel="home" class="site-logo inline">
+          <img class="svg-inject icon-svg icon-svg-md text-blue mb-3" src="/themes/custom/sanfran/images/accuedit_logo.svg" alt="AccuEdits logo" width="100" height="100" onload="SVGInject(this)">
+          {# <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" fetchpriority="high" class="bg-magenta text-blue" /> #}
+          {# <svg class="h-6 w-6 md:h-8 md:w-8" width="32" height="32" viewBox="0 0 415 415" xmlns="http://www.w3.org/2000/svg"><rect x="82.5" y="290" width="250" height="125" rx="62.5" fill="#1AD1A5"></rect><circle cx="207.5" cy="135" r="130" fill="black" fill-opacity=".3"></circle><circle cx="207.5" cy="135" r="125" fill="white"></circle><circle cx="207.5" cy="135" r="56" fill="#FF9903"></circle></svg> #}
+        
+        </a>
+      </div>
+    {% endif %}
+    {% if site_name %}
+      <div class="site-name">
+        <a href="{{ path('<front>') }}" rel="home">{{ site_name }}</a>
+      </div>
+    {% endif %}
+    {% if site_slogan %}
+      <div class="site-slogan">{{ site_slogan }}</div>
+    {% endif %}
+
 {% endblock %}

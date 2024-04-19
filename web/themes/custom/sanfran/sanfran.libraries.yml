@@ -94,6 +94,8 @@ main:
   css:
     theme:
       dist/styles.css: {}
+  js:
+    dist/js/theme.js: {}
   dependencies:
     - core/jquery
 messages:

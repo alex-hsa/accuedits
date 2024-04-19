@@ -1,6 +1,6 @@
 
 
-{% set column_array = ['md:grid-cols-2','md:grid-cols-3','md:grid-cols-4'] %}
+{% set column_array = ['sm:grid-cols-2','md:grid-cols-3','lg:grid-cols-4'] %}
 
 {% set columns = content.field_columns.0['#markup'] %}
 {% set column_key = columns - 2 %}
@@ -8,29 +8,93 @@
     {% set col_non_mobile = column_array[column_key] %}
 {% endif %}
 
+{% if orientation == 'horizontal' %}
+  {% set orientation_class = 'grid grid-cols-1 md:grid-cols-12 gap-4' %}
+{% else %}
+  {% set orientation_class = '' %}
+{% endif %}
+
+{% if alignment == 'center' %}
+  {% set alignment_class = 'text-center' %}
+{% elseif alignment == 'right' %}
+  {% set alignment_class = 'text-right' %}
+{% else  %}
+  {% set alignment_class = 'text-left' %}
+{% endif %}
+
 {% set classes_grid = [
-    'grid',
     'paragraph',
     'paragraph--type--' ~ paragraph.bundle|clean_class,
     view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-    not paragraph.isPublished() ? 'paragraph--unpublished'
+    not paragraph.isPublished() ? 'paragraph--unpublished',
   ]|join(' ')|trim %}
 
 
-<article {{ attributes.addClass(classes_grid) }}>
-
+<article {{ attributes.addClass(classes_grid).addClass(orientation_class) }}>
+  <div class="grid-teaser col-span-5 mr-8 place-content-center {{ alignment_class }}">
+    {% if eyebrow %}
+      <div class="eyebrow uppercase">{{ eyebrow }}</div>
+    {% endif %}
     {{ include('sanfran:headings', {
         level: '2',
         text: heading
       })
     }}
 
-    <div class="grid gap-x-4 gap-y-8 grid-cols-1 {{ col_non_mobile }}">
+    {% if description %}
+      {{ include('sanfran:wysiwyg', {
+          wysiwyg: description,
+          classes: 'mb-0',
+        })
+      }}
+    {% endif %}
+
+      {% if ctaText is not empty %}
+      <div class="hero--cta">
+        {{ include('sanfran:button', {
+          type: 'btn-primary',
+          ctaText,
+          ctaHref,
+          })
+        }}
+      </div>
+    {% endif %}
+  </div>
+
+  {% if orientation == 'horizontal' %}
+    {% set item_array = [
+      'w-full md:ml-16 md:w-4/5',
+      'w-full md:mt-8',
+      'w-full md:mb-8 md:w-4/5',
+      'w-full md:-ml-16'
+      ] %}
+    {% set counter = 0 %}
+    
+    <div class="col-span-7">
+      <div class="grid rid-cols-1 md:grid-cols-2 gap-4">
+          {% for key, item in grid_items %}
+            {% set item_class = item_array[counter] %}
+              {% if key|first != '#' %}
+
+                  <div class="{{ item_class }}">
+                    {{ item }}
+                  </div>
+                  {% set counter = counter + 1 %}
+                  
+              {% endif %}
+              
+          {% endfor %}
+      </div>
+    </div>
+
+  {% else %}
+    <div class="grid gap-x-4 gap-y-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 {{ col_non_mobile }}">
         {% for key, item in grid_items %}
             {% if key|first != '#' %}
                 {{ item }}
             {% endif %}
         {% endfor %}
     </div>
+  {% endif %}
 
 </article>
