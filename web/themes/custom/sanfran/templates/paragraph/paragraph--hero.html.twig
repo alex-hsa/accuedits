@@ -27,8 +27,8 @@
 
 {# {% include '@components/my-banner/my-banner.twig' %} #}
 
+{% set eyebrow = content.field_eyebrow.0|default('') %}
 {% set heading = content.field_heading.0|default('') %}
-{% set callout = content.field_callout.0|default('') %}
 {% set description = content.field_description.0|default('') %}
 {% set ctaText = content.field_cta[0]['#title']|default('') %}
 {% set ctaHref = content.field_cta[0]['#url']|default('') %}
@@ -36,8 +36,8 @@
 {% set image =  media_image|default('') %}
 
 {{ include('sanfran:hero', {
+  eyebrow,
   heading,
-  callout,
   image,
   ctaText,
   ctaHref,

@@ -25,14 +25,14 @@
   */
 #}
 
+{% set eyebrow = content.field_eyebrow.0|default('') %}
 {% set heading = content.field_heading.0|default('') %}
-{% set callout = content.field_callout.0|default('') %}
 {% set description = content.field_description.0|default('') %}
 {% set background_color = content.field_background_color|field_target_entity.name.entity.name.value|lower|default('') %}
 
 {{ include('sanfran:page-title', {
+    eyebrow,
     heading,
-    callout,
     description,
     background_color,
   })

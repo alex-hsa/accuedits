@@ -4,8 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.page_title.field_background_color
-    - field.field.paragraph.page_title.field_callout
     - field.field.paragraph.page_title.field_description
+    - field.field.paragraph.page_title.field_eyebrow
     - field.field.paragraph.page_title.field_heading
     - paragraphs.paragraphs_type.page_title
   module:
@@ -21,20 +21,20 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_callout:
-    type: string_textfield
-    weight: 2
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   field_description:
     type: text_textarea
     weight: 2
     region: content
     settings:
       rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_eyebrow:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
       placeholder: ''
     third_party_settings: {  }
   field_heading:

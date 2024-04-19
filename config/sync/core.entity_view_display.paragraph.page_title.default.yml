@@ -4,8 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.page_title.field_background_color
-    - field.field.paragraph.page_title.field_callout
     - field.field.paragraph.page_title.field_description
+    - field.field.paragraph.page_title.field_eyebrow
     - field.field.paragraph.page_title.field_heading
     - paragraphs.paragraphs_type.page_title
   module:
@@ -24,20 +24,20 @@ content:
     third_party_settings: {  }
     weight: 3
     region: content
-  field_callout:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 2
-    region: content
   field_description:
     type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_eyebrow:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
     region: content
   field_heading:
     type: string

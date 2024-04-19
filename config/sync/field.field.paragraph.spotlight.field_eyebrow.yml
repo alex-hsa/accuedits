@@ -1,15 +1,15 @@
-uuid: 97dbdbce-c47a-41be-8efc-a512e059eec8
+uuid: a7bda1c8-6e0a-43d4-9586-89d3f767ef28
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_callout
+    - field.storage.paragraph.field_eyebrow
     - paragraphs.paragraphs_type.spotlight
-id: paragraph.spotlight.field_callout
-field_name: field_callout
+id: paragraph.spotlight.field_eyebrow
+field_name: field_eyebrow
 entity_type: paragraph
 bundle: spotlight
-label: Callout
+label: Eyebrow
 description: ''
 required: false
 translatable: false
