@@ -1,0 +1,152 @@
+uuid: fd9735bc-be10-409e-877c-ba74fec7b85c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.icon_card.field_alignment
+    - field.field.paragraph.icon_card.field_background_color
+    - field.field.paragraph.icon_card.field_container_type
+    - field.field.paragraph.icon_card.field_cta
+    - field.field.paragraph.icon_card.field_description
+    - field.field.paragraph.icon_card.field_heading
+    - field.field.paragraph.icon_card.field_icon_material
+    - field.field.paragraph.icon_card.field_orientation
+    - paragraphs.paragraphs_type.icon_card
+  module:
+    - field_group
+    - link
+    - material_icons
+    - text
+third_party_settings:
+  field_group:
+    group_icon_details:
+      children:
+        - field_icon_material
+        - field_background_color
+      label: 'Icon Details'
+      region: content
+      parent_name: group_content
+      weight: 1
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: true
+        id: ''
+        open: true
+        description: ''
+        required_fields: true
+    group_tabs:
+      children:
+        - group_content
+        - group_style
+      label: Tabs
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: tabs
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        direction: horizontal
+        width_breakpoint: 640
+    group_content:
+      children:
+        - group_icon_details
+        - field_heading
+        - field_description
+        - field_cta
+      label: Content
+      region: content
+      parent_name: group_tabs
+      weight: 4
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        formatter: open
+        description: ''
+        required_fields: true
+    group_style:
+      children:
+        - field_container_type
+        - field_alignment
+        - field_orientation
+      label: Style
+      region: content
+      parent_name: group_tabs
+      weight: 5
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+id: paragraph.icon_card.default
+targetEntityType: paragraph
+bundle: icon_card
+mode: default
+content:
+  field_alignment:
+    type: options_select
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_background_color:
+    type: options_select
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_container_type:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_cta:
+    type: link_default
+    weight: 4
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_description:
+    type: text_textarea
+    weight: 3
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_heading:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_icon_material:
+    type: material_icons
+    weight: 7
+    region: content
+    settings:
+      allow_style: true
+      default_style: two-tone
+      allow_classes: true
+    third_party_settings: {  }
+  field_orientation:
+    type: options_select
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

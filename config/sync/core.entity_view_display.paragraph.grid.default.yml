@@ -3,17 +3,33 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.grid.field_alignment
     - field.field.paragraph.grid.field_columns
+    - field.field.paragraph.grid.field_cta
+    - field.field.paragraph.grid.field_description
+    - field.field.paragraph.grid.field_eyebrow
     - field.field.paragraph.grid.field_items
     - field.field.paragraph.grid.field_main_title
+    - field.field.paragraph.grid.field_media
+    - field.field.paragraph.grid.field_orientation
     - paragraphs.paragraphs_type.grid
   module:
     - entity_reference_revisions
+    - link
+    - options
+    - text
 id: paragraph.grid.default
 targetEntityType: paragraph
 bundle: grid
 mode: default
 content:
+  field_alignment:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
   field_columns:
     type: number_integer
     label: hidden
@@ -21,7 +37,34 @@ content:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 1
+    weight: 7
+    region: content
+  field_cta:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_eyebrow:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
     region: content
   field_items:
     type: entity_reference_revisions_entity_view
@@ -30,7 +73,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 2
+    weight: 8
     region: content
   field_main_title:
     type: string
@@ -38,6 +81,22 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 0
+    weight: 1
+    region: content
+  field_media:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_orientation:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
     region: content
 hidden: {  }

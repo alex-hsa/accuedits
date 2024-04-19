@@ -1,0 +1,28 @@
+uuid: 121fa514-2136-4046-9ba2-0b07c9d4dcd7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_description
+    - filter.format.basic_html
+    - filter.format.full_html
+    - filter.format.restricted_html
+    - paragraphs.paragraphs_type.grid
+  module:
+    - text
+id: paragraph.grid.field_description
+field_name: field_description
+entity_type: paragraph
+bundle: grid
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+    - restricted_html
+    - full_html
+field_type: text_long

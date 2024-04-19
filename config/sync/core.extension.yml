@@ -37,6 +37,7 @@ module:
   imagemagick: 0
   layout_discovery: 0
   layout_paragraphs: 0
+  libraries: 0
   link: 0
   material_icons: 0
   media: 0
@@ -59,6 +60,7 @@ module:
   storybook: 0
   system: 0
   taxonomy: 0
+  tb_megamenu: 0
   text: 0
   token: 0
   toolbar: 0

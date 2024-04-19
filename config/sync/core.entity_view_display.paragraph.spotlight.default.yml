@@ -8,7 +8,7 @@ dependencies:
     - field.field.paragraph.spotlight.field_description
     - field.field.paragraph.spotlight.field_heading
     - field.field.paragraph.spotlight.field_media
-    - field.field.paragraph.spotlight.field_type
+    - field.field.paragraph.spotlight.field_variant
     - paragraphs.paragraphs_type.spotlight
   module:
     - link
@@ -25,7 +25,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 2
+    weight: 3
     region: content
   field_cta:
     type: link
@@ -37,14 +37,14 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    weight: 3
+    weight: 5
     region: content
   field_description:
     type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 2
+    weight: 4
     region: content
   field_heading:
     type: string
@@ -52,7 +52,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 1
+    weight: 2
     region: content
   field_media:
     type: entity_reference_entity_view
@@ -61,13 +61,13 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
-    weight: 0
+    weight: 1
     region: content
-  field_type:
+  field_variant:
     type: list_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 4
+    weight: 0
     region: content
 hidden: {  }

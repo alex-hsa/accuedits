@@ -5,6 +5,6 @@ features:
   favicon: 1
 logo:
   use_default: 0
-  path: themes/custom/sanfran/accuedits-logo.png
+  path: themes/custom/sanfran/images/accucable-logo.jpeg
 favicon:
   use_default: 1
