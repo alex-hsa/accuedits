@@ -1,0 +1,13 @@
+name: Frontend Editing
+description: This module adds frontend editing functionality.
+package: Content
+type: module
+core_version_requirement: ^9.3 || ^10 || ^11
+configure: frontend_editing.settings_form
+dependencies:
+  - paragraphs_edit:paragraphs_edit
+
+# Information added by Drupal.org packaging script on 2024-04-18
+version: '1.7.0'
+project: 'frontend_editing'
+datestamp: 1713451776

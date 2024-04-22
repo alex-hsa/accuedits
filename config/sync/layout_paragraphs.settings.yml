@@ -3,5 +3,5 @@ _core:
 show_paragraph_labels: 1
 show_layout_labels: 1
 paragraph_behaviors_label: Behaviors
-paragraph_behaviors_position: -99
+paragraph_behaviors_position: 99
 empty_message: 'No components to add.'

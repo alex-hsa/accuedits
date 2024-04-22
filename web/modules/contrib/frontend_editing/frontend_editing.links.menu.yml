@@ -1,0 +1,5 @@
+frontend_editing.settings_form:
+  route_name: frontend_editing.settings_form
+  title: 'Frontend Editing'
+  description: 'Configure Frontend Editing.'
+  parent: system.admin_config_content

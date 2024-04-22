@@ -1,0 +1,34 @@
+_core:
+  default_config_hash: 1kLwmHO7A0QSECnL0d81yFOc5Aw5mPjgrq4Sz3Bp3K8
+entity_types:
+  media:
+    - image
+  paragraph:
+    - accordion
+    - accordion_item
+    - card
+    - carousel
+    - featured
+    - grid
+    - hero
+    - icon_card
+    - page_title
+    - spotlight
+    - step_item
+    - steps
+    - table
+    - text_shout
+    - textbox
+sidebar_width: 30
+full_width: 80
+ajax_content_update: false
+hover_highlight: false
+exclude_fields: {  }
+automatic_preview: false
+primary_color: '#a9a9a9'
+ui_toggle: true
+ui_toggle_settings:
+  offset_top: ''
+  offset_bottom: '50'
+  offset_left: ''
+  offset_right: '50'

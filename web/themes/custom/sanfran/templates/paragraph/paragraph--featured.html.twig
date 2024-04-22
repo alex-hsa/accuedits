@@ -31,6 +31,7 @@
 {% set description = content.field_description.0|default('') %}
 {% set ctaText = content.field_cta[0]['#title']|default('') %}
 {% set ctaHref = content.field_cta[0]['#url']|default('') %}
+{% set edit_icon = content.frontend_editing %}
 
 {{ include('sanfran:featured', {
   heading,
@@ -38,6 +39,7 @@
   description,
   ctaText,
   ctaHref,
+  edit_icon
   })
 }}
 

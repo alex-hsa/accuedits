@@ -37,6 +37,7 @@
 {% set image =  media_image|file_url|default('') %}
 {% set imageAlt =  'Alt text for media image' %}
 {% set video_remote = content.field_media.0['#media'].field_media_oembed_video.0.value %}
+{% set edit_icon = content.frontend_editing %}
 
 {{ include('sanfran:spotlight', {
   eyebrow,
@@ -48,5 +49,6 @@
   ctaHref,
   description,
   variant,
+  edit_icon,
   })
 }}

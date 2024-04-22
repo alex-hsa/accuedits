@@ -1,9 +1,21 @@
-<div class="collapse collapse-plus bg-base-200">
-  <input type="radio" name="my-accordion-1" /> 
-  <h2 class="collapse-title text-xl font-medium">
-    {{ heading }}
-  </h2>
-  <div class="collapse-content"> 
-    <p>{{ description }}</p>
-  </div>
-</div>
+{% set classes_accordion = [
+    'accordion-item',
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished',
+  ]|join(' ')|trim %}
+
+<article {{ attributes.addClass(classes_accordion).addClass('collapse collapse-arrow bg-base-200 mb-2') }}>
+    {{ quick_edit }}
+    <input type="radio" name="my-accordion-1" /> 
+    <h2 class="collapse-title text-xl font-medium">
+        {{ heading }}
+    </h2>
+    <div class="collapse-content"> 
+        <p>{{ description }}</p>
+    </div>
+</article>
+
+{#   <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="{{ heading }}" checked />
+  <div role="tabpanel" class="tab-content bg-base-100 border-2 border-base-300 rounded-box p-6">{{ description }}</div> #}

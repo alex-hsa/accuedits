@@ -1,0 +1,16 @@
+services:
+  frontend_editing.paragraphs_helper:
+    class: Drupal\frontend_editing\ParagraphsHelper
+    arguments: ['@paragraphs_edit.lineage.inspector', '@paragraphs_edit.lineage.revisioner', '@entity_type.manager', '@entity.repository', '@current_user', '@event_dispatcher']
+  frontend_editing.preview:
+    class: Drupal\frontend_editing\EventSubscriber\PreviewSubscriber
+    arguments: ['@paragraphs_edit.lineage.inspector']
+    tags:
+      - { name: event_subscriber }
+  frontend_editing.route_subscriber:
+    class: Drupal\frontend_editing\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }
+  frontend_editing.toggle:
+    class: Drupal\frontend_editing\Controller\FrontendEditingController
+    arguments: ['@user.data', '@current_user']

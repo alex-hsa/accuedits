@@ -1,0 +1,108 @@
+frontend_editing.settings_form:
+  path: '/admin/config/frontend-editing'
+  defaults:
+    _title: 'Frontend Editing'
+    _form: 'Drupal\frontend_editing\Form\SettingsForm'
+  requirements:
+    _permission: 'administer frontend editing'
+
+frontend_editing.entity_bundle_restrictions:
+  path: '/admin/config/frontend-editing/entity-bundle-restrictions'
+  defaults:
+    _title: 'Entity types and bundles'
+    _form: 'Drupal\frontend_editing\Form\EntityTypesBundlesForm'
+  requirements:
+    _permission: 'administer frontend editing'
+
+frontend_editing.ui_settings:
+  path: '/admin/config/frontend-editing/ui-settings'
+  defaults:
+    _title: 'UI settings'
+    _form: 'Drupal\frontend_editing\Form\UiSettingsForm'
+  requirements:
+    _permission: 'administer frontend editing'
+
+frontend_editing.form:
+  path: '/frontend-editing/form/{type}/{id}/{display}'
+  defaults:
+    _controller: '\Drupal\frontend_editing\Controller\FrontendEditingController::getForm'
+    type: null
+    id: null
+    display: 'default'
+  requirements:
+    _permission: 'access frontend editing'
+    id: \d+
+  options:
+    _admin_route: 'TRUE'
+
+frontend_editing.paragraph_add:
+  path: '/frontend-editing/paragraphs/{paragraphs_type}/add/{parent_type}/{parent}/{parent_field_name}/{current_paragraph}/{before}'
+  defaults:
+    _title: 'Add paragraph'
+    _entity_form: 'paragraph.entity_add'
+    parent_type: null
+    parent: null
+    parent_field_name: null
+    current_paragraph: null
+    before: null
+  requirements:
+    _custom_access: '\Drupal\frontend_editing\Controller\FrontendEditingController::accessAddType'
+  options:
+    _admin_route: 'TRUE'
+    parameters:
+      paragraphs_type:
+        type: 'entity:paragraphs_type'
+
+frontend_editing.paragraph_add_page:
+  path: '/frontend-editing/paragraphs/add/{parent_type}/{parent}/{parent_field_name}/{current_paragraph}/{before}'
+  defaults:
+    _title: 'Add paragraph'
+    _controller: '\Drupal\frontend_editing\Controller\FrontendEditingController::paragraphAddPage'
+    parent: null
+    parent_field_name: null
+    current_paragraph: null
+    before: null
+  requirements:
+    _custom_access: '\Drupal\frontend_editing\Controller\FrontendEditingController::accessAdd'
+  options:
+    _admin_route: 'TRUE'
+
+frontend_editing.paragraph_up:
+  path: '/frontend-editing/paragraphs/{paragraph}/up'
+  defaults:
+    _title: 'Up'
+    _controller: '\Drupal\frontend_editing\Controller\FrontendEditingController::up'
+  requirements:
+    _custom_access: '\Drupal\frontend_editing\Controller\FrontendEditingController::accessUp'
+  options:
+    parameters:
+      paragraph:
+        type: 'entity:paragraph'
+
+frontend_editing.paragraph_down:
+  path: '/frontend-editing/paragraphs/{paragraph}/down'
+  defaults:
+    _title: 'Down'
+    _controller: '\Drupal\frontend_editing\Controller\FrontendEditingController::down'
+  requirements:
+    _custom_access: '\Drupal\frontend_editing\Controller\FrontendEditingController::accessDown'
+  options:
+    parameters:
+      paragraph:
+        type: 'entity:paragraph'
+
+frontend_editing.update_content:
+  path: '/frontend-editing/update-content/{entity_type_id}/{entity_id}/{field_name}/{view_mode}'
+  defaults:
+    _title: 'Update content'
+    _controller: '\Drupal\frontend_editing\Controller\FrontendEditingController::updateContent'
+  requirements:
+    _custom_access: '\Drupal\frontend_editing\Controller\FrontendEditingController::accessUpdateContent'
+
+frontend_editing.toggle:
+  path: '/frontend-editing/toggle'
+  defaults:
+    _controller: '\Drupal\frontend_editing\Controller\FrontendEditingController::toggle'
+    _title: 'Toggle Frontend Editing'
+  requirements:
+    _permission: 'access frontend editing'

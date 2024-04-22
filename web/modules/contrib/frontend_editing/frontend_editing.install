@@ -1,0 +1,124 @@
+<?php
+
+/**
+ * @file
+ * Update hooks for the frontend_editing module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function frontend_editing_install() {
+  /** @var \Drupal\Core\Config\Config $config */
+  $config = \Drupal::service('config.factory')
+    ->getEditable('frontend_editing.settings');
+  $bundle_info = \Drupal::service('entity_type.bundle.info');
+  // Enable all paragraph bundles by default.
+  // Paragraph is a dependency of frontend_editing module, so it is safe.
+  // Previously the initial config had paragraph entity type enabled by default
+  // too. With new bundles granularity this behavior should be saved.
+  $bundles = $bundle_info->getBundleInfo('paragraph');
+  $enabled_bundles = array_keys($bundles);
+  if (!empty($enabled_bundles)) {
+    $config->set('entity_types', ['paragraph' => $enabled_bundles]);
+    $config->save(TRUE);
+  }
+  // Enable preview for all paragraphs if module exists.
+  if (\Drupal::moduleHandler()->moduleExists('preview')) {
+    frontend_editing_enable_preview();
+  }
+}
+
+/**
+ * Set default values for sidebar and full width.
+ */
+function frontend_editing_update_11001() {
+  /** @var \Drupal\Core\Config\Config $config */
+  $config = \Drupal::service('config.factory')
+    ->getEditable('frontend_editing.settings');
+  $config->set('sidebar_width', 30);
+  $config->set('full_width', 70);
+  $config->save(TRUE);
+}
+
+/**
+ * Update config with new schema.
+ */
+function frontend_editing_update_11002() {
+  /** @var \Drupal\Core\Config\Config $config */
+  $config = \Drupal::service('config.factory')
+    ->getEditable('frontend_editing.settings');
+  $entity_types = $config->get('entity_types');
+  $bundle_info = \Drupal::service('entity_type.bundle.info');
+  $updated_entity_types = [];
+  foreach ($entity_types as $entity_type) {
+    $updated_entity_types[$entity_type] = [];
+    $bundles = $bundle_info->getBundleInfo($entity_type);
+    // Enable all bundles by default as it was not possible before to select any
+    // bundles.
+    $updated_entity_types[$entity_type] = array_keys($bundles);
+  }
+  $config->set('entity_types', $updated_entity_types);
+  $config->save(TRUE);
+}
+
+/**
+ * Set new config values.
+ */
+function frontend_editing_update_11003() {
+  /** @var \Drupal\Core\Config\Config $config */
+  $config = \Drupal::service('config.factory')
+    ->getEditable('frontend_editing.settings');
+  $config->set('ajax_content_update', TRUE);
+  $config->set('exclude_fields', []);
+  $config->save(TRUE);
+}
+
+/**
+ * Grant 'add paragraphs' and 'move paragraphs' permissions.
+ */
+function frontend_editing_update_11004() {
+  // Code moved to frontend_editing_post_update_add_paragraph_permissions().
+}
+
+/**
+ * Set automatic preview setting.
+ */
+function frontend_editing_update_11005() {
+  /** @var \Drupal\Core\Config\Config $config */
+  $config = \Drupal::service('config.factory')
+    ->getEditable('frontend_editing.settings');
+  // Set automatic preview setting to TRUE if module exists.
+  $config->set('automatic_preview', \Drupal::moduleHandler()->moduleExists('preview'));
+  $config->save(TRUE);
+}
+
+/**
+ * Set default primary color.
+ */
+function frontend_editing_update_11006() {
+  /** @var \Drupal\Core\Config\Config $config */
+  $config = \Drupal::service('config.factory')
+    ->getEditable('frontend_editing.settings');
+  $config->set('primary_color', '#a9a9a9');
+  $config->save(TRUE);
+}
+
+/**
+ * Set default toggle settings.
+ */
+function frontend_editing_update_11007() {
+  /** @var \Drupal\Core\Config\Config $config */
+  $config = \Drupal::service('config.factory')
+    ->getEditable('frontend_editing.settings');
+  // Toggle should be disabled for existing installations,
+  // otherwise frontend editing actions will disappear without explanations.
+  $config->set('ui_toggle', FALSE);
+  $config->set('ui_toggle_settings', [
+    'offset_top' => '',
+    'offset_bottom' => 50,
+    'offset_right' => 50,
+    'offset_left' => '',
+  ]);
+  $config->save(TRUE);
+}

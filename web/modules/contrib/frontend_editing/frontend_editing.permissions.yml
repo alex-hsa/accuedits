@@ -1,0 +1,13 @@
+access frontend editing:
+  title: 'Access frontend editing'
+  description: 'Allows users to access frontend editing.'
+administer frontend editing:
+  title: 'Administer frontend editing'
+  description: 'Allows users to administer frontend editing.'
+  restrict access: true
+move paragraphs:
+  title: 'Move paragraphs up and down'
+  description: 'Allows users to move paragraphs up and down.'
+add paragraphs:
+  title: 'Add paragraphs'
+  description: 'Allows users to add paragraphs.'

@@ -1,7 +1,14 @@
+{% set classes_step_item = [
+    'step-item',
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished',
+  ]|join(' ')|trim %}
 
-<li class="mb-10 ms-12">
-  
-  <span class="absolute bg-base-blue  flex h-16 items-center justify-center rounded-full -start-9  w-16">
+<li {{ attributes.addClass(classes_step_item).addClass('mb-10 ms-12') }}>
+{{ edit_icon  }}
+  <span class="absolute bg-base-blue flex h-16 items-center justify-center rounded-full -start-24  w-16">
       {% if icon %}
         <span class="border border-base-blue flex items-center h-16 justify-center rounded-full shrink-0 w-16 text-2xl text-white">
           {{ icon }}
@@ -13,6 +20,7 @@
       {% endif %}
   </span>
   <div class="bg-base-blue p-6 rounded-md w-9/12">
+
     {{ include('sanfran:headings', {
         level: '3',
         text: heading,

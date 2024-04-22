@@ -1,0 +1,28 @@
+uuid: d468105f-81b5-40aa-89bd-664849259293
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_description
+    - filter.format.basic_html
+    - filter.format.full_html
+    - filter.format.restricted_html
+    - paragraphs.paragraphs_type.accordion
+  module:
+    - text
+id: paragraph.accordion.field_description
+field_name: field_description
+entity_type: paragraph
+bundle: accordion
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+    - restricted_html
+    - full_html
+field_type: text_long

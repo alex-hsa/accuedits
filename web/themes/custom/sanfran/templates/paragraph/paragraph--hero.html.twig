@@ -34,6 +34,7 @@
 {% set ctaHref = content.field_cta[0]['#url']|default('') %}
 {% set media_image = content.field_media|field_target_entity.field_media_image.entity.uri.value %}
 {% set image =  media_image|default('') %}
+{% set edit_icon = content.frontend_editing %}
 
 {{ include('sanfran:hero', {
   eyebrow,
@@ -42,5 +43,6 @@
   ctaText,
   ctaHref,
   description,
+  edit_icon,
   })
 }}

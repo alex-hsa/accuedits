@@ -1,0 +1,23 @@
+uuid: 9f16e376-5af6-4e6f-bd32-83b7ec116c51
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_orientation
+    - paragraphs.paragraphs_type.accordion
+  module:
+    - options
+id: paragraph.accordion.field_orientation
+field_name: field_orientation
+entity_type: paragraph
+bundle: accordion
+label: Orientation
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: vertical
+default_value_callback: ''
+settings: {  }
+field_type: list_string

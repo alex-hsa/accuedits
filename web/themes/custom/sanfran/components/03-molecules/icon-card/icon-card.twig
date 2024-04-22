@@ -20,15 +20,30 @@
   {% set alignment_class = 'text-left' %}
 {% endif %}
 
-<div class="icon-card flex {{ orientation_class }} h-full p-4 rounded-lg {{ icon_card_classes }}">
 
-  {% if icon %}
-    <div class="{{ alignment_class }} bg-base-{{ background_color }} h-16 inline-flex items-center justify-center mb-4 rounded-lg w-16 [&>i:first-child]:text-4xl text-{{ background_color }}">
-        {{ icon }}
-    </div>
-  {% endif %}
+{% set classes_icon_card_item = [
+    'icon-card-item',
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished',
+    orientation_class,
+    icon_card_classes,
+  ]|join(' ')|trim %}
+
+<div {{ attributes.addClass(classes_icon_card_item).addClass('icon-card flex h-full p-4 rounded-lg') }}>
+  <div class="wrapper">
+    {{ edit_icon }}
+    {% if icon %}
+      <div class="{{ alignment_class }} bg-base-{{ background_color }} h-16 inline-flex items-center justify-center mb-4 rounded-lg w-16 [&>i:first-child]:text-4xl text-{{ background_color }}">
+          {{ icon }}
+      </div>
+    {% endif %}
+  </div>
+  
 
   <div class="{{ alignment_class }}">
+    
   {% if heading %}
     {{ include('sanfran:headings', {
         level: '3',

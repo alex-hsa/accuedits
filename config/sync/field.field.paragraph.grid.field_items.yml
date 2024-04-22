@@ -4,7 +4,9 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_items
+    - paragraphs.paragraphs_type.accordion_item
     - paragraphs.paragraphs_type.card
+    - paragraphs.paragraphs_type.carousel
     - paragraphs.paragraphs_type.featured
     - paragraphs.paragraphs_type.grid
     - paragraphs.paragraphs_type.icon_card
@@ -25,6 +27,8 @@ settings:
   handler_settings:
     target_bundles:
       card: card
+      accordion_item: accordion_item
+      carousel: carousel
       featured: featured
       icon_card: icon_card
     negate: 0
@@ -34,13 +38,13 @@ settings:
         enabled: false
       accordion_item:
         weight: -28
-        enabled: false
+        enabled: true
       card:
         weight: -31
         enabled: true
       carousel:
         weight: -27
-        enabled: false
+        enabled: true
       featured:
         weight: -26
         enabled: true

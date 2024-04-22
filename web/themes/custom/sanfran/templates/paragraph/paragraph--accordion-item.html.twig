@@ -27,10 +27,12 @@
 
 {% set heading = content.field_heading.0 %}
 {% set description = content.field_description.0 %}
+{% set quick_edit = content.frontend_editing %}
    
 {{ include('sanfran:accordion-item', {
   heading,
   description,
+  quick_edit,
   })
 }}
 

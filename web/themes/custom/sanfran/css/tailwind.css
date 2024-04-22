@@ -51,7 +51,7 @@
     margin-left: 0;
   }
 
-  article {
+  section {
     @apply mb-8;
   }
   

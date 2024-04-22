@@ -1,16 +1,75 @@
-<article {{ attributes.addClass('accordion') }}>
+{% if alignment == 'center' %}
+  {% set alignment_class = 'text-center' %}
+{% elseif alignment == 'right' %}
+  {% set alignment_class = 'text-right' %}
+{% else  %}
+  {% set alignment_class = 'text-left' %}
+{% endif %}
 
-    {{ include('sanfran:headings', {
-        level: '2',
-        text: heading,
-      })
-    }}
+{% if orientation == 'horizontal' %}
+  {% set orientation_class = 'flex flex-row [&>div.header]:px-8' %}
+{% else %}
+  {% set orientation_class = '[&>div.header]:py-4' %}
+{% endif %}
 
-    <div class="preview border-base-300 bg-base-100 rounded-b-box rounded-se-box flex min-h-[6rem] min-w-[18rem] flex-wrap items-center justify-center gap-2 overflow-x-hidden bg-cover bg-top w-full">
+{% if border == 'yes' %}
+  {% set border_class = 'border p-4 rounded-lg' %}
+{% else %}
+  {% set border_class = '' %}
+{% endif %}
+
+
+
+{% set classes_accordion = [
+    'accordion',
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished',
+  ]|join(' ')|trim %}
+
+<section {{ attributes.addClass(classes_accordion).addClass(orientation_class).addClass(border_class) }}>
+    {{ quick_edit }}
+    <div class="header {{ alignment_class }}">
+        {% if eyebrow %}
+            <div class="eyebrow uppercase">{{ eyebrow }}</div>
+        {% endif %}
+
+        {% if eyebrow %}
+            {{ include('sanfran:headings', {
+                level: '2',
+                text: heading
+                })
+            }}
+        {% endif %}
+
+        {% if description %}
+            {{ include('sanfran:wysiwyg', {
+                wysiwyg: description,
+                classes: 'mb-0',
+                })
+            }}
+        {% endif %}
+
+        {% if ctaText is not empty %}
+        <div class="hero--cta">
+            {{ include('sanfran:button', {
+                type: 'btn-primary',
+                ctaText,
+                ctaHref,
+                })
+            }}
+        </div>
+        {% endif %}
+    </div>
+
+
+    <div class="items my-auto">
+    {# <div role="tablist" class="tabs tabs-lifted border-2"> #}
         {% for key, item in accordion_items %}
             {% if key|first != '#' %}
                 {{ item }}
             {% endif %}
         {% endfor %}
     </div>
-</article>
+</section>

@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.steps.field_item_step
     - field.field.paragraph.steps.field_items
     - field.field.paragraph.steps.field_main_title
     - paragraphs.paragraphs_type.steps
@@ -13,6 +14,15 @@ targetEntityType: paragraph
 bundle: steps
 mode: default
 content:
+  field_item_step:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
   field_items:
     type: entity_reference_revisions_entity_view
     label: hidden

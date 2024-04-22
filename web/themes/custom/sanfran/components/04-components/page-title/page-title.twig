@@ -11,7 +11,7 @@
   ]|join(' ')|trim %}
 
 <article {{ attributes.addClass(classes_page_title).addClass('flex flex-row p-8 rounded-lg') }}>
-
+  {{ content.frontend_editing }}
   <div class="rounded w-full">
     {% if eyebrow %}
       <div class="callout uppercase">{{ eyebrow }}</div>

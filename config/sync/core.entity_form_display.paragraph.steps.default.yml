@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.steps.field_item_step
     - field.field.paragraph.steps.field_items
     - field.field.paragraph.steps.field_main_title
     - paragraphs.paragraphs_type.steps
@@ -13,6 +14,26 @@ targetEntityType: paragraph
 bundle: steps
 mode: default
 content:
+  field_item_step:
+    type: paragraphs
+    weight: 3
+    region: content
+    settings:
+      title: Step
+      title_plural: Steps
+      edit_mode: open
+      closed_mode: preview
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: modal
+      form_display_mode: default
+      default_paragraph_type: step_item
+      features:
+        add_above: add_above
+        collapse_edit_all: collapse_edit_all
+        convert: convert
+        duplicate: duplicate
+    third_party_settings: {  }
   field_items:
     type: paragraphs
     weight: 2
