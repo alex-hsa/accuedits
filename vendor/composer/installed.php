@@ -3,7 +3,7 @@
         'name' => 'drupal/recommended-project',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '7bc624f1e14ca53d402dd43131a5e1a6f3e020d7',
+        'reference' => '106e80d143ddcc9a36a9a192dc2752c9a5307769',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -658,6 +658,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'drupal/node_edit_protection' => array(
+            'pretty_version' => '1.1.0',
+            'version' => '1.1.0.0',
+            'reference' => '8.x-1.1',
+            'type' => 'drupal-module',
+            'install_path' => __DIR__ . '/../../web/modules/contrib/node_edit_protection',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'drupal/paragraphs' => array(
             'pretty_version' => '1.17.0',
             'version' => '1.17.0.0',
@@ -688,7 +697,7 @@
         'drupal/recommended-project' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '7bc624f1e14ca53d402dd43131a5e1a6f3e020d7',
+            'reference' => '106e80d143ddcc9a36a9a192dc2752c9a5307769',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

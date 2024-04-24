@@ -48,6 +48,7 @@
         "drupal/layout_paragraphs": "^2.0",
         "drupal/libraries": "^4.0",
         "drupal/material_icons": "^2.0",
+        "drupal/node_edit_protection": "^1.1",
         "drupal/paragraphs": "^1.17",
         "drupal/pathauto": "^1.12",
         "drupal/require_revision_log_message": "^2.0",
