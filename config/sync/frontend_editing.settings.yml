@@ -1,8 +1,6 @@
 _core:
   default_config_hash: 1kLwmHO7A0QSECnL0d81yFOc5Aw5mPjgrq4Sz3Bp3K8
 entity_types:
-  media:
-    - image
   paragraph:
     - accordion
     - accordion_item
@@ -19,16 +17,18 @@ entity_types:
     - table
     - text_shout
     - textbox
+  paragraphs_library_item:
+    - paragraphs_library_item
 sidebar_width: 30
 full_width: 80
 ajax_content_update: false
 hover_highlight: false
 exclude_fields: {  }
 automatic_preview: false
-primary_color: '#a9a9a9'
+primary_color: '#10857f'
 ui_toggle: true
 ui_toggle_settings:
-  offset_top: ''
-  offset_bottom: '50'
+  offset_top: '85'
+  offset_bottom: ''
   offset_left: ''
-  offset_right: '50'
+  offset_right: '10'

@@ -4,9 +4,14 @@ status: true
 dependencies:
   content:
     - 'file:file:6eff958b-b7fd-45ed-a7de-881603ab3061'
+  module:
+    - layout_paragraphs
 id: page_title
 label: 'Page Title'
 icon_uuid: 6eff958b-b7fd-45ed-a7de-881603ab3061
 icon_default: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDhweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iNDhweCIgZmlsbD0iIzAwMDAwMCI+PHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTUgN2g1LjV2MTJoM1Y3SDE5VjRINXoiLz48L3N2Zz4='
 description: ''
-behavior_plugins: {  }
+behavior_plugins:
+  layout_paragraphs:
+    enabled: false
+    available_layouts: {  }

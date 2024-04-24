@@ -12,6 +12,7 @@ dependencies:
     - contextual
     - file
     - filter
+    - frontend_editing
     - node
     - path
     - system
@@ -28,6 +29,7 @@ permissions:
   - 'access content overview'
   - 'access contextual links'
   - 'access files overview'
+  - 'access frontend editing'
   - 'access toolbar'
   - 'administer url aliases'
   - 'create article content'

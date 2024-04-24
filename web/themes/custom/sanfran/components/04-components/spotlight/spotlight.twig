@@ -1,17 +1,33 @@
-{% if variant == 'media-left' %}
-  {% set variant_classes = '[&>div.spotlight-media_img]:rounded-lg [&>div.spotlight-media_iframe]:rounded-lg' %}
-{% elseif variant == 'media-left-border'  %}
-  {% set variant_classes = '[&>div.spotlight-media_img]:rounded-l-lg [&>div.spotlight-media_iframe]:rounded-l-lg border border-gray-200 rounded-lg' %}
-{% elseif variant == 'media-right' %}
-  {% set variant_classes = '[&>div.spotlight-media_img]:rounded-lg [&>div.spotlight-media_iframe]:rounded-lg [&>div.spotlight-media]:order-2' %}
-{% elseif variant == 'media-right-border'  %}
-  {% set variant_classes = '[&>div.spotlight-media_img]:rounded-r-lg [&>div.spotlight-media_iframe]:rounded-r-lg [&>div.spotlight-media]:order-2 border border-gray-200 rounded-lg' %}
+{% if alignment == 'center' %}
+  {% set alignment_class = 'text-center' %}
+{% elseif alignment == 'right' %}
+  {% set alignment_class = 'text-right' %}
+{% else  %}
+  {% set alignment_class = 'text-left' %}
 {% endif %}
 
+{% if (flip == 'yes') and (border == 'no') and (background_color == '') %}
+  {% set variant_classes = 'flex flex-row-reverse gap-2 [&>div.media_img]:rounded-lg [&>div.media_iframe]:rounded-lg' %}
+{% elseif (flip == 'yes') and (border == 'no') and (background_color != '') %}
+  {% set variant_classes = 'flex flex-row-reverse gap-2 [&>div.media_img]:rounded-l-lg [&>div.media_iframe]:rounded-l-lg rounded-lg' %}
+{% elseif (flip == 'yes') and (border == 'yes') and (background_color != '') %}
+  {% set variant_classes = 'flex flex-row-reverse gap-2 [&>div.media_img]:rounded-l-lg [&>div.media_iframe]:rounded-l-lg border rounded-lg' %}
+{% elseif (flip == 'no') and (border == 'no') and (background_color != '') %}
+  {% set variant_classes = 'flex flex-row gap-2 [&>div.media_img]:rounded-r-lg [&>div.media_iframe]:rounded-r-lg rounded-lg' %}
+{% elseif (flip == 'no') and (border == 'yes') and (background_color != '') %}
+  {% set variant_classes = 'flex flex-row gap-2 [&>div.media_img]:rounded-r-lg [&>div.media_iframe]:rounded-r-lg border rounded-lg' %}
+{% else %}
+  {% set variant_classes = 'flex flex-row gap-2 [&>div.media_img]:rounded-lg [&>div.media_iframe]:rounded-lg' %}
+{% endif %}
+
+{% if background_color %}
+  {% set background_color_class = 'bg-base-' ~ background_color %}
+{% endif %}
 
 {% set classes_spotlight = [
-    'spotlight ' ~ variant_classes,
-    variant_classes ~ ' ',
+    paragraph.bundle,
+    variant_classes,
+    background_color_class,
     'paragraph',
     'paragraph--type--' ~ paragraph.bundle|clean_class,
     view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
@@ -19,16 +35,43 @@
     variant,
   ]|join(' ')|trim %}
 
+<section {{ attributes.addClass(classes_spotlight) }}>
+  {{ quick_edit }}
+  <div class="header w-1/2 px-8 py-6 my-auto {{ alignment_class }}">
+    {% if eyebrow %}
+      <div class="callout uppercase">{{ eyebrow }}</div>
+    {% endif %}
 
-<article {{ attributes.addClass(classes_spotlight).addClass('grid grid-cols-1 md:grid-cols-2 gap-4') }}>
-    <div class="spotlight-media">
-      {{ edit_icon }}
+    {% if heading %}
+      {{ include('sanfran:headings', {
+          text: heading,
+          level: '2',
+            })
+      }}
+    {% endif %}
     
+    {% if description %}
+      {{ include('sanfran:wysiwyg', {
+          wysiwyg: description,
+        })
+      }}
+    {% endif %}
+
+    {% if ctaText is not empty %}
+      {{ include('sanfran:button', {
+        type: 'btn-secondary',
+        ctaText,
+        ctaHref,
+        })
+      }}
+    {% endif %}
+  </div>
+  <div class="media w-1/2">
       {% if image is not empty %} 
         {{ include('sanfran:figure', {
             image,
             imageAlt,
-            ratio: '2/1',
+            ratio: '16/9',
           })
         }}
       {% endif %}
@@ -40,34 +83,5 @@
         }}
       {% endif %}
     </div>
-    <div class="spotlight-callout px-8 py-6">
-      {% if eyebrow %}
-        <div class="callout uppercase">{{ eyebrow }}</div>
-      {% endif %}
 
-      {% if heading %}
-        {{ include('sanfran:headings', {
-            text: heading,
-            level: '2',
-              })
-        }}
-      {% endif %}
-      
-      {% if description %}
-        {{ include('sanfran:wysiwyg', {
-            wysiwyg: description,
-          })
-        }}
-      {% endif %}
-
-      {% if ctaText is not empty %}
-        {{ include('sanfran:button', {
-          type: 'btn-accent',
-          ctaText,
-          ctaHref,
-          })
-        }}
-      {% endif %}
-    </div>
-
-</article>
+</section>

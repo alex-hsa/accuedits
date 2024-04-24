@@ -35,22 +35,12 @@ props:
     alignment:
       type: 'string'
       title: 'Alignment'
-      enum:
-        - Left
-        - Center
-        - Right
     orientation:
       type: 'string'
       title: 'Orientation'
-      enum:
-        - Vertical
-        - Horizontal
     border:
       type: 'string'
       title: 'Border'
-      enum:
-        - No
-        - Yes
     quick_edit:
       type: 'string'
       title: 'Quick Edit'

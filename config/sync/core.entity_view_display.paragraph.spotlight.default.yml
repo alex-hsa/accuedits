@@ -3,9 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.spotlight.field_alignment
+    - field.field.paragraph.spotlight.field_background_color
+    - field.field.paragraph.spotlight.field_border
     - field.field.paragraph.spotlight.field_cta
     - field.field.paragraph.spotlight.field_description
     - field.field.paragraph.spotlight.field_eyebrow
+    - field.field.paragraph.spotlight.field_flip
     - field.field.paragraph.spotlight.field_heading
     - field.field.paragraph.spotlight.field_media
     - field.field.paragraph.spotlight.field_variant
@@ -19,6 +23,32 @@ targetEntityType: paragraph
 bundle: spotlight
 mode: default
 content:
+  field_alignment:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_background_color:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: full
+      link: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_border:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 7
+    region: content
   field_cta:
     type: link
     label: hidden
@@ -29,14 +59,14 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    weight: 6
+    weight: 4
     region: content
   field_description:
     type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 5
+    weight: 3
     region: content
   field_eyebrow:
     type: string
@@ -44,7 +74,17 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 2
+    weight: 1
+    region: content
+  field_flip:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 8
     region: content
   field_heading:
     type: string
@@ -52,7 +92,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 3
+    weight: 2
     region: content
   field_media:
     type: entity_reference_entity_view
@@ -61,7 +101,7 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
-    weight: 1
+    weight: 6
     region: content
   field_variant:
     type: list_default

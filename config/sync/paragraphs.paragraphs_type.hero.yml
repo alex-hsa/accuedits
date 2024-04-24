@@ -4,9 +4,14 @@ status: true
 dependencies:
   content:
     - 'file:file:bc0dcdd8-1494-4722-95a9-1f2ef69f0e9e'
+  module:
+    - layout_paragraphs
 id: hero
 label: Hero
 icon_uuid: bc0dcdd8-1494-4722-95a9-1f2ef69f0e9e
 icon_default: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDhweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iNDhweCIgZmlsbD0iIzAwMDAwMCI+PHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTMgMThoMThWNkgzdjEyem01LjUtNS41bDIuNSAzLjAxTDE0LjUgMTFsNC41IDZINWwzLjUtNC41eiIgb3BhY2l0eT0iLjMiLz48cGF0aCBkPSJNMjEgNEgzYy0xLjEgMC0yIC45LTIgMnYxMmMwIDEuMS45IDIgMiAyaDE4YzEuMSAwIDItLjkgMi0yVjZjMC0xLjEtLjktMi0yLTJ6bTAgMTRIM1Y2aDE4djEyem0tNi41LTdMMTEgMTUuNTEgOC41IDEyLjUgNSAxN2gxNHoiLz48L3N2Zz4='
 description: ''
-behavior_plugins: {  }
+behavior_plugins:
+  layout_paragraphs:
+    enabled: false
+    available_layouts: {  }

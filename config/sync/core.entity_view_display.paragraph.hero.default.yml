@@ -3,20 +3,62 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.hero.field_alignment
+    - field.field.paragraph.hero.field_background_color
+    - field.field.paragraph.hero.field_background_glass
+    - field.field.paragraph.hero.field_border
     - field.field.paragraph.hero.field_cta
     - field.field.paragraph.hero.field_description
     - field.field.paragraph.hero.field_eyebrow
-    - field.field.paragraph.hero.field_heading
+    - field.field.paragraph.hero.field_main_title
     - field.field.paragraph.hero.field_media
+    - field.field.paragraph.hero.field_placement
     - paragraphs.paragraphs_type.hero
   module:
     - link
+    - options
     - text
 id: paragraph.hero.default
 targetEntityType: paragraph
 bundle: hero
 mode: default
 content:
+  field_alignment:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_background_color:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: full
+      link: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_background_glass:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_border:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 6
+    region: content
   field_cta:
     type: link
     label: hidden
@@ -44,13 +86,13 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  field_heading:
+  field_main_title:
     type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 2
+    weight: 1
     region: content
   field_media:
     type: entity_reference_entity_view
@@ -60,5 +102,12 @@ content:
       link: false
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_placement:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
     region: content
 hidden: {  }

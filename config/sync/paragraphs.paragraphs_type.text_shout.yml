@@ -4,9 +4,14 @@ status: true
 dependencies:
   content:
     - 'file:file:25e79f04-f884-455e-b1e4-720724203e18'
+  module:
+    - layout_paragraphs
 id: text_shout
 label: 'Text Shout'
 icon_uuid: 25e79f04-f884-455e-b1e4-720724203e18
 icon_default: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDhweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iNDhweCIgZmlsbD0iIzAwMDAwMCI+PHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTMgNmg4djEzSDN6IiBvcGFjaXR5PSIuMyIvPjxwYXRoIGQ9Ik0yMSA0SDNjLTEuMSAwLTIgLjktMiAydjEzYzAgMS4xLjkgMiAyIDJoMThjMS4xIDAgMi0uOSAyLTJWNmMwLTEuMS0uOS0yLTItMnpNMTEgMTlIM1Y2aDh2MTN6bTEwIDBoLThWNmg4djEzem0tNy05LjVoNlYxMWgtNnptMCAyLjVoNnYxLjVoLTZ6bTAgMi41aDZWMTZoLTZ6Ii8+PC9zdmc+'
 description: ''
-behavior_plugins: {  }
+behavior_plugins:
+  layout_paragraphs:
+    enabled: false
+    available_layouts: {  }

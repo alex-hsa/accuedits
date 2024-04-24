@@ -7,9 +7,11 @@ dependencies:
     - node.type.page
     - paragraphs.paragraphs_type.accordion
     - paragraphs.paragraphs_type.carousel
+    - paragraphs.paragraphs_type.from_library
     - paragraphs.paragraphs_type.grid
     - paragraphs.paragraphs_type.hero
     - paragraphs.paragraphs_type.page_title
+    - paragraphs.paragraphs_type.section
     - paragraphs.paragraphs_type.spotlight
     - paragraphs.paragraphs_type.steps
     - paragraphs.paragraphs_type.table
@@ -35,7 +37,9 @@ settings:
       carousel: carousel
       grid: grid
       hero: hero
+      from_library: from_library
       page_title: page_title
+      section: section
       spotlight: spotlight
       steps: steps
       table: table
@@ -44,45 +48,54 @@ settings:
     negate: 0
     target_bundles_drag_drop:
       accordion:
-        weight: -29
+        weight: -35
         enabled: true
       accordion_item:
-        weight: -28
+        weight: -34
         enabled: false
       card:
-        weight: -27
+        weight: -33
         enabled: false
       carousel:
-        weight: -26
+        weight: -32
         enabled: true
       featured:
-        weight: -25
+        weight: -31
         enabled: false
+      from_library:
+        weight: -27
+        enabled: true
       grid:
-        weight: -24
+        weight: -30
         enabled: true
       hero:
-        weight: -23
+        weight: -29
         enabled: true
+      icon_card:
+        weight: -28
+        enabled: false
       page_title:
-        weight: -22
+        weight: -26
+        enabled: true
+      section:
+        weight: -25
         enabled: true
       spotlight:
-        weight: -20
+        weight: -24
         enabled: true
       step_item:
-        weight: -18
+        weight: -22
         enabled: false
       steps:
-        weight: -19
+        weight: -23
         enabled: true
       table:
-        weight: -17
+        weight: -21
         enabled: true
       text_shout:
-        weight: 28
+        weight: -19
         enabled: true
       textbox:
-        weight: -16
+        weight: -20
         enabled: true
 field_type: entity_reference_revisions

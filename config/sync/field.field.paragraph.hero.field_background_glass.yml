@@ -1,0 +1,23 @@
+uuid: c6bc93b1-f196-432b-814c-d502256f3cc4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_background_glass
+    - paragraphs.paragraphs_type.hero
+id: paragraph.hero.field_background_glass
+field_name: field_background_glass
+entity_type: paragraph
+bundle: hero
+label: 'Background Glass'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

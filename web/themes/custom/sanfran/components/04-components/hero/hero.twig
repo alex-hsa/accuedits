@@ -1,5 +1,34 @@
+{% if alignment == 'center' %}
+  {% set alignment_class = 'text-center' %}
+{% elseif alignment == 'right' %}
+  {% set alignment_class = 'text-right' %}
+{% else  %}
+  {% set alignment_class = 'text-left' %}
+{% endif %}
+
+{% if orientation == 'horizontal' %}
+  {% set orientation_class = 'flex flex-row [&>div.header]:px-8' %}
+{% else %}
+  {% set orientation_class = '[&>div.header]:py-4' %}
+{% endif %}
+
+{% if border == 'yes' %}
+  {% set border_class = 'border p-4 rounded-lg' %}
+{% else %}
+  {% set border_class = '' %}
+{% endif %}
+
+{% if placement == 'end' %}
+  {% set placement_class = 'flex flex-row-reverse' %}
+{% elseif placement == 'middle'%}
+  {% set placement_class = 'flex justify-center' %}
+{% else %}
+  {% set placement_class = 'flex flex-row' %}
+{% endif %}
+
 {% set classes_hero = [
     'hero-banner',
+    'bg-base-' ~ background_color,
     'paragraph',
     'paragraph--type--' ~ paragraph.bundle|clean_class,
     view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
@@ -10,10 +39,15 @@
   {% set attributes = attributes.setAttribute('style', 'background-size: cover; background-image: url("' ~ image|image_style('32_9_2xl_1536x432')|render|striptags|trim|default('') ~ '");') %}
 {% endif %}
 
-<article {{ attributes.addClass(classes_hero).addClass('grid grid-flow-row p-8 place-items-start rounded-lg') }}>
-  {{ edit_icon }} 
+<section 
+  {{ attributes.addClass(classes_hero)
+  .addClass(orientation_class)
+  .addClass(border_class)
+  .addClass(placement_class)
+  .addClass('p-8 place-items-start rounded-lg') }}>
+  {{ quick_edit }} 
 
-  <div class="glass p-8 rounded-lg w-1/2">
+  <div class="ms-1/2 p-8 rounded-lg w-1/2 {{ alignment_class }}{% if background_glass == 'yes' %} glass{% endif %}">
     {% if eyebrow %}
       <div class="callout uppercase">{{ eyebrow }}</div>
     {% endif %}
@@ -46,5 +80,5 @@
     {% endif %}
   </div>
 
-</article>
+</section>
 

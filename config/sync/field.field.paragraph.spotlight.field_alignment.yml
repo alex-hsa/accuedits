@@ -1,0 +1,23 @@
+uuid: f931637e-2c64-40c6-84e6-c8133a26a4c9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_alignment
+    - paragraphs.paragraphs_type.spotlight
+  module:
+    - options
+id: paragraph.spotlight.field_alignment
+field_name: field_alignment
+entity_type: paragraph
+bundle: spotlight
+label: Alignment
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: left
+default_value_callback: ''
+settings: {  }
+field_type: list_string

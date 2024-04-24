@@ -1,0 +1,23 @@
+uuid: 9d509395-2df4-4be5-ae26-1866df2314a1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_border
+    - paragraphs.paragraphs_type.spotlight
+id: paragraph.spotlight.field_border
+field_name: field_border
+entity_type: paragraph
+bundle: spotlight
+label: 'Show Border'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

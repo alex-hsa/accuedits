@@ -4,9 +4,14 @@ status: true
 dependencies:
   content:
     - 'file:file:304cdaf4-9245-4820-b038-ed6c26d7d517'
+  module:
+    - layout_paragraphs
 id: featured
 label: Featured
 icon_uuid: 304cdaf4-9245-4820-b038-ed6c26d7d517
 icon_default: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDI0IDI0IiBoZWlnaHQ9IjQ4cHgiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjQ4cHgiIGZpbGw9IiMwMDAwMDAiPjxnPjxwYXRoIGQ9Ik0wIDBoMjR2MjRIMFYweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0wIDBoMjR2MjRIMFYweiIgZmlsbD0ibm9uZSIvPjwvZz48Zz48Zz48cG9seWdvbiBvcGFjaXR5PSIuMyIgcG9pbnRzPSIxMiwxNS40IDguMjQsMTcuNjcgOS4yNCwxMy4zOSA1LjkyLDEwLjUxIDEwLjMsMTAuMTMgMTIsNi4xIDEzLjcxLDEwLjE0IDE4LjA5LDEwLjUyIDE0Ljc3LDEzLjQgMTUuNzcsMTcuNjgiLz48cGF0aCBkPSJtMjIgOS4yNC03LjE5LS42MkwxMiAyIDkuMTkgOC42MyAyIDkuMjRsNS40NiA0LjczTDUuODIgMjEgMTIgMTcuMjcgMTguMTggMjFsLTEuNjMtNy4wM0wyMiA5LjI0ek0xMiAxNS40bC0zLjc2IDIuMjcgMS00LjI4LTMuMzItMi44OCA0LjM4LS4zOEwxMiA2LjFsMS43MSA0LjA0IDQuMzguMzgtMy4zMiAyLjg4IDEgNC4yOEwxMiAxNS40eiIvPjwvZz48L2c+PC9zdmc+'
 description: ''
-behavior_plugins: {  }
+behavior_plugins:
+  layout_paragraphs:
+    enabled: false
+    available_layouts: {  }

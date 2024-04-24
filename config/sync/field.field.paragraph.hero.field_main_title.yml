@@ -1,15 +1,15 @@
-uuid: 4f9a87ed-79ea-4629-8c65-3827756bdf9f
+uuid: 16f7ca28-e4d9-48c9-b442-0908e69ec586
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_heading
+    - field.storage.paragraph.field_main_title
     - paragraphs.paragraphs_type.hero
-id: paragraph.hero.field_heading
-field_name: field_heading
+id: paragraph.hero.field_main_title
+field_name: field_main_title
 entity_type: paragraph
 bundle: hero
-label: Heading
+label: 'Section Title'
 description: ''
 required: false
 translatable: false
