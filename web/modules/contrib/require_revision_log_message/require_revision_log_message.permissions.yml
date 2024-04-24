@@ -1,0 +1,4 @@
+administer require_revision_log_message:
+  title: 'Administer Require Revision Log Message'
+  description: 'Determine which content types must use revision log messages.'
+  restrict access: true

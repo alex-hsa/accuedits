@@ -1,0 +1,11 @@
+name: 'Require Revision Log Message'
+type: module
+description: 'On nodes that allow revisions, requires that the revision log be filled in.'
+core_version_requirement: ^8.8 || ^9 || ^10
+configure: require_revision_log_message.admin_settings_form
+package: 'Content Authoring'
+
+# Information added by Drupal.org packaging script on 2023-04-20
+version: '2.0.2'
+project: 'require_revision_log_message'
+datestamp: 1682019255

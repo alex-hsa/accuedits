@@ -19,6 +19,7 @@ module:
   crop: 0
   datetime: 0
   dblog: 0
+  diff: 0
   dynamic_page_cache: 0
   easy_breadcrumb: 0
   editor: 0
@@ -55,6 +56,7 @@ module:
   paragraphs_library: 0
   path: 0
   path_alias: 0
+  require_revision_log_message: 0
   responsive_image: 0
   responsive_tables_filter: 0
   sdc: 0

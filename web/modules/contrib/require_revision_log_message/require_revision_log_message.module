@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * @file
+ * Contains require_revision_log_message.module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function require_revision_log_message_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the require_revision_log_message module.
+    case 'help.page.require_revision_log_message':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('On nodes that allow revisions, requires that the revision log be filled in.  This is configurable per content type.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function require_revision_log_message_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  // If this is revision (change) of a revisionable bundle and selected in the
+  // config form, then require log message.
+  $config = \Drupal::config('require_revision_log_message.adminsettings');
+  $contentTypes = $config->get('content_types');
+
+  $thisType = $form['#process'][1][0]->getTargetBundle();
+  if (($form['revision']['#access'] == TRUE) && !empty($contentTypes[$thisType])) {
+    // Ensure people cannot uncheck the revision requirement.
+    $form['revision']['#attributes']['disabled'] = TRUE;
+    $form['revision']['#value'] = TRUE;
+
+    // Change revision log status based on revision checkbox.
+    $form['revision_log']['#states'] = [];
+    $form['revision_log']['#required'] = TRUE;
+    $form['revision_log']['widget']['#required'] = TRUE;
+    $form['revision_log']['widget'][0]['#required'] = TRUE;
+    $form['revision_log']['widget'][0]['value']['#required'] = TRUE;
+  }
+}
