@@ -1,0 +1,23 @@
+uuid: 745b520f-cebe-48c4-acc3-989966923993
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_cta
+    - paragraphs.paragraphs_type.highlights
+  module:
+    - link
+id: paragraph.highlights.field_cta
+field_name: field_cta
+entity_type: paragraph
+bundle: highlights
+label: 'Call to Action'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 2
+  link_type: 17
+field_type: link

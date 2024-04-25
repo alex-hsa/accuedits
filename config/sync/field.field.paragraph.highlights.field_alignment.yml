@@ -1,0 +1,23 @@
+uuid: e09d2259-8a3c-483f-b9cd-ec4666e7d308
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_alignment
+    - paragraphs.paragraphs_type.highlights
+  module:
+    - options
+id: paragraph.highlights.field_alignment
+field_name: field_alignment
+entity_type: paragraph
+bundle: highlights
+label: 'Text Alignment'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: left
+default_value_callback: ''
+settings: {  }
+field_type: list_string

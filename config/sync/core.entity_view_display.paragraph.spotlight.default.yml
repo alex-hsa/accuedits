@@ -10,11 +10,13 @@ dependencies:
     - field.field.paragraph.spotlight.field_description
     - field.field.paragraph.spotlight.field_eyebrow
     - field.field.paragraph.spotlight.field_flip
-    - field.field.paragraph.spotlight.field_heading
+    - field.field.paragraph.spotlight.field_lead
+    - field.field.paragraph.spotlight.field_main_title
     - field.field.paragraph.spotlight.field_media
     - field.field.paragraph.spotlight.field_variant
     - paragraphs.paragraphs_type.spotlight
   module:
+    - entity_reference_revisions
     - link
     - options
     - text
@@ -86,13 +88,22 @@ content:
     third_party_settings: {  }
     weight: 8
     region: content
-  field_heading:
+  field_lead:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_main_title:
     type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 2
+    weight: 1
     region: content
   field_media:
     type: entity_reference_entity_view

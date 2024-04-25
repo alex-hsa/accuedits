@@ -1,0 +1,25 @@
+uuid: efc04700-e371-4750-96e8-3228f300c68d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_heading_level
+    - paragraphs.paragraphs_type.lead
+id: paragraph.lead.field_heading_level
+field_name: field_heading_level
+entity_type: paragraph
+bundle: lead
+label: 'Heading Level'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 2
+default_value_callback: ''
+settings:
+  min: 1
+  max: 6
+  prefix: ''
+  suffix: ''
+field_type: integer

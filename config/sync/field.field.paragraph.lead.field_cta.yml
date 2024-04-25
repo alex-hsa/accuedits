@@ -1,0 +1,23 @@
+uuid: d2423773-564f-4e5f-afc6-7294f8d5b45e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_cta
+    - paragraphs.paragraphs_type.lead
+  module:
+    - link
+id: paragraph.lead.field_cta
+field_name: field_cta
+entity_type: paragraph
+bundle: lead
+label: 'Call to Action'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 2
+  link_type: 17
+field_type: link

@@ -1,0 +1,23 @@
+uuid: 4a990ae5-c24b-45bb-93d4-271a6c48c377
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_alignment
+    - paragraphs.paragraphs_type.lead
+  module:
+    - options
+id: paragraph.lead.field_alignment
+field_name: field_alignment
+entity_type: paragraph
+bundle: lead
+label: Alignment
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: left
+default_value_callback: ''
+settings: {  }
+field_type: list_string

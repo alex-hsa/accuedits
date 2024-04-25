@@ -3,7 +3,7 @@
         'name' => 'drupal/recommended-project',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '106e80d143ddcc9a36a9a192dc2752c9a5307769',
+        'reference' => 'fd1236cb7355644ba9dbe4cd70774d5f97f18665',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -649,6 +649,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'drupal/masquerade' => array(
+            'pretty_version' => '2.0.0-rc4',
+            'version' => '2.0.0.0-RC4',
+            'reference' => '8.x-2.0-rc4',
+            'type' => 'drupal-module',
+            'install_path' => __DIR__ . '/../../web/modules/contrib/masquerade',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'drupal/material_icons' => array(
             'pretty_version' => '2.0.2',
             'version' => '2.0.2.0',
@@ -697,7 +706,7 @@
         'drupal/recommended-project' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '106e80d143ddcc9a36a9a192dc2752c9a5307769',
+            'reference' => 'fd1236cb7355644ba9dbe4cd70774d5f97f18665',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

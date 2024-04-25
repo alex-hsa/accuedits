@@ -28,7 +28,7 @@
 {# {% include '@components/my-banner/my-banner.twig' %} #}
 
 {% set eyebrow = content.field_eyebrow.0|default('') %}
-{% set heading = content.field_heading.0|default('') %}
+{% set heading = content.field_main_title.0|default('') %}
 {% set description = content.field_description.0|default('') %}
 {% set ctaText = content.field_cta[0]['#title']|default('') %}
 {% set ctaHref = content.field_cta[0]['#url']|default('') %}
@@ -41,6 +41,7 @@
 {% set background_color = content.field_background_color|field_target_entity.name.entity.name.value|lower|default('') %}
 {% set flip = content.field_flip.0['#markup']|lower|default('') %}
 {% set border = content.field_border.0['#markup']|lower|default('') %}
+{% set lead_item = content.field_lead %}
 {% set quick_edit = content.frontend_editing %}
 
 
@@ -58,6 +59,7 @@
   background_color,
   flip,
   border,
+  lead_item,
   quick_edit,
   })
 }}

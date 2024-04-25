@@ -1,0 +1,83 @@
+uuid: 7488d7bd-9521-4aa7-a4fb-4d804d3b6a32
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.lead.field_alignment
+    - field.field.paragraph.lead.field_background_glass
+    - field.field.paragraph.lead.field_cta
+    - field.field.paragraph.lead.field_description
+    - field.field.paragraph.lead.field_eyebrow
+    - field.field.paragraph.lead.field_heading_level
+    - field.field.paragraph.lead.field_main_title
+    - field.field.paragraph.lead.field_width
+    - paragraphs.paragraphs_type.lead
+  module:
+    - link
+    - text
+id: paragraph.lead.default
+targetEntityType: paragraph
+bundle: lead
+mode: default
+content:
+  field_alignment:
+    type: options_select
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_background_glass:
+    type: boolean_checkbox
+    weight: 6
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_cta:
+    type: link_default
+    weight: 4
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_description:
+    type: text_textarea
+    weight: 3
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_eyebrow:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_heading_level:
+    type: number
+    weight: 2
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_main_title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_width:
+    type: options_select
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

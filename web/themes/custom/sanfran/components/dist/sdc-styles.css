@@ -2821,11 +2821,6 @@ details.collapse summary::-webkit-details-marker {
   border-color: oklch(var(--base-blue) / var(--tw-border-opacity));
 }
 
-.border-gray-200 {
-  --tw-border-opacity: 1;
-  border-color: rgb(220 223 228 / var(--tw-border-opacity));
-}
-
 .border-gray-700 {
   --tw-border-opacity: 1;
   border-color: rgb(98 111 134 / var(--tw-border-opacity));
@@ -2955,6 +2950,10 @@ details.collapse summary::-webkit-details-marker {
   padding-bottom: 1.5rem;
 }
 
+.pb-8 {
+  padding-bottom: 2rem;
+}
+
 .pl-4 {
   padding-left: 1rem;
 }
@@ -3076,36 +3075,41 @@ details.collapse summary::-webkit-details-marker {
   padding-bottom: 1rem;
 }
 
-.\[\&\>div\.spotlight-media\]\:order-2>div.spotlight-media {
-  order: 2;
+.\[\&\>div\.header\]\:py-8>div.header {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
-.\[\&\>div\.spotlight-media_iframe\]\:rounded-lg>div.spotlight-media iframe {
+.\[\&\>div\.media_iframe\]\:rounded-lg>div.media iframe {
   border-radius: 0.5rem;
 }
 
-.\[\&\>div\.spotlight-media_iframe\]\:rounded-l-lg>div.spotlight-media iframe {
+.\[\&\>div\.media_iframe\]\:rounded-l-lg>div.media iframe {
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
 }
 
-.\[\&\>div\.spotlight-media_iframe\]\:rounded-r-lg>div.spotlight-media iframe {
+.\[\&\>div\.media_iframe\]\:rounded-r-lg>div.media iframe {
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
 }
 
-.\[\&\>div\.spotlight-media_img\]\:rounded-lg>div.spotlight-media img {
+.\[\&\>div\.media_img\]\:rounded-lg>div.media img {
   border-radius: 0.5rem;
 }
 
-.\[\&\>div\.spotlight-media_img\]\:rounded-l-lg>div.spotlight-media img {
+.\[\&\>div\.media_img\]\:rounded-l-lg>div.media img {
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
 }
 
-.\[\&\>div\.spotlight-media_img\]\:rounded-r-lg>div.spotlight-media img {
+.\[\&\>div\.media_img\]\:rounded-r-lg>div.media img {
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
+}
+
+.\[\&\>div\.wysiwyg_ul\]\:list-inside>div.wysiwyg ul {
+  list-style-position: inside;
 }
 
 .\[\&\>div\:first-child\]\:self-center>div:first-child {

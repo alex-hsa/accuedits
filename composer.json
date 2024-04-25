@@ -47,6 +47,7 @@
         "drupal/imagemagick": "^4.0@alpha",
         "drupal/layout_paragraphs": "^2.0",
         "drupal/libraries": "^4.0",
+        "drupal/masquerade": "^2.0@RC",
         "drupal/material_icons": "^2.0",
         "drupal/node_edit_protection": "^1.1",
         "drupal/paragraphs": "^1.17",

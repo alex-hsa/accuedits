@@ -26,12 +26,24 @@ function admin_template_overrides_theme($existing, $type, $theme, $path) {
       'template' => 'paragraph--grid',
       'base hook' => 'paragraph'
     ],
+    'paragraph__highlights' => [
+      'template' => 'paragraph--highlights',
+      'base hook' => 'paragraph'
+    ],
+    'paragraph__highlights_item' => [
+      'template' => 'paragraph--highlights-item',
+      'base hook' => 'paragraph'
+    ],
     'paragraph__hero' => [
       'template' => 'paragraph--hero',
       'base hook' => 'paragraph'
     ],
     'paragraph__icon_card' => [
       'template' => 'paragraph--icon-card',
+      'base hook' => 'paragraph'
+    ],
+    'paragraph__lead' => [
+      'template' => 'paragraph--lead',
       'base hook' => 'paragraph'
     ],
     'paragraph__page_title' => [

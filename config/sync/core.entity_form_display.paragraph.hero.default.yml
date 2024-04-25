@@ -27,6 +27,8 @@ third_party_settings:
         - field_main_title
         - field_description
         - field_cta
+        - field_alignment
+        - field_background_glass
       label: 'Heading & CTA'
       region: content
       parent_name: ''
@@ -41,6 +43,10 @@ third_party_settings:
         required_fields: true
     group_options:
       children:
+        - field_media
+        - field_background_color
+        - field_border
+        - field_placement
         - group_tabs
       label: Options
       region: content
@@ -54,55 +60,6 @@ third_party_settings:
         open: false
         description: ''
         required_fields: true
-    group_tabs:
-      children:
-        - group_hero
-        - group_textbox
-      label: Tabs
-      region: content
-      parent_name: group_options
-      weight: 4
-      format_type: tabs
-      format_settings:
-        classes: ''
-        show_empty_fields: false
-        id: ''
-        direction: horizontal
-        width_breakpoint: 640
-    group_hero:
-      children:
-        - field_media
-        - field_placement
-        - field_background_color
-        - field_border
-      label: Hero
-      region: content
-      parent_name: group_tabs
-      weight: 5
-      format_type: tab
-      format_settings:
-        classes: ''
-        show_empty_fields: false
-        id: ''
-        formatter: open
-        description: ''
-        required_fields: true
-    group_textbox:
-      children:
-        - field_alignment
-        - field_background_glass
-      label: Textbox
-      region: content
-      parent_name: group_tabs
-      weight: 6
-      format_type: tab
-      format_settings:
-        classes: ''
-        show_empty_fields: false
-        id: ''
-        formatter: closed
-        description: ''
-        required_fields: true
 id: paragraph.hero.default
 targetEntityType: paragraph
 bundle: hero
@@ -110,33 +67,33 @@ mode: default
 content:
   field_alignment:
     type: options_select
-    weight: 5
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
   field_background_color:
     type: options_select
-    weight: 8
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
   field_background_glass:
     type: boolean_checkbox
-    weight: 6
+    weight: 7
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_border:
     type: boolean_checkbox
-    weight: 9
+    weight: 8
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_cta:
     type: link_default
-    weight: 6
+    weight: 5
     region: content
     settings:
       placeholder_url: ''
@@ -144,7 +101,7 @@ content:
     third_party_settings: {  }
   field_description:
     type: text_textarea
-    weight: 5
+    weight: 4
     region: content
     settings:
       rows: 5
@@ -160,7 +117,7 @@ content:
     third_party_settings: {  }
   field_main_title:
     type: string_textfield
-    weight: 4
+    weight: 3
     region: content
     settings:
       size: 60
@@ -175,7 +132,7 @@ content:
     third_party_settings: {  }
   field_placement:
     type: options_select
-    weight: 7
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }

@@ -11,7 +11,7 @@ _core:
 id: sanfran_help
 theme: sanfran
 region: content
-weight: -7
+weight: -8
 provider: null
 plugin: help_block
 settings:

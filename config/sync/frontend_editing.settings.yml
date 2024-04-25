@@ -7,10 +7,14 @@ entity_types:
     - card
     - carousel
     - featured
+    - from_library
     - grid
     - hero
+    - highlights
+    - highlights_item
     - icon_card
-    - page_title
+    - lead
+    - section
     - spotlight
     - step_item
     - steps

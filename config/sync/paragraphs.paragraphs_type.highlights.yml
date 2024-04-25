@@ -1,0 +1,12 @@
+uuid: 1635f2c6-6615-4adb-8538-bd0c538cb58f
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'file:file:31acd6f5-0223-4e67-95e6-310c4e4c6545'
+id: highlights
+label: Highlights
+icon_uuid: 31acd6f5-0223-4e67-95e6-310c4e4c6545
+icon_default: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDhweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iNDhweCIgZmlsbD0iIzAwMDAwMCI+PHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0xMSAyMGgydi0zLjgzbDMtM1YxMUg4djIuMTdsMyAzeiIgb3BhY2l0eT0iLjMiLz48cGF0aCBkPSJNNiAxNGwzIDN2NWg2di01bDMtM1Y5SDZ2NXptMi0zaDh2Mi4xN2wtMyAzVjIwaC0ydi0zLjgzbC0zLTNWMTF6bTMtOWgydjNoLTJ6TTQuOTE2IDQuNDY0bDIuMTIgMi4xMjJMNS42MiA4IDMuNSA1Ljg3N3pNMTguMzcyIDhsLTEuNDE0LTEuNDE0IDIuMTItMi4xMiAxLjQxNSAxLjQxM3oiLz48L3N2Zz4='
+description: ''
+behavior_plugins: {  }

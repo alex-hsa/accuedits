@@ -1,0 +1,54 @@
+{% if alignment == 'center' %}
+  {% set alignment_class = 'text-center [&>div.wysiwyg_ul]:list-inside' %}
+{% elseif alignment == 'right' %}
+  {% set alignment_class = 'text-right [&>div.wysiwyg_ul]:list-inside' %}
+{% else  %}
+  {% set alignment_class = 'text-left' %}
+{% endif %}
+
+{% set paragraph_classes = [
+    paragraph.bundle,
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished',
+    width,
+  ]|join(' ')|trim %}
+
+
+<hgroup {{ attributes.addClass(paragraph_classes).addClass('rounded-lg') }}>
+  {{ quick_edit }} 
+ 
+ <div class="header {{ alignment_class }}{% if background_glass == 'yes' %} glass p-8 rounded-lg{% endif %}">
+      {% if eyebrow %}
+          <div class="eyebrow uppercase">{{ eyebrow }}</div>
+      {% endif %}
+
+      {% if heading %}
+          {{ include('sanfran:headings', {
+              level,
+              text: heading,
+              })
+          }}
+      {% endif %}
+
+      {% if description %}
+          {{ include('sanfran:wysiwyg', {
+              wysiwyg: description,
+              classes: 'mb-4',
+              })
+          }}
+      {% endif %}
+
+      {% if ctaText is not empty %}
+        <div class="hero--cta">
+            {{ include('sanfran:button', {
+                type: 'btn-accent',
+                ctaText,
+                ctaHref,
+                })
+            }}
+        </div>
+      {% endif %}
+  </div>
+</hgroup>

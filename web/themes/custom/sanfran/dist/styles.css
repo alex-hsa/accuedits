@@ -3825,6 +3825,10 @@ details.collapse summary::-webkit-details-marker{
   grid-column: span 7 / span 7;
 }
 
+.m-8{
+  margin: 2rem;
+}
+
 .my-4{
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -3871,6 +3875,14 @@ details.collapse summary::-webkit-details-marker{
   margin-inline-start: 3rem;
 }
 
+.mt-4{
+  margin-top: 1rem;
+}
+
+.mt-8{
+  margin-top: 2rem;
+}
+
 .block{
   display: block;
 }
@@ -3915,6 +3927,10 @@ details.collapse summary::-webkit-details-marker{
   min-height: 6rem;
 }
 
+.w-1\/12{
+  width: 8.333333%;
+}
+
 .w-1\/2{
   width: 50%;
 }
@@ -3923,16 +3939,52 @@ details.collapse summary::-webkit-details-marker{
   width: 33.333333%;
 }
 
+.w-10\/12{
+  width: 83.333333%;
+}
+
+.w-11\/12{
+  width: 91.666667%;
+}
+
 .w-16{
   width: 4rem;
+}
+
+.w-2\/12{
+  width: 16.666667%;
 }
 
 .w-2\/3{
   width: 66.666667%;
 }
 
+.w-3\/12{
+  width: 25%;
+}
+
+.w-4\/12{
+  width: 33.333333%;
+}
+
+.w-5\/12{
+  width: 41.666667%;
+}
+
 .w-5\/6{
   width: 83.333333%;
+}
+
+.w-6\/12{
+  width: 50%;
+}
+
+.w-7\/12{
+  width: 58.333333%;
+}
+
+.w-8\/12{
+  width: 66.666667%;
 }
 
 .w-9\/12{
@@ -4325,6 +4377,10 @@ details.collapse summary::-webkit-details-marker{
   padding-bottom: 1.5rem;
 }
 
+.pb-8{
+  padding-bottom: 2rem;
+}
+
 .pl-4{
   padding-left: 1rem;
 }
@@ -4347,10 +4403,6 @@ details.collapse summary::-webkit-details-marker{
 
 .text-right{
   text-align: right;
-}
-
-.align-middle{
-  vertical-align: middle;
 }
 
 .font-body{
@@ -4632,6 +4684,14 @@ section{
   .lg\:grid-cols-4{
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
+
+  .lg\:grid-cols-5{
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-6{
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
 }
 
 .\[\&\>div\.header\]\:px-8>div.header{
@@ -4642,6 +4702,11 @@ section{
 .\[\&\>div\.header\]\:py-4>div.header{
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.\[\&\>div\.header\]\:py-8>div.header{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .\[\&\>div\.media_iframe\]\:rounded-lg>div.media iframe{
@@ -4658,6 +4723,10 @@ section{
   border-bottom-right-radius: 0.5rem;
 }
 
+.\[\&\>div\.media_img\]\:m-8>div.media img{
+  margin: 2rem;
+}
+
 .\[\&\>div\.media_img\]\:rounded-lg>div.media img{
   border-radius: 0.5rem;
 }
@@ -4672,8 +4741,16 @@ section{
   border-bottom-right-radius: 0.5rem;
 }
 
+.\[\&\>div\.wysiwyg_ul\]\:list-inside>div.wysiwyg ul{
+  list-style-position: inside;
+}
+
 .\[\&\>div\:first-child\]\:self-center>div:first-child{
   align-self: center;
+}
+
+.\[\&\>hgroup\]\:m-8>hgroup{
+  margin: 2rem;
 }
 
 .\[\&\>i\:first-child\]\:text-4xl>i:first-child{

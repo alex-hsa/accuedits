@@ -1,0 +1,85 @@
+uuid: ebf0c864-6631-4e93-aeb8-4687c0348b8d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_lead
+    - paragraphs.paragraphs_type.highlights
+    - paragraphs.paragraphs_type.lead
+  module:
+    - entity_reference_revisions
+id: paragraph.highlights.field_lead
+field_name: field_lead
+entity_type: paragraph
+bundle: highlights
+label: Lead
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      lead: lead
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 20
+        enabled: false
+      accordion_item:
+        weight: 21
+        enabled: false
+      card:
+        weight: 22
+        enabled: false
+      carousel:
+        weight: 23
+        enabled: false
+      featured:
+        weight: 24
+        enabled: false
+      from_library:
+        weight: 25
+        enabled: false
+      grid:
+        weight: 26
+        enabled: false
+      hero:
+        weight: 27
+        enabled: false
+      highlights:
+        weight: 28
+        enabled: false
+      highlights_item:
+        weight: 29
+        enabled: false
+      icon_card:
+        weight: 30
+        enabled: false
+      lead:
+        weight: 31
+        enabled: true
+      section:
+        weight: 32
+        enabled: false
+      spotlight:
+        weight: 33
+        enabled: false
+      step_item:
+        weight: 34
+        enabled: false
+      steps:
+        weight: 35
+        enabled: false
+      table:
+        weight: 36
+        enabled: false
+      text_shout:
+        weight: 37
+        enabled: false
+      textbox:
+        weight: 38
+        enabled: false
+field_type: entity_reference_revisions

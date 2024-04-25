@@ -7,12 +7,14 @@ dependencies:
     - node.type.article
     - node.type.page
     - taxonomy.vocabulary.tags
+    - user.role.content_editor
   module:
     - comment
     - contextual
     - file
     - filter
     - frontend_editing
+    - masquerade
     - node
     - path
     - system
@@ -31,6 +33,7 @@ permissions:
   - 'access files overview'
   - 'access frontend editing'
   - 'access toolbar'
+  - 'administer frontend editing'
   - 'administer url aliases'
   - 'create article content'
   - 'create page content'
@@ -45,6 +48,7 @@ permissions:
   - 'edit own comments'
   - 'edit own page content'
   - 'edit terms in tags'
+  - 'masquerade as content_editor'
   - 'revert all revisions'
   - 'use text format table_component'
   - 'view all revisions'

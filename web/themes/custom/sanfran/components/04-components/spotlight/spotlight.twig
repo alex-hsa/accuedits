@@ -1,11 +1,3 @@
-{% if alignment == 'center' %}
-  {% set alignment_class = 'text-center' %}
-{% elseif alignment == 'right' %}
-  {% set alignment_class = 'text-right' %}
-{% else  %}
-  {% set alignment_class = 'text-left' %}
-{% endif %}
-
 {% if (flip == 'yes') and (border == 'no') and (background_color == '') %}
   {% set variant_classes = 'flex flex-row-reverse gap-2 [&>div.media_img]:rounded-lg [&>div.media_iframe]:rounded-lg' %}
 {% elseif (flip == 'yes') and (border == 'no') and (background_color != '') %}
@@ -37,35 +29,18 @@
 
 <section {{ attributes.addClass(classes_spotlight) }}>
   {{ quick_edit }}
-  <div class="header w-1/2 px-8 py-6 my-auto {{ alignment_class }}">
-    {% if eyebrow %}
-      <div class="callout uppercase">{{ eyebrow }}</div>
-    {% endif %}
-
-    {% if heading %}
-      {{ include('sanfran:headings', {
-          text: heading,
-          level: '2',
-            })
-      }}
-    {% endif %}
-    
-    {% if description %}
-      {{ include('sanfran:wysiwyg', {
-          wysiwyg: description,
-        })
-      }}
-    {% endif %}
-
-    {% if ctaText is not empty %}
-      {{ include('sanfran:button', {
-        type: 'btn-secondary',
-        ctaText,
-        ctaHref,
-        })
-      }}
-    {% endif %}
+ 
+ {# Display Lead paragraph #}
+ <div class="lead my-auto p-8 w-1/2">
+      
+      {% for key, item in lead_item %}
+        {% if key|first != '#' %}
+            {{ item }}
+        {% endif %}
+      {% endfor %}
   </div>
+
+  {# Display either an image or a video #}
   <div class="media w-1/2">
       {% if image is not empty %} 
         {{ include('sanfran:figure', {
