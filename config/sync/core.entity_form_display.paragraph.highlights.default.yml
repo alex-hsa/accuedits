@@ -3,45 +3,17 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.highlights.field_alignment
-    - field.field.paragraph.highlights.field_background_color
     - field.field.paragraph.highlights.field_columns
-    - field.field.paragraph.highlights.field_cta
-    - field.field.paragraph.highlights.field_description
-    - field.field.paragraph.highlights.field_eyebrow
     - field.field.paragraph.highlights.field_items
     - field.field.paragraph.highlights.field_lead
-    - field.field.paragraph.highlights.field_main_title
     - paragraphs.paragraphs_type.highlights
   module:
     - field_group
-    - link
     - paragraphs
-    - text
 third_party_settings:
   field_group:
-    group_heading_cta:
-      children:
-        - field_eyebrow
-        - field_main_title
-        - field_description
-        - field_cta
-        - field_alignment
-      label: 'Heading & CTA'
-      region: content
-      parent_name: ''
-      weight: 3
-      format_type: details
-      format_settings:
-        classes: ''
-        show_empty_fields: false
-        id: ''
-        open: true
-        description: ''
-        required_fields: true
     group_options:
       children:
-        - field_background_color
         - field_columns
       label: Options
       region: content
@@ -52,7 +24,7 @@ third_party_settings:
         classes: ''
         show_empty_fields: false
         id: ''
-        open: false
+        open: true
         description: ''
         required_fields: true
 id: paragraph.highlights.default
@@ -60,47 +32,11 @@ targetEntityType: paragraph
 bundle: highlights
 mode: default
 content:
-  field_alignment:
-    type: options_select
-    weight: 6
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_background_color:
-    type: options_select
-    weight: 5
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_columns:
     type: number
     weight: 6
     region: content
     settings:
-      placeholder: ''
-    third_party_settings: {  }
-  field_cta:
-    type: link_default
-    weight: 5
-    region: content
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-  field_description:
-    type: text_textarea
-    weight: 4
-    region: content
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
-  field_eyebrow:
-    type: string_textfield
-    weight: 1
-    region: content
-    settings:
-      size: 60
       placeholder: ''
     third_party_settings: {  }
   field_items:
@@ -140,14 +76,6 @@ content:
       features:
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
-    third_party_settings: {  }
-  field_main_title:
-    type: string_textfield
-    weight: 2
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
     third_party_settings: {  }
 hidden:
   created: true

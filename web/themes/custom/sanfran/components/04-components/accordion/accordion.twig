@@ -40,39 +40,14 @@
   ]|join(' ')|trim %}
 
 <section {{ attributes.addClass(classes_accordion).addClass(orientation_class).addClass(border_class) }}>
-    {{ quick_edit }}
-    <div class="header {{ alignment_class }}">
-        {% if eyebrow %}
-            <div class="eyebrow uppercase">{{ eyebrow }}</div>
-        {% endif %}
-
-        {% if heading %}
-            {{ include('sanfran:headings', {
-                level: '2',
-                text: heading
-                })
-            }}
-        {% endif %}
-
-        {% if description %}
-            {{ include('sanfran:wysiwyg', {
-                wysiwyg: description,
-                classes: 'mb-0',
-                })
-            }}
-        {% endif %}
-
-        {% if ctaText is not empty %}
-        <div class="hero--cta">
-            {{ include('sanfran:button', {
-                type: 'btn-primary',
-                ctaText,
-                ctaHref,
-                })
-            }}
-        </div>
-        {% endif %}
-    </div>
+  {{ quick_edit }}
+  <div class="lead m-8">
+      {% for key, item in lead_item %}
+          {% if key|first != '#' %}
+              {{ item }}
+          {% endif %}
+      {% endfor %}
+  </div>
 
 
     <div class="items my-auto">

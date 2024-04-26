@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.highlights_item.field_background_color
     - field.field.paragraph.highlights_item.field_cta
     - field.field.paragraph.highlights_item.field_description
     - field.field.paragraph.highlights_item.field_heading
@@ -15,6 +16,12 @@ targetEntityType: paragraph
 bundle: highlights_item
 mode: default
 content:
+  field_background_color:
+    type: options_select
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_cta:
     type: link_default
     weight: 4

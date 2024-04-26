@@ -29,6 +29,7 @@ module.exports = {
     'border-red',
     'border-orange',
     'border-yellow',
+    'border-yellow-500',
     'border-green',
     'border-teal',
     'border-blue',

@@ -33,36 +33,11 @@
 <section {{ attributes.addClass(paragraph_classes).addClass(border_class).addClass(placement_class).addClass('p-8 rounded-lg') }}>
   {{ quick_edit }} 
  
- <div class="header {{ alignment_class }}{% if background_glass == 'yes' %} glass p-8 rounded-lg{% endif %} {{ width }}">
-      {% if eyebrow %}
-          <div class="eyebrow uppercase">{{ eyebrow }}</div>
-      {% endif %}
+  {# Display Lead paragraph #}
+  {% for key, item in lead_item %}
+    {% if key|first != '#' %}
+        {{ item }}
+    {% endif %}
+  {% endfor %}
 
-      {% if heading %}
-          {{ include('sanfran:headings', {
-              level,
-              text: heading,
-              })
-          }}
-      {% endif %}
-
-      {% if description %}
-          {{ include('sanfran:wysiwyg', {
-              wysiwyg: description,
-              classes: 'mb-4',
-              })
-          }}
-      {% endif %}
-
-      {% if ctaText is not empty %}
-        <div class="hero--cta">
-            {{ include('sanfran:button', {
-                type: 'btn-primary',
-                ctaText,
-                ctaHref,
-                })
-            }}
-        </div>
-      {% endif %}
-  </div>
 </section>

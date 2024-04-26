@@ -41,44 +41,19 @@
 
 <section 
   {{ attributes.addClass(classes_hero)
-  .addClass(orientation_class)
-  .addClass(border_class)
-  .addClass(placement_class)
-  .addClass('p-8 place-items-start rounded-lg') }}>
+    .addClass(orientation_class)
+    .addClass(border_class)
+    .addClass(placement_class)
+    .addClass('p-8 place-items-start rounded-lg') 
+  }}>
   {{ quick_edit }} 
 
-  <div class="ms-1/2 p-8 rounded-lg w-1/2 {{ alignment_class }}{% if background_glass == 'yes' %} glass{% endif %}">
-    {% if eyebrow %}
-      <div class="callout uppercase">{{ eyebrow }}</div>
+  {# Display Lead paragraph #}
+  {% for key, item in lead_item %}
+    {% if key|first != '#' %}
+        {{ item }}
     {% endif %}
-
-    {% if heading %}
-      {{ include('sanfran:headings', {
-          level: '1',
-          text: heading,
-        })
-      }}
-    {% endif %}
-
-    {% if description %}
-      {{ include('sanfran:wysiwyg', {
-          wysiwyg: description,
-          classes: 'mb-0',
-        })
-      }}
-    {% endif %}
-
-    {% if ctaText is not empty %}
-      <div class="hero--cta">
-        {{ include('sanfran:button', {
-          type: 'btn-primary',
-          ctaText,
-          ctaHref,
-          })
-        }}
-      </div>
-    {% endif %}
-  </div>
+  {% endfor %}
 
 </section>
 

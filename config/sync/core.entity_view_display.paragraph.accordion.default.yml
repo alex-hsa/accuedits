@@ -3,33 +3,20 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.accordion.field_alignment
     - field.field.paragraph.accordion.field_background_color
     - field.field.paragraph.accordion.field_border
-    - field.field.paragraph.accordion.field_cta
-    - field.field.paragraph.accordion.field_description
-    - field.field.paragraph.accordion.field_eyebrow
     - field.field.paragraph.accordion.field_items
-    - field.field.paragraph.accordion.field_main_title
+    - field.field.paragraph.accordion.field_lead
     - field.field.paragraph.accordion.field_orientation
     - paragraphs.paragraphs_type.accordion
   module:
     - entity_reference_revisions
-    - link
     - options
-    - text
 id: paragraph.accordion.default
 targetEntityType: paragraph
 bundle: accordion
 mode: default
 content:
-  field_alignment:
-    type: list_default
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 4
-    region: content
   field_background_color:
     type: entity_reference_entity_view
     label: hidden
@@ -49,33 +36,6 @@ content:
     third_party_settings: {  }
     weight: 6
     region: content
-  field_cta:
-    type: link
-    label: hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    weight: 3
-    region: content
-  field_description:
-    type: text_default
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 2
-    region: content
-  field_eyebrow:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 0
-    region: content
   field_items:
     type: entity_reference_revisions_entity_view
     label: hidden
@@ -85,13 +45,14 @@ content:
     third_party_settings: {  }
     weight: 7
     region: content
-  field_main_title:
-    type: string
-    label: hidden
+  field_lead:
+    type: entity_reference_revisions_entity_view
+    label: above
     settings:
-      link_to_entity: false
+      view_mode: default
+      link: ''
     third_party_settings: {  }
-    weight: 1
+    weight: 0
     region: content
   field_orientation:
     type: list_default

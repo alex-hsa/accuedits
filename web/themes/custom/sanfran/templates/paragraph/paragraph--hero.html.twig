@@ -25,15 +25,7 @@
   */
 #}
 
-{# {% include '@components/my-banner/my-banner.twig' %} #}
-
-
-{% set eyebrow = content.field_eyebrow.0|default('') %}
-{% set heading = content.field_main_title.0|default('') %}
-{% set description = content.field_description.0|default('') %}
-{% set ctaText = content.field_cta[0]['#title']|default('') %}
-{% set ctaHref = content.field_cta[0]['#url']|default('') %}
-
+{% set lead_item = content.field_lead %}
 {% set media_image = content.field_media|field_target_entity.field_media_image.entity.uri.value %}
 {% set image =  media_image|default('') %}
 {% set placement = content.field_placement.0['#markup']|lower|default('') %}
@@ -45,11 +37,7 @@
 {% set quick_edit = content.frontend_editing|default('') %}
 
 {{ include('sanfran:hero', {
-  eyebrow,
-  heading,
-  description,
-  ctaText,
-  ctaHref,
+  lead_item,
   image,
   placement,
   background_color,

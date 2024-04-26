@@ -24,41 +24,7 @@
           {% endif %}
       {% endfor %}
   </div>
-  {# <div class="header pb-8 {{ alignment_class }}">
-      {% if eyebrow %}
-          <div class="eyebrow uppercase">{{ eyebrow }}</div>
-      {% endif %}
-
-      {% if heading %}
-          {{ include('sanfran:headings', {
-              level: '2',
-              text: heading
-              })
-          }}
-      {% endif %}
-
-      {% if description %}
-          {{ include('sanfran:wysiwyg', {
-              wysiwyg: description,
-              classes: 'mb-0',
-              })
-          }}
-      {% endif %}
-
-      {% if ctaText is not empty %}
-        <div class="hero--cta">
-            {{ include('sanfran:button', {
-                type: 'btn-primary',
-                ctaText,
-                ctaHref,
-                })
-            }}
-        </div>
-      {% endif %}
-  </div> #}
-
-  {# ToDo: account for 5- and 6-columns  #}
-  <div class="items grid gap-x-4 gap-y-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-{{ columns }}">
+  <div class="items grid gap-x-4 gap-y-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-{{ columns }}">
       {% for key, item in highlights_items %}
           {% if key|first != '#' %}
               {{ item }}

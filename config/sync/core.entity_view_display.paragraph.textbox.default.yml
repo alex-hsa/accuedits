@@ -3,35 +3,19 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.textbox.field_alignment
     - field.field.paragraph.textbox.field_background_color
-    - field.field.paragraph.textbox.field_background_glass
     - field.field.paragraph.textbox.field_border
-    - field.field.paragraph.textbox.field_cta
-    - field.field.paragraph.textbox.field_description
-    - field.field.paragraph.textbox.field_eyebrow
-    - field.field.paragraph.textbox.field_heading
-    - field.field.paragraph.textbox.field_heading_level
-    - field.field.paragraph.textbox.field_main_title
+    - field.field.paragraph.textbox.field_lead
     - field.field.paragraph.textbox.field_placement
-    - field.field.paragraph.textbox.field_width
     - paragraphs.paragraphs_type.textbox
   module:
-    - link
+    - entity_reference_revisions
     - options
-    - text
 id: paragraph.textbox.default
 targetEntityType: paragraph
 bundle: textbox
 mode: default
 content:
-  field_alignment:
-    type: list_default
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 4
-    region: content
   field_background_color:
     type: entity_reference_entity_view
     label: hidden
@@ -40,16 +24,6 @@ content:
       link: false
     third_party_settings: {  }
     weight: 3
-    region: content
-  field_background_glass:
-    type: boolean
-    label: hidden
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    weight: 8
     region: content
   field_border:
     type: boolean
@@ -61,57 +35,14 @@ content:
     third_party_settings: {  }
     weight: 6
     region: content
-  field_cta:
-    type: link
-    label: hidden
+  field_lead:
+    type: entity_reference_revisions_entity_view
+    label: above
     settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    weight: 3
-    region: content
-  field_description:
-    type: text_default
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 2
-    region: content
-  field_eyebrow:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
+      view_mode: default
+      link: ''
     third_party_settings: {  }
     weight: 0
-    region: content
-  field_heading:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 1
-    region: content
-  field_heading_level:
-    type: number_integer
-    label: hidden
-    settings:
-      thousand_separator: ''
-      prefix_suffix: true
-    third_party_settings: {  }
-    weight: 5
-    region: content
-  field_main_title:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 1
     region: content
   field_placement:
     type: list_default
@@ -119,12 +50,5 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 7
-    region: content
-  field_width:
-    type: list_default
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 9
     region: content
 hidden: {  }

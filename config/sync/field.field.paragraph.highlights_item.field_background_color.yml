@@ -1,15 +1,15 @@
-uuid: ba1e3a0c-1e95-4324-94f1-ea5d1817856c
+uuid: 7414146f-9bbf-4fee-87da-71d6482c6096
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_background_color
-    - paragraphs.paragraphs_type.highlights
+    - paragraphs.paragraphs_type.highlights_item
     - taxonomy.vocabulary.background_colors
-id: paragraph.highlights.field_background_color
+id: paragraph.highlights_item.field_background_color
 field_name: field_background_color
 entity_type: paragraph
-bundle: highlights
+bundle: highlights_item
 label: 'Background Color'
 description: ''
 required: false

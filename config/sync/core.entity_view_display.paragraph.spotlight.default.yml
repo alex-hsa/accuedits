@@ -3,35 +3,21 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.spotlight.field_alignment
     - field.field.paragraph.spotlight.field_background_color
     - field.field.paragraph.spotlight.field_border
-    - field.field.paragraph.spotlight.field_cta
-    - field.field.paragraph.spotlight.field_description
-    - field.field.paragraph.spotlight.field_eyebrow
     - field.field.paragraph.spotlight.field_flip
     - field.field.paragraph.spotlight.field_lead
-    - field.field.paragraph.spotlight.field_main_title
     - field.field.paragraph.spotlight.field_media
     - field.field.paragraph.spotlight.field_variant
     - paragraphs.paragraphs_type.spotlight
   module:
     - entity_reference_revisions
-    - link
     - options
-    - text
 id: paragraph.spotlight.default
 targetEntityType: paragraph
 bundle: spotlight
 mode: default
 content:
-  field_alignment:
-    type: list_default
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 5
-    region: content
   field_background_color:
     type: entity_reference_entity_view
     label: hidden
@@ -51,33 +37,6 @@ content:
     third_party_settings: {  }
     weight: 7
     region: content
-  field_cta:
-    type: link
-    label: hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    weight: 4
-    region: content
-  field_description:
-    type: text_default
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 3
-    region: content
-  field_eyebrow:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 1
-    region: content
   field_flip:
     type: boolean
     label: above
@@ -96,14 +55,6 @@ content:
       link: ''
     third_party_settings: {  }
     weight: 0
-    region: content
-  field_main_title:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 1
     region: content
   field_media:
     type: entity_reference_entity_view

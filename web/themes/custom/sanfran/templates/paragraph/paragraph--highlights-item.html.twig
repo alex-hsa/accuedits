@@ -31,6 +31,7 @@
 {% set description = content.field_description.0|default('') %}
 {% set ctaText = content.field_cta[0]['#title']|default('') %}
 {% set ctaHref = content.field_cta[0]['#url']|default('') %}
+{% set background_color = content.field_background_color|field_target_entity.name.entity.name.value|lower|default('') %}
 {% set quick_edit = content.frontend_editing %}
 
 {{ include('sanfran:highlights-item', {
@@ -38,6 +39,7 @@
   description,
   ctaText,
   ctaHref,
+  background_color,
   quick_edit
   })
 }}

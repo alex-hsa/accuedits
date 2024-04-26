@@ -25,36 +25,14 @@
   */
 #}
 
-{# {% set classes = [
-  'paragraph',
-  'paragraph--type--' ~ paragraph.bundle|clean_class,
-  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-  'paragraph--id--' ~ paragraph.id.value,
-  'grid grid-cols-1 gap-4 md:grid-cols-' ~ content.field_columns|clean_class,
-  modifier_classes ? modifier_classes : ''
-] | join(' ')|trim %} #}
-
-{% set eyebrow = content.field_eyebrow.0|default('') %}
-{% set heading = content.field_main_title.0|default('') %}
-{% set description = content.field_description.0|default('') %}
-{% set ctaText = content.field_cta[0]['#title']|default('') %}
-{% set ctaHref = content.field_cta[0]['#url']|default('') %}
-{% set alignment = content.field_alignment.0['#markup']|lower|default('') %}
-
 {% set lead_item = content.field_lead %}
-
 {% set highlights_items = content.field_items %}
+
 {% set background_color = content.field_background_color|field_target_entity.name.entity.name.value|lower|default('') %}
 {% set columns = content.field_columns.0|default('') %}
 {% set quick_edit = content.frontend_editing %}
 
 {{ include('sanfran:highlights', {
-    eyebrow,
-    heading,
-    description,
-    ctaText,
-    ctaHref,
-    alignment,
     lead_item,
     highlights_items,
     background_color,
