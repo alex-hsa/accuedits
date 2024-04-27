@@ -1,46 +1,63 @@
+
+{% set parent = drupal_entity('paragraph', paragraph.parent_id.value|default('')) %}  
+{% set term_id = parent['#paragraph'].field_background_color.value.0.target_id %}
+{% if term_id %} 
+    {% set term_details = drupal_entity('taxonomy_term', term_id|number_format) %} 
+    {% set background_color = term_details['#taxonomy_term'].name.value|lower %}
+    {% set background_color_class = 'base-' ~ background_color %}
+{% else %}
+    {% set background_color_class = '' %}
+{% endif %}
+
+
 {% set classes_step_item = [
     'step-item',
     'paragraph',
     'paragraph--type--' ~ paragraph.bundle|clean_class,
     view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
     not paragraph.isPublished() ? 'paragraph--unpublished',
+    'border-' ~ background_color,
   ]|join(' ')|trim %}
 
-<li {{ attributes.addClass(classes_step_item).addClass('mb-10 ms-12') }}>
+<article {{ attributes.addClass(classes_step_item).addClass('border-s-8 ml-8') }}>
 {{ edit_icon  }}
-  <span class="absolute bg-base-blue flex h-16 items-center justify-center rounded-full -start-24  w-16">
-      {% if icon %}
-        <span class="border border-base-blue flex items-center h-16 justify-center rounded-full shrink-0 w-16 text-2xl text-white">
-          {{ icon }}
-        </span>
-      {% else %}
-        <span class="border border-base-blue  flex items-center h-16 justify-center rounded-full shrink-0 w-16 text-2xl text-white">
-          {{ step_number }}
-        </span>
+  <div class="step-marker flex flex-row -ml-9">
+  
+    <div class="bg-{{ background_color_class }} flex h-16 items-center justify-center rounded-full -start-24  w-16">
+        {% if icon %}
+          <span class="flex items-center h-16 justify-center rounded-full shrink-0 w-16 text-4xl text-white">
+            {{ icon }}
+          </span>
+        {% else %}
+          <span class="flex items-center h-16 justify-center rounded-full shrink-0 w-16 text-2xl font-bold text-white">
+            {{ step_number }}
+          </span>
+        {% endif %}
+    </div>
+
+    <div class="step-text bg-{{ background_color_class }} mb-12 ml-8 p-6 rounded-md w-full">
+
+      {{ include('sanfran:headings', {
+          level: '3',
+          text: heading,
+        })
+      }}
+
+      {{ include('sanfran:wysiwyg', {
+          wysiwyg: description,
+        })
+      }}
+
+      {% if ctaText %}
+        <div class="hero--cta">
+          {{ include('sanfran:button', {
+            type: 'btn-outline btn-primary',
+            ctaText,
+            ctaHref,
+            })
+          }}
+        </div>
       {% endif %}
-  </span>
-  <div class="bg-base-blue p-6 rounded-md w-9/12">
-
-    {{ include('sanfran:headings', {
-        level: '3',
-        text: heading,
-      })
-    }}
-
-    {{ include('sanfran:wysiwyg', {
-        wysiwyg: description,
-      })
-    }}
-
-    {% if ctaText %}
-      <div class="hero--cta">
-        {{ include('sanfran:button', {
-          type: 'btn-outline btn-primary',
-          ctaText,
-          ctaHref,
-          })
-        }}
-      </div>
-    {% endif %}
+    </div>
   </div>
-</li>
+</article>

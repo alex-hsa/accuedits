@@ -6,8 +6,10 @@ props:
   properties:
     heading:
       title: Heading
+      description: The title for the banner text.
+      examples:
+        - Join us at The Conference
       type: string
-      description: Component title
     table:
       title: Table
       type: string

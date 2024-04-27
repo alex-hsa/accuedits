@@ -1,18 +1,18 @@
-uuid: 89219ac9-ab75-474d-8e69-d2e403f4eb53
+uuid: 82c19146-b391-4a5f-9e72-9f2e952ed001
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_item_step
-    - paragraphs.paragraphs_type.step_item
+    - field.storage.paragraph.field_lead
+    - paragraphs.paragraphs_type.lead
     - paragraphs.paragraphs_type.steps
   module:
     - entity_reference_revisions
-id: paragraph.steps.field_item_step
-field_name: field_item_step
+id: paragraph.steps.field_lead
+field_name: field_lead
 entity_type: paragraph
 bundle: steps
-label: item-step
+label: Lead
 description: ''
 required: false
 translatable: false
@@ -22,52 +22,64 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      step_item: step_item
+      lead: lead
     negate: 0
     target_bundles_drag_drop:
       accordion:
-        weight: 16
-        enabled: false
-      accordion_item:
-        weight: 17
-        enabled: false
-      card:
-        weight: 18
-        enabled: false
-      carousel:
-        weight: 19
-        enabled: false
-      featured:
         weight: 20
         enabled: false
-      grid:
+      accordion_item:
         weight: 21
         enabled: false
-      hero:
+      card:
         weight: 22
         enabled: false
-      icon_card:
+      carousel:
         weight: 23
         enabled: false
-      page_title:
+      featured:
         weight: 24
         enabled: false
-      spotlight:
+      from_library:
         weight: 25
         enabled: false
-      step_item:
+      grid:
         weight: 26
-        enabled: true
-      steps:
+        enabled: false
+      hero:
         weight: 27
         enabled: false
-      table:
+      highlights:
         weight: 28
         enabled: false
-      text_shout:
+      highlights_item:
         weight: 29
         enabled: false
-      textbox:
+      icon_card:
         weight: 30
+        enabled: false
+      lead:
+        weight: 31
+        enabled: true
+      section:
+        weight: 32
+        enabled: false
+      spotlight:
+        weight: 33
+        enabled: false
+      step_item:
+        weight: 34
+        enabled: false
+      steps:
+        weight: 35
+        enabled: false
+      table:
+        weight: 36
+        enabled: false
+      text_shout:
+        weight: 37
+        enabled: false
+      textbox:
+        weight: 38
         enabled: false
 field_type: entity_reference_revisions

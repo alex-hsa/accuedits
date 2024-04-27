@@ -31,7 +31,7 @@
     'bg-base-gray',
     ] %} #}
 
-{% set classes_accordion = [
+{% set paragraph_classes = [
     paragraph.bundle|clean_class,
     'paragraph',
     'paragraph--type--' ~ paragraph.bundle|clean_class,
@@ -39,7 +39,7 @@
     not paragraph.isPublished() ? 'paragraph--unpublished',
   ]|join(' ')|trim %}
 
-<section {{ attributes.addClass(classes_accordion).addClass(orientation_class).addClass(border_class) }}>
+<section {{ attributes.addClass(paragraph_classes).addClass(orientation_class).addClass(border_class) }}>
   {{ quick_edit }}
   <div class="lead m-8">
       {% for key, item in lead_item %}

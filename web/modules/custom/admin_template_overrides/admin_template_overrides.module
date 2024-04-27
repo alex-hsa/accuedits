@@ -62,6 +62,10 @@ function admin_template_overrides_theme($existing, $type, $theme, $path) {
       'template' => 'paragraph--step-item',
       'base hook' => 'paragraph'
     ], 
+    'paragraph__table' => [
+      'template' => 'paragraph--table',
+      'base hook' => 'paragraph'
+    ],
     'paragraph__textbox' => [
       'template' => 'paragraph--textbox',
       'base hook' => 'paragraph'

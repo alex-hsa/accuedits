@@ -35,6 +35,7 @@ module.exports = {
     'border-blue',
     'border-purple',
     'border-magenta',
+    'border-magenta-200',
     'border-gray',
     'text-gray',
     'drop-shadow-xl',

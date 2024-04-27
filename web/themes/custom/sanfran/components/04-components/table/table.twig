@@ -1,12 +1,43 @@
-<article class="table w-5/6">
+{% if orientation == 'horizontal' %}
+    {% set orientation_class = 'flex flex-row [&>div.lead]:w-5/12 [&>div.items]:w-7/12' %}
+{% else %}
+    {% set orientation_class = 'flex flex-col' %}
+{% endif %}
 
-    {{ include('sanfran:headings', {
-        level: '2',
-        text: heading,
-      })
-    }}
+{% if flip == 'yes' %}
+    {% set flip_class = '[&>div.lead]:order-2 [&>div.items]:order-1' %}
+{% else %}
+    {% set flip_class = '' %}
+{% endif %}
 
-    <div class="overflow-x-auto">   
+{% if border == 'yes' %}
+  {% set border_class = 'border p-4 rounded-lg' %}
+{% else %}
+  {% set border_class = 'rounded-lg' %}
+{% endif %}
+
+{% set paragraph_classes = [
+    'table-component',
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished',
+    'bg-base-' ~ background_color,
+  ]|join(' ')|trim %}
+
+<section {{ attributes.addClass(paragraph_classes).addClass(orientation_class).addClass(flip_class).addClass(border_class).addClass('') }}>
+    {{ quick_edit }}
+
+    {# Display Lead paragraph #}
+    <div class="lead m-8">
+        {% for key, item in lead_item %}
+            {% if key|first != '#' %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="items"> 
         {{ table }}
     </div>
-</article>
+</section>

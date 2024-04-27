@@ -18,7 +18,7 @@ block_config: |-
       "hide-mobile-menu": "",
       "auto-arrow": "1",
       "always-show-submenu": "1",
-      "number-columns": 10
+      "number-columns": 12
   }
 menu_config: |-
   {
@@ -433,6 +433,12 @@ menu_config: |-
                               "type": "menu_item",
                               "tb_item_config": [],
                               "weight": "0"
+                          },
+                          {
+                              "plugin_id": "menu_link_content:8dd8777d-0c23-4dbd-be62-daf8c1bcebe2",
+                              "type": "menu_item",
+                              "tb_item_config": [],
+                              "weight": "0"
                           }
                       ],
                       "col_config": {
@@ -445,13 +451,13 @@ menu_config: |-
                   {
                       "col_content": [
                           {
-                              "plugin_id": "menu_link_content:8dd8777d-0c23-4dbd-be62-daf8c1bcebe2",
+                              "plugin_id": "menu_link_content:68d77bd1-bac4-4960-8d95-1acfd188c3c2",
                               "type": "menu_item",
                               "tb_item_config": [],
                               "weight": "0"
                           },
                           {
-                              "plugin_id": "menu_link_content:68d77bd1-bac4-4960-8d95-1acfd188c3c2",
+                              "plugin_id": "menu_link_content:d2e0f149-6db8-4b18-b3ba-46a57ddbec59",
                               "type": "menu_item",
                               "tb_item_config": [],
                               "weight": "0"
@@ -466,6 +472,12 @@ menu_config: |-
                   },
                   {
                       "col_content": [
+                          {
+                              "plugin_id": "menu_link_content:09565c4d-59e9-4f6c-8029-61d04d838b9b",
+                              "type": "menu_item",
+                              "tb_item_config": [],
+                              "weight": "0"
+                          },
                           {
                               "plugin_id": "menu_link_content:290c577c-9718-4151-b242-f92477f23fd8",
                               "type": "menu_item",
@@ -553,6 +565,42 @@ menu_config: |-
           }
       },
       "menu_link_content:68d77bd1-bac4-4960-8d95-1acfd188c3c2": {
+          "rows_content": [],
+          "submenu_config": {
+              "width": "",
+              "class": "",
+              "group": "1"
+          },
+          "item_config": {
+              "class": "",
+              "xicon": "",
+              "caption": "",
+              "alignsub": "",
+              "group": "1",
+              "hidewcol": "0",
+              "hidesub": "0",
+              "label": ""
+          }
+      },
+      "menu_link_content:d2e0f149-6db8-4b18-b3ba-46a57ddbec59": {
+          "rows_content": [],
+          "submenu_config": {
+              "width": "",
+              "class": "",
+              "group": "1"
+          },
+          "item_config": {
+              "class": "",
+              "xicon": "",
+              "caption": "",
+              "alignsub": "",
+              "group": "1",
+              "hidewcol": "0",
+              "hidesub": "0",
+              "label": ""
+          }
+      },
+      "menu_link_content:09565c4d-59e9-4f6c-8029-61d04d838b9b": {
           "rows_content": [],
           "submenu_config": {
               "width": "",

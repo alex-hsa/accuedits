@@ -1,0 +1,23 @@
+uuid: 3f4a0652-7918-4b0e-8aaa-b0fd21066e5a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_border
+    - paragraphs.paragraphs_type.carousel
+id: paragraph.carousel.field_border
+field_name: field_border
+entity_type: paragraph
+bundle: carousel
+label: 'Show Border'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

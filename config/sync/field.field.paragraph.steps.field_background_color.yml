@@ -1,0 +1,33 @@
+uuid: aeb8a615-a6f5-432c-a5e5-167824798e85
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_background_color
+    - paragraphs.paragraphs_type.steps
+    - taxonomy.vocabulary.background_colors
+  content:
+    - 'taxonomy_term:background_colors:df50bbaf-6b00-48c2-a380-c9c5a92a9162'
+id: paragraph.steps.field_background_color
+field_name: field_background_color
+entity_type: paragraph
+bundle: steps
+label: 'Background Color'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    target_uuid: df50bbaf-6b00-48c2-a380-c9c5a92a9162
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      background_colors: background_colors
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

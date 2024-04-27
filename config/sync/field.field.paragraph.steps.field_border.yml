@@ -1,0 +1,23 @@
+uuid: 8f2c0902-2cdf-4310-bb2e-952683ea6410
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_border
+    - paragraphs.paragraphs_type.steps
+id: paragraph.steps.field_border
+field_name: field_border
+entity_type: paragraph
+bundle: steps
+label: 'Show Border'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

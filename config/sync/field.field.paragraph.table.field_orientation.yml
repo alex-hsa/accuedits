@@ -1,0 +1,23 @@
+uuid: 1f2cc41d-776d-4d49-9562-d7c95c7547f6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_orientation
+    - paragraphs.paragraphs_type.table
+  module:
+    - options
+id: paragraph.table.field_orientation
+field_name: field_orientation
+entity_type: paragraph
+bundle: table
+label: Orientation
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: vertical
+default_value_callback: ''
+settings: {  }
+field_type: list_string
