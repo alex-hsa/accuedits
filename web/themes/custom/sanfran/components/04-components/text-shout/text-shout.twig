@@ -1,15 +1,23 @@
-  {% set classes_text_shout = [
+{% if border == 'yes' %}
+  {% set border_class = 'border p-4 rounded-lg' %}
+{% else %}
+  {% set border_class = '' %}
+{% endif %}
+
+{% set paragraph_classes = [
+    paragraph.bundle,
     'paragraph',
-    'bg-base-' ~ background_color,
     'paragraph--type--' ~ paragraph.bundle|clean_class,
     view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
     not paragraph.isPublished() ? 'paragraph--unpublished',
+    'bg-base-' ~ background_color,
   ]|join(' ')|trim %}
 
 
-  <article {{ attributes.addClass(classes_text_shout).addClass('flex flex-row p-4 rounded-lg') }}>
-    
-    <div class="heading-text p-4 pr-8 text-center my-auto w-1/3">
+  <section {{ attributes.addClass(paragraph_classes).addClass(border_class).addClass('flex flex-row p-4 rounded-lg') }}>
+
+    {{ quick_edit }}
+    <div class="lead p-4 pr-8 text-center my-auto w-1/3">
       {{ include('sanfran:headings', {
           level,
           text: heading,
@@ -18,11 +26,11 @@
       }}
     </div>
 
-    <div class="border-{{background_color|lower}}-700 border-s-2 border-r-0 border-y-0 border-dashed callout-text col-span-2 p-4 pl-8">
+    <div class="items border-{{background_color}}-700 border-s-2 border-r-0 border-y-0 border-dashed col-span-2 p-4 pl-8 w-2/3">
         {{ include('sanfran:wysiwyg', {
             wysiwyg: description,
             classes: 'mb-0',
           })
         }}
     </div>
-  </article>
+  </section>

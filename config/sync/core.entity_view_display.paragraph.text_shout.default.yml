@@ -4,9 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.text_shout.field_background_color
+    - field.field.paragraph.text_shout.field_border
     - field.field.paragraph.text_shout.field_description
-    - field.field.paragraph.text_shout.field_heading
     - field.field.paragraph.text_shout.field_heading_level
+    - field.field.paragraph.text_shout.field_main_title
     - paragraphs.paragraphs_type.text_shout
   module:
     - text
@@ -24,20 +25,22 @@ content:
     third_party_settings: {  }
     weight: 3
     region: content
+  field_border:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 6
+    region: content
   field_description:
     type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 2
-    region: content
-  field_heading:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 1
     region: content
   field_heading_level:
     type: number_integer
@@ -46,6 +49,14 @@ content:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 5
+    weight: 4
+    region: content
+  field_main_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
     region: content
 hidden: {  }

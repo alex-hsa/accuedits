@@ -3987,6 +3987,10 @@ details.collapse summary::-webkit-details-marker{
   width: 100%;
 }
 
+.w-4\/6{
+  width: 66.666667%;
+}
+
 .max-w-md{
   max-width: 28rem;
 }
@@ -4126,6 +4130,10 @@ details.collapse summary::-webkit-details-marker{
 
 .border-2{
   border-width: 2px;
+}
+
+.border-4{
+  border-width: 4px;
 }
 
 .border-y-0{
