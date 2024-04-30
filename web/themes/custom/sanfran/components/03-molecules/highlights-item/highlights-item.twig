@@ -13,7 +13,7 @@
     not paragraph.isPublished() ? 'paragraph--unpublished',
   ]|join(' ')|trim %}
 
-<article {{ attributes.addClass(classes_paragraph).addClass(background_color_class).addClass('flex flex-col h-full p-4  rounded-lg') }}>
+<article {{ attributes.addClass(classes_paragraph).addClass(background_color_class).addClass('flex flex-col h-full p-4 rounded-lg') }}>
   {{ quick_edit }}
 
   {% if eyebrow %}

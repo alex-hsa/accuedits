@@ -1,3 +1,5 @@
+
+
 {% if not storybook %}
   {% if 'youtube' in video_remote %}
     {# YouTube requires to embed videos using this format: https://www.youtube.com/embed/v5YnNy_te08 #}
@@ -14,14 +16,14 @@
   {% set video_src = video_src %}
 {% else %}
   {% set video_src %}
-    <div class="video">
+    <div class="video {{ classes }}">
       <iframe src="{{ video_src }}" allowfullscreen frameborder="0"></iframe>
     </div>
   {% endset %}
 {% endif %}
 
 
-<figure{% if caption is defined %} role="group"{% endif %}>
+<figure{% if caption is defined %} role="group"{% endif %} class="aspect-[{{ ratio }}]">
   <div class="figure__media">{{ video_src }}</div>
   {% if caption is defined %}
     <figcaption class="figure__caption">{{ caption }}</figcaption>

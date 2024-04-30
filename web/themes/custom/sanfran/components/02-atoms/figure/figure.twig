@@ -1,4 +1,4 @@
-<figure class="aspect-[{{ ratio }}]">
-  <img class="bg-auto" src="{{ image }}" alt="{{ imageAlt }}" />
-  {# {{ drupal_image(image, '32_9_2xl_1536x432', { alt: media_image_alt, title: media_image_alt } ) }} #}
+<figure class="aspect-[{{ ratio }}] {{ classes }}">
+  {# <img class="bg-auto" src="{{ image }}" alt="{{ imageAlt }}" /> #}
+  {{ drupal_image(image, '21_9_2xl_1218x562', { alt: imageAlt, title: imageAlt } ) }}
 </figure>

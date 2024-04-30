@@ -230,6 +230,7 @@ module.exports = {
         "gray": "oklch(var(--gray) / <alpha-value>)",
       },
       aspectRatio: {
+        '21/9': '21 / 9',
         '16/9': '16 / 9',
         '3/2': '3 / 2',
         '2/1': '2 / 1',

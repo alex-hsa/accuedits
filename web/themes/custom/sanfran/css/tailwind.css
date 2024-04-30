@@ -55,3 +55,6 @@
     @apply my-8;
   }
   
+  .card figure {
+    display: block;
+  }

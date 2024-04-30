@@ -25,29 +25,22 @@
   */
 #}
 
+{% set lead_item = content.field_lead %}
+{% set media_card_items = content.field_items %}
 
-{% set heading = content.field_heading.0|default('') %}
-{% set description = content.field_description.0|default('') %}
-{% set ctaText = content.field_cta[0]['#title']|default('') %}
-{% set ctaHref = content.field_cta[0]['#url']|default('') %}
-{% set media_image = content.field_media|field_target_entity.field_media_image.entity.uri.value|default('') %}
-{% set image =  media_image %}
-{% set media_image_alt = content.field_media.0['#media'].field_media_image.0.alt|default('') %}
-{% set video_remote = content.field_media.0['#media'].field_media_oembed_video.0.value|default('') %}
-
+{% set columns = content.field_columns.0|default('') %}
+{% set orientation = content.field_orientation.0['#markup']|lower|default('') %}
+{% set border = content.field_border.0['#markup']|lower|default('') %}
+{% set placement = content.field_placement.0['#markup']|lower|default('') %}
 {% set quick_edit = content.frontend_editing %}
-   
-{{ include('sanfran:card', {
-  image,
-  imageAlt: media_image_alt,
-  video_remote,
-  heading,
-  description,
-  ctaText,
-  ctaHref,
-  quick_edit,
+
+{{ include('sanfran:media-cards', {
+    lead_item,
+    media_card_items,
+    columns,
+    orientation,
+    border,
+    placement,
+    quick_edit,
   })
 }}
-
-
-

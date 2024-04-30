@@ -32,8 +32,8 @@
   ]|join(' ')|trim %}
 
 <div {{ attributes.addClass(classes_icon_card_item).addClass('icon-card flex h-full p-4 rounded-lg') }}>
-  <div class="wrapper">
-    {{ edit_icon }}
+  {{ edit_icon }}
+  <div class="media">
     {% if icon %}
       <div class="{{ alignment_class }} bg-base-{{ background_color }} h-16 inline-flex items-center justify-center mb-4 rounded-lg w-16 [&>i:first-child]:text-4xl text-{{ background_color }}">
           {{ icon }}

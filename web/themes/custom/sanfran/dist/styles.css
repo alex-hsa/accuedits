@@ -2296,15 +2296,6 @@ input.tab:checked + .tab-content,
   line-height: 1.25rem;
 }
 
-.card-title{
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-  font-weight: 600;
-}
-
 .card.image-full :where(figure){
   overflow: hidden;
   border-radius: inherit;
@@ -3645,10 +3636,6 @@ details.collapse summary::-webkit-details-marker{
   line-height: 1.5rem;
 }
 
-.card-normal .card-title{
-  margin-bottom: 0.75rem;
-}
-
 .join.join-vertical > :where(*:not(:first-child)){
   margin-left: 0px;
   margin-right: 0px;
@@ -3927,10 +3914,6 @@ details.collapse summary::-webkit-details-marker{
   width: 50%;
 }
 
-.w-1\/3{
-  width: 33.333333%;
-}
-
 .w-10\/12{
   width: 83.333333%;
 }
@@ -3985,14 +3968,6 @@ details.collapse summary::-webkit-details-marker{
 
 .w-full{
   width: 100%;
-}
-
-.w-4\/6{
-  width: 66.666667%;
-}
-
-.max-w-md{
-  max-width: 28rem;
 }
 
 .max-w-screen-xl{
@@ -4095,10 +4070,6 @@ details.collapse summary::-webkit-details-marker{
   align-self: center;
 }
 
-.overflow-x-auto{
-  overflow-x: auto;
-}
-
 .rounded{
   border-radius: 0.25rem;
 }
@@ -4130,10 +4101,6 @@ details.collapse summary::-webkit-details-marker{
 
 .border-2{
   border-width: 2px;
-}
-
-.border-4{
-  border-width: 4px;
 }
 
 .border-y-0{
@@ -4518,6 +4485,10 @@ section{
   margin-bottom: 2rem;
 }
 
+.card figure {
+  display: block;
+}
+
 @media (min-width: 1024px){
   .lg\:join-horizontal.join{
     flex-direction: row;
@@ -4573,6 +4544,12 @@ section{
     --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
+}
+
+.hover\:ring-2:hover{
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
 @media (min-width: 640px){
@@ -4673,14 +4650,6 @@ section{
   width: 50%;
 }
 
-.\[\&\>div\.items\]\:w-1\/3>div.items{
-  width: 33.333333%;
-}
-
-.\[\&\>div\.items\]\:w-2\/3>div.items{
-  width: 66.666667%;
-}
-
 .\[\&\>div\.items\]\:w-7\/12>div.items{
   width: 58.333333%;
 }
@@ -4705,16 +4674,18 @@ section{
   width: 50%;
 }
 
-.\[\&\>div\.lead\]\:w-1\/3>div.lead{
-  width: 33.333333%;
-}
-
-.\[\&\>div\.lead\]\:w-5\/6>div.lead{
-  width: 83.333333%;
-}
-
 .\[\&\>div\.lead\]\:w-5\/12>div.lead{
   width: 41.666667%;
+}
+
+.\[\&\>div\.lead\]\:px-8>div.lead{
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.\[\&\>div\.lead\]\:py-8>div.lead{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .\[\&\>div\.lead_hgroup\]\:sticky>div.lead hgroup{
@@ -4765,4 +4736,17 @@ section{
   font-size: 2.25rem;
   line-height: 2.5rem;
 }
-  
+
+.\[\&\>iframe\]\:rounded-t-lg>iframe{
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.\[\&\>img\]\:rounded-t-lg>img{
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.\[\&\>p\]\:mb-0>p{
+  margin-bottom: 0px;
+}

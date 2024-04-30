@@ -1,35 +1,77 @@
-<div class="card card-compact bg-base-100 shadow-xl max-w-md">
-  {{ include('sanfran:figure', {
-      image,
-      imageAlt,
-      ratio: '16/9',
-     })
-  }}
+{% set parent = drupal_entity('paragraph', paragraph.parent_id.value|default('')) %}  
+{% set link_card = parent['#paragraph'].field_link_card.value %}
 
+{% if (link_card == '1') %} 
+    {% set link_card_class = 'hover:ring-2' %}
+{% else %}
+    {% set link_card_class = '' %}
+{% endif %}
 
-    {% if heading %}
-      {# Todo: If heading, description and CTA all empty don't display 'card-body' div  #}
-      <div class="card-body">
-        <h3 class="card-title">{{ heading }} {{ headingLevel }}</h3>
-    {% endif %}
-    
-    {% if description %}
-      {{ description }}
-    {% endif %}
+{% set classes_paragraph = [
+    paragraph.bundle,
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished',
+  ]|join(' ')|trim %}
 
-    {% if ctaText %}
-    <div class="card-actions justify-start">
-      {{ include('sanfran:button', {
-        type: 'btn-primary',
-        ctaText,
-        ctaHref,
-        })
-      }}
-    </div>
-    {% endif %}
+<article {{ attributes.addClass(classes_paragraph).addClass(link_card_class).addClass('card card-compact bg-base-100 rounded-lg shadow-xl max-w-128') }}>
 
-    {% if heading %}
-     {# Todo: If heading, description and CTA all empty don't display 'card-body' div  #}
+  {{ quick_edit }}
+  {% if (link_card == '1') and (ctaHref != '') %} 
+    <a href="{{ ctaHref }}">
+  {% endif %}
+
+      <div class="items">
+        {% if (image != '') and ((image != '/')) %} 
+          {{ include('sanfran:figure', {
+              image,
+              imageAlt,
+              ratio: '21/9',
+              classes: '[&>img]:rounded-t-lg',
+            })
+          }}
+        {% endif %}
+        
+        {% if video_remote != '' %} 
+            {{ include('sanfran:remote-video', {
+                video_remote,
+                ratio: '21/9',
+                classes: '[&>iframe]:rounded-t-lg',
+                })
+            }}
+        {% endif %}
       </div>
-    {% endif %}
-</div>
+        
+      <div class="lead card-body">
+
+        {% if heading %}
+          {{ include('sanfran:headings', {
+              level: '3',
+              text: heading,
+            })
+          }}
+        {% endif %}
+
+        {% if description %}
+          {{ include('sanfran:wysiwyg', {
+              wysiwyg: description,
+            })
+          }}
+        {% endif %}
+
+        {% if ctaHref and (link_card != '1') %}
+        <div class="card-actions justify-start">
+          {{ include('sanfran:button', {
+            type: 'btn-outline btn-primary',
+            ctaText,
+            ctaHref,
+            })
+          }}
+        </div>
+        {% endif %}
+
+      </div>
+  {% if (link_card == '1') and (ctaHref != '') %} 
+    </a>
+  {% endif %}</article>
