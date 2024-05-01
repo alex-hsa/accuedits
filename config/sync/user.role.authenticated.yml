@@ -5,13 +5,11 @@ dependencies:
   config:
     - filter.format.basic_html
     - filter.format.table_component
-    - user.role.content_editor
   module:
     - comment
     - contact
     - file
     - filter
-    - masquerade
     - media
     - search
     - shortcut
@@ -28,7 +26,6 @@ permissions:
   - 'access shortcuts'
   - 'access site-wide contact form'
   - 'delete own files'
-  - 'masquerade as content_editor'
   - 'post comments'
   - 'search content'
   - 'skip comment approval'

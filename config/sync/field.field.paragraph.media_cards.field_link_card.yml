@@ -1,0 +1,21 @@
+uuid: e4d8acbc-0eb7-4f4d-9f57-f830ec7ef5b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_link_card
+    - paragraphs.paragraphs_type.media_cards
+id: paragraph.media_cards.field_link_card
+field_name: field_link_card
+entity_type: paragraph
+bundle: media_cards
+label: 'Link Card'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

@@ -25,8 +25,7 @@
   */
 #}
 
-{% set media_image = content.field_media|field_target_entity.field_media_image.entity.uri.value %}
-{% set image =  media_image|file_url|default('') %}
+{% set image = content.field_media|field_target_entity.field_media_image.entity.uri.value|default('') %}
 {% set imageAlt =  'Alt text for media image' %}
 {% set video_remote = content.field_media.0['#media'].field_media_oembed_video.0.value %}
 {% set background_color = content.field_background_color|field_target_entity.name.entity.name.value|lower|default('') %}

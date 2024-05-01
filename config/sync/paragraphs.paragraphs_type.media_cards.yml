@@ -1,0 +1,10 @@
+uuid: 7d14ffa1-ed02-4214-8568-64e44a1849ad
+langcode: en
+status: true
+dependencies: {  }
+id: media_cards
+label: 'Media Cards'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

@@ -14,6 +14,7 @@ entity_types:
     - highlights_item
     - icon_card
     - lead
+    - media_cards
     - section
     - spotlight
     - step_item

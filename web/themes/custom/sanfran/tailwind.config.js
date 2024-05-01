@@ -42,6 +42,7 @@ module.exports = {
     'lg:grid-cols-4',
     'lg:grid-cols-5',
     'lg:grid-cols-6',
+    'lg:grid-cols-3',
     'w-1/12',
     'w-2/12',
     'w-3/12',

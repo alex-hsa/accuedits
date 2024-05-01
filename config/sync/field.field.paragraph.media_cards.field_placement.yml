@@ -1,0 +1,23 @@
+uuid: 5001f638-810a-4bb9-a85f-1e15340995fb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_placement
+    - paragraphs.paragraphs_type.media_cards
+  module:
+    - options
+id: paragraph.media_cards.field_placement
+field_name: field_placement
+entity_type: paragraph
+bundle: media_cards
+label: 'Lead Placement'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: start
+default_value_callback: ''
+settings: {  }
+field_type: list_string

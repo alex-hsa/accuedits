@@ -1,0 +1,23 @@
+uuid: 9cf99a9e-f4d4-4623-bca5-cd09aaf24741
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_columns
+    - paragraphs.paragraphs_type.media_cards
+id: paragraph.media_cards.field_columns
+field_name: field_columns
+entity_type: paragraph
+bundle: media_cards
+label: Columns
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: 6
+  prefix: ''
+  suffix: ''
+field_type: integer

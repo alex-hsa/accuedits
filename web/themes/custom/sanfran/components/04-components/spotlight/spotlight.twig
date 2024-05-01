@@ -41,12 +41,12 @@
   </div>
 
   {# Display either an image or a video #}
-  <div class="media w-1/2">
+  <div class="media w-1/2 [&>figure]:h-full [&>figure_img]:object-cover [&>figure_img]:w-full [&>figure_img]:h-full">
       {% if image is not empty %} 
         {{ include('sanfran:figure', {
             image,
             imageAlt,
-            ratio: '16/9',
+            image_style: '16_9_2xl_768x432',
           })
         }}
       {% endif %}

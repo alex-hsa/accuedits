@@ -12,6 +12,7 @@ dependencies:
     - paragraphs.paragraphs_type.hero
     - paragraphs.paragraphs_type.highlights
     - paragraphs.paragraphs_type.lead
+    - paragraphs.paragraphs_type.media_cards
     - paragraphs.paragraphs_type.section
     - paragraphs.paragraphs_type.spotlight
     - paragraphs.paragraphs_type.steps
@@ -41,6 +42,7 @@ settings:
       highlights: highlights
       lead: lead
       from_library: from_library
+      media_cards: media_cards
       section: section
       spotlight: spotlight
       steps: steps
@@ -50,60 +52,63 @@ settings:
     negate: 0
     target_bundles_drag_drop:
       accordion:
-        weight: -39
+        weight: -41
         enabled: true
       accordion_item:
-        weight: -38
+        weight: -40
         enabled: false
       card:
-        weight: -37
+        weight: -39
         enabled: false
       carousel:
-        weight: -36
+        weight: -38
         enabled: true
       featured:
-        weight: -35
+        weight: -37
         enabled: false
       from_library:
-        weight: -28
+        weight: -30
         enabled: true
       grid:
-        weight: -34
+        weight: -36
         enabled: true
       hero:
-        weight: -33
+        weight: -35
         enabled: true
       highlights:
-        weight: -32
+        weight: -34
         enabled: true
       highlights_item:
-        weight: -31
+        weight: -33
         enabled: false
       icon_card:
-        weight: -30
+        weight: -32
         enabled: false
       lead:
+        weight: -31
+        enabled: true
+      media_cards:
         weight: -29
         enabled: true
       section:
-        weight: -27
+        weight: -28
         enabled: true
       spotlight:
-        weight: -26
+        weight: -27
         enabled: true
       step_item:
-        weight: -24
+        weight: -25
         enabled: false
       steps:
-        weight: -25
+        weight: -26
         enabled: true
       table:
-        weight: -23
+        weight: -24
         enabled: true
       text_shout:
-        weight: -21
+        weight: -22
         enabled: true
       textbox:
-        weight: -22
+        weight: -23
         enabled: true
 field_type: entity_reference_revisions

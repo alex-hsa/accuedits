@@ -7,6 +7,7 @@ dependencies:
     - node.type.article
     - node.type.page
     - taxonomy.vocabulary.tags
+    - user.role.authenticated
     - user.role.content_editor
   module:
     - comment
@@ -33,24 +34,36 @@ permissions:
   - 'access files overview'
   - 'access frontend editing'
   - 'access toolbar'
+  - 'add paragraphs'
   - 'administer frontend editing'
+  - 'administer nodes'
   - 'administer url aliases'
   - 'create article content'
   - 'create page content'
   - 'create terms in tags'
   - 'create url aliases'
+  - 'delete any article content'
+  - 'delete any page content'
   - 'delete article revisions'
   - 'delete own article content'
   - 'delete own files'
   - 'delete own page content'
   - 'delete page revisions'
+  - 'edit any article content'
+  - 'edit any page content'
   - 'edit own article content'
   - 'edit own comments'
   - 'edit own page content'
   - 'edit terms in tags'
+  - 'masquerade as authenticated'
   - 'masquerade as content_editor'
+  - 'move paragraphs'
   - 'revert all revisions'
+  - 'revert article revisions'
+  - 'revert page revisions'
   - 'use text format table_component'
   - 'view all revisions'
+  - 'view article revisions'
   - 'view own unpublished content'
+  - 'view page revisions'
   - 'view the administration theme'

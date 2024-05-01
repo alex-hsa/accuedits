@@ -7,6 +7,15 @@
     {% set link_card_class = '' %}
 {% endif %}
 
+{% set orientation = parent['#paragraph'].field_orientation.value %}
+{% if orientation == 'horizontal' %}
+  {% set orientation_class = 'relative flex flex-row w-full [&>div_figure_img]:rounded-l-lg [&>div_figure_iframe]:rounded-l-lg' %}
+  {% set image_style = 'max_325x325' %}
+{% else %}
+  {% set orientation_class = '[&>div.lead]:py-4 [&>div_figure_img]:rounded-t-lg [&>div_figure_iframe]:rounded-t-lg' %}
+  {% set image_style = '21_9_2xl_1218x562' %}
+{% endif %}
+
 {% set classes_paragraph = [
     paragraph.bundle,
     'paragraph',
@@ -15,20 +24,26 @@
     not paragraph.isPublished() ? 'paragraph--unpublished',
   ]|join(' ')|trim %}
 
-<article {{ attributes.addClass(classes_paragraph).addClass(link_card_class).addClass('card card-compact bg-base-100 rounded-lg shadow-xl max-w-128') }}>
 
-  {{ quick_edit }}
-  {% if (link_card == '1') and (ctaHref != '') %} 
-    <a href="{{ ctaHref }}">
-  {% endif %}
+  
+{% if (link_card == '1') and (ctaHref != '') %} 
+  <article>
+    {{ quick_edit }}
+    <a href="{{ ctaHref }}"{{ attributes.addClass(classes_paragraph).addClass(link_card_class).addClass(orientation_class).addClass('bg-clip-border bg-base-100 max-w-128 rounded-lg shadow-2xl') }}>
+      <div class="items bg-clip-border overflow-hidden relative rounded-r-none rounded-lg shrink-0  w-2/5 [&>figure]:h-full [&>figure_img]:object-cover [&>figure_img]:w-full [&>figure_img]:h-full">
+{% else %}
+  <article{{ attributes.addClass(classes_paragraph).addClass(orientation_class).addClass('bg-base-100 max-w-128 rounded-lg shadow-2xl') }}>
+    {{ quick_edit }}
+    <div class="items [&>figure]:h-full [&>figure_img]:object-cover [&>figure_img]:w-full [&>figure_img]:h-full">
+{% endif %}
 
-      <div class="items">
+      
         {% if (image != '') and ((image != '/')) %} 
           {{ include('sanfran:figure', {
               image,
               imageAlt,
-              ratio: '21/9',
-              classes: '[&>img]:rounded-t-lg',
+              classes: '',
+              orientation,
             })
           }}
         {% endif %}
@@ -36,14 +51,13 @@
         {% if video_remote != '' %} 
             {{ include('sanfran:remote-video', {
                 video_remote,
-                ratio: '21/9',
-                classes: '[&>iframe]:rounded-t-lg',
+                classes: '',
                 })
             }}
         {% endif %}
       </div>
         
-      <div class="lead card-body">
+      <div class="lead p-4">
 
         {% if heading %}
           {{ include('sanfran:headings', {
@@ -74,4 +88,8 @@
       </div>
   {% if (link_card == '1') and (ctaHref != '') %} 
     </a>
-  {% endif %}</article>
+  {% endif %}
+
+  </article>
+
+  

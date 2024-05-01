@@ -1054,74 +1054,11 @@ html{
   content: var(--tw-content);
 }
 
-.card{
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  border-radius: var(--rounded-box, 1rem);
-}
-
-.card:focus{
-  outline: 2px solid transparent;
-  outline-offset: 2px;
-}
-
-.card-body{
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
-  padding: var(--padding-card, 2rem);
-  gap: 0.5rem;
-}
-
-.card-body :where(p){
-  flex-grow: 1;
-}
-
 .card-actions{
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   gap: 0.5rem;
-}
-
-.card figure{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.card.image-full{
-  display: grid;
-}
-
-.card.image-full:before{
-  position: relative;
-  content: "";
-  z-index: 10;
-  border-radius: var(--rounded-box, 1rem);
-  --tw-bg-opacity: 1;
-  background-color: var(--fallback-n,oklch(var(--n)/var(--tw-bg-opacity)));
-  opacity: 0.75;
-}
-
-.card.image-full:before,
-    .card.image-full > *{
-  grid-column-start: 1;
-  grid-row-start: 1;
-}
-
-.card.image-full > figure img{
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.card.image-full > .card-body{
-  position: relative;
-  z-index: 20;
-  --tw-text-opacity: 1;
-  color: var(--fallback-nc,oklch(var(--nc)/var(--tw-text-opacity)));
 }
 
 .carousel{
@@ -2263,42 +2200,10 @@ input.tab:checked + .tab-content,
   }
 }
 
-.card :where(figure:first-child){
-  overflow: hidden;
-  border-start-start-radius: inherit;
-  border-start-end-radius: inherit;
-  border-end-start-radius: unset;
-  border-end-end-radius: unset;
-}
-
-.card :where(figure:last-child){
-  overflow: hidden;
-  border-start-start-radius: unset;
-  border-start-end-radius: unset;
-  border-end-start-radius: inherit;
-  border-end-end-radius: inherit;
-}
-
-.card:focus-visible{
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
-}
-
-.card.bordered{
-  border-width: 1px;
-  --tw-border-opacity: 1;
-  border-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-border-opacity)));
-}
-
 .card.compact .card-body{
   padding: 1rem;
   font-size: 0.875rem;
   line-height: 1.25rem;
-}
-
-.card.image-full :where(figure){
-  overflow: hidden;
-  border-radius: inherit;
 }
 
 .carousel::-webkit-scrollbar{
@@ -3620,22 +3525,6 @@ details.collapse summary::-webkit-details-marker{
   right: 7%;
 }
 
-.card-compact .card-body{
-  padding: 1rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
-
-.card-compact .card-title{
-  margin-bottom: 0.25rem;
-}
-
-.card-normal .card-body{
-  padding: var(--padding-card, 2rem);
-  font-size: 1rem;
-  line-height: 1.5rem;
-}
-
 .join.join-vertical > :where(*:not(:first-child)){
   margin-left: 0px;
   margin-right: 0px;
@@ -3934,6 +3823,10 @@ details.collapse summary::-webkit-details-marker{
   width: 66.666667%;
 }
 
+.w-2\/5{
+  width: 40%;
+}
+
 .w-3\/12{
   width: 25%;
 }
@@ -4070,6 +3963,10 @@ details.collapse summary::-webkit-details-marker{
   align-self: center;
 }
 
+.overflow-hidden{
+  overflow: hidden;
+}
+
 .rounded{
   border-radius: 0.25rem;
 }
@@ -4093,6 +3990,11 @@ details.collapse summary::-webkit-details-marker{
 .rounded-b-lg{
   border-bottom-right-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
+}
+
+.rounded-r-none{
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 .border{
@@ -4261,6 +4163,10 @@ details.collapse summary::-webkit-details-marker{
   background-size: auto;
 }
 
+.bg-clip-border{
+  background-clip: border-box;
+}
+
 .fill-current{
   fill: currentColor;
 }
@@ -4415,6 +4321,12 @@ details.collapse summary::-webkit-details-marker{
 
 .no-underline{
   text-decoration-line: none;
+}
+
+.shadow-2xl{
+  --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .shadow-xl{
@@ -4606,6 +4518,10 @@ section{
     min-width: max-content;
   }
 
+  .lg\:grid-cols-3{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .lg\:grid-cols-4{
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -4678,14 +4594,9 @@ section{
   width: 41.666667%;
 }
 
-.\[\&\>div\.lead\]\:px-8>div.lead{
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
-
-.\[\&\>div\.lead\]\:py-8>div.lead{
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+.\[\&\>div\.lead\]\:py-4>div.lead{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .\[\&\>div\.lead_hgroup\]\:sticky>div.lead hgroup{
@@ -4732,19 +4643,46 @@ section{
   align-self: center;
 }
 
+.\[\&\>div_figure_iframe\]\:rounded-l-lg>div figure iframe{
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.\[\&\>div_figure_iframe\]\:rounded-t-lg>div figure iframe{
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.\[\&\>div_figure_img\]\:rounded-l-lg>div figure img{
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.\[\&\>div_figure_img\]\:rounded-t-lg>div figure img{
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.\[\&\>figure\]\:h-full>figure{
+  height: 100%;
+}
+
+.\[\&\>figure_img\]\:h-full>figure img{
+  height: 100%;
+}
+
+.\[\&\>figure_img\]\:w-full>figure img{
+  width: 100%;
+}
+
+.\[\&\>figure_img\]\:object-cover>figure img{
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .\[\&\>i\:first-child\]\:text-4xl>i:first-child{
   font-size: 2.25rem;
   line-height: 2.5rem;
-}
-
-.\[\&\>iframe\]\:rounded-t-lg>iframe{
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
-}
-
-.\[\&\>img\]\:rounded-t-lg>img{
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
 }
 
 .\[\&\>p\]\:mb-0>p{

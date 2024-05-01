@@ -6,11 +6,11 @@
 
 {% set paragraph_classes = [
     paragraph.bundle,
+    'bg-base-' ~ background_color,
     'paragraph',
     'paragraph--type--' ~ paragraph.bundle|clean_class,
     view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
     not paragraph.isPublished() ? 'paragraph--unpublished',
-    'bg-base-' ~ background_color,
   ]|join(' ')|trim %}
 
 
