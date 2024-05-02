@@ -12,6 +12,14 @@
   {% set orientation_class = 'flex-col' %}
 {% endif %}
 
+{% if placement == 'end' %}
+  {% set placement_class = 'flex flex-row-reverse' %}
+{% elseif placement == 'middle'%}
+  {% set placement_class = 'flex justify-center' %}
+{% else %}
+  {% set placement_class = 'flex flex-row' %}
+{% endif %}
+
 {% if alignment == 'center' %}
   {% set alignment_class = 'text-center self-center' %}
 {% elseif alignment == 'right' %}
@@ -21,8 +29,8 @@
 {% endif %}
 
 
-{% set classes_icon_card_item = [
-    'icon-card-item',
+{% set paragraph_classes = [
+    paragraph.bundle,
     'paragraph',
     'paragraph--type--' ~ paragraph.bundle|clean_class,
     view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
@@ -31,9 +39,9 @@
     icon_card_classes,
   ]|join(' ')|trim %}
 
-<div {{ attributes.addClass(classes_icon_card_item).addClass('icon-card flex h-full p-4 rounded-lg') }}>
+<div {{ attributes.addClass(paragraph_classes).addClass('icon-card flex h-full p-4 rounded-lg') }}>
   {{ edit_icon }}
-  <div class="media">
+  <div class="media {{ placement_class }}">
     {% if icon %}
       <div class="{{ alignment_class }} bg-base-{{ background_color }} h-16 inline-flex items-center justify-center mb-4 rounded-lg w-16 [&>i:first-child]:text-4xl text-{{ background_color }}">
           {{ icon }}
@@ -42,7 +50,7 @@
   </div>
   
 
-  <div class="{{ alignment_class }}">
+  <div class="lead {{ alignment_class }}">
     
   {% if heading %}
     {{ include('sanfran:headings', {

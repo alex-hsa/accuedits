@@ -1,18 +1,18 @@
-uuid: 6a611153-5f15-4b41-9084-b59e9d9bad7d
+uuid: afa6a974-3b86-4e72-ab7b-46199a9ce14f
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_items
-    - paragraphs.paragraphs_type.card
-    - paragraphs.paragraphs_type.media_cards
+    - field.storage.paragraph.field_lead
+    - paragraphs.paragraphs_type.icon_cards
+    - paragraphs.paragraphs_type.lead
   module:
     - entity_reference_revisions
-id: paragraph.media_cards.field_items
-field_name: field_items
+id: paragraph.icon_cards.field_lead
+field_name: field_lead
 entity_type: paragraph
-bundle: media_cards
-label: Items
+bundle: icon_cards
+label: Lead
 description: ''
 required: false
 translatable: false
@@ -22,70 +22,70 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      card: card
+      lead: lead
     negate: 0
     target_bundles_drag_drop:
       accordion:
-        weight: -43
+        weight: 20
         enabled: false
       accordion_item:
-        weight: -42
+        weight: 21
         enabled: false
       card:
-        weight: -41
-        enabled: true
+        weight: 22
+        enabled: false
       carousel:
-        weight: -40
+        weight: 23
         enabled: false
       featured:
-        weight: -39
+        weight: 24
         enabled: false
       from_library:
-        weight: -31
+        weight: 25
         enabled: false
       grid:
-        weight: -38
+        weight: 26
         enabled: false
       hero:
-        weight: -37
+        weight: 27
         enabled: false
       highlights:
-        weight: -36
+        weight: 28
         enabled: false
       highlights_item:
-        weight: -35
+        weight: 29
         enabled: false
       icon_card:
-        weight: -34
+        weight: 30
         enabled: false
       icon_cards:
-        weight: -33
+        weight: 33
         enabled: false
       lead:
-        weight: -32
-        enabled: false
+        weight: 31
+        enabled: true
       media_cards:
-        weight: -30
+        weight: 35
         enabled: false
       section:
-        weight: -29
+        weight: 32
         enabled: false
       spotlight:
-        weight: -28
+        weight: 33
         enabled: false
       step_item:
-        weight: -26
+        weight: 34
         enabled: false
       steps:
-        weight: -27
+        weight: 35
         enabled: false
       table:
-        weight: -25
+        weight: 36
         enabled: false
       text_shout:
-        weight: -23
+        weight: 37
         enabled: false
       textbox:
-        weight: -24
+        weight: 38
         enabled: false
 field_type: entity_reference_revisions

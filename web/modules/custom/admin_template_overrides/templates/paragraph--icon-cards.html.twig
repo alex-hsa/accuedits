@@ -25,33 +25,4 @@
   */
 #}
 
-{% set icon = content.field_icon_material.0|default('') %}
-{% set heading = content.field_heading.0|default('') %}
-{% set description = content.field_description.0|default('') %}
-{% set ctaText = content.field_cta[0]['#title']|default('') %}
-{% set ctaHref = content.field_cta[0]['#url']|default('') %}
-{% set background_color = content.field_background_color|field_target_entity.name.entity.name.value|lower|default('') %}
-{% set type = content.field_container_type.0['#markup']|lower|default('') %}
-{% set alignment = content.field_alignment.0['#markup']|lower|default('') %}
-{% set orientation = content.field_orientation.0['#markup']|lower|default('') %}
-{% set placement = content.field_placement.0['#markup']|lower|default('') %}
-{% set edit_icon = content.frontend_editing %}
-
-
-
-{{ include('sanfran:icon-card', {
-    icon,
-    heading,
-    description,
-    ctaText,
-    ctaHref,
-    background_color,
-    type,
-    alignment,
-    orientation,
-    edit_icon,
-  })
-}}
-
-
-
+{% extends '@sanfran/paragraph/paragraph--icon-cards.html.twig' %}

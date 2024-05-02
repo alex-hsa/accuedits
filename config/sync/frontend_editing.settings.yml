@@ -13,6 +13,7 @@ entity_types:
     - highlights
     - highlights_item
     - icon_card
+    - icon_cards
     - lead
     - media_cards
     - section
@@ -26,7 +27,7 @@ entity_types:
     - paragraphs_library_item
 sidebar_width: 30
 full_width: 80
-ajax_content_update: false
+ajax_content_update: true
 hover_highlight: false
 exclude_fields: {  }
 automatic_preview: false

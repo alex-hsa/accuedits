@@ -1,0 +1,23 @@
+uuid: 5aba4eeb-e314-455e-9923-4316b6b9b49b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_border
+    - paragraphs.paragraphs_type.icon_cards
+id: paragraph.icon_cards.field_border
+field_name: field_border
+entity_type: paragraph
+bundle: icon_cards
+label: 'Show Border'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

@@ -1,10 +1,12 @@
 uuid: 7d14ffa1-ed02-4214-8568-64e44a1849ad
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  content:
+    - 'file:file:66af6a0e-d21d-4e55-9040-3c9a1c0b28b0'
 id: media_cards
 label: 'Media Cards'
-icon_uuid: null
-icon_default: null
+icon_uuid: 66af6a0e-d21d-4e55-9040-3c9a1c0b28b0
+icon_default: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDhweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iNDhweCIgZmlsbD0iIzAwMDAwMCI+PHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTEzLjE3IDZsLS41OS0uNTlMMTEuMTcgNEg2djEyaDE2VjZoLTguODN6bTQuMzMgNC41TDIxIDE1SDdsNC41LTYgMy41IDQuNTEgMi41LTMuMDF6IiBvcGFjaXR5PSIuMyIvPjxwYXRoIGQ9Ik0yIDZIMHY1aC4wMUwwIDIwYzAgMS4xLjkgMiAyIDJoMTh2LTJIMlY2em01IDloMTRsLTMuNS00LjUtMi41IDMuMDFMMTEuNSA5ek0yMiA0aC04bC0yLTJINmMtMS4xIDAtMS45OS45LTEuOTkgMkw0IDE2YzAgMS4xLjkgMiAyIDJoMTZjMS4xIDAgMi0uOSAyLTJWNmMwLTEuMS0uOS0yLTItMnptMCAxMkg2VjRoNS4xN2wxLjQxIDEuNDEuNTkuNTlIMjJ2MTB6Ii8+PC9zdmc+'
 description: ''
 behavior_plugins: {  }

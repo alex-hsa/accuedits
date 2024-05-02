@@ -1,17 +1,17 @@
-uuid: 5cb3d26d-5c8a-4207-8ffd-16fc3699d227
+uuid: 70f9932d-04fa-4553-aad2-4df268b62532
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.media_cards.field_background_color
-    - field.field.paragraph.media_cards.field_border
-    - field.field.paragraph.media_cards.field_columns
-    - field.field.paragraph.media_cards.field_items
-    - field.field.paragraph.media_cards.field_lead
-    - field.field.paragraph.media_cards.field_link_card
-    - field.field.paragraph.media_cards.field_orientation
-    - field.field.paragraph.media_cards.field_placement
-    - paragraphs.paragraphs_type.media_cards
+    - field.field.paragraph.icon_cards.field_background_color
+    - field.field.paragraph.icon_cards.field_border
+    - field.field.paragraph.icon_cards.field_columns
+    - field.field.paragraph.icon_cards.field_items
+    - field.field.paragraph.icon_cards.field_lead
+    - field.field.paragraph.icon_cards.field_link_card
+    - field.field.paragraph.icon_cards.field_orientation
+    - field.field.paragraph.icon_cards.field_placement
+    - paragraphs.paragraphs_type.icon_cards
   module:
     - field_group
     - paragraphs
@@ -36,27 +36,27 @@ third_party_settings:
         open: true
         description: ''
         required_fields: true
-id: paragraph.media_cards.default
+id: paragraph.icon_cards.default
 targetEntityType: paragraph
-bundle: media_cards
+bundle: icon_cards
 mode: default
 content:
   field_background_color:
     type: options_select
-    weight: 3
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
   field_border:
     type: boolean_checkbox
-    weight: 8
+    weight: 9
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_columns:
     type: number
-    weight: 4
+    weight: 5
     region: content
     settings:
       placeholder: ''
@@ -72,9 +72,9 @@ content:
       closed_mode: preview
       autocollapse: all
       closed_mode_threshold: 0
-      add_mode: button
+      add_mode: dropdown
       form_display_mode: default
-      default_paragraph_type: _none
+      default_paragraph_type: accordion_item
       features:
         add_above: '0'
         collapse_edit_all: collapse_edit_all
@@ -101,13 +101,13 @@ content:
     third_party_settings: {  }
   field_orientation:
     type: options_select
-    weight: 7
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
   field_placement:
     type: options_select
-    weight: 5
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }

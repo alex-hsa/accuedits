@@ -1,0 +1,23 @@
+uuid: b4faef6d-2dc9-4eaf-9d5e-b6ca47549c63
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_columns
+    - paragraphs.paragraphs_type.icon_cards
+id: paragraph.icon_cards.field_columns
+field_name: field_columns
+entity_type: paragraph
+bundle: icon_cards
+label: Columns
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: 6
+  prefix: ''
+  suffix: ''
+field_type: integer

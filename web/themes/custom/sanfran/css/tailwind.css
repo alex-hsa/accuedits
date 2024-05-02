@@ -52,7 +52,7 @@
   }
 
   section {
-    @apply my-8;
+    @apply my-12;
   }
   
   .card figure {

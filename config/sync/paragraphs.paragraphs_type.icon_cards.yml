@@ -1,0 +1,12 @@
+uuid: e4a81140-13ed-4a44-9ca3-acbfe35aeab3
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'file:file:ad2942b7-2dd0-45fb-bebe-f96ace61c5a0'
+id: icon_cards
+label: 'Icon Cards'
+icon_uuid: ad2942b7-2dd0-45fb-bebe-f96ace61c5a0
+icon_default: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDhweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iNDhweCIgZmlsbD0iIzAwMDAwMCI+PHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTggMTZoMTJWNEg4djEyem0yLTdoM1Y2aDJ2M2gzdjJoLTN2M2gtMnYtM2gtM1Y5eiIgb3BhY2l0eT0iLjMiLz48cGF0aCBkPSJNNCAyMmgxNHYtMkg0VjZIMnYxNGMwIDEuMS45IDIgMiAyek04IDJjLTEuMSAwLTIgLjktMiAydjEyYzAgMS4xLjkgMiAyIDJoMTJjMS4xIDAgMi0uOSAyLTJWNGMwLTEuMS0uOS0yLTItMkg4em0xMiAxNEg4VjRoMTJ2MTJ6bS03LTJoMnYtM2gzVjloLTNWNmgtMnYzaC0zdjJoM3oiLz48L3N2Zz4='
+description: ''
+behavior_plugins: {  }

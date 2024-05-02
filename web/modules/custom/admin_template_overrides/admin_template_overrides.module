@@ -42,6 +42,10 @@ function admin_template_overrides_theme($existing, $type, $theme, $path) {
       'template' => 'paragraph--icon-card',
       'base hook' => 'paragraph'
     ],
+    'paragraph__icon_cards' => [
+      'template' => 'paragraph--icon-cards',
+      'base hook' => 'paragraph'
+    ],
     'paragraph__lead' => [
       'template' => 'paragraph--lead',
       'base hook' => 'paragraph'

@@ -16,6 +16,14 @@
   {% set image_style = '21_9_2xl_1218x562' %}
 {% endif %}
 
+{% if placement == 'end' %}
+  {% set placement_class = 'flex flex-row-reverse' %}
+{% elseif placement == 'middle'%}
+  {% set placement_class = 'flex justify-center' %}
+{% else %}
+  {% set placement_class = 'flex flex-row' %}
+{% endif %}
+
 {% set classes_paragraph = [
     paragraph.bundle,
     'paragraph',

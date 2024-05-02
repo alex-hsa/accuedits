@@ -11,6 +11,7 @@ dependencies:
     - field.field.paragraph.icon_card.field_heading
     - field.field.paragraph.icon_card.field_icon_material
     - field.field.paragraph.icon_card.field_orientation
+    - field.field.paragraph.icon_card.field_placement
     - paragraphs.paragraphs_type.icon_card
   module:
     - link
@@ -80,6 +81,13 @@ content:
     weight: 0
     region: content
   field_orientation:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_placement:
     type: list_default
     label: above
     settings: {  }
