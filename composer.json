@@ -32,9 +32,6 @@
     "require": {
         "composer/installers": "^2.0",
         "drupal/admin_toolbar": "^3.4",
-        "drupal/augmentor": "^1.1",
-        "drupal/augmentor_chatgpt": "^1.0@alpha",
-        "drupal/augmentor_openai_gpt3": "^1.0",
         "drupal/core-composer-scaffold": "^10.2",
         "drupal/core-dev": "^10.2",
         "drupal/core-project-message": "^10.2",
@@ -53,7 +50,6 @@
         "drupal/masquerade": "^2.0@RC",
         "drupal/material_icons": "^2.0",
         "drupal/node_edit_protection": "^1.1",
-        "drupal/openai": "^1.0@beta",
         "drupal/paragraphs": "^1.17",
         "drupal/pathauto": "^1.12",
         "drupal/require_revision_log_message": "^2.0",

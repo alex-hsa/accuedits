@@ -1,7 +1,0 @@
-openai_dalle.dalle_form:
-  path: '/admin/config/openai/dalle'
-  defaults:
-    _title: 'OpenAI DALL·E'
-    _form: 'Drupal\openai_dalle\Form\DalleForm'
-  requirements:
-    _permission: 'access openai dalle'

@@ -1,5 +1,0 @@
-openai_embeddings.settings:
-  title: Embeddings settings
-  description: Manage text embedding analysis settings.
-  parent: openai.admin_config_openai
-  route_name: openai_embeddings.settings

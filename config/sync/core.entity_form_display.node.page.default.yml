@@ -8,10 +8,8 @@ dependencies:
     - field.field.node.page.field_parent_page
     - field.field.node.page.field_teaser_image
     - field.field.node.page.field_teaser_text
-    - field.field.node.page.field_title_suggest
     - node.type.page
   module:
-    - augmentor
     - field_group
     - layout_paragraphs
     - media_library
@@ -115,19 +113,6 @@ content:
     settings:
       rows: 5
       placeholder: ''
-    third_party_settings: {  }
-  field_title_suggest:
-    type: augmentor_select_widget
-    weight: 2
-    region: content
-    settings:
-      augmentor: ''
-      source_fields: {  }
-      action: ''
-      button_label: ''
-      rows: '5'
-      placeholder: ''
-      targets: {  }
     third_party_settings: {  }
   path:
     type: path

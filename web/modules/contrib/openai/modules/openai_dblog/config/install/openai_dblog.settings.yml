@@ -1,6 +1,0 @@
-levels:
-  Emergency: Emergency
-  Alert: Alert
-  Critical: Critical
-  Error: Error
-model: text-davinci-003

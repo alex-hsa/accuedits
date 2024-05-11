@@ -6,11 +6,6 @@ module:
   admin_toolbar_links_access_filter: 0
   admin_toolbar_tools: 0
   announcements_feed: 0
-  augmentor: 0
-  augmentor_chatgpt: 0
-  augmentor_ckeditor5: 0
-  augmentor_demo: 0
-  augmentor_openai_gpt3: 0
   automated_cron: 0
   big_pipe: 0
   block: 0
@@ -58,12 +53,6 @@ module:
   mysql: 0
   node: 0
   node_edit_protection: 0
-  openai: 0
-  openai_chatgpt: 0
-  openai_ckeditor: 0
-  openai_dalle: 0
-  openai_embeddings: 0
-  openai_prompt: 0
   options: 0
   page_cache: 0
   paragraphs_edit: 0

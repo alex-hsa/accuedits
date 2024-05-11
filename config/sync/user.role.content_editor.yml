@@ -8,7 +8,6 @@ dependencies:
     - node.type.page
     - taxonomy.vocabulary.tags
     - user.role.authenticated
-    - user.role.content_editor
   module:
     - comment
     - contextual
@@ -17,9 +16,6 @@ dependencies:
     - frontend_editing
     - masquerade
     - node
-    - openai_chatgpt
-    - openai_dalle
-    - openai_prompt
     - path
     - system
     - taxonomy
@@ -36,9 +32,6 @@ permissions:
   - 'access contextual links'
   - 'access files overview'
   - 'access frontend editing'
-  - 'access openai chatgpt'
-  - 'access openai dalle'
-  - 'access openai prompt'
   - 'access toolbar'
   - 'add paragraphs'
   - 'administer frontend editing'
@@ -62,7 +55,6 @@ permissions:
   - 'edit own page content'
   - 'edit terms in tags'
   - 'masquerade as authenticated'
-  - 'masquerade as content_editor'
   - 'move paragraphs'
   - 'revert all revisions'
   - 'revert article revisions'

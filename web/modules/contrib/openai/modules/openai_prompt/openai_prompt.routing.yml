@@ -1,7 +1,0 @@
-openai_prompt.prompt_form:
-  path: '/admin/config/openai/openai-prompt'
-  defaults:
-    _title: 'OpenAI Prompt Explorer'
-    _form: 'Drupal\openai_prompt\Form\PromptForm'
-  requirements:
-    _permission: 'access openai prompt'

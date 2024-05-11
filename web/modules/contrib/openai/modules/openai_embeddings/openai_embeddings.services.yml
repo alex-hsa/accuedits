@@ -1,4 +1,0 @@
-services:
-  plugin.manager.vector_client:
-    class: Drupal\openai_embeddings\VectorClientPluginManager
-    arguments: ['@container.namespaces', '@cache.discovery', '@module_handler']

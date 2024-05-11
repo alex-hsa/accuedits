@@ -1,7 +1,0 @@
-openai_audio.audio_form:
-  path: '/admin/config/openai/audio'
-  defaults:
-    _title: 'OpenAI audio'
-    _form: 'Drupal\openai_audio\Form\AudioForm'
-  requirements:
-    _permission: 'access openai audio'
