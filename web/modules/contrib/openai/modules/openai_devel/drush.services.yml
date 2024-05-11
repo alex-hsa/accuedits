@@ -1,0 +1,6 @@
+services:
+  openai_devel.commands:
+    class: Drupal\openai_devel\Commands\OpenAIDevelCommands
+    arguments: ['@plugin.manager.develgenerate']
+    tags:
+      -  { name: drush.command }

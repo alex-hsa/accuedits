@@ -1,0 +1,18 @@
+openai.api_settings:
+  route_name: openai.api_settings
+  base_route: openai.api_settings
+
+openai.settings_overview:
+  title: Settings
+  route_name: openai.api_settings
+  parent_id: openai.api_settings
+
+openai.models:
+  title: Available Models
+  route_name: openai.models
+  parent_id: openai.api_settings
+
+openai.docs:
+  title: Documentation
+  route_name: openai.docs
+  parent_id: openai.api_settings

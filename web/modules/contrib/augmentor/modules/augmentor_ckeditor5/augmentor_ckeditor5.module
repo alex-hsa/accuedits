@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Implements the CKEditor 5 Augmentor module.
+ */
+
+/**
+ * Implements hook_ckeditor5_plugin_info_alter().
+ */
+function augmentor_ckeditor5_ckeditor5_plugin_info_alter(array &$plugin_definitions): void {
+  $user = \Drupal::currentUser();
+  // Remove Augmentor if user does not have Execute Augmentors permission.
+  if (!$user->hasPermission("execute augmentor")) {
+    unset($plugin_definitions['augmentor_ckeditor5_augmentor']);
+  }
+}

@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * Implements hook_requirements().
+ */
+function openai_requirements($phase) {
+  $requirements = [];
+
+  if ($phase == 'runtime') {
+    $config = \Drupal::config('openai.settings');
+
+    if (!empty($config->get('api_key'))) {
+      $requirements['openai'] = [
+        'title' => t('OpenAI'),
+        'value' => t('API key detected'),
+        'severity' => REQUIREMENT_OK,
+      ];
+    }
+    else {
+      $message = t('You have not provided an OpenAI API key yet. This is required for its functionality to work. Please obtain an API key from <a href=":account">your OpenAI account</a> and add it to the <a href=":settings">OpenAI settings configuration here</a>.',
+        [
+          ':account' => 'https://platform.openai.com/',
+          ':settings' => '/admin/config/openai/settings'
+        ],
+      );
+
+      $requirements['openai'] = [
+        'title' => t('OpenAI'),
+        'value' => t('API key not provided'),
+        'severity' => REQUIREMENT_ERROR,
+        'description' => $message,
+      ];
+    }
+  }
+
+  return $requirements;
+}
+
+/**
+ * Disable the openai_api module.
+ */
+function openai_update_10001(&$sandbox) {
+  \Drupal::service('module_installer')->uninstall(['openai_api']);
+}

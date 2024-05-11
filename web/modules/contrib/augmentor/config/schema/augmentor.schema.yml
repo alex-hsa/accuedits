@@ -1,0 +1,52 @@
+augmentor.settings:
+  type: config_object
+  label: 'Augmentor settings'
+  mapping:
+    augmentors:
+      type: sequence
+      label: 'Augmentors'
+      sequence:
+        type: mapping
+        mapping:
+          name:
+            type: string
+          label:
+            type: string
+          weight:
+            type: integer
+
+action.configuration.entity:augmentor_action:*:
+  type: mapping
+  label: 'Augmentor action configuration'
+  mapping:
+    source_fields:
+      type: sequence
+      label: 'Source fields'
+      sequence:
+        type: string
+        label: 'Source field'
+    targets:
+      type: sequence
+      label: 'Targets'
+      sequence:
+        type: mapping
+        label: 'Target'
+        mapping:
+          target_field:
+            type: string
+            label: 'Target field'
+          key:
+            type: string
+            label: 'Target Key'
+    augmentor:
+      type: string
+      label: 'Augmentor'
+    action:
+      type: string
+      label: 'Action'
+    text_format:
+      type: string
+      label: 'Text Format'
+    explode_separator:
+      type: string
+      label: 'Explode separator'

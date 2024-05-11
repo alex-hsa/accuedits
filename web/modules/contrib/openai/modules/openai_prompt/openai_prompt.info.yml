@@ -1,0 +1,13 @@
+name: OpenAI Prompt Completion Explorer
+type: module
+description: Adds a form in the admin to enter a prompt and get a response back from OpenAI, similar to ChatGPT.
+package: OpenAI
+core_version_requirement: ^10
+configure: openai_prompt.prompt_form
+dependencies:
+  - openai:openai
+
+# Information added by Drupal.org packaging script on 2024-01-03
+version: '1.0.0-beta4'
+project: 'openai'
+datestamp: 1704311318

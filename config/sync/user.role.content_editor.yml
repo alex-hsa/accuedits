@@ -17,6 +17,9 @@ dependencies:
     - frontend_editing
     - masquerade
     - node
+    - openai_chatgpt
+    - openai_dalle
+    - openai_prompt
     - path
     - system
     - taxonomy
@@ -33,6 +36,9 @@ permissions:
   - 'access contextual links'
   - 'access files overview'
   - 'access frontend editing'
+  - 'access openai chatgpt'
+  - 'access openai dalle'
+  - 'access openai prompt'
   - 'access toolbar'
   - 'add paragraphs'
   - 'administer frontend editing'

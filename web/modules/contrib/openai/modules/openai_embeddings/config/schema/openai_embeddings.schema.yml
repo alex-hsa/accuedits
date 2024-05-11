@@ -1,0 +1,54 @@
+openai_embeddings.settings:
+  type: config_object
+  label: 'Embeddings settings'
+  mapping:
+    entity_types:
+      type: sequence
+      label: 'Enabled entity types and their bundles.'
+      sequence:
+        type: sequence
+        label: 'Entity type'
+        sequence:
+          type: sequence
+          label: 'Bundle'
+    stopwords:
+      type: sequence
+      label: 'A list of words to not include in the text embedding.'
+      sequence:
+        type: sequence
+        label: 'Stopword'
+    model:
+      type: string
+      label: 'OpenAI model to use'
+    vector_client_plugin:
+      type: string
+      label: 'Primary vector client plugin to use.'
+    vector_clients:
+      type: sequence
+      sequence:
+        type: mapping
+        label: 'Configuration of the individual vector clients'
+        orderby: key
+        mapping:
+          id:
+            type: string
+          data:
+            type: openai_embeddings.vector_client.[%parent.id]
+
+openai_embeddings.vector_client.*:
+  type: mapping
+  label: 'Vector client settings'
+
+openai_embeddings.vector_client.pinecone_client:
+  type: mapping
+  label: 'Pinecone client settings'
+  mapping:
+    api_key:
+      type: string
+      label: 'The Pinecone API key.'
+    hostname:
+      type: string
+      label: 'The hostname or base URI of the API.'
+    disable_namespace:
+      type: boolean
+      label: 'Disable namespace use if on the free starter plan'

@@ -1,0 +1,10 @@
+services:
+  plugin.manager.augmentor.augmentors:
+    class: Drupal\augmentor\AugmentorManager
+    parent: default_plugin_manager
+    arguments: ['@config.factory', '@event_dispatcher']
+  
+  augmentor.event_subscriber:
+    class: Drupal\augmentor\EventSubscriber\AugmentorEventSubscriber
+    tags:
+      - { name: 'event_subscriber' }

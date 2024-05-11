@@ -1,0 +1,468 @@
+<?php
+
+/**
+ * @file
+ * Contains hook implementations for this module.
+ */
+
+use Drupal\Component\Utility\Unicode;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\HtmlCommand;
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\openai\Utility\StringHelper;
+
+/**
+ * Implements hook_form_node_form_alter().
+ */
+function openai_content_form_node_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
+  $account = \Drupal::currentUser();
+  $form_object = $form_state->getFormObject();
+
+  if ($account->hasPermission('access openai content tools')) {
+    /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
+    $entity = $form_object->getEntity();
+    $options = _get_all_text_with_summary_fields($entity);
+    $options = array_intersect_key($options, $form);
+
+    $form['openai_moderate'] = [
+      '#type' => 'details',
+      '#title' => t('Analyze text'),
+      '#group' => 'advanced',
+      '#tree' => TRUE,
+    ];
+
+    $form['openai_moderate']['target_field'] = [
+      '#type' => 'select',
+      '#title' => t('Choose field'),
+      '#description' => t('Select what field you would like to analyze.'),
+      '#options' => $options,
+    ];
+
+    $form['openai_moderate']['response'] = [
+      '#type' => 'markup',
+      '#markup' => t('OpenAI can analyze content and tell you what <a href=":link" target="_blank">content policies it may violate</a>. This is beneficial if your audience are certain demographics and sensitive to certain categories. Note that this is only a useful guide.', [':link' => 'https://platform.openai.com/docs/guides/moderation/overview']),
+      '#prefix' => '<div id="openai-moderate-response">',
+      '#suffix' => '</div>',
+    ];
+
+    $form['openai_moderate']['do_moderate'] = [
+      '#type' => 'button',
+      '#value' => t('Analyze'),
+      '#limit_validation_errors' => [],
+      '#ajax' => [
+        'callback' => 'openai_content_entity_analyze_content',
+        'wrapper' => 'openai-moderate-response',
+      ],
+    ];
+
+    $form['openai_tone_edit'] = [
+      '#type' => 'details',
+      '#title' => t('Adjust content tone'),
+      '#group' => 'advanced',
+      '#tree' => TRUE,
+    ];
+
+    $form['openai_tone_edit']['message'] = [
+      '#markup' => t('Have OpenAI check your content and adjust the tone of it for different reader audiences for you.'),
+    ];
+
+    $form['openai_tone_edit']['target_field'] = [
+      '#type' => 'select',
+      '#title' => t('Choose field'),
+      '#description' => t('Select what field you would like to change the tone of.'),
+      '#options' => $options,
+    ];
+
+    // @todo: these values should be configurable options
+    $form['openai_tone_edit']['tone'] = [
+      '#type' => 'select',
+      '#title' => t('Choose tone'),
+      '#description' => t('Selecting one of the options will adjust/reword the body content to be appropriate for the target audience.'),
+      '#options' => [
+        'friendly' => t('Friendly'),
+        'professional' => t('Professional'),
+        'helpful' => t('Helpful'),
+        'easier for a high school educated reader' => t('High school level reader'),
+        'easier for a college educated reader' => t('College level reader'),
+        'explained to a five year old' => t('Explain like I\'m 5'),
+      ],
+    ];
+
+    $form['openai_tone_edit']['response'] = [
+      '#prefix' => '<br /><div id="openai-tone-edit-response">',
+      '#suffix' => '</div>',
+    ];
+
+    $form['openai_tone_edit']['edit'] = [
+      '#type' => 'button',
+      '#value' => t('Adjust tone'),
+      '#limit_validation_errors' => [],
+      '#ajax' => [
+        'callback' => 'openai_content_entity_adjust_tone',
+        'wrapper' => 'openai-tone-edit-response',
+      ],
+    ];
+
+    $form['openai_summarize'] = [
+      '#type' => 'details',
+      '#title' => t('Summarize text'),
+      '#group' => 'advanced',
+      '#tree' => TRUE,
+    ];
+
+    $form['openai_summarize']['target_field'] = [
+      '#type' => 'select',
+      '#title' => t('Choose field'),
+      '#description' => t('Select what field you would like to create a summary from.'),
+      '#options' => $options,
+    ];
+
+    $form['openai_summarize']['response'] = [
+      '#type' => 'markup',
+      '#markup' => t('This will use the selected field and OpenAI will attempt to summarize it for you. You can use the result to help generate a summary/teaser, social media share text, or similar.'),
+      '#prefix' => '<div id="openai-summarize-response">',
+      '#suffix' => '</div>',
+    ];
+
+    $form['openai_summarize']['do_summarize'] = [
+      '#type' => 'button',
+      '#value' => t('Summarize'),
+      '#limit_validation_errors' => [],
+      '#ajax' => [
+        'callback' => 'openai_content_entity_field_summarize',
+        'wrapper' => 'openai-summarize-response',
+      ],
+    ];
+
+    $form['openai_suggest_title'] = [
+      '#type' => 'details',
+      '#title' => t('Suggest content title'),
+      '#group' => 'advanced',
+      '#tree' => TRUE,
+    ];
+
+    $form['openai_suggest_title']['target_field'] = [
+      '#type' => 'select',
+      '#title' => t('Choose field'),
+      '#description' => t('Select what field you would like to use.'),
+      '#options' => $options,
+    ];
+
+    $form['openai_suggest_title']['response'] = [
+      '#type' => 'markup',
+      '#markup' => t('OpenAI can try to suggest an SEO friendly title from the selected field.'),
+      '#prefix' => '<div id="openai-suggest-title-response">',
+      '#suffix' => '</div>',
+    ];
+
+    $form['openai_suggest_title']['do_suggest_title'] = [
+      '#type' => 'button',
+      '#value' => t('Suggest title'),
+      '#limit_validation_errors' => [],
+      '#ajax' => [
+        'callback' => 'openai_content_suggest_title',
+        'wrapper' => 'openai-suggest-title-response',
+      ],
+    ];
+
+    $form['openai_suggest'] = [
+      '#type' => 'details',
+      '#title' => t('Suggest taxonomy'),
+      '#group' => 'advanced',
+      '#tree' => TRUE,
+    ];
+
+    $form['openai_suggest']['target_field'] = [
+      '#type' => 'select',
+      '#title' => t('Choose field'),
+      '#description' => t('Select what field you would like to suggest taxonomy from.'),
+      '#options' => $options,
+    ];
+
+    $form['openai_suggest']['response'] = [
+      '#type' => 'markup',
+      '#markup' => t('OpenAI can attempt to suggest possible classification terms to use as taxonomy.'),
+      '#prefix' => '<div id="openai-suggest-response">',
+      '#suffix' => '</div>',
+    ];
+
+    $form['openai_suggest']['do_suggest'] = [
+      '#type' => 'button',
+      '#value' => t('Suggest taxonomy'),
+      '#limit_validation_errors' => [],
+      '#ajax' => [
+        'callback' => 'openai_content_entity_suggest_taxonomy',
+        'wrapper' => 'openai-suggest-response',
+      ],
+    ];
+  }
+}
+
+/**
+ * Get a list of all string and text fields on the current node.
+ *
+ * @param ContentEntityInterface $entity
+ *   The content entity on the form.
+ *
+ * @return array
+ *   List of all valid field options.
+ */
+function _get_all_text_with_summary_fields(ContentEntityInterface $entity) {
+  $fields = $entity->getFieldDefinitions();
+  $options = [];
+
+  foreach ($fields as $field) {
+    if (in_array($field->getType(), ['text_with_summary', 'text_long', 'string', 'string_long'])) {
+      // @todo: How to skip special fields?
+      if (in_array($field->getName(), ['revision_log', 'revision_log_message'])) {
+        continue;
+      }
+
+      $label = $field->getLabel();
+
+      if ($label instanceof TranslatableMarkup) {
+        $label = $label->render();
+      }
+
+      $options[$field->getName()] = $label;
+    }
+  }
+
+  asort($options);
+  return $options;
+}
+
+/**
+ * The AJAX callback for adjusting the tone of body content.
+ *
+ * @param array $form
+ *   The entity form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
+ *
+ * @return \Drupal\Core\Ajax\AjaxResponse
+ *   The HTML response.
+ */
+function openai_content_entity_adjust_tone(array &$form, FormStateInterface $form_state) {
+  $openai_tone_edit = $form_state->getValue('openai_tone_edit');
+  $target_field = $openai_tone_edit['target_field'];
+  $target_field_value = $form_state->getValue($target_field)[0]['value'];
+  $tone = $openai_tone_edit['tone'];
+
+  if (!empty($target_field_value)) {
+    $client = \Drupal::service('openai.client');
+    $truncated_value = StringHelper::prepareText($target_field_value, [], 3900);
+
+    $response = $client->chat()->create(
+      [
+        'model' => 'gpt-3.5-turbo',
+        'messages' => [
+          ['role' => 'user', 'content' => 'Change the tone of the following text to be ' . $tone . ' using the same language as the following text:\r\n"' . $truncated_value . '"']
+        ],
+        'temperature' => 0.7,
+        'max_tokens' => 2048,
+      ],
+    );
+
+    $result = $response->toArray();
+    $text = trim($result["choices"][0]["message"]["content"]) ?? t('No result could be generated.');
+  } else {
+    $text = t('The @field field has no text. Please supply content to the @field field.', ['@field' => $target_field]);
+  }
+
+  $response = new AjaxResponse();
+  $response->addCommand(new HtmlCommand('#openai-tone-edit-response', $text));
+  return $response;
+}
+
+/**
+ * The AJAX callback for summarizing a field.
+ *
+ * @param array $form
+ *   The entity form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
+ *
+ * @return \Drupal\Core\Ajax\AjaxResponse
+ *   The HTML response.
+ */
+function openai_content_entity_field_summarize(array &$form, FormStateInterface $form_state) {
+  $openai_summarize = $form_state->getValue('openai_summarize');
+  $target_field = $openai_summarize['target_field'];
+  $target_field_value = $form_state->getValue($target_field)[0]['value'];
+
+  if (!empty($target_field_value)) {
+    $client = \Drupal::service('openai.client');
+    $truncated_value = StringHelper::prepareText($target_field_value, [], 3900);
+
+    $response = $client->chat()->create(
+      [
+        'model' => 'gpt-3.5-turbo',
+        'messages' => [
+          ['role' => 'user', 'content' => 'Create a detailed summary of the following text in less than 130 words using the same language as the following text:\r\n"' . $truncated_value . '"']
+        ],
+        'temperature' => 0.7,
+        'max_tokens' => 2048,
+      ],
+    );
+
+    $result = $response->toArray();
+    $text = trim($result["choices"][0]["message"]["content"]) ?? t('No result could be generated.');
+  } else {
+    $text = t('The @field field has no text. Please supply content to the @field field.', ['@field' => $target_field]);
+  }
+
+  $response = new AjaxResponse();
+  $response->addCommand(new HtmlCommand('#openai-summarize-response', $text));
+  return $response;
+}
+
+/**
+ * The AJAX callback for suggesting a title.
+ *
+ * @param array $form
+ *   The entity form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
+ *
+ * @return \Drupal\Core\Ajax\AjaxResponse
+ *   The HTML response.
+ */
+function openai_content_suggest_title(array &$form, FormStateInterface $form_state) {
+  $openai_suggest = $form_state->getValue('openai_suggest_title');
+  $target_field = $openai_suggest['target_field'];
+  $target_field_value = $form_state->getValue($target_field)[0]['value'];
+
+  if (!empty($target_field_value)) {
+    $client = \Drupal::service('openai.client');
+    $truncated_value = StringHelper::prepareText($target_field_value, [], 3900);
+
+    $response = $client->chat()->create(
+      [
+        'model' => 'gpt-3.5-turbo',
+        'messages' => [
+          ['role' => 'user', 'content' => 'Suggest an SEO friendly title for this page based off of the following content in 10 words or less, in the same language as the input:\r\n"' . $truncated_value . '"']
+        ],
+        'temperature' => 0.4,
+        'max_tokens' => 2048,
+      ],
+    );
+
+    $result = $response->toArray();
+    $text = trim($result["choices"][0]["message"]["content"]) ?? t('No title could be generated from the provided input.');
+  } else {
+    $text = t('The @field field has no text. Please supply content to the @field field.', ['@field' => $target_field]);
+  }
+
+  $response = new AjaxResponse();
+  $response->addCommand(new HtmlCommand('#openai-suggest-title-response', $text));
+  return $response;
+}
+
+/**
+ * The AJAX callback for suggesting taxonomy.
+ *
+ * @param array $form
+ *   The entity form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
+ *
+ * @return \Drupal\Core\Ajax\AjaxResponse
+ *   The HTML response.
+ */
+function openai_content_entity_suggest_taxonomy(array &$form, FormStateInterface $form_state) {
+  $openai_suggest = $form_state->getValue('openai_suggest');
+  $target_field = $openai_suggest['target_field'];
+  $target_field_value = $form_state->getValue($target_field)[0]['value'];
+
+  if (!empty($target_field_value)) {
+    $client = \Drupal::service('openai.client');
+    $truncated_value = StringHelper::prepareText($target_field_value, [], 3900);
+
+    $response = $client->chat()->create(
+      [
+        'model' => 'gpt-3.5-turbo',
+        'messages' => [
+          ['role' => 'user', 'content' => 'Suggest five words to classify the following text using the same language as the input text. The words must be nouns or adjectives in a comma delimited list:\r\n"' . $truncated_value . '"']
+        ],
+        'temperature' => 0.4,
+        'max_tokens' => 2048,
+      ],
+    );
+
+    $result = $response->toArray();
+    $text = trim($result["choices"][0]["message"]["content"]) ?? t('No terms could be generated from the provided input.');
+  } else {
+    $text = t('The @field field has no text. Please supply content to the @field field.', ['@field' => $target_field]);
+  }
+
+  $response = new AjaxResponse();
+  $response->addCommand(new HtmlCommand('#openai-suggest-response', $text));
+  return $response;
+}
+
+/**
+ * The AJAX callback for analyzing content.
+ *
+ * @param array $form
+ *   The entity form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
+ *
+ * @return \Drupal\Core\Ajax\AjaxResponse
+ *   The HTML response.
+ */
+function openai_content_entity_analyze_content(array &$form, FormStateInterface $form_state) {
+  $openai_analyze = $form_state->getValue('openai_moderate');
+  $target_field = $openai_analyze['target_field'];
+  $target_field_value = $form_state->getValue($target_field)[0]['value'];
+
+  if (!empty($target_field_value)) {
+    /** @var \OpenAI\Client $client */
+    $client = \Drupal::service('openai.client');
+    $truncated_value = StringHelper::prepareText($target_field_value, [], 8000);
+    $renderer = \Drupal::service('renderer');
+
+    $response = $client->moderations()->create(
+      [
+        'model' => 'text-moderation-latest',
+        'input' => $truncated_value,
+      ],
+    );
+
+    $result = $response->toArray();
+    $flagged = (bool) $result["results"][0]["flagged"];
+    $content = [];
+
+    $content['results'] = [
+      '#theme' => 'item_list',
+      '#list_type' => 'ul',
+      '#items' => [],
+      '#empty' => t('The text does not violate any content policies noted by OpenAI/ChatGPT.'),
+    ];
+
+    if ($flagged) {
+      $content['heading'] = [
+        '#markup' => '<p>' . t('Violation(s) found for these categories:') . '</p>',
+      ];
+
+      $violated_categories = array_filter($result["results"][0]["categories"]);
+
+      foreach ($violated_categories as $category => $did_violate) {
+        $content['results']['#items'][] = Unicode::ucfirst($category);
+      }
+    }
+
+    asort($content);
+
+    $output = $renderer->render($content);
+  } else {
+    $output = t('The @field field has no text. Please supply content to the @field field.', ['@field' => $target_field]);
+  }
+
+  $response = new AjaxResponse();
+  $response->addCommand(new HtmlCommand('#openai-moderate-response', $output));
+  return $response;
+}

@@ -1,0 +1,10 @@
+{
+  "name": "drupal/augmentor_chatgpt",
+  "type": "drupal-module",
+  "description": "Provides Augmentor integration with the ChatGPT API.",
+  "homepage": "http://drupal.org/project/augmentor_chatgpt",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "orhanerday/open-ai": "^4.7"
+  }
+}

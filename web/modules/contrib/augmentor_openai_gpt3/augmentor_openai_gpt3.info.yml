@@ -1,0 +1,12 @@
+name: OpenAI GPT3 Augmentor
+type: module
+description: Provides integration of Augmentor with OpenAI GPT3 API.
+package: Augmentor
+core_version_requirement: ^9.3 || ^10
+dependencies:
+  - augmentor:augmentor
+
+# Information added by Drupal.org packaging script on 2023-01-06
+version: '1.0.0'
+project: 'augmentor_openai_gpt3'
+datestamp: 1672977180

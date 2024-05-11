@@ -1,0 +1,3 @@
+use openai ckeditor:
+  title: 'Permit access to using the OpenAI CKEditor plugin.'
+  description: 'Permits this role to use the OpenAI CKEditor plugin endpoint to generate text for the editor. Without this permission, the editor plugin will not work.'

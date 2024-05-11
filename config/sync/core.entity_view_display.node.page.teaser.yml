@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.page.field_parent_page
     - field.field.node.page.field_teaser_image
     - field.field.node.page.field_teaser_text
+    - field.field.node.page.field_title_suggest
     - node.type.page
   module:
     - text
@@ -36,3 +37,4 @@ hidden:
   field_parent_page: true
   field_teaser_image: true
   field_teaser_text: true
+  field_title_suggest: true

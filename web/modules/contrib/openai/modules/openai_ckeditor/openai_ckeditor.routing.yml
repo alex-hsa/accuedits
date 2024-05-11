@@ -1,0 +1,8 @@
+openai_ckeditor.generate_completion:
+  methods: [POST]
+  path: '/api/openai-ckeditor/completion'
+  defaults:
+    _title: 'OpenAI CKEditor Generate Completion'
+    _controller: 'Drupal\openai_ckeditor\Controller\Completion::generate'
+  requirements:
+    _permission: 'use openai ckeditor'

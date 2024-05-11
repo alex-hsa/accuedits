@@ -1,0 +1,19 @@
+openai_ckeditor_openai:
+  ckeditor5:
+    plugins:
+      - openai.OpenAI
+    config:
+      completion:
+        enabled: false
+        model: 'gpt-3.5-turbo'
+        temperature: 0.2
+        max_tokens: 512
+  drupal:
+    label: OpenAI tools
+    library: openai_ckeditor/openai
+    admin_library: openai_ckeditor/admin.openai
+    toolbar_items:
+      openai:
+        label: OpenAI
+    elements: false
+    class: Drupal\openai_ckeditor\Plugin\CKEditor5Plugin\OpenAI

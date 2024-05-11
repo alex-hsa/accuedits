@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Implements the Augmentor ChatGPT module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function augmentor_chatgpt_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.augmentor_chatgpt':
+      $output = '<h3>' . t('Augmentor ChatGPT') . '</h3>';
+      $output .= '<p>' . t('Provides Augmentor integration with the ChatGPT API') . '</p>';
+      return $output;
+  }
+}

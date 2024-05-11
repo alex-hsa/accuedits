@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update functions for Augmentor.
+ */
+
+/**
+ * Enables the Ckeditor 4 submodule if the system has CKeditor 4 installed.
+ */
+function augmentor_update_8401() {
+
+  $moduleHandler = \Drupal::service('module_handler');
+  if ($moduleHandler->moduleExists('ckeditor')) {
+    \Drupal::service('module_installer')->install(['augmentor_ckeditor4']);
+  }
+}

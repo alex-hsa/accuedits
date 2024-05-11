@@ -8,8 +8,10 @@ dependencies:
     - field.field.node.page.field_parent_page
     - field.field.node.page.field_teaser_image
     - field.field.node.page.field_teaser_text
+    - field.field.node.page.field_title_suggest
     - node.type.page
   module:
+    - augmentor
     - field_group
     - layout_paragraphs
     - media_library
@@ -35,6 +37,7 @@ third_party_settings:
     group_title_teaser:
       children:
         - title
+        - field_title_suggest
         - field_teaser_image
         - field_teaser_text
         - field_parent_page
@@ -90,7 +93,7 @@ content:
     third_party_settings: {  }
   field_parent_page:
     type: entity_reference_autocomplete
-    weight: 4
+    weight: 5
     region: content
     settings:
       match_operator: CONTAINS
@@ -100,18 +103,31 @@ content:
     third_party_settings: {  }
   field_teaser_image:
     type: media_library_widget
-    weight: 2
+    weight: 3
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_teaser_text:
     type: text_textarea
-    weight: 3
+    weight: 4
     region: content
     settings:
       rows: 5
       placeholder: ''
+    third_party_settings: {  }
+  field_title_suggest:
+    type: augmentor_select_widget
+    weight: 2
+    region: content
+    settings:
+      augmentor: ''
+      source_fields: {  }
+      action: ''
+      button_label: ''
+      rows: '5'
+      placeholder: ''
+      targets: {  }
     third_party_settings: {  }
   path:
     type: path

@@ -1,0 +1,5 @@
+openai_dalle.dalle_form:
+  title: DALL·E Image Generation
+  description: Contains a form where you can test the OpenAI API's DALL·E (image generation) endpoint.
+  parent: openai.admin_config_openai
+  route_name: openai_dalle.dalle_form

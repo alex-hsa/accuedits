@@ -1,0 +1,15 @@
+services:
+  openai.client:
+    class: OpenAI\Client
+    factory: ['@openai.client_factory', create]
+  openai.client_factory:
+    class: Drupal\openai\Http\ClientFactory
+    arguments: ['@config.factory']
+  openai.api:
+    class: Drupal\openai\OpenAIApi
+    arguments: ['@openai.client', '@cache.default', '@logger.factory']
+  openai.event_subscriber:
+    class: Drupal\openai\EventSubscriber\OpenAIEventSubscriber
+    arguments: ['@config.factory', '@router.admin_context', '@messenger']
+    tags:
+      - { name: event_subscriber }

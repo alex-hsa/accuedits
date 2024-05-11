@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Implements the Augmentor OpenAI GPT3 module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function augmentor_openai_gpt3_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.augmentor_openai_gpt3':
+      $output = '<h3>' . t('Augmentor OpenAI GPT3') . '</h3>';
+      $output .= '<p>' . t('Provides OpenAI GPT3 integration with Augmentor') . '</p>';
+      return $output;
+  }
+}

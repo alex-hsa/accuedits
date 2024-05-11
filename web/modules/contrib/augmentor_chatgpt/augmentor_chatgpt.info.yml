@@ -1,0 +1,12 @@
+name: ChatGPT Augmentor
+type: module
+description: Provides Augmentor integration with the ChatGPT API.
+package: Augmentor
+core_version_requirement: ^9.3 || ^10
+dependencies:
+  - augmentor:augmentor
+
+# Information added by Drupal.org packaging script on 2023-03-29
+version: '1.0.0-alpha1'
+project: 'augmentor_chatgpt'
+datestamp: 1680049853

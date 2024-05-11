@@ -23,12 +23,16 @@ settings:
       - '|'
       - blockQuote
       - drupalInsertImage
+      - augmentor
       - '|'
       - heading
       - code
       - '|'
       - sourceEditing
   plugins:
+    augmentor_ckeditor5_augmentor:
+      augmentors:
+        7f12670b-e08a-4da7-bce5-bacf00763a67: 'Demo Augmentor'
     ckeditor5_heading:
       enabled_headings:
         - heading2

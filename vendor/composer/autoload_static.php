@@ -42,6 +42,7 @@ class ComposerStaticInit707f7590d632e07d7add8405a30a9cb8
         'fbeead2280a8f3911a1fe6dd034f7d5e' => __DIR__ . '/..' . '/mkalkbrenner/php-htmldiff-advanced/src/HtmlDiffAdvancedInterface.php',
         '96f8d8288528d52059397cad6ec61f17' => __DIR__ . '/..' . '/mkalkbrenner/php-htmldiff-advanced/src/HtmlDiffAdvanced.php',
         '157bbd0180425c7142fbaf1b1646bec3' => __DIR__ . '/..' . '/open-telemetry/exporter-otlp/_register.php',
+        '61ba3e92ef91a7a0f1cc260ebd9290e4' => __DIR__ . '/..' . '/openai-php/client/src/OpenAI.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         '92c8763cd6170fce6fcfe7e26b4e8c10' => __DIR__ . '/..' . '/symfony/phpunit-bridge/bootstrap.php',
     );
@@ -148,12 +149,14 @@ class ComposerStaticInit707f7590d632e07d7add8405a30a9cb8
         ),
         'O' => 
         array (
+            'Orhanerday\\OpenAi\\' => 18,
             'Opentelemetry\\Proto\\' => 20,
             'OpenTelemetry\\SemConv\\' => 22,
             'OpenTelemetry\\SDK\\' => 18,
             'OpenTelemetry\\Contrib\\Otlp\\' => 27,
             'OpenTelemetry\\Context\\' => 22,
             'OpenTelemetry\\API\\' => 18,
+            'OpenAI\\' => 7,
         ),
         'M' => 
         array (
@@ -171,6 +174,7 @@ class ComposerStaticInit707f7590d632e07d7add8405a30a9cb8
         'H' => 
         array (
             'Http\\Promise\\' => 13,
+            'Http\\Message\\MultipartStream\\' => 29,
             'Http\\Discovery\\' => 15,
             'Http\\Client\\' => 12,
             'Http\\Adapter\\Guzzle7\\' => 21,
@@ -537,6 +541,10 @@ class ComposerStaticInit707f7590d632e07d7add8405a30a9cb8
         array (
             0 => __DIR__ . '/..' . '/dealerdirect/phpcodesniffer-composer-installer/src',
         ),
+        'Orhanerday\\OpenAi\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/orhanerday/open-ai/src',
+        ),
         'Opentelemetry\\Proto\\' => 
         array (
             0 => __DIR__ . '/..' . '/open-telemetry/gen-otlp-protobuf/Opentelemetry/Proto',
@@ -561,6 +569,10 @@ class ComposerStaticInit707f7590d632e07d7add8405a30a9cb8
         array (
             0 => __DIR__ . '/..' . '/open-telemetry/api',
         ),
+        'OpenAI\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/openai-php/client/src',
+        ),
         'Micheh\\PhpCodeSniffer\\' => 
         array (
             0 => __DIR__ . '/..' . '/micheh/phpcs-gitlab/src',
@@ -580,6 +592,10 @@ class ComposerStaticInit707f7590d632e07d7add8405a30a9cb8
         'Http\\Promise\\' => 
         array (
             0 => __DIR__ . '/..' . '/php-http/promise/src',
+        ),
+        'Http\\Message\\MultipartStream\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/multipart-stream-builder/src',
         ),
         'Http\\Discovery\\' => 
         array (

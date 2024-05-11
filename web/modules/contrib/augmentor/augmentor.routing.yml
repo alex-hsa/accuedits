@@ -1,0 +1,39 @@
+augmentor.list:
+  path: '/admin/config/augmentors'
+  defaults:
+    _form: '\Drupal\augmentor\Form\AugmentorListForm'
+    _title: 'Augmentors'
+  requirements:
+    _permission: 'administer augmentor'
+  options:
+    _admin_route: TRUE
+
+augmentor.augmentor_add_form:
+  path: '/admin/config/augmentors/add/{augmentor}'
+  defaults:
+    _form: '\Drupal\augmentor\Form\AugmentorAddForm'
+    _title: 'Add Augmentor'
+  requirements:
+    _permission: 'add augmentor+administer augmentor'
+
+augmentor.augmentor_edit_form:
+  path: '/admin/config/augmentors/{augmentor}'
+  defaults:
+    _form: '\Drupal\augmentor\Form\AugmentorEditForm'
+  requirements:
+    _permission: 'edit augmentor+administer augmentor'
+
+augmentor.augmentor_delete_form:
+  path: '/admin/config/augmentors/{augmentor}/delete'
+  defaults:
+    _form: '\Drupal\augmentor\Form\AugmentorDeleteForm'
+    _title: 'Delete'
+  requirements:
+    _permission: 'delete augmentor+administer augmentor'
+
+augmentor.augmentor_execute:
+  path: '/augmentor/execute/augmentor'
+  defaults:
+    _controller: '\Drupal\augmentor\Controller\AugmentorController::execute'
+  requirements:
+    _permission: 'execute augmentor'

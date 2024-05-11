@@ -1,0 +1,10 @@
+augmentor:
+  js:
+    js/build/augmentor.js: { preprocess: false, minified: true }
+  dependencies:
+    - core/ckeditor5
+
+admin.augmentor:
+  css:
+    theme:
+      css/augmentor.css: {}

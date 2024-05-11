@@ -1,0 +1,16 @@
+augmentor_ckeditor5_augmentor:
+  ckeditor5:
+    plugins:
+      - augmentor.augmentor
+    config:
+      augmentors:
+        - 'augmentor_ckeditor5'
+  drupal:
+    label: Augmentors
+    library: augmentor_ckeditor5/augmentor
+    admin_library: augmentor_ckeditor5/admin.augmentor
+    toolbar_items:
+      augmentor:
+        label: Augmentor
+    elements: false
+    class: Drupal\augmentor_ckeditor5\Plugin\CKEditor5Plugin\Augmentor

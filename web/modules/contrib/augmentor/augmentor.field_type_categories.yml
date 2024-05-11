@@ -1,0 +1,4 @@
+Augmentor:
+  label: 'Augmentor'
+  description: 'Configurable button field for versatile Augmentor interaction: taxonomy, reference, text, and more.'
+  weight: -40

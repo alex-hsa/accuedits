@@ -1,0 +1,24 @@
+# Augmentors permissions.
+administer augmentor:
+  title: 'Administer Augmentors'
+  description: 'Allows full administration access to create and edit augmentors.'
+  restrict access: true
+
+add augmentor:
+  title: 'Add Augmentors'
+  description: 'Allows users to add augmentors.'
+  restrict access: true
+
+edit any augmentor:
+  title: 'Edit Augmentors'
+  description: 'Allows users to edit augmentors.'
+  restrict access: true
+
+delete any augmentor:
+  title: 'Delete Augmentors'
+  description: 'Allows users to delete augmentors.'
+  restrict access: true
+
+execute augmentor:
+  title: 'Execute Augmentors'
+  description: 'Allows users to execute augmentors.'

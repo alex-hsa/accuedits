@@ -1,0 +1,10 @@
+.cke_top .cke_toolbox .cke_combo__augmentor_ckeditor .cke_combo_text {
+  width: 70px;
+  padding-left: 25px;
+  background: no-repeat 5px center url('../images/augmentor_icon.png');
+}
+
+.cke_combopanel__augmentor_ckeditor {
+  width: 250px !important;
+  font-size: 14px;
+}

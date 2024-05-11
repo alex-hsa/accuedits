@@ -1,0 +1,5 @@
+openai_tts.tts_form:
+  title: Text to Speech
+  description: Contains a form where you can test the OpenAI API's TTS (text to speech) endpoints.
+  parent: openai.admin_config_openai
+  route_name: openai_tts.tts_form

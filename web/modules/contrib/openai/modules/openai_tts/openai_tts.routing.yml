@@ -1,0 +1,7 @@
+openai_tts.tts_form:
+  path: '/admin/config/openai/tts'
+  defaults:
+    _title: 'OpenAI text to speech'
+    _form: 'Drupal\openai_tts\Form\TextToSpeechForm'
+  requirements:
+    _permission: 'access openai tts'

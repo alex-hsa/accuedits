@@ -1,0 +1,19 @@
+uuid: 55fad7f2-1bc0-409a-a8bb-2d06446eeaf7
+langcode: en
+status: true
+dependencies:
+  module:
+    - augmentor
+    - node
+id: node.field_title_suggest
+field_name: field_title_suggest
+entity_type: node
+type: field_augmentor_type
+settings: {  }
+module: augmentor
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

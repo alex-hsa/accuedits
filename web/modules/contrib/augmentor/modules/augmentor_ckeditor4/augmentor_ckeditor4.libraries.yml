@@ -1,0 +1,4 @@
+augmentor_ckeditor:
+  css:
+    theme:
+      css/augmentor_ckeditor.css: {}

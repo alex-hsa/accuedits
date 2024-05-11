@@ -1,0 +1,20 @@
+ckeditor5.plugin.openai_ckeditor_openai:
+  type: mapping
+  label: OpenAI CKEditor configuration
+  mapping:
+    completion:
+      type: mapping
+      label: Completion configuration
+      mapping:
+        enabled:
+          type: boolean
+          label: 'Enabled'
+        model:
+          type: string
+          label: 'Model'
+        temperature:
+          type: float
+          label: 'Temperature'
+        max_tokens:
+          type: integer
+          label: 'Maximum tokens'

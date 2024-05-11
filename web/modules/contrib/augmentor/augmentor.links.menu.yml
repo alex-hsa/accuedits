@@ -1,0 +1,6 @@
+# Menu item for augmentor config page.
+augmentor.list:
+  title: Augmentor
+  parent: system.admin_config_services
+  description: 'Integration module which allows content to be augmented in Drupal via connections with external services.'
+  route_name: augmentor.list

@@ -1,0 +1,13 @@
+name: CKEditor 4 Augmentor
+type: module
+description: Provides integration of Augmentor with CKEditor 4.
+package: Augmentor
+core_version_requirement: ^10.1 || ^11
+dependencies:
+  - drupal:ckeditor
+  - augmentor:augmentor
+
+# Information added by Drupal.org packaging script on 2024-05-02
+version: '1.1.3'
+project: 'augmentor'
+datestamp: 1714666055

@@ -1,0 +1,17 @@
+{
+    "name": "drupal/openai",
+    "description": "A set of modules to enable OpenAI integration with Drupal and augment the content experience with AI assisted tools.",
+    "keywords": ["openai", "GPT-3", "DALL-E", "content generation", "AI content", "gpt", "content moderation", "GPT-4", "AI", "artificial intelligence", "Bard"],
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Kevin Quillen",
+            "homepage": "https://kevinquillen.com",
+            "role": "Maintainer"
+        }
+    ],
+    "require": {
+        "openai-php/client": ">=v0.7.8"
+    }
+}

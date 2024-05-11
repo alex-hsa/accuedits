@@ -1,0 +1,13 @@
+name: OpenAI ChatGPT ECA
+type: module
+description: Adds integration with the ECA module.
+package: OpenAI
+core_version_requirement: ^10
+dependencies:
+  - openai:openai
+  - eca:eca
+
+# Information added by Drupal.org packaging script on 2024-01-03
+version: '1.0.0-beta4'
+project: 'openai'
+datestamp: 1704311318

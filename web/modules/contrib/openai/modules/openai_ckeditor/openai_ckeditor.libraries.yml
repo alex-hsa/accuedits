@@ -1,0 +1,14 @@
+openai:
+  css:
+    theme:
+      css/form.css: { preprocess: false, minified: false }
+      css/status.css: { preprocess: false, minified: false }
+  js:
+    js/build/openai.js: { preprocess: false, minified: true }
+  dependencies:
+    - core/ckeditor5
+
+admin.openai:
+  css:
+    theme:
+      css/openai.css: {}

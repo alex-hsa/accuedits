@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ * Implements the Augmentor Demo module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function augmentor_demo_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.augmentor':
+      $output = '';
+      $output .= '<h3>' . t('Augmentor Demo') . '</h3>';
+      $output .= '<p>' . t('Demo Augmentor to serve as a blueprint for developers.') . '</p>';
+      return $output;
+  }
+}

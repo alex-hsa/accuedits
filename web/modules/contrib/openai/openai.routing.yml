@@ -1,0 +1,31 @@
+openai.admin_config_openai:
+  path: '/admin/config/openai'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'OpenAI'
+  requirements:
+    _permission: 'administer site configuration'
+
+openai.api_settings:
+  path: '/admin/config/openai/settings'
+  defaults:
+    _title: 'OpenAI Settings'
+    _form: 'Drupal\openai\Form\ApiSettingsForm'
+  requirements:
+    _permission: 'administer site configuration'
+
+openai.models:
+  path: '/admin/config/openai/settings/models'
+  defaults:
+    _controller: '\Drupal\openai\Controller\Admin::listModels'
+    _title: 'OpenAI Models'
+  requirements:
+    _permission: 'administer site configuration'
+
+openai.docs:
+  path: '/admin/config/openai/settings/docs'
+  defaults:
+    _controller: '\Drupal\openai\Controller\Admin::docs'
+    _title: 'OpenAI Documentation'
+  requirements:
+    _permission: 'administer site configuration'
