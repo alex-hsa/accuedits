@@ -8,7 +8,7 @@
   </div>
   <div class="lpb-component-list__group">
     {% if types.layout %}
-    <div class="lpb-component-list__group--layout"><h4>Layout</h4>
+    <div class="lpb-component-list__group--layout">
     {% endif %}
     {% for type in types.layout %}
       <div class="lpb-component-list__item type-{{type.id}} is-layout">
@@ -19,7 +19,7 @@
     </div>
     {% endif %}
     {% if types.content %}
-    <div class="lpb-component-list__group--content"><h4>Content</h4>
+    <div class="lpb-component-list__group--content">
     {% endif %}
     {% for type in types.content %}
       <div class="lpb-component-list__item type-{{type.id}}">

@@ -62,6 +62,10 @@ class ComposerStaticInit707f7590d632e07d7add8405a30a9cb8
         array (
             'lsolesen\\pel\\' => 13,
         ),
+        'c' => 
+        array (
+            'cweagans\\Composer\\' => 18,
+        ),
         'W' => 
         array (
             'Webmozart\\Assert\\' => 17,
@@ -270,6 +274,10 @@ class ComposerStaticInit707f7590d632e07d7add8405a30a9cb8
         'lsolesen\\pel\\' => 
         array (
             0 => __DIR__ . '/..' . '/fileeye/pel/src',
+        ),
+        'cweagans\\Composer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/cweagans/composer-patches/src',
         ),
         'Webmozart\\Assert\\' => 
         array (
