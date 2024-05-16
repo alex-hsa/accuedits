@@ -7,10 +7,7 @@
 {% endif %}
 
 {% if background_glass == 'yes' %}
-  {% set background_glass_classes = ' p-8 glass gui-block' %}
-  {% if background_color %}
-    {% set background_glass_classes = background_glass_classes ~ ' relative rounded-2xl rounded-br-lg border-[3px] border-solid border-' ~ background_color ~ ' after:border-[3px] after:border-solid after:border-primary' %}
-  {% endif %}
+  {% set background_glass = ' glass p-8 rounded-lg' %}
 {% endif %}
 
 {% set paragraph_classes = [
@@ -22,9 +19,9 @@
   ]|join(' ')|trim %}
 
 
-<hgroup {{ attributes.addClass(paragraph_classes).addClass(alignment_class).addClass(background_glass_classes).addClass('rounded-lg ' ~ width) }}>
+<hgroup {{ attributes.addClass(paragraph_classes).addClass(alignment_class).addClass(background_glass).addClass('rounded-lg ' ~ width) }}>
   {{ quick_edit }} 
-
+ 
   {% if eyebrow %}
       <div class="eyebrow uppercase">{{ eyebrow }}</div>
   {% endif %}
@@ -48,17 +45,11 @@
   {% if ctaText is not empty %}
     <div class="hero--cta">
         {{ include('sanfran:button', {
-            type: 'btn-primary',
+            type: 'btn-accent',
             ctaText,
             ctaHref,
             })
         }}
     </div>
   {% endif %}
-
-  {# {% if background_glass == 'yeseee' %}
-    <span class="relative border-success border-warning">
-      <span class="after:content-[""] after:absolute after:bg-transparent after:border-[3px] after:border-solid after:border-error after:rounded-2xl after:rounded-tl-lg after:buttom-0 after:left-0 after:right-0 after:top-0 after:z-10 after:translate-x-6 after:translate-y-8 after:transition after:ease-in-out after:cursor-pointer" aria-hidden="true">&nbsp;</span>
-    </span>
-  {% endif %} #}
 </hgroup>

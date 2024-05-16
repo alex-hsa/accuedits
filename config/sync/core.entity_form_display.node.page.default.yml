@@ -35,7 +35,6 @@ third_party_settings:
     group_title_teaser:
       children:
         - title
-        - field_title_suggest
         - field_teaser_image
         - field_teaser_text
         - field_parent_page

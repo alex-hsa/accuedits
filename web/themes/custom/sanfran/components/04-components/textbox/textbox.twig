@@ -22,7 +22,7 @@
 
 {% set paragraph_classes = [
     paragraph.bundle,
-    'bg-base-' ~ background_color,
+    'bg-' ~ background_color ~ '/[.1]',
     'paragraph',
     'paragraph--type--' ~ paragraph.bundle|clean_class,
     view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
@@ -30,7 +30,7 @@
   ]|join(' ')|trim %}
 
 
-<section {{ attributes.addClass(paragraph_classes).addClass(border_class).addClass(placement_class).addClass('p-8 rounded-lg') }}>
+<section {{ attributes.addClass(paragraph_classes).addClass(border_class).addClass(placement_class).addClass('p-8 rounded-lg [&>hgroup.glass_div.eyebrow]:pt-8') }}>
   {{ quick_edit }} 
  
   {# Display Lead paragraph #}

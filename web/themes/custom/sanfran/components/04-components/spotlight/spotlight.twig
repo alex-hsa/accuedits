@@ -13,7 +13,7 @@
 {% endif %}
 
 {% if background_color %}
-  {% set background_color_class = 'bg-base-' ~ background_color %}
+  {% set background_color_class = 'bg-' ~ background_color ~ '/[.2]' %}
 {% endif %}
 
 {% set classes_spotlight = [

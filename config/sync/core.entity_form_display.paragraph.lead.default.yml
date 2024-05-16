@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.lead.field_alignment
+    - field.field.paragraph.lead.field_background_color
     - field.field.paragraph.lead.field_background_glass
     - field.field.paragraph.lead.field_cta
     - field.field.paragraph.lead.field_description
@@ -23,6 +24,12 @@ content:
   field_alignment:
     type: options_select
     weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_background_color:
+    type: options_select
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }

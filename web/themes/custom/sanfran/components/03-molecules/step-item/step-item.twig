@@ -4,7 +4,7 @@
 {% if term_id %} 
     {% set term_details = drupal_entity('taxonomy_term', term_id|number_format) %} 
     {% set background_color = term_details['#taxonomy_term'].name.value|lower %}
-    {% set background_color_class = 'base-' ~ background_color %}
+    {% set background_color_class = background_color ~ '/[.25]' %}
 {% else %}
     {% set background_color_class = '' %}
 {% endif %}
@@ -16,16 +16,16 @@
     'paragraph--type--' ~ paragraph.bundle|clean_class,
     view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
     not paragraph.isPublished() ? 'paragraph--unpublished',
-    'border-' ~ background_color,
+    'border-' ~ background_color ~ '/[.25]',
   ]|join(' ')|trim %}
 
 <article {{ attributes.addClass(classes_step_item).addClass('border-s-8 ml-8') }}>
 {{ edit_icon  }}
   <div class="step-marker flex flex-row -ml-9">
   
-    <div class="bg-{{ background_color_class }} flex h-16 items-center justify-center rounded-full -start-24  w-16">
+    <div class="bg-{{ background_color }}/[.25] flex h-16 items-center justify-center rounded-full -start-24  w-16">
         {% if icon %}
-          <span class="flex items-center h-16 justify-center rounded-full shrink-0 w-16 text-4xl text-white">
+          <span class="bg-{{ background_color }}/[.25] flex items-center h-16 justify-center rounded-full shrink-0 w-16 text-4xl text-white">
             {{ icon }}
           </span>
         {% else %}
@@ -51,7 +51,7 @@
       {% if ctaText %}
         <div class="hero--cta">
           {{ include('sanfran:button', {
-            type: 'btn-outline btn-primary',
+            type: 'btn-outline btn-info',
             ctaText,
             ctaHref,
             })

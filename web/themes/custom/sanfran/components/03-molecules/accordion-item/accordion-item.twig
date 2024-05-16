@@ -8,9 +8,13 @@
 {% if term_id %} 
     {% set term_details = drupal_entity('taxonomy_term', term_id|number_format) %} 
     {% set background_color = term_details['#taxonomy_term'].name.value|lower %}
-    {% set background_color_class = 'bg-base-' ~ background_color %}
+    {% set background_color_class = 'bg-' ~ background_color ~ '/[.2]' %}
 {% else %}
-    {% set background_color_class = '' %}
+    {% if storybook %}
+        {% set background_color_class = 'bg-primary/[.2]' %}
+    {% else %}
+        {% set background_color_class = '' %}
+    {% endif %}
 {% endif %}
 
 {% set accordion_id = 'accordion-' ~ paragraph.parent_id.value %}
@@ -23,7 +27,7 @@
     not paragraph.isPublished() ? 'paragraph--unpublished',
   ]|join(' ')|trim %}
 
-<article {{ attributes.addClass(classes_accordion).addClass(background_color_class).addClass('collapse collapse-arrow mb-2') }}>
+<article {{ attributes.addClass(classes_accordion).addClass(background_color_class).addClass('collapse collapse-arrow mb-2 rounded-lg') }}>
     {{ quick_edit }}
     <input type="radio" name="{{ accordion_id }}" /> 
     <h2 class="collapse-title text-xl font-medium">
