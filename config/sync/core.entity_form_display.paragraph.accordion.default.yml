@@ -19,10 +19,10 @@ third_party_settings:
         - field_background_color
         - field_orientation
         - field_border
-      label: Options
+      label: Settings
       region: content
       parent_name: ''
-      weight: 1
+      weight: 0
       format_type: details
       format_settings:
         classes: ''
@@ -31,7 +31,6 @@ third_party_settings:
         open: true
         description: ''
         required_fields: true
-        weight: 0
 id: paragraph.accordion.default
 targetEntityType: paragraph
 bundle: accordion
@@ -72,20 +71,22 @@ content:
     third_party_settings: {  }
   field_lead:
     type: paragraphs
-    weight: 0
+    weight: 1
     region: content
     settings:
       title: Paragraph
       title_plural: Paragraphs
-      edit_mode: open
-      closed_mode: summary
+      edit_mode: closed
+      closed_mode: preview
       autocollapse: none
       closed_mode_threshold: 0
-      add_mode: dropdown
+      add_mode: button
       form_display_mode: default
-      default_paragraph_type: ''
+      default_paragraph_type: lead
       features:
+        add_above: '0'
         collapse_edit_all: collapse_edit_all
+        convert: '0'
         duplicate: duplicate
     third_party_settings: {  }
   field_orientation:

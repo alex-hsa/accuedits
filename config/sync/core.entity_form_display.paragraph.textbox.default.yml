@@ -18,10 +18,10 @@ third_party_settings:
         - field_background_color
         - field_border
         - field_placement
-      label: Options
+      label: Settings
       region: content
       parent_name: ''
-      weight: 1
+      weight: 0
       format_type: details
       format_settings:
         classes: ''
@@ -50,7 +50,7 @@ content:
     third_party_settings: {  }
   field_lead:
     type: paragraphs
-    weight: 0
+    weight: 1
     region: content
     settings:
       title: Paragraph

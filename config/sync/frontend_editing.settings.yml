@@ -30,7 +30,7 @@ full_width: 80
 ajax_content_update: false
 hover_highlight: false
 exclude_fields: {  }
-automatic_preview: false
+automatic_preview: true
 primary_color: '#10857f'
 ui_toggle: true
 ui_toggle_settings:

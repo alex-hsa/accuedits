@@ -1,0 +1,83 @@
+{% if type == 'elevated' %}
+  {% set icon_card_classes = 'shadow-xl border border-' ~ background_color %}
+{% elseif type == 'filled'  %}
+  {% set icon_card_classes = 'bg-' ~ background_color ~ '/[.25]' %}
+{% else %}
+  {% set icon_card_classes = 'border-2 border-' ~ background_color %}
+{% endif %}
+
+{% if orientation == 'horizontal' %}
+  {% set orientation_class = 'flex-row space-x-8 [&>div:first-child]:self-center' %}
+{% else %}
+  {% set orientation_class = 'flex-col' %}
+{% endif %}
+
+{% if placement == 'end' %}
+  {% set placement_class = 'flex flex-row-reverse' %}
+{% elseif placement == 'middle'%}
+  {% set placement_class = 'flex justify-center' %}
+{% else %}
+  {% set placement_class = 'flex flex-row' %}
+{% endif %}
+
+{% if alignment == 'center' %}
+  {% set alignment_class = 'text-center self-center' %}
+{% elseif alignment == 'right' %}
+  {% set alignment_class = 'text-right self-end' %}
+{% else  %}
+  {% set alignment_class = 'text-left' %}
+{% endif %}
+
+
+{% set paragraph_classes = [
+    paragraph.bundle,
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished',
+    orientation_class,
+    icon_card_classes,
+  ]|join(' ')|trim %}
+
+<div {{ attributes.addClass(paragraph_classes).addClass('icon-card flex h-full p-4 rounded-lg') }}>
+  {{ edit_icon }}
+  <div class="media {{ placement_class }}">
+    {% if icon %}
+      <div class="{{ alignment_class }} bg-{{ background_color }}/[.25] h-16 inline-flex items-center justify-center mb-4 rounded-lg w-16 [&>i:first-child]:text-4xl text-{{ background_color }}">
+          {{ icon }}
+      </div>
+    {% endif %}
+  </div>
+  
+
+  <div class="lead {{ alignment_class }}">
+    
+  {% if heading %}
+    {{ include('sanfran:headings', {
+        level: '3',
+        text: heading,
+      })
+    }}
+  {% endif %}
+
+  {% if description %}
+    {{ include('sanfran:wysiwyg', {
+        wysiwyg: description,
+      })
+    }}
+  {% endif %}
+
+  {% if ctaText %}
+    {% set link_classes = 'text-' ~ background_color ~ ' font-bold' %}
+    <div class="{{ alignment_class }}">
+      {{ include('sanfran:link', {
+        classes: link_classes,
+        text: ctaText,
+        url: ctaHref,
+        })
+      }}
+    </div>
+  {% endif %}
+
+  </div>
+</div>

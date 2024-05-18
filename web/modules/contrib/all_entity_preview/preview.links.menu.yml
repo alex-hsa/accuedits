@@ -1,0 +1,5 @@
+preview.admin_settings:
+  title: Entity preview
+  description: 'Configure entity bundles subject to preview.'
+  parent: system.admin_config_content
+  route_name: preview.settings

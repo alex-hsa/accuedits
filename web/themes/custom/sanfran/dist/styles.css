@@ -4607,10 +4607,6 @@ details.collapse summary::-webkit-details-marker{
   background-color: var(--fallback-p,oklch(var(--p)/.25));
 }
 
-.bg-primary\/\[\.2\]{
-  background-color: var(--fallback-p,oklch(var(--p)/.2));
-}
-
 .bg-primary\/\[\.5\]{
   background-color: var(--fallback-p,oklch(var(--p)/.5));
 }
@@ -5384,10 +5380,6 @@ section{
 .\[\&\>figure_img\]\:object-cover>figure img{
   -o-object-fit: cover;
      object-fit: cover;
-}
-
-.\[\&\>hgroup\.glass_div\.eyebrow\]\:pt-8>hgroup.glass div.eyebrow{
-  padding-top: 2rem;
 }
 
 .\[\&\>i\:first-child\]\:text-4xl>i:first-child{

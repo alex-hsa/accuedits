@@ -1,0 +1,9 @@
+preview.settings:
+  type: sequence
+  label: 'Bundles keyed by entity type IDs'
+  sequence:
+    type: sequence
+    label: 'View modes by bundle'
+    sequence:
+      type: string
+      label: 'View mode'

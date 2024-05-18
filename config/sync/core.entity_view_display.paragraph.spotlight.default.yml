@@ -8,11 +8,9 @@ dependencies:
     - field.field.paragraph.spotlight.field_flip
     - field.field.paragraph.spotlight.field_lead
     - field.field.paragraph.spotlight.field_media
-    - field.field.paragraph.spotlight.field_variant
     - paragraphs.paragraphs_type.spotlight
   module:
     - entity_reference_revisions
-    - options
 id: paragraph.spotlight.default
 targetEntityType: paragraph
 bundle: spotlight
@@ -25,7 +23,7 @@ content:
       view_mode: full
       link: false
     third_party_settings: {  }
-    weight: 4
+    weight: 1
     region: content
   field_border:
     type: boolean
@@ -35,21 +33,21 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 7
+    weight: 3
     region: content
   field_flip:
     type: boolean
-    label: above
+    label: hidden
     settings:
       format: default
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 8
+    weight: 4
     region: content
   field_lead:
     type: entity_reference_revisions_entity_view
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: ''
@@ -63,13 +61,6 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
-    weight: 6
-    region: content
-  field_variant:
-    type: list_default
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 0
+    weight: 2
     region: content
 hidden: {  }

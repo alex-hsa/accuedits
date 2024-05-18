@@ -33,6 +33,7 @@
         "composer/installers": "^2.0",
         "cweagans/composer-patches": "^1.7",
         "drupal/admin_toolbar": "^3.4",
+        "drupal/all_entity_preview": "^1.0@alpha",
         "drupal/core-composer-scaffold": "^10.2",
         "drupal/core-dev": "^10.2",
         "drupal/core-project-message": "^10.2",

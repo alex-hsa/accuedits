@@ -10,7 +10,26 @@ dependencies:
     - field.field.paragraph.text_shout.field_main_title
     - paragraphs.paragraphs_type.text_shout
   module:
+    - field_group
     - text
+third_party_settings:
+  field_group:
+    group_settings:
+      children:
+        - field_background_color
+        - field_border
+      label: Settings
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: true
+        description: ''
+        required_fields: true
 id: paragraph.text_shout.default
 targetEntityType: paragraph
 bundle: text_shout
@@ -24,7 +43,7 @@ content:
     third_party_settings: {  }
   field_border:
     type: boolean_checkbox
-    weight: 9
+    weight: 5
     region: content
     settings:
       display_label: true
@@ -46,7 +65,7 @@ content:
     third_party_settings: {  }
   field_main_title:
     type: string_textfield
-    weight: 0
+    weight: 1
     region: content
     settings:
       size: 60

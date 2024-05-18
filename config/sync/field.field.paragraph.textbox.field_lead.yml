@@ -12,7 +12,7 @@ id: paragraph.textbox.field_lead
 field_name: field_lead
 entity_type: paragraph
 bundle: textbox
-label: 'Heading & CTA'
+label: Lead
 description: ''
 required: false
 translatable: false
@@ -58,9 +58,15 @@ settings:
       icon_card:
         weight: 30
         enabled: false
+      icon_cards:
+        weight: 33
+        enabled: false
       lead:
         weight: 31
         enabled: true
+      media_cards:
+        weight: 35
+        enabled: false
       section:
         weight: 32
         enabled: false

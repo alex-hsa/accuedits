@@ -735,6 +735,33 @@ html {
   --tw-backdrop-sepia:  ;
 }
 
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  transition-duration: 200ms;
+  height: 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding-left: 0.563rem;
+  padding-right: 0.563rem;
+  border-radius: var(--rounded-badge, 1.9rem);
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-border-opacity)));
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-b1,oklch(var(--b1)/var(--tw-bg-opacity)));
+  --tw-text-opacity: 1;
+  color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
+}
+
 .breadcrumbs {
   max-width: 100%;
   overflow-x: auto;
@@ -1274,6 +1301,10 @@ html {
 .link {
   cursor: pointer;
   text-decoration-line: underline;
+}
+
+:where(.menu li) .badge {
+  justify-self: end;
 }
 
 .mockup-code {
@@ -2825,10 +2856,6 @@ details.collapse summary::-webkit-details-marker {
   justify-content: space-between;
 }
 
-.gap-2 {
-  gap: 0.5rem;
-}
-
 .gap-4 {
   gap: 1rem;
 }
@@ -3184,10 +3211,6 @@ details.collapse summary::-webkit-details-marker {
 
 .bg-primary\/\[\.25\] {
   background-color: var(--fallback-p,oklch(var(--p)/.25));
-}
-
-.bg-primary\/\[\.2\] {
-  background-color: var(--fallback-p,oklch(var(--p)/.2));
 }
 
 .bg-primary\/\[\.5\] {
@@ -3680,10 +3703,6 @@ details.collapse summary::-webkit-details-marker {
 .\[\&\>figure_img\]\:object-cover>figure img {
   -o-object-fit: cover;
      object-fit: cover;
-}
-
-.\[\&\>hgroup\.glass_div\.eyebrow\]\:pt-8>hgroup.glass div.eyebrow {
-  padding-top: 2rem;
 }
 
 .\[\&\>i\:first-child\]\:text-4xl>i:first-child {

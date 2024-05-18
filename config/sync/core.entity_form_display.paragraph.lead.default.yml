@@ -14,8 +14,29 @@ dependencies:
     - field.field.paragraph.lead.field_width
     - paragraphs.paragraphs_type.lead
   module:
+    - field_group
     - link
     - text
+third_party_settings:
+  field_group:
+    group_settings:
+      children:
+        - field_alignment
+        - field_background_color
+        - field_background_glass
+        - field_width
+      label: Settings
+      region: content
+      parent_name: ''
+      weight: 5
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: true
+        description: ''
+        required_fields: false
 id: paragraph.lead.default
 targetEntityType: paragraph
 bundle: lead
@@ -23,7 +44,7 @@ mode: default
 content:
   field_alignment:
     type: options_select
-    weight: 5
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -35,7 +56,7 @@ content:
     third_party_settings: {  }
   field_background_glass:
     type: boolean_checkbox
-    weight: 6
+    weight: 8
     region: content
     settings:
       display_label: true
@@ -81,7 +102,7 @@ content:
     third_party_settings: {  }
   field_width:
     type: options_select
-    weight: 8
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }

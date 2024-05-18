@@ -1,0 +1,11 @@
+name: Preview
+type: module
+description: 'Allows to preview selected entities in any view mode before saving.'
+package: Preview
+configure: preview.settings
+core_version_requirement: ^9.1 || ^10
+
+# Information added by Drupal.org packaging script on 2024-01-22
+version: '1.0.0-alpha1'
+project: 'all_entity_preview'
+datestamp: 1705912379

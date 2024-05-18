@@ -8,7 +8,6 @@ dependencies:
     - field.field.paragraph.spotlight.field_flip
     - field.field.paragraph.spotlight.field_lead
     - field.field.paragraph.spotlight.field_media
-    - field.field.paragraph.spotlight.field_variant
     - paragraphs.paragraphs_type.spotlight
   module:
     - field_group
@@ -18,15 +17,13 @@ third_party_settings:
   field_group:
     group_options:
       children:
-        - field_variant
-        - field_media
         - field_background_color
         - field_flip
         - field_border
-      label: Options
+      label: Settings
       region: content
       parent_name: ''
-      weight: 1
+      weight: 0
       format_type: details
       format_settings:
         classes: ''
@@ -62,12 +59,12 @@ content:
     third_party_settings: {  }
   field_lead:
     type: paragraphs
-    weight: 0
+    weight: 1
     region: content
     settings:
       title: Paragraph
       title_plural: Paragraphs
-      edit_mode: open
+      edit_mode: closed
       closed_mode: preview
       autocollapse: none
       closed_mode_threshold: 0
@@ -82,16 +79,10 @@ content:
     third_party_settings: {  }
   field_media:
     type: media_library_widget
-    weight: 3
+    weight: 2
     region: content
     settings:
       media_types: {  }
-    third_party_settings: {  }
-  field_variant:
-    type: options_select
-    weight: 2
-    region: content
-    settings: {  }
     third_party_settings: {  }
 hidden:
   created: true

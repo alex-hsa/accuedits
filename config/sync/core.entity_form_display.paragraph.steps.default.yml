@@ -21,10 +21,10 @@ third_party_settings:
         - field_flip
         - field_orientation
         - field_border
-      label: Options
+      label: Settings
       region: content
       parent_name: ''
-      weight: 2
+      weight: 0
       format_type: details
       format_settings:
         classes: ''
@@ -60,7 +60,7 @@ content:
     third_party_settings: {  }
   field_items:
     type: paragraphs
-    weight: 4
+    weight: 2
     region: content
     settings:
       title: Paragraph
@@ -80,12 +80,12 @@ content:
     third_party_settings: {  }
   field_lead:
     type: paragraphs
-    weight: 0
+    weight: 1
     region: content
     settings:
       title: Paragraph
       title_plural: Paragraphs
-      edit_mode: open
+      edit_mode: closed
       closed_mode: preview
       autocollapse: none
       closed_mode_threshold: 0
