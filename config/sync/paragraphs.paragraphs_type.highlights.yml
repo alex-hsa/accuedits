@@ -4,6 +4,11 @@ status: true
 dependencies:
   content:
     - 'file:file:31acd6f5-0223-4e67-95e6-310c4e4c6545'
+  module:
+    - paragraphs_library
+third_party_settings:
+  paragraphs_library:
+    allow_library_conversion: true
 id: highlights
 label: Highlights
 icon_uuid: 31acd6f5-0223-4e67-95e6-310c4e4c6545

@@ -4,6 +4,11 @@ status: true
 dependencies:
   content:
     - 'file:file:66af6a0e-d21d-4e55-9040-3c9a1c0b28b0'
+  module:
+    - paragraphs_library
+third_party_settings:
+  paragraphs_library:
+    allow_library_conversion: true
 id: media_cards
 label: 'Media Cards'
 icon_uuid: 66af6a0e-d21d-4e55-9040-3c9a1c0b28b0

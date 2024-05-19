@@ -4,6 +4,11 @@ status: true
 dependencies:
   content:
     - 'file:file:ad2942b7-2dd0-45fb-bebe-f96ace61c5a0'
+  module:
+    - paragraphs_library
+third_party_settings:
+  paragraphs_library:
+    allow_library_conversion: true
 id: icon_cards
 label: 'Icon Cards'
 icon_uuid: ad2942b7-2dd0-45fb-bebe-f96ace61c5a0

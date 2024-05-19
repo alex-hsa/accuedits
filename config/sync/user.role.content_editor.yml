@@ -16,6 +16,7 @@ dependencies:
     - frontend_editing
     - masquerade
     - node
+    - paragraphs
     - path
     - system
     - taxonomy
@@ -65,3 +66,4 @@ permissions:
   - 'view own unpublished content'
   - 'view page revisions'
   - 'view the administration theme'
+  - 'view unpublished paragraphs'
