@@ -1,0 +1,5 @@
+content_templates.add_page:
+  route_name: content_templates.node.add
+  title: 'Create from template'
+  appears_on:
+    - system.admin_content

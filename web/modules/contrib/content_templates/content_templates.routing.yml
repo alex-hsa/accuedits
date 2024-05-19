@@ -1,0 +1,22 @@
+content_templates.node.template:
+  path: '/node/{node}/template'
+  defaults:
+    _controller: '\Drupal\content_templates\Controller\TemplateController::addEdit'
+    _title_callback: '\Drupal\content_templates\Controller\TemplateController::templatePageTitle'
+  requirements:
+    _custom_access: '\Drupal\content_templates\Controller\TemplateAccess::create'
+  options:
+    _node_operation_route: TRUE
+    parameters:
+      node:
+        type: entity:node
+
+content_templates.node.add:
+  path: '/node/template'
+  defaults:
+    _controller: '\Drupal\content_templates\Controller\TemplateController::fromTemplate'
+    _title: 'Create from template'
+  requirements:
+    _permission: 'create content from template'
+  options:
+    _admin_route: TRUE

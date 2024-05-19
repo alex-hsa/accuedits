@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update hooks for content_template module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function content_templates_install($is_syncing) {
+  if (!$is_syncing) {
+    $config = \Drupal::configFactory()
+      ->getEditable('quick_node_clone.settings');
+    $config->set('text_to_prepend_to_title', 'Create from template')->save(TRUE);
+  }
+}
+
+/**
+ * Change the text to prepend to the title.
+ */
+function content_templates_update_10001() {
+  $config = \Drupal::configFactory()
+    ->getEditable('quick_node_clone.settings');
+  $config->set('text_to_prepend_to_title', 'Create from template')->save(TRUE);
+}

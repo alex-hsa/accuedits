@@ -1,0 +1,10 @@
+uuid: 4e764c55-ffdf-4bf1-b80d-4b77fc470ff7
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: EsHxYXL8s55we8LzV8NjY-nS5b4mdPeBmDUAryer4gM
+name: 'Template category'
+vid: template_category
+description: ''
+weight: 0

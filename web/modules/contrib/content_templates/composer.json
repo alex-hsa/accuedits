@@ -1,0 +1,17 @@
+{
+  "name": "drupal/content_templates",
+  "description": "Content templates",
+  "type": "drupal-module",
+  "authors": [
+    {
+      "name": "1xINTERNET",
+      "role": "maintainer"
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "drupal/quick_node_clone": "^1.10"
+  }
+}

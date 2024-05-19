@@ -1,0 +1,4 @@
+content_templates.node.template:
+  route_name: content_templates.node.template
+  group: node
+  title: 'Create template'

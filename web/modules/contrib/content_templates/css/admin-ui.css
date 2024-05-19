@@ -1,0 +1,77 @@
+.template-list ul.category-list {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin: 0;
+}
+
+.template-list ul.category-list .contextual {
+  display: none;
+}
+
+.template-list ul.category-list > li {
+  padding: 5px;
+  width: 200px;
+  height: 250px;
+  margin: 10px 10px;
+  list-style: none;
+  text-align: center;
+}
+
+.template-list .content-template {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.template-list .template-image {
+  position: relative;
+  min-height: 200px;
+}
+
+.template-list .template-image a {
+  display: block;
+}
+
+.template-list .template-image a.default-image {
+  background: url('../images/page.png');
+  background-size: cover;
+}
+
+.template-list .template-actions {
+  text-align: left;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.template-list .template-actions a {
+  position: relative;
+  padding-left: 25px;
+  line-height: 25px;
+  display: inline-block;
+  overflow: hidden;
+  text-indent: -9999em;
+}
+
+.template-list .template-actions a:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+}
+
+.template-list .template-actions a.edit-template:before {
+  background-image: url('../images/edit.png');
+  top: -8px;
+  left: -5px;
+}
+
+.template-list .template-actions a.clone-template:before {
+  background-image: url('../images/clone.png');
+  width: 25px;
+  height: 25px;
+}

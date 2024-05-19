@@ -15,6 +15,7 @@ module:
   comment: 0
   config: 0
   contact: 0
+  content_templates: 0
   contextual: 0
   crop: 0
   datetime: 0
@@ -60,6 +61,7 @@ module:
   path: 0
   path_alias: 0
   preview: 0
+  quick_node_clone: 0
   require_revision_log_message: 0
   responsive_image: 0
   responsive_tables_filter: 0

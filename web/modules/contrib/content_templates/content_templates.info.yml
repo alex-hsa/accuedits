@@ -1,0 +1,15 @@
+name: 'Content templates'
+description: 'Allows to create templates for faster content creation'
+type: module
+core_version_requirement: ^8 || ^9 || ^10
+package: Administration
+dependencies:
+  - drupal:node
+  - drupal:media
+  - drupal:taxonomy
+  - quick_node_clone:quick_node_clone
+
+# Information added by Drupal.org packaging script on 2023-10-11
+version: '1.0.0'
+project: 'content_templates'
+datestamp: 1697041551

@@ -1,0 +1,50 @@
+uuid: f08beb59-9097-4d2c-9372-6ece52ca9fb4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.content_template.content_template.field_category
+    - field.field.content_template.content_template.field_image
+    - field.field.content_template.content_template.field_source
+  module:
+    - content_templates
+_core:
+  default_config_hash: homnrT3l97ICAgLj2sDcu8OeYjvqsLOTc1cfbi-G5mM
+id: content_template.content_template.default
+targetEntityType: content_template
+bundle: content_template
+mode: default
+content:
+  create_from_template:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_category:
+    weight: 2
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_image:
+    type: entity_reference_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  name:
+    label: hidden
+    type: string
+    weight: 1
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  field_source: true
+  user_id: true

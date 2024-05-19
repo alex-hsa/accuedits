@@ -1,0 +1,31 @@
+{#
+/**
+ * @file content_template.html.twig
+ * Default theme implementation to present Node template data.
+ *
+ * This template is used when viewing Node template pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_content_template()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('content-template') }}>
+  {% if content %}
+    <h5>{{ content.name }}</h5>
+    <div class="template-image">
+      <a title="{{ 'Create content from this template'|t }}" href="{{ content.url }}"{% if content.field_image['#theme'] is empty %} class="default-image"{% endif %}>
+        {{ content.field_image }}
+      </a>
+      <div class="template-actions">
+        {{ content.clone_url }}
+        {{ content.edit_url }}
+      </div>
+    </div>
+  {% endif %}
+</div>
