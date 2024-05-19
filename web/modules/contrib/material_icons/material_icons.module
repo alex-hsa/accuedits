@@ -1,0 +1,49 @@
+<?php
+
+/**
+ * @file
+ * Contains material_icons.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function material_icons_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the ckeditor_material_icons module.
+    case 'help.page.material_icons':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Material Icons support for fields and CKEditor') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function material_icons_theme($existing, $type, $theme, $path) {
+  return [
+    'material_icon' => [
+      'variables' => [
+        'icon' => '',
+        'family' => '',
+        'classes' => '',
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function material_icons_page_attachments(array &$attachments) {
+  $families = \Drupal::config('material_icons.settings')->get('families');
+  foreach ($families as $family) {
+    $attachments['#attached']['library'][] = 'material_icons/' . $family;
+  }
+}

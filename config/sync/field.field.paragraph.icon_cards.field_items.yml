@@ -1,0 +1,91 @@
+uuid: fb3c96b4-acc5-4ca9-8293-25f858ea04d2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_items
+    - paragraphs.paragraphs_type.icon_card
+    - paragraphs.paragraphs_type.icon_cards
+  module:
+    - entity_reference_revisions
+id: paragraph.icon_cards.field_items
+field_name: field_items
+entity_type: paragraph
+bundle: icon_cards
+label: Items
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      icon_card: icon_card
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 6
+        enabled: false
+      accordion_item:
+        weight: 7
+        enabled: false
+      card:
+        weight: 3
+        enabled: false
+      carousel:
+        weight: 25
+        enabled: false
+      featured:
+        weight: 26
+        enabled: false
+      from_library:
+        weight: 27
+        enabled: false
+      grid:
+        weight: 4
+        enabled: false
+      hero:
+        weight: 10
+        enabled: false
+      highlights:
+        weight: 30
+        enabled: false
+      highlights_item:
+        weight: 31
+        enabled: false
+      icon_card:
+        weight: 32
+        enabled: true
+      icon_cards:
+        weight: 33
+        enabled: false
+      lead:
+        weight: 34
+        enabled: false
+      media_cards:
+        weight: 35
+        enabled: false
+      section:
+        weight: 36
+        enabled: false
+      spotlight:
+        weight: 37
+        enabled: false
+      step_item:
+        weight: 39
+        enabled: false
+      steps:
+        weight: 38
+        enabled: false
+      table:
+        weight: 40
+        enabled: false
+      text_shout:
+        weight: 42
+        enabled: false
+      textbox:
+        weight: 41
+        enabled: false
+field_type: entity_reference_revisions

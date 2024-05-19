@@ -1,0 +1,23 @@
+uuid: 490b0342-1400-4de6-beb4-ad264aa56a94
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_flip
+    - paragraphs.paragraphs_type.spotlight
+id: paragraph.spotlight.field_flip
+field_name: field_flip
+entity_type: paragraph
+bundle: spotlight
+label: 'Flip Media'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

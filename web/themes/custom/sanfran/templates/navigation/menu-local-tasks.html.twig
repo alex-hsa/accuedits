@@ -13,7 +13,9 @@
 #}
 {% if primary %}
   <h2 class="visually-hidden">{{ 'Primary tabs'|t }}</h2>
-  <ul class="tabs primary">{{ primary }}</ul>
+  {# <ul class="menu menu-horizontal bg-base-200 primary">{{ primary }}</ul> #}
+  <ul class="join join-vertical lg:join-horizontal">{{ primary }}</ul>
+  
 {% endif %}
 {% if secondary %}
   <h2 class="visually-hidden">{{ 'Secondary tabs'|t }}</h2>

@@ -1,0 +1,17 @@
+tablesaw-filter:
+  version: 1.x
+  css:
+    component:
+      css/tablesaw-base.css: {}
+      css/tablesaw-responsive.css: { media: screen }
+      css/tables.columntoggle.css: {}
+      css/customizations.css: {}
+  js:
+    js/tablesaw.min.js: {}
+    js/tablesaw-init.js: {}
+    js/Drupal/ajaxComplete.js: {}
+    js/customizations.js: {}
+  dependencies:
+    - core/jquery
+    - core/once
+    - core/drupal

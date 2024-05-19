@@ -1,0 +1,75 @@
+uuid: 6fd3e9cc-212d-4b92-b200-f64ebc214af3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.steps.field_background_color
+    - field.field.paragraph.steps.field_border
+    - field.field.paragraph.steps.field_flip
+    - field.field.paragraph.steps.field_items
+    - field.field.paragraph.steps.field_lead
+    - field.field.paragraph.steps.field_orientation
+    - paragraphs.paragraphs_type.steps
+  module:
+    - entity_reference_revisions
+    - options
+id: paragraph.steps.default
+targetEntityType: paragraph
+bundle: steps
+mode: default
+content:
+  field_background_color:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: full
+      link: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_border:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_flip:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_items:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_lead:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_orientation:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+hidden: {  }

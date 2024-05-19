@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * hook_requirements
+ */
+function smartmenus_requirements($phase) {
+  if ($phase === 'install') {
+    if (function_exists('libraries_get_path')) {
+      $detected = libraries_get_path('smartmenus');
+    }
+    else {
+      $detected = is_dir('libraries/smartmenus');
+    }
+    $message = $detected ? ' Library detected.' : ' Library missing. Check the readme file.';
+    $severity = $detected ? REQUIREMENT_OK : REQUIREMENT_ERROR;
+    return [
+      'smartmenus' => [
+        'title' => 'Smartmenus' . $message,
+        'severity' => $severity
+      ]
+    ];
+  }
+}
+

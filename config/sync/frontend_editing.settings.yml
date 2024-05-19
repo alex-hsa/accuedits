@@ -1,0 +1,40 @@
+_core:
+  default_config_hash: 1kLwmHO7A0QSECnL0d81yFOc5Aw5mPjgrq4Sz3Bp3K8
+entity_types:
+  paragraph:
+    - accordion
+    - accordion_item
+    - card
+    - carousel
+    - featured
+    - from_library
+    - grid
+    - hero
+    - highlights
+    - highlights_item
+    - icon_card
+    - icon_cards
+    - lead
+    - media_cards
+    - section
+    - spotlight
+    - step_item
+    - steps
+    - table
+    - text_shout
+    - textbox
+  paragraphs_library_item:
+    - paragraphs_library_item
+sidebar_width: 30
+full_width: 80
+ajax_content_update: false
+hover_highlight: false
+exclude_fields: {  }
+automatic_preview: true
+primary_color: '#10857f'
+ui_toggle: true
+ui_toggle_settings:
+  offset_top: '85'
+  offset_bottom: ''
+  offset_left: ''
+  offset_right: '10'

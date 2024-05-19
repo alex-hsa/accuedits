@@ -1,0 +1,5 @@
+require_revisions_log_message.admin_settings_form:
+  title: 'Require Revision Log Message'
+  description: 'Allows log message to be required per content type.'
+  route_name: require_revision_log_message.admin_settings_form
+  parent: system.admin_config_content

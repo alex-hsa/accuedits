@@ -1,0 +1,76 @@
+uuid: 8cb429b2-2c4c-48e8-8431-299eb96cee3e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.text_shout.field_background_color
+    - field.field.paragraph.text_shout.field_border
+    - field.field.paragraph.text_shout.field_description
+    - field.field.paragraph.text_shout.field_heading_level
+    - field.field.paragraph.text_shout.field_main_title
+    - paragraphs.paragraphs_type.text_shout
+  module:
+    - field_group
+    - text
+third_party_settings:
+  field_group:
+    group_settings:
+      children:
+        - field_background_color
+        - field_border
+      label: Settings
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: true
+        description: ''
+        required_fields: true
+id: paragraph.text_shout.default
+targetEntityType: paragraph
+bundle: text_shout
+mode: default
+content:
+  field_background_color:
+    type: options_select
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_border:
+    type: boolean_checkbox
+    weight: 5
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_description:
+    type: text_textarea
+    weight: 3
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_heading_level:
+    type: number
+    weight: 2
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_main_title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

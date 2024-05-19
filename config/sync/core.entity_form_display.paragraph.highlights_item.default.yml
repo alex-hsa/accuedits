@@ -1,0 +1,51 @@
+uuid: 678e1c91-6cf7-450c-8207-359c9a69fca8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.highlights_item.field_background_color
+    - field.field.paragraph.highlights_item.field_cta
+    - field.field.paragraph.highlights_item.field_description
+    - field.field.paragraph.highlights_item.field_heading
+    - paragraphs.paragraphs_type.highlights_item
+  module:
+    - link
+    - text
+id: paragraph.highlights_item.default
+targetEntityType: paragraph
+bundle: highlights_item
+mode: default
+content:
+  field_background_color:
+    type: options_select
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_cta:
+    type: link_default
+    weight: 4
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_description:
+    type: text_textarea
+    weight: 3
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_heading:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

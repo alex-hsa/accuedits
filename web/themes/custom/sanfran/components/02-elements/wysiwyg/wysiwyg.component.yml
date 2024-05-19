@@ -1,0 +1,15 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: 'Wysiwyg'
+status: 'stable'
+slots:
+  wysiwyg:
+    title: Wysiwyg content
+props:
+  type: object
+  properties:
+    'text':
+      type: 'string'
+      title: 'Link Title'
+      description: 'Link title'
+      examples:
+        - 'Click me'

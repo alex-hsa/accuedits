@@ -1,0 +1,22 @@
+add content template entities:
+  title: 'Create new Content template entities'
+
+administer content template entities:
+  title: 'Administer Content template entities'
+  description: 'Allow to access the administration form to configure Content template entities.'
+  restrict access: true
+
+delete content template entities:
+  title: 'Delete Content template entities'
+
+edit content template entities:
+  title: 'Edit Content template entities'
+
+view published content template entities:
+  title: 'View published Content template entities'
+
+view unpublished content template entities:
+  title: 'View unpublished Content template entities'
+
+create content from template:
+  title: 'Create node from template'

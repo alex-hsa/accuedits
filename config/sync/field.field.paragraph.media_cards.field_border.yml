@@ -1,0 +1,23 @@
+uuid: 864f93b1-1bcd-4670-9409-61b924310e20
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_border
+    - paragraphs.paragraphs_type.media_cards
+id: paragraph.media_cards.field_border
+field_name: field_border
+entity_type: paragraph
+bundle: media_cards
+label: 'Show Border'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

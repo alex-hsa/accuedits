@@ -1,0 +1,15 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: "Grid"
+status: "stable"
+slots:
+  grid_items:
+    title: Grid items
+props:
+  type: object
+  properties:
+    cols:
+      type: string
+      title: Columns
+      description: Grid columns
+      examples:
+        - "col-12 col-md-6 col-lg-4"

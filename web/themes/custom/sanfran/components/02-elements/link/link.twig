@@ -1,0 +1,6 @@
+{% set classes_link = [
+    'link no-underline hover relative',
+    classes,
+  ]|join(' ')|trim %}
+
+<a class="{{ classes_link }}" href="{{ url }}">{{ text }}</a>

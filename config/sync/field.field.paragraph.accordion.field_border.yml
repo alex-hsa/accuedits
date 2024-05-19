@@ -1,0 +1,23 @@
+uuid: 52826f63-54c2-4e9c-a8b5-0dbea4e9cd2c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_border
+    - paragraphs.paragraphs_type.accordion
+id: paragraph.accordion.field_border
+field_name: field_border
+entity_type: paragraph
+bundle: accordion
+label: 'Show Border'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

@@ -1,0 +1,49 @@
+{% if (background_color == 'white') or (background_color == '') %}
+  {% set background_color_class = 'border border-l-8' %}
+{% else %}
+  {% set background_color_class = 'bg-base-' ~ background_color ~ ' border-l-8 border-' ~ background_color %}
+{% endif %}
+
+{% set classes_paragraph = [
+    paragraph.bundle,
+    'bg-' ~ background_color ~ '/[.25]',
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished',
+  ]|join(' ')|trim %}
+
+<article {{ attributes.addClass(classes_paragraph).addClass(background_color_class).addClass('flex flex-col h-full p-4 rounded-lg') }}>
+  {{ quick_edit }}
+
+  {% if eyebrow %}
+      <div class="eyebrow uppercase">{{ eyebrow }}</div>
+  {% endif %}
+
+  {% if heading %}
+    {{ include('sanfran:headings', {
+        level: '3',
+        text: heading,
+      })
+    }}
+  {% endif %}
+
+  {% if description %}
+    {{ include('sanfran:wysiwyg', {
+        wysiwyg: description,
+      })
+    }}
+  {% endif %}
+
+  {% if ctaText %}
+    <div class="card-actions justify-start">
+      {{ include('sanfran:link', {
+        classes: 'link link-primary font-bold text-' ~ background_color,
+        text: ctaText,
+        url: ctaHref,
+        })
+      }}
+    </div>
+  {% endif %}
+
+</article>

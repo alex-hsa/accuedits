@@ -1,0 +1,24 @@
+material_icons_icons:
+  ckeditor5:
+    plugins:
+      - materialIcons.MaterialIcons
+    config:
+      materialIcons:
+        openDialog:
+          func:
+            name: Drupal.ckeditor5.openDialog
+            invoke: false
+        dialogSettings:
+          height: 75%
+          dialogClass: material-icons-widget-modal
+          title: Insert Material Icons
+  drupal:
+    label: Material Icons
+    admin_library: material_icons/cke.admin
+    toolbar_items:
+      materialIcons:
+        label: Material Icons
+    library: material_icons/editor
+    elements:
+      - <span>
+      - <span class>

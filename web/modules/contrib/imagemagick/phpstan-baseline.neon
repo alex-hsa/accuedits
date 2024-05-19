@@ -1,0 +1,31 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Class Drupal\\\\imagemagick\\\\Plugin\\\\FileMetadata\\\\ImagemagickIdentify has an uninitialized readonly property \\$eventDispatcher\\. Assign it in the constructor\\.$#"
+			count: 1
+			path: src/Plugin/FileMetadata/ImagemagickIdentify.php
+
+		-
+			message: "#^Class Drupal\\\\imagemagick\\\\Plugin\\\\FileMetadata\\\\ImagemagickIdentify has an uninitialized readonly property \\$execManager\\. Assign it in the constructor\\.$#"
+			count: 1
+			path: src/Plugin/FileMetadata/ImagemagickIdentify.php
+
+		-
+			message: "#^Readonly property Drupal\\\\imagemagick\\\\Plugin\\\\FileMetadata\\\\ImagemagickIdentify\\:\\:\\$eventDispatcher is assigned outside of the constructor\\.$#"
+			count: 1
+			path: src/Plugin/FileMetadata/ImagemagickIdentify.php
+
+		-
+			message: "#^Readonly property Drupal\\\\imagemagick\\\\Plugin\\\\FileMetadata\\\\ImagemagickIdentify\\:\\:\\$execManager is assigned outside of the constructor\\.$#"
+			count: 1
+			path: src/Plugin/FileMetadata/ImagemagickIdentify.php
+
+		-
+			message: "#^Parameter \\#2 \\$message of method Drupal\\\\Core\\\\Form\\\\FormStateInterface\\:\\:setErrorByName\\(\\) expects string, Drupal\\\\Component\\\\Render\\\\FormattableMarkup given\\.$#"
+			count: 2
+			path: src/Plugin/ImageToolkit/ImagemagickToolkit.php
+
+		-
+			message: "#^Parameter \\#2 \\$message of method Drupal\\\\Core\\\\Form\\\\FormStateInterface\\:\\:setErrorByName\\(\\) expects string, Drupal\\\\Core\\\\StringTranslation\\\\TranslatableMarkup given\\.$#"
+			count: 1
+			path: src/Plugin/ImageToolkit/ImagemagickToolkit.php

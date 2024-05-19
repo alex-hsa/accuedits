@@ -1,0 +1,19 @@
+{
+  "name": "drupal/frontend_editing",
+  "description": "Frontend editing.",
+  "type": "drupal-module",
+  "require": {
+    "drupal/paragraphs_edit": "^3.0"
+  },
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://www.drupal.org/project/frontend_editing",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "http://drupal.org/project/issues/frontend_editing",
+    "source": "http://cgit.drupalcode.org/frontend_editing"
+  },
+  "suggest": {
+    "drupal/all_entity_preview": "Allows previewing entities in frontend editing."
+  }
+}

@@ -1,0 +1,109 @@
+uuid: 4971c446-7e18-4cea-919c-13355293c5d3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.steps.field_background_color
+    - field.field.paragraph.steps.field_border
+    - field.field.paragraph.steps.field_flip
+    - field.field.paragraph.steps.field_items
+    - field.field.paragraph.steps.field_lead
+    - field.field.paragraph.steps.field_orientation
+    - paragraphs.paragraphs_type.steps
+  module:
+    - field_group
+    - paragraphs
+third_party_settings:
+  field_group:
+    group_options:
+      children:
+        - field_background_color
+        - field_flip
+        - field_orientation
+        - field_border
+      label: Settings
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: true
+        description: ''
+        required_fields: true
+id: paragraph.steps.default
+targetEntityType: paragraph
+bundle: steps
+mode: default
+content:
+  field_background_color:
+    type: options_select
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_border:
+    type: boolean_checkbox
+    weight: 6
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_flip:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_items:
+    type: paragraphs
+    weight: 2
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: preview
+      autocollapse: all
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: step_item
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        convert: '0'
+        duplicate: duplicate
+    third_party_settings: {  }
+  field_lead:
+    type: paragraphs
+    weight: 1
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: preview
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: button
+      form_display_mode: default
+      default_paragraph_type: lead
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        convert: '0'
+        duplicate: duplicate
+    third_party_settings: {  }
+  field_orientation:
+    type: options_select
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

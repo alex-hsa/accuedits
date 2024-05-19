@@ -1,0 +1,25 @@
+{
+    "name": "drupal/smartmenus",
+    "description": "Responsive drop-down menus with the <a href=\"http://www.smartmenus.org/\">Smartmenus</a> jQuery plugin.",
+    "type": "drupal-module",
+    "require": {
+        "drmonty/smartmenus": "1.1.1"
+    },
+    "authors": [
+        {
+            "name": "Jen Lampton",
+            "homepage": "http://drupal.org/user/85586",
+            "role": "Maintainer"
+        },
+        {
+            "name": "Vishwa Chikate",
+            "homepage": "https://www.drupal.org/user/2857973",
+            "role": "Maintainer"
+        }
+    ],
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/smartmenus",
+        "source": "http://cgit.drupalcode.org/smartmenus"
+    },
+    "license": "MIT"
+}

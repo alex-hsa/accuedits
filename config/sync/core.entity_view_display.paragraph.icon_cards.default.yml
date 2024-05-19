@@ -1,0 +1,93 @@
+uuid: 204c445b-4863-46cf-81e2-7946d67b4993
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.icon_cards.field_background_color
+    - field.field.paragraph.icon_cards.field_border
+    - field.field.paragraph.icon_cards.field_columns
+    - field.field.paragraph.icon_cards.field_items
+    - field.field.paragraph.icon_cards.field_lead
+    - field.field.paragraph.icon_cards.field_link_card
+    - field.field.paragraph.icon_cards.field_orientation
+    - field.field.paragraph.icon_cards.field_placement
+    - paragraphs.paragraphs_type.icon_cards
+  module:
+    - entity_reference_revisions
+    - options
+id: paragraph.icon_cards.default
+targetEntityType: paragraph
+bundle: icon_cards
+mode: default
+content:
+  field_background_color:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: full
+      link: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_border:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_columns:
+    type: number_integer
+    label: hidden
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_items:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_lead:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_link_card:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_orientation:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_placement:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+hidden: {  }

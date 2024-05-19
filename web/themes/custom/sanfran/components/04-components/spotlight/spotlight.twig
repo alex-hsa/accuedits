@@ -1,0 +1,58 @@
+{% if (flip == 'yes') and (border == 'no') and (background_color == '') %}
+  {% set variant_classes = 'flex flex-row-reverse [&>div.media_img]:rounded-lg [&>div.media_iframe]:rounded-lg' %}
+{% elseif (flip == 'yes') and (border == 'no') and (background_color != '') %}
+  {% set variant_classes = 'flex flex-row-reverse [&>div.media_img]:rounded-l-lg [&>div.media_iframe]:rounded-l-lg rounded-lg' %}
+{% elseif (flip == 'yes') and (border == 'yes') and (background_color != '') %}
+  {% set variant_classes = 'flex flex-row-reverse [&>div.media_img]:rounded-l-lg [&>div.media_iframe]:rounded-l-lg border rounded-lg' %}
+{% elseif (flip == 'no') and (border == 'no') and (background_color != '') %}
+  {% set variant_classes = 'flex flex-row [&>div.media_img]:rounded-r-lg [&>div.media_iframe]:rounded-r-lg rounded-lg' %}
+{% elseif (flip == 'no') and (border == 'yes') and (background_color != '') %}
+  {% set variant_classes = 'flex flex-row border rounded-lg [&>div.media_img]:rounded-r-lg [&>div.media_iframe]:rounded-r-lg' %}
+{% else %}
+  {% set variant_classes = 'flex flex-row [&>div.media_img]:rounded-lg [&>div.media_iframe]:rounded-lg' %}
+{% endif %}
+
+{% if background_color %}
+  {% set background_color_class = 'bg-' ~ background_color ~ '/[.25]' %}
+{% endif %}
+
+{% set paragraph_classes = [
+    paragraph.bundle,
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished',
+  ]|join(' ')|trim %}
+
+<section {{ attributes.addClass(paragraph_classes).addClass(variant_classes).addClass(background_color_class) }}>
+  {{ quick_edit }}
+ 
+  {# Display Lead paragraph #}
+  <div class="lead my-auto p-8 w-1/2">
+      {% for key, item in lead_item %}
+        {% if key|first != '#' %}
+            {{ item }}
+        {% endif %}
+      {% endfor %}
+  </div>
+
+  {# Display either an image or a video #}
+  <div class="media w-1/2 [&>figure]:h-full [&>figure_img]:object-cover [&>figure_img]:w-full [&>figure_img]:h-full">
+    {% if image is not empty %} 
+      {{ include('sanfran:figure', {
+          image,
+          imageAlt,
+          image_style: '16_9_2xl_768x432',
+        })
+      }}
+    {% endif %}
+
+    {% if video_remote %} 
+      {{ include('sanfran:remote-video', {
+          video_remote,
+          })
+      }}
+    {% endif %}
+  </div>
+
+</section>

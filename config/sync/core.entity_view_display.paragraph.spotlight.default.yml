@@ -1,0 +1,66 @@
+uuid: 97f1cc37-a408-499c-9697-69f7ca45ab32
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.spotlight.field_background_color
+    - field.field.paragraph.spotlight.field_border
+    - field.field.paragraph.spotlight.field_flip
+    - field.field.paragraph.spotlight.field_lead
+    - field.field.paragraph.spotlight.field_media
+    - paragraphs.paragraphs_type.spotlight
+  module:
+    - entity_reference_revisions
+id: paragraph.spotlight.default
+targetEntityType: paragraph
+bundle: spotlight
+mode: default
+content:
+  field_background_color:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: full
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_border:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_flip:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_lead:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_media:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden: {  }

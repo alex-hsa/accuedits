@@ -1,0 +1,28 @@
+/* The original Tablesaw library sets thead elements
+ to display: none; in mobile contexts. This is not screen
+ reader accessible. This change uses the Bootstrap framework's
+ approach to make them screen-reader only visible */
+@media screen and (max-width: 39.9375em) {
+  .tablesaw-stack thead td,
+  .tablesaw-stack thead th {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+    display: table-cell;
+  }
+}
+/* The original Tablesaw library left-aligns content. Drupal provides `views-align-right` and `views-align-center` classes which should take precedence over this default. */
+.tablesaw th.views-align-right,
+.tablesaw td.views-align-right {
+  text-align: right;
+}
+.tablesaw th.views-align-center,
+.tablesaw td.views-align-center {
+  text-align: center;
+}

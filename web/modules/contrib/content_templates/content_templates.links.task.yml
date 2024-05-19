@@ -1,0 +1,26 @@
+content_templates.node.template:
+  route_name: content_templates.node.template
+  base_route: entity.node.canonical
+  title: 'Template'
+  weight: 50
+# Node template routing definition
+content_templates.settings_tab:
+  route_name: content_template.settings
+  title: 'Settings'
+  base_route: content_template.settings
+
+entity.content_template.canonical:
+  route_name: entity.content_template.canonical
+  base_route: entity.content_template.canonical
+  title: 'View'
+
+entity.content_template.edit_form:
+  route_name: entity.content_template.edit_form
+  base_route: entity.content_template.canonical
+  title: 'Edit'
+
+entity.content_template.delete_form:
+  route_name:  entity.content_template.delete_form
+  base_route:  entity.content_template.canonical
+  title: Delete
+  weight: 10

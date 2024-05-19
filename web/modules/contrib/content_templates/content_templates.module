@@ -1,0 +1,156 @@
+<?php
+
+/**
+ * @file
+ * Module file for the content_templates module.
+ */
+
+use Drupal\content_templates\Form\NodeDeleteForm;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Link;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function content_templates_theme() {
+  $theme = [];
+  $theme['content_template'] = [
+    'render element' => 'elements',
+    'file' => 'content_templates.page.inc',
+    'template' => 'content_template',
+  ];
+  return $theme;
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function content_templates_theme_suggestions_node_template(array $variables) {
+  $suggestions = [];
+  $entity = $variables['elements']['#content_template'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+
+  $suggestions[] = 'content_template__' . $sanitized_view_mode;
+  $suggestions[] = 'content_template__' . $entity->bundle();
+  $suggestions[] = 'content_template__' . $entity->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'content_template__' . $entity->id();
+  $suggestions[] = 'content_template__' . $entity->id() . '__' . $sanitized_view_mode;
+  return $suggestions;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete().
+ */
+function content_templates_node_delete(EntityInterface $entity) {
+  // Delete node templates if the source was deleted.
+  $template_storage = \Drupal::entityTypeManager()->getStorage('content_template');
+  $query = $template_storage->getQuery();
+  $query->accessCheck(TRUE);
+  $query->condition('field_source.target_id', $entity->id());
+  $ids = $query->execute();
+  if (!empty($ids)) {
+    $content_templates = $template_storage->loadMultiple($ids);
+    $template_storage->delete($content_templates);
+  }
+}
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function content_templates_entity_type_alter(array &$entity_types) {
+  /** @var \Drupal\Core\Entity\EntityTypeInterface[] $entity_types */
+  if (isset($entity_types['node'])) {
+    // Set the canonical url to be not in admin.
+    $entity_types['node']
+      ->setFormClass('delete', NodeDeleteForm::class);
+  }
+}
+
+/**
+ * Implements hook_modules_installed().
+ */
+function content_templates_modules_installed($modules) {
+  if (in_array('content_templates', $modules) && !\Drupal::service('config.installer')->isSyncing()) {
+    $field_config = FieldConfig::loadByName('content_template', 'content_template', 'field_source');
+    if ($field_config) {
+      $bundles_to_add = [];
+      $node_types = \Drupal::entityTypeManager()
+        ->getStorage('node_type')
+        ->loadMultiple();
+      foreach ($node_types as $node_type) {
+        $bundles_to_add[$node_type->id()] = $node_type->id();
+      }
+      if (!empty($bundles_to_add)) {
+        $handler_settings = $field_config->getSetting('handler_settings');
+        if (!isset($handler_settings['target_bundles'])) {
+          $handler_settings['target_bundles'] = [];
+        }
+        $handler_settings['target_bundles'] = array_merge($handler_settings['target_bundles'], $bundles_to_add);
+        // Add new allowed bundles.
+        $field_config->setSetting('handler_settings', $handler_settings);
+        // Save configuration.
+        $field_config->save();
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function content_templates_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (strpos($form_id, 'quick_node_clone') !== FALSE) {
+    $node = \Drupal::routeMatch()->getParameter('node');
+    if ($node instanceof NodeInterface) {
+      $form_state->set('cloned_from', $node->id());
+      $form['actions']['submit']['#submit'][] = 'content_templates_quick_node_clone_submit';
+    }
+  }
+}
+
+/**
+ * Submit callback for quick_node_clone forms.
+ */
+function content_templates_quick_node_clone_submit($form, FormStateInterface $form_state) {
+  $node = $form_state->getFormObject()->getEntity();
+  // Add mapping for the cloned node.
+  \Drupal::keyValue('content_templates')->set($node->id(), $form_state->get('cloned_from'));
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function content_templates_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $node = $form_state->getFormObject()->getEntity();
+  if (!$node->isNew()) {
+    // Get the mapping.
+    $template = \Drupal::keyValue('content_templates')->get($node->id());
+    if ($template) {
+      // Try to load the template node.
+      $template = \Drupal::entityTypeManager()->getStorage('node')->load($template);
+      if ($template) {
+        $url = $template->toUrl('edit-form');
+        $url->setOption('attributes', ['target' => '_blank']);
+        $form['meta']['template'] = [
+          '#type' => 'item',
+          '#title' => t('Created from'),
+          '#markup' => Link::fromTextAndUrl($template->label(), $url)->toString(),
+          '#wrapper_attributes' => ['class' => ['entity-meta__template']],
+        ];
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function content_templates_menu_local_tasks_alter(&$data, $route_name) {
+  if ($route_name == 'quick_node_clone.node.quick_clone') {
+    // Remove all tabs from the quick node clone form because it is confusing.
+    $data['tabs'][0] = [];
+  }
+}

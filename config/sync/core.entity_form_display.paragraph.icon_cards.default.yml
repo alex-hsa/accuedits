@@ -1,0 +1,126 @@
+uuid: 70f9932d-04fa-4553-aad2-4df268b62532
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.icon_cards.field_background_color
+    - field.field.paragraph.icon_cards.field_border
+    - field.field.paragraph.icon_cards.field_columns
+    - field.field.paragraph.icon_cards.field_items
+    - field.field.paragraph.icon_cards.field_lead
+    - field.field.paragraph.icon_cards.field_link_card
+    - field.field.paragraph.icon_cards.field_orientation
+    - field.field.paragraph.icon_cards.field_placement
+    - paragraphs.paragraphs_type.icon_cards
+  module:
+    - field_group
+    - paragraphs
+third_party_settings:
+  field_group:
+    group_settings:
+      children:
+        - field_background_color
+        - field_columns
+        - field_placement
+        - field_orientation
+        - field_border
+        - status
+      label: Settings
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: true
+        description: ''
+        required_fields: true
+id: paragraph.icon_cards.default
+targetEntityType: paragraph
+bundle: icon_cards
+mode: default
+content:
+  field_background_color:
+    type: options_select
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_border:
+    type: boolean_checkbox
+    weight: 8
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_columns:
+    type: number
+    weight: 5
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_items:
+    type: paragraphs
+    weight: 2
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: preview
+      autocollapse: all
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: accordion_item
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        convert: convert
+        duplicate: duplicate
+    third_party_settings: {  }
+  field_lead:
+    type: paragraphs
+    weight: 1
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: preview
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: button
+      form_display_mode: default
+      default_paragraph_type: lead
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        convert: '0'
+        duplicate: duplicate
+    third_party_settings: {  }
+  field_orientation:
+    type: options_select
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_placement:
+    type: options_select
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 9
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_link_card: true

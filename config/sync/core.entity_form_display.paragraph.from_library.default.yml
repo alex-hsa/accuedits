@@ -1,0 +1,24 @@
+uuid: 954ff1b0-0479-4a8c-9034-5e0e0aacf22c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.from_library.field_reusable_paragraph
+    - paragraphs.paragraphs_type.from_library
+_core:
+  default_config_hash: Bea-FFbHlBuiYLW8Et0hLK6VNECewxpIchDbOtC7IDo
+id: paragraph.from_library.default
+targetEntityType: paragraph
+bundle: from_library
+mode: default
+content:
+  field_reusable_paragraph:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

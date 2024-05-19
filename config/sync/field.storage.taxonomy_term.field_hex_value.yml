@@ -1,0 +1,21 @@
+uuid: d68f79e4-4d89-43bb-bd4f-80c7eda488b8
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.field_hex_value
+field_name: field_hex_value
+entity_type: taxonomy_term
+type: string
+settings:
+  max_length: 7
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,21 @@
+preview.entity_preview:
+  path: '/preview/{entity_preview}/{view_mode_id}'
+  defaults:
+    _controller: '\Drupal\preview\Controller\PreviewController::view'
+    _title_callback: '\Drupal\preview\Controller\PreviewController::title'
+  requirements:
+    _entity_preview_access: '{preview}'
+  options:
+    parameters:
+      entity_preview:
+        type: 'entity_preview'
+
+preview.settings:
+  path: '/admin/config/content/preview'
+  defaults:
+    _form: '\Drupal\preview\Form\PreviewSettingsForm'
+    _title: 'Configure entity preview'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE

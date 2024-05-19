@@ -1,0 +1,24 @@
+{% stories accordion_items with { 
+  title: 'AccuEdits/Molecules/Accordion-Item'
+} %}
+
+  {% story accordion_item with {
+    name: 'Default',
+      args: {
+        heading: 'This is an Accordion Title',
+        description: 'If a dog chews shoes whose shoes does he choose?',
+        background_color: 'secondary',
+        storybook: true,
+      }
+  } %}
+
+   {{ include('sanfran:accordion-item', {
+      heading,
+      description,
+      background_color,
+      storybook,
+     })
+   }}
+  {% endstory %}
+
+{% endstories %}

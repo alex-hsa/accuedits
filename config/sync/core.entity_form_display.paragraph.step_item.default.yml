@@ -1,0 +1,63 @@
+uuid: a6f3c874-520b-4747-805c-bc08d8d7d9f6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.step_item.field_cta
+    - field.field.paragraph.step_item.field_description
+    - field.field.paragraph.step_item.field_heading
+    - field.field.paragraph.step_item.field_icon_material
+    - field.field.paragraph.step_item.field_step_number
+    - paragraphs.paragraphs_type.step_item
+  module:
+    - link
+    - material_icons
+    - text
+id: paragraph.step_item.default
+targetEntityType: paragraph
+bundle: step_item
+mode: default
+content:
+  field_cta:
+    type: link_default
+    weight: 5
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_description:
+    type: text_textarea
+    weight: 4
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_heading:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_icon_material:
+    type: material_icons
+    weight: 2
+    region: content
+    settings:
+      allow_style: false
+      default_style: outlined
+      allow_classes: true
+    third_party_settings: {  }
+  field_step_number:
+    type: number
+    weight: 1
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,8 @@
+_core:
+  default_config_hash: 4K3GX7fdi-DT3gftTrhajgcGMmOyY7-4Ivsn4tiPyug
+content_types:
+  article: article
+  page: page
+dependencies:
+  module:
+    - require_revision_log_message

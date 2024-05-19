@@ -1,0 +1,22 @@
+uuid: bf4c14b6-1347-4f43-a7e7-25692999d581
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+  enforced:
+    module:
+      - media_library
+_core:
+  default_config_hash: 7qJqToD1OQLAyeswpmg7M0LRxQlw1URQkJDWUJCnmR8
+name: media_library
+label: 'Media Library thumbnail (220×220)'
+effects:
+  3523a888-8e49-462b-b089-878172b546ff:
+    uuid: 3523a888-8e49-462b-b089-878172b546ff
+    id: focal_point_scale_and_crop
+    weight: 2
+    data:
+      width: 220
+      height: 220
+      crop_type: focal_point

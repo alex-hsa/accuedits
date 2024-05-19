@@ -34,30 +34,28 @@
   modifier_classes ? modifier_classes : ''
 ] | join(' ')|trim %} #}
 
-{% set column_array = ['md:grid-cols-2','md:grid-cols-3','md:grid-cols-4'] %}
+{% set eyebrow = content.field_eyebrow.0|default('') %}
+{% set heading = content.field_main_title.0 %}
+{% set description = content.field_description.0|default('') %}
+{% set ctaText = content.field_cta[0]['#title']|default('') %}
+{% set ctaHref = content.field_cta[0]['#url']|default('') %}
+{% set media = content.field_media|field_target_entity.field_media_image.entity.uri.value %}
+{% set alignment = content.field_alignment.0['#markup']|lower|default('') %}
+{% set orientation = content.field_orientation.0['#markup']|lower|default('') %}
+{% set quick_edit = content.frontend_editing %}
+{% set grid_items = content.field_items %}
 
-{% set columns = content.field_columns.0['#markup'] %}
-{% set column_key = columns - 2 %}
-{% if (columns > 1) %}
-    {% set col_non_mobile = column_array[column_key] %}
-{% endif %}
+{{ include('sanfran:grid', {
+    eyebrow,
+    heading,
+    description,
+    ctaText,
+    ctaHref,
+    media,
+    grid_items,
+    alignment,
+    orientation,
+    quick_edit,
+  })
+}}
 
-
-<article class="">
-
-    {{ include('sanfran:headings', {
-        level: '2',
-        text: content.field_main_title.0,
-        class: 'font-semibold',
-      })
-    }}
-
-    <div class="grid gap-x-4 gap-y-8 grid-cols-1 {{ col_non_mobile }}">
-        {% for key, item in content.field_items %}
-            {% if key|first != '#' %}
-                {{ item }}
-            {% endif %}
-        {% endfor %}
-    </div>
-
-</article>

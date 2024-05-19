@@ -1,0 +1,14 @@
+
+require_revision_log_message.adminsettings:
+  type: config_object
+  label: 'require revision log message settings'
+  mapping:
+    content_types:
+      type: sequence
+      label: 'Content Types'
+      sequence:
+        type: string
+        label: 'Node Type'
+    dependencies:
+      type: config_dependencies
+      label: 'Dependencies'

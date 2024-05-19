@@ -1,0 +1,55 @@
+frontend_editing:
+  version: 1.6.0
+  css:
+    theme:
+      css/frontend_editing.css: {}
+  js:
+    js/frontend_editing.js: {}
+  dependencies:
+    - core/once
+    - core/drupal.ajax
+
+update_content:
+  version: 1.6.0
+  js:
+    js/update_content.js: {}
+  dependencies:
+    - core/drupal.ajax
+
+forms_helper:
+  version: 1.6.0
+  js:
+    js/forms_helper.js: {}
+  css:
+    theme:
+      css/forms_helper.css: {}
+  dependencies:
+    - core/drupal.ajax
+
+preview:
+  version: 1.6.0
+  js:
+    js/preview.js: {}
+  css:
+    theme:
+      css/preview.css: {}
+  dependencies:
+    - core/drupal.ajax
+    - core/drupal.form
+    - core/drupal.message
+
+settings.admin:
+  version: 1.6.0
+  js:
+    js/settings.admin.js: {}
+  dependencies:
+    - core/drupal.form
+
+ui_toggle:
+  version: 1.6.0
+  css:
+    theme:
+      css/ui_toggle.css: {}
+  dependencies:
+    - core/once
+    - core/drupal.ajax

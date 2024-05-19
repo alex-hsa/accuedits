@@ -1,0 +1,23 @@
+uuid: 6a27c901-f476-497e-b4d4-af534f91b06f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_flip
+    - paragraphs.paragraphs_type.steps
+id: paragraph.steps.field_flip
+field_name: field_flip
+entity_type: paragraph
+bundle: steps
+label: 'Flip Columns'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

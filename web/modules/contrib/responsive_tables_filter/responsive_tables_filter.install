@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Responsive Tables Filter install file.
+ */
+
+/**
+ * Set initial responsive tables filter settings for existing sites.
+ */
+function responsive_tables_filter_update_8001() {
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('responsive_tables_filter.settings');
+  $config->set('views_enabled', '0');
+  $config->set('views_tablesaw_mode', 'Stack Mode');
+  $config->save();
+};

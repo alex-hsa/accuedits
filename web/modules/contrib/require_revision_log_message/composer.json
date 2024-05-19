@@ -1,0 +1,13 @@
+{
+    "name": "require_revision_log_message",
+    "type": "drupal-module",
+    "description": "On nodes that allow revisions, requires that the revision log be filled in.",
+    "keywords": [
+    ],
+    "homepage": "https://www.drupal.org/project/require_revision_log_message",
+    "minimum-stability": "dev",
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/require_revision_log_message",
+        "source": "http://cgit.drupalcode.org/require_revision_log_message"
+    }
+}

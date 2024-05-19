@@ -1,0 +1,23 @@
+uuid: c5184824-465c-4804-a769-6d43b35249f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_border
+    - paragraphs.paragraphs_type.textbox
+id: paragraph.textbox.field_border
+field_name: field_border
+entity_type: paragraph
+bundle: textbox
+label: 'Show Border'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

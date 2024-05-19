@@ -1,0 +1,43 @@
+{% if alignment == 'center' %}
+  {% set alignment_class = 'text-center [&>div.wysiwyg_ul]:list-inside' %}
+{% elseif alignment == 'right' %}
+  {% set alignment_class = 'text-right [&>div.wysiwyg_ul]:list-inside' %}
+{% else  %}
+  {% set alignment_class = 'text-left' %}
+{% endif %}
+
+{% if border == 'yes' %}
+  {% set border_class = 'border p-4 rounded-lg' %}
+{% else %}
+  {% set border_class = '' %}
+{% endif %}
+
+{% if placement == 'end' %}
+  {% set placement_class = 'flex flex-row-reverse' %}
+{% elseif placement == 'middle'%}
+  {% set placement_class = 'flex justify-center' %}
+{% else %}
+  {% set placement_class = 'flex flex-row' %}
+{% endif %}
+
+{% set paragraph_classes = [
+    paragraph.bundle,
+    'bg-' ~ background_color ~ '/[.1]',
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished',
+  ]|join(' ')|trim %}
+
+
+<section {{ attributes.addClass(paragraph_classes).addClass(border_class).addClass(placement_class).addClass('p-8 rounded-lg') }}>
+  {{ quick_edit }} 
+ 
+  {# Display Lead paragraph #}
+    {% for key, item in lead_item %}
+      {% if key|first != '#' %}
+          {{ item }}
+      {% endif %}
+    {% endfor %}
+
+</section>

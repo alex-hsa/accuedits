@@ -1,0 +1,25 @@
+.path-frontend-editing .layout-node-form__actions {
+  display: block;
+  z-index: 2;
+}
+
+.path-frontend-editing .layout-node-form__actions .gin-sticky {
+  position: fixed;
+  bottom: 0;
+  background: white;
+  border: 1px solid gray;
+  padding: 0 15px;
+  border-radius: 8px;
+}
+
+body.gin--vertical-toolbar.path-frontend-editing,
+body.gin--horizontal-toolbar.path-frontend-editing,
+body.gin--classic-toolbar.path-frontend-editing,
+body.path-frontend-editing {
+  padding-top: 0 !important;
+}
+
+.path-frontend-editing h1 {
+  font-size: 1.25em;
+  margin: 0 0 15px 0;
+}

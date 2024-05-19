@@ -1,0 +1,55 @@
+# Schema for the configuration files of the frontend editing module.
+
+frontend_editing.settings:
+  type: config_object
+  label: 'Frontend Editing settings'
+  mapping:
+    entity_types:
+      type: sequence
+      label: 'Supported entity types'
+      sequence:
+        type: sequence
+        label: 'Entity type'
+        sequence:
+          type: string
+    sidebar_width:
+      type: integer
+      label: 'Sidebar width'
+    full_width:
+      type: integer
+      label: 'Full width'
+    ajax_content_update:
+      type: boolean
+      label: 'Ajax content update'
+    hover_highlight:
+      type: boolean
+      label: 'Hover highlight'
+    exclude_fields:
+      type: sequence
+      label: 'Exclude fields'
+      sequence:
+        type: string
+    automatic_preview:
+      type: boolean
+      label: 'Automatic preview'
+    primary_color:
+      type: string
+      label: 'Primary Color'
+    ui_toggle:
+      type: boolean
+      label: 'Enable UI Toggle'
+    ui_toggle_settings:
+      type: mapping
+      mapping:
+        offset_top:
+          type: string
+          label: 'Top Offset'
+        offset_bottom:
+          type: string
+          label: 'Bottom Offset'
+        offset_left:
+          type: string
+          label: 'Left Offset'
+        offset_right:
+          type: string
+          label: 'Right Offset'

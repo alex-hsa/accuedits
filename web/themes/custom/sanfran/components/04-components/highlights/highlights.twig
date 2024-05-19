@@ -1,0 +1,35 @@
+{% if alignment == 'center' %}
+  {% set alignment_class = 'text-center' %}
+{% elseif alignment == 'right' %}
+  {% set alignment_class = 'text-right' %}
+{% else  %}
+  {% set alignment_class = 'text-left' %}
+{% endif %}
+
+{% set paragraph_classes = [
+    paragraph.bundle,
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished',
+  ]|join(' ')|trim %}
+
+
+<section {{ attributes.addClass(paragraph_classes).addClass(orientation_class) }}>
+  {{ quick_edit }} 
+  <div class="lead m-8">
+      {% for key, item in lead_item %}
+          {% if key|first != '#' %}
+              {{ item }}
+          {% endif %}
+      {% endfor %}
+  </div>
+  <div class="items grid gap-x-4 gap-y-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-{{ columns }}">
+      {% for key, item in highlights_items %}
+          {% if key|first != '#' %}
+              {{ item }}
+          {% endif %}
+      {% endfor %}
+  </div>
+
+</section>

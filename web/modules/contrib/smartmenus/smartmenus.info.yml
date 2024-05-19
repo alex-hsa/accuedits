@@ -1,0 +1,12 @@
+name: 'smartmenus'
+type: module
+description: 'Responsive drop-down menus with the <a href="http://www.smartmenus.org/">Smartmenus</a> jQuery plugin.'
+core: 8.x
+core_version_requirement: ^8 || ^9 || ^10
+package: 'menu'
+configure: smartmenus.smartmenus_settings_form
+
+# Information added by Drupal.org packaging script on 2023-10-10
+version: '2.0.1-beta2'
+project: 'smartmenus'
+datestamp: 1696970886

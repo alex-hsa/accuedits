@@ -1,0 +1,27 @@
+
+# Node template menu items definition
+entity.content_template.collection:
+  title: 'Templates'
+  route_name: entity.content_template.collection
+  description: 'List of content templates'
+  parent: system.admin_content
+  weight: 100
+
+content_templates.admin.structure.settings:
+  title: 'Content template settings'
+  description: 'Configure Content templates'
+  route_name: content_template.settings
+  parent: system.admin_structure
+
+content_templates.admin.create_from_template:
+  title: 'From template'
+  description: 'Create node from template'
+  route_name: content_templates.node.add
+  parent: node.add_page
+
+content_templates.admin_toolbar.create_from_template:
+  title: 'From template'
+  description: 'Create node from template'
+  route_name: content_templates.node.add
+  parent: admin_toolbar_tools.extra_links:node.add
+  weight: -100

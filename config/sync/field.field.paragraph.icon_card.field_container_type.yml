@@ -1,0 +1,23 @@
+uuid: c5444921-b1b0-4eb2-9ca6-dd5990b86675
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_container_type
+    - paragraphs.paragraphs_type.icon_card
+  module:
+    - options
+id: paragraph.icon_card.field_container_type
+field_name: field_container_type
+entity_type: paragraph
+bundle: icon_card
+label: Type
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: elevated
+default_value_callback: ''
+settings: {  }
+field_type: list_string

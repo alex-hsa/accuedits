@@ -1,0 +1,16 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: "Table"
+status: "stable"
+props:
+  type: object
+  properties:
+    heading:
+      title: Heading
+      description: The title for the banner text.
+      examples:
+        - Join us at The Conference
+      type: string
+    table:
+      title: Table
+      type: string
+      description: Contains table data

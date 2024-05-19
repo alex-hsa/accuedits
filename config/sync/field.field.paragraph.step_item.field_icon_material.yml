@@ -1,0 +1,21 @@
+uuid: 2d51d943-6ec1-42e9-975c-d60c81b66443
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_icon_material
+    - paragraphs.paragraphs_type.step_item
+  module:
+    - material_icons
+id: paragraph.step_item.field_icon_material
+field_name: field_icon_material
+entity_type: paragraph
+bundle: step_item
+label: 'Icon Material'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: material_icons

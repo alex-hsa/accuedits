@@ -1,0 +1,23 @@
+uuid: 80ed0ca1-7ddd-48ac-b75f-de794e5a7735
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_flip
+    - paragraphs.paragraphs_type.carousel
+id: paragraph.carousel.field_flip
+field_name: field_flip
+entity_type: paragraph
+bundle: carousel
+label: 'Flip Columns'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

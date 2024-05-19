@@ -1,0 +1,66 @@
+{% stories hero with { 
+  title: 'AccuEdits/Components/Hero', 
+  argTypes: {
+    ctaTarget: {
+      control: 'radio',
+      options: { Empty: '', Blank: '_blank' },
+      }
+    }
+} %}
+
+  {% story hero_default with {
+    name: '1. Default',
+    args: {
+      heading: 'Join us at the conference',
+      description: 'Ask anyone to describe what makes San Francisco special and Victorian architecture would land near the top of the list, somewhere between sourdough bread and tech money.',
+      image: 'https://images.pexels.com/photos/61109/pexels-photo-61109.jpeg',
+      ctaText: 'Click me!',
+      ctaHref: 'https://www.sfhsa.org',
+    }
+  } %}
+
+    {{ include('sanfran:hero', {
+      image,
+      heading,
+      description,
+      ctaText,
+      ctaHref,
+    }) }}
+  {% endstory %}
+
+  {% story hero_no_image with {
+    name: '2. No image',
+    args: {
+      heading: 'Are you sure you want to end the session?',
+      description: 'This is a detailed and wordy example for the description field.',
+      ctaText: 'Logout',
+      ctaHref: 'https://www.sfhsa.org',
+    }
+  } %}
+    {{ include('sanfran:hero', {
+      heading,
+      description,
+      ctaText,
+      ctaHref,
+    }) }}
+  {% endstory %}
+
+  {% story hero_with_body with {
+    name: '3. With Body',
+    args: {
+      image: 'https://images.pexels.com/photos/61109/pexels-photo-61109.jpeg',
+      heading: 'Improve perceived performance',
+      description: 'This is a detailed and wordy example for the description field.',
+      ctaText: 'Learn more',
+      ctaHref: 'https://www.sfhsa.org',
+    }
+  } %}
+    {{ include('sanfran:hero', {
+      heading,
+      description,
+      ctaText,
+      ctaHref,
+    }) }}
+  {% endstory %}
+
+{% endstories %}

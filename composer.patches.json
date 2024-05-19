@@ -1,0 +1,7 @@
+{
+  "patches": {
+    "drupal/layout_paragraphs": {
+      "Add 'Unlink from library' button" : "patches/contrib/layout_paragraphs/layout_paragraphs_library_unlink_240513.patch"
+    }
+  }
+}

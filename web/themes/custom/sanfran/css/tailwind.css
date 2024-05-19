@@ -1,11 +1,56 @@
+
+/* @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'); */
+
+/* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap'); */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Unicons";
+  src: url("../fonts/unicons/Unicons.woff2") format("woff2"), url("../fonts/unicons/Unicons.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ZT Gatha";
+  src: url(../fonts/zt-gatha/ZTGatha-Medium.ttf) format('truetype');
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "ZT Gatha Alt";
+  src: url(../fonts/zt-gatha/ZTGatha-AltMedium.ttf) format('truetype');
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "ZT Gatha";
+  src: url(../fonts/zt-gatha/ZTGatha-Bold.ttf) format('truetype');
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "ZT Gatha Alt";
+  src: url(../fonts/zt-gatha/ZTGatha-AltBold.ttf) format('truetype');
+  font-style: normal;
+  font-weight: 700;
+}
+
 
 .layout-container {
   margin-left: auto;
   margin-right: auto;
   max-width: 75rem;
+}
+
+[data-theme="dim"] .h1 {
+  color: #22272B;
 }
 
 .block-system-branding-block {
@@ -34,6 +79,10 @@
     margin-left: 0;
   }
 
-  article {
-    @apply mb-8;
+  section {
+    @apply my-12;
+  }
+  
+  .card figure {
+    display: block;
   }

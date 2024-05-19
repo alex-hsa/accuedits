@@ -1,0 +1,23 @@
+uuid: c690d181-12d3-4852-a230-19ea750fd831
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_orientation
+    - paragraphs.paragraphs_type.icon_cards
+  module:
+    - options
+id: paragraph.icon_cards.field_orientation
+field_name: field_orientation
+entity_type: paragraph
+bundle: icon_cards
+label: Orientation
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: vertical
+default_value_callback: ''
+settings: {  }
+field_type: list_string

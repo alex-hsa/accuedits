@@ -1,0 +1,25 @@
+
+{#  variants: [default, neutral, primary, secondary, accent, ghost, link] #}
+{% stories remote with { 
+  title: 'AccuEdits/Elements/Remote-Video'
+} %}
+
+  {% story remote_default with {
+    name: 'Default',
+      args: {
+        video_src: 'https://www.youtube.com/embed/nGbrVwMlCnM',
+        ratio: '16/9',
+        classes: 'w-2/3'
+      }
+  } %}
+
+   {{ include('sanfran:remote-video', {
+      video_src,
+      ratio,
+      classes,
+     })
+   }}
+
+  {% endstory %}
+
+{% endstories %}

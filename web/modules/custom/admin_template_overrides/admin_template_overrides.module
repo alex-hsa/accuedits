@@ -1,0 +1,95 @@
+<?php
+
+function admin_template_overrides_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__accordion' => [
+      'template' => 'paragraph--accordion',
+      'base hook' => 'paragraph'
+    ],
+    'paragraph__accordion_item' => [
+      'template' => 'paragraph--accordion-item',
+      'base hook' => 'paragraph'
+    ],
+    'paragraph__card' => [
+      'template' => 'paragraph--card',
+      'base hook' => 'paragraph'
+    ],
+    'paragraph__carousel' => [
+      'template' => 'paragraph--carousel',
+      'base hook' => 'paragraph'
+    ],
+    'paragraph__featured' => [
+      'template' => 'paragraph--featured',
+      'base hook' => 'paragraph'
+    ],
+    'paragraph__grid' => [
+      'template' => 'paragraph--grid',
+      'base hook' => 'paragraph'
+    ],
+    'paragraph__highlights' => [
+      'template' => 'paragraph--highlights',
+      'base hook' => 'paragraph'
+    ],
+    'paragraph__highlights_item' => [
+      'template' => 'paragraph--highlights-item',
+      'base hook' => 'paragraph'
+    ],
+    'paragraph__hero' => [
+      'template' => 'paragraph--hero',
+      'base hook' => 'paragraph'
+    ],
+    'paragraph__icon_card' => [
+      'template' => 'paragraph--icon-card',
+      'base hook' => 'paragraph'
+    ],
+    'paragraph__icon_cards' => [
+      'template' => 'paragraph--icon-cards',
+      'base hook' => 'paragraph'
+    ],
+    'paragraph__lead' => [
+      'template' => 'paragraph--lead',
+      'base hook' => 'paragraph'
+    ],
+    'paragraph__media_cards' => [
+      'template' => 'paragraph--media-cards',
+      'base hook' => 'paragraph'
+    ],
+    'paragraph__page_title' => [
+      'template' => 'paragraph--page-title',
+      'base hook' => 'paragraph'
+    ],
+    'paragraph__spotlight' => [
+      'template' => 'paragraph--spotlight',
+      'base hook' => 'paragraph'
+    ],
+    'paragraph__steps' => [
+      'template' => 'paragraph--steps',
+      'base hook' => 'paragraph'
+    ],
+    'paragraph__step_item' => [
+      'template' => 'paragraph--step-item',
+      'base hook' => 'paragraph'
+    ], 
+    'paragraph__table' => [
+      'template' => 'paragraph--table',
+      'base hook' => 'paragraph'
+    ],
+    'paragraph__textbox' => [
+      'template' => 'paragraph--textbox',
+      'base hook' => 'paragraph'
+    ],
+    'paragraph__text_shout' => [
+      'template' => 'paragraph--text-shout',
+      'base hook' => 'paragraph'
+    ],
+  ];
+}
+
+function admin_template_overrides_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  switch ($form_id) {
+    case 'node_page_edit_form':
+      // attach the library from the frontend theme
+      $form['#attached']['library'][] = 'sanfran/sdc-components';
+      break;
+  }
+}

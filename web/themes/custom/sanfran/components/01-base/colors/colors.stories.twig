@@ -1,0 +1,63 @@
+{% stories colors with {
+  title: 'AccuEdits/Base/Colors'
+} %}
+
+  {% story colors_brand with {
+    name: 'Brand Color', 
+    args: {
+      brand_colors: {
+        "primary": "bg-primary/[.1] bg-primary/[.25] bg-primary/[.5] bg-primary/[.75] bg-[#009CDE]",
+        "secondary": "bg-secondary/[.1] bg-secondary/[.25] bg-secondary/[.5] bg-secondary/[.75] bg-[#12285F]",
+        "accent": "bg-accent/[.1] bg-accent/[.25] bg-accent/[.5] bg-accent/[.75] bg-[#CCBAF4]",
+        "neutral": "bg-neutral/[.1] bg-neutral/[.25] bg-neutral/[.5] bg-neutral/[.75] bg-[#1b1b1b]",
+        "base_200": "bg-base-200/[.1] bg-base-200/[.25] bg-base-200/[.5] bg-base-200/[.75] bg-[#dcdfe4]",
+        "error": "bg-error/[.1] bg-error/[.25] bg-error/[.5] bg-error/[.75] bg-[#F46351]",
+        "info": "bg-info/[.1] bg-info/[.25] bg-info/[.5] bg-info/[.75] bg-[#006AA9]",
+        "success": "bg-success/[.1] bg-success/[.25] bg-success/[.5] bg-success/[.75] bg-[#397618]",
+        "warning": "bg-warning/[.1] bg-warning/[.25] bg-warning/[.5] bg-warning/[.75] bg-[#FFC423]",
+      },
+      color_opacity: ['[.1]', '[.25]', '[.5]', '[.75]', '[1]'],
+    }
+  } %}
+   {#  <div class="mockup-code bg_primary text-primary-content">
+      <pre><code>can be any color!</code></pre>
+    </div>
+
+    <div class="stats stats-vertical lg:stats-horizontal shadow">
+  
+      <div class="stat">
+        <div class="stat-title">Downloads</div>
+        <div class="stat-value">31K</div>
+        <div class="stat-desc">Jan 1st - Feb 1st</div>
+      </div>
+      <div class="stat">
+        <div class="stat-title">Downloads</div>
+        <div class="stat-value">31K</div>
+        <div class="stat-desc">Jan 1st - Feb 1st</div>
+      </div>
+    </div> #}
+
+    <div class="grid gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-5">
+    {% for key, item in brand_colors %}
+      {% set bg_color = item|split(' ')|slice(0, 5)|join(' ') %}
+      {# {% set hex_color = item|split(' ')|slice(5, 1) %} #}
+      {% set bg_color_item = bg_color|split(' ')|slice(i, 5) %}
+        
+      {% for item in bg_color_item %}
+          
+          {# {{dump(item)}} #}
+          <div class="card w-48 align-middle bg_base-100 shadow-xl border rounded-lg border-{{key|replace({'_':'-'})}}">
+            <div class="h-16 w-full text-center border-b rounded-t-lg {{ item }}">&nbsp;</div>
+            <div class="card-body p-4">
+              <h2 class="card-title"> {{ key|replace({'_':'-'}) }}: {{opacity_grade}}</h2>
+              <p class="">{{ item|split(' ')|slice(0, 1)|join }}</p>
+            </div>
+          </div>
+        {% endfor %}
+    {% endfor %}
+    </div>
+
+  {% endstory %}
+
+
+{% endstories %}

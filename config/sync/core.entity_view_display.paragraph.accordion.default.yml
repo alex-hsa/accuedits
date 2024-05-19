@@ -1,0 +1,64 @@
+uuid: 9b8c7df3-c472-4545-b6c3-82b5a525af02
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.accordion.field_background_color
+    - field.field.paragraph.accordion.field_border
+    - field.field.paragraph.accordion.field_items
+    - field.field.paragraph.accordion.field_lead
+    - field.field.paragraph.accordion.field_orientation
+    - paragraphs.paragraphs_type.accordion
+  module:
+    - entity_reference_revisions
+    - options
+id: paragraph.accordion.default
+targetEntityType: paragraph
+bundle: accordion
+mode: default
+content:
+  field_background_color:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: full
+      link: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_border:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_items:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_lead:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_orientation:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+hidden: {  }

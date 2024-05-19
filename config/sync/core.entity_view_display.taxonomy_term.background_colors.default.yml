@@ -1,0 +1,23 @@
+uuid: f66ecc02-f1d0-40f0-b54b-eccf924f5402
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.background_colors.field_hex_value
+    - taxonomy.vocabulary.background_colors
+  module:
+    - text
+id: taxonomy_term.background_colors.default
+targetEntityType: taxonomy_term
+bundle: background_colors
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_hex_value: true

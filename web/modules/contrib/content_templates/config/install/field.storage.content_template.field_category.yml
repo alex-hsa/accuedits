@@ -1,0 +1,18 @@
+status: true
+dependencies:
+  module:
+    - taxonomy
+    - content_templates
+id: content_template.field_category
+field_name: field_category
+entity_type: content_template
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

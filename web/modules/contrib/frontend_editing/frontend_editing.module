@@ -1,0 +1,902 @@
+<?php
+
+/**
+ * @file
+ * Functions and hooks for the frontend_editing module.
+ */
+
+use Drupal\Component\Utility\Color;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\MessageCommand;
+use Drupal\Core\Ajax\ReplaceCommand;
+use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Entity\EntityForm;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\RevisionableInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Form\SubformState;
+use Drupal\Core\Render\Element;
+use Drupal\Core\Render\Markup;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+use Drupal\frontend_editing\Ajax\CloseSidePanelCommand;
+use Drupal\frontend_editing\Ajax\EntityPreviewCommand;
+use Drupal\frontend_editing\Ajax\ScrollTopCommand;
+use Drupal\frontend_editing\Form\ParagraphAddForm;
+use Drupal\frontend_editing\Form\ParagraphDeleteForm;
+use Drupal\paragraphs\ParagraphInterface;
+
+/**
+ * Implements hook_help().
+ */
+function frontend_editing_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the frontend_editing module.
+    case 'help.page.frontend_editing':
+      $output = '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module allows to edit entities directly in the
+      frontend using a side panel.') . '</p>';
+      $output .= '<p>' . t('It is built as a lightweight integration, that does
+      not rely on cores Settings Tray, Contextual Links, or Quick Edit
+      modules') . '</p>';
+      $output .= '<p>' . t('Instead this module adds the link to editing forms of
+      entities to the frontend, and provides a sidebar to load these forms as
+      iframes.') . '</p>';
+      $output .= '<p>' . t('The benefit of this approach is, that editing in the
+      frontend uses the same styles as editing in the backend. This allows a
+      consistent editorial experience.') . '</p>';
+      $output .= '<p>' . t('The module works nicely with paragraphs and blocks,
+      but other entities can be edited, too.') . '</p>';
+      return $output;
+
+    default:
+      return '';
+  }
+}
+
+/**
+ * Check if other modules have opinion about field wrapper.
+ *
+ * @param string $entity_type
+ *   The entity type.
+ * @param string $bundle
+ *   The bundle.
+ * @param string $field_name
+ *   The field name.
+ *
+ * @return bool
+ *   Whether to add field wrapper or not.
+ */
+function frontend_editing_add_field_wrapper($entity_type, $bundle, $field_name) {
+  $fields_to_exclude = \Drupal::config('frontend_editing.settings')->get('exclude_fields') ?? [];
+  $context = [
+    'entity_type' => $entity_type,
+    'bundle' => $bundle,
+    'field_name' => $field_name,
+  ];
+  \Drupal::moduleHandler()->alter('fe_field_wrapper_exclude', $fields_to_exclude, $context);
+  $full_field_name = implode('.', array_values($context));
+  return !in_array($full_field_name, $fields_to_exclude);
+}
+
+/**
+ * Check if other modules have opinion about allowed bundles.
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   The entity.
+ * @param \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display
+ *   The view display.
+ *
+ * @return bool
+ *   Whether to allow bundle or not.
+ */
+function frontend_editing_allow_bundle(EntityInterface $entity, EntityViewDisplayInterface $display) {
+  $entity_types_bundles = \Drupal::config('frontend_editing.settings')->get('entity_types') ?? [];
+  $allowed_bundles = [];
+  if (!empty($entity_types_bundles[$entity->getEntityTypeId()])) {
+    foreach ($entity_types_bundles[$entity->getEntityTypeId()] as $bundle) {
+      $allowed_bundles[] = $entity->getEntityTypeId() . '.' . $bundle;
+    }
+  }
+  $context = [
+    'entity_type' => $entity->getEntityTypeId(),
+    'bundle' => $entity->bundle(),
+    'view_display' => $display,
+  ];
+  \Drupal::moduleHandler()->alter('fe_allowed_bundles', $allowed_bundles, $context);
+  $full_bundle_name = $entity->getEntityTypeId() . '.' . $entity->bundle();
+  return in_array($full_bundle_name, $allowed_bundles);
+}
+
+/**
+ * Implements hook_entity_view_alter().
+ */
+function frontend_editing_entity_view_alter(&$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
+  // Don't do this for embedded entities.
+  if (isset($build['#embed'])) {
+    return;
+  }
+  if (\Drupal::moduleHandler()->moduleExists('preview')) {
+    // Check if preview is allowed.
+    $preview_config = \Drupal::config('preview.settings')->getRawData();
+    if (!empty($preview_config[$entity->getEntityTypeId()][$entity->bundle()])) {
+      $build['#attributes']['data-preview'] = $entity->uuid();
+    }
+  }
+  // Don't do this for previews of not-yet-existing entities.
+  if ($entity->isNew()) {
+    $build['#attributes']['class'][] = 'frontend-editing--placeholder';
+    return;
+  }
+  // Check frontend editing settings.
+  $config = \Drupal::configFactory()->get('frontend_editing.settings');
+  // Add cacheable metadata to rendered array.
+  $cacheable_metadata = CacheableMetadata::createFromRenderArray($build);
+  // In case the settings are changed and new entity types are added or some are
+  // removed, we need to invalidate the cache.
+  $cacheable_metadata->addCacheableDependency($config);
+  // Also the user permissions are relevant for the rendered array.
+  $cacheable_metadata->addCacheContexts(['user.permissions']);
+  $cacheable_metadata->applyTo($build);
+
+  // Only do this, if user has access to frontend editing.
+  if (!\Drupal::currentUser()->hasPermission('access frontend editing') || ($entity instanceof RevisionableInterface && !$entity->isLatestRevision()) || !$entity->access('update')) {
+    return;
+  }
+  // Add a wrapper around the frontend actions.
+  $build['frontend_editing'] = [
+    '#type' => 'container',
+    '#attributes' => [
+      'class' => [
+        'frontend-editing-actions',
+      ],
+      'data-entity-type' => $entity->getEntityTypeId(),
+    ],
+  ];
+  // Get supported entity types for frontend editing.
+  $supported_entity_types = $config->get('entity_types');
+  // Add a wrapper around entity reference fields, so that they could be updated
+  // with ajax when one of the elements is updated.
+  $allowed_field_types = [
+    'entity_reference_revisions',
+    'entity_reference',
+  ];
+  foreach (Element::getVisibleChildren($build) as $field_name) {
+    if (!isset($build[$field_name]['#theme'])) {
+      continue;
+    }
+    if ($build[$field_name]['#theme'] != 'field') {
+      continue;
+    }
+    if (in_array($build[$field_name]['#field_type'], $allowed_field_types)) {
+      $settings = $build[$field_name]['#items']->getFieldDefinition()->getSettings();
+      // Only add the wrapper for entity reference fields that are targeting the
+      // supported for frontend editing entity types.
+      if (!in_array($settings['target_type'], array_keys($supported_entity_types), TRUE)) {
+        continue;
+      }
+      if (!empty($settings['handler_settings']['target_bundles']) && empty(array_intersect($settings['handler_settings']['target_bundles'], $supported_entity_types[$settings['target_type']]))) {
+        continue;
+      }
+      // If ajax content update is not allowed, no need to add field wrapper.
+      if (!$config->get('ajax_content_update')) {
+        continue;
+      }
+      // Check if the field is not excluded from frontend editing ajax content
+      // update.
+      if (!frontend_editing_add_field_wrapper($entity->getEntityTypeId(), $entity->bundle(), $field_name)) {
+        continue;
+      }
+      // Selector should contain the entity type, the entity id and the field
+      // name that it belongs too.
+      $selector = $entity->getEntityTypeId() . '--' . $entity->id() . '--' . $field_name . '--' . $build[$field_name]['#view_mode'];
+      // Because it is possible to remove wrappers in the field template and
+      // there is no reliable way to know whether the field wrapper attributes
+      // are printed, force add theme wrappers.
+      $build[$field_name]['#theme_wrappers'] = [
+        'container' => [
+          '#attributes' => [
+            'data-frontend-editing' => $selector,
+            'class' => [
+              'frontend-editing-field-wrapper',
+            ],
+          ],
+        ],
+      ];
+      $build['frontend_editing'][$field_name . '_update_content'] = [
+        '#type' => 'link',
+        '#title' => t('Reload content for this field'),
+        '#url' => Url::fromRoute('frontend_editing.update_content', [
+          'entity_id' => $entity->id(),
+          'entity_type_id' => $entity->getEntityTypeId(),
+          'field_name' => $field_name,
+          'view_mode' => $build[$field_name]['#view_mode'],
+        ]),
+        '#attributes' => [
+          'title' => t('Reload content for this field'),
+          'class' => [
+            'use-ajax',
+            'frontend-editing-update-content',
+          ],
+          'data-fe-update-content' => $selector,
+        ],
+      ];
+    }
+  }
+  // Now check if current entity type is supported by frontend editing. If not,
+  // there is no need to go further.
+  // If a value is 0 (for disabled) a search will evaluate to TRUE, e.g.
+  // "'key' == 0" evaluates to TRUE, therefore we need to perform strict search.
+  if (!in_array($entity->getEntityTypeId(), array_keys($supported_entity_types), TRUE) || !frontend_editing_allow_bundle($entity, $display)) {
+    if (empty(Element::getVisibleChildren($build['frontend_editing']))) {
+      unset($build['frontend_editing']);
+    }
+    return;
+  }
+  // Attach necessary libraries and drupal settings to frontend_editing element.
+  // Main library for sidebar editing.
+  $build['frontend_editing']['#attached']['library'][] = 'frontend_editing/frontend_editing';
+  // Library for updating content.and listen to the messages from frontend
+  // editing iframe that is in the sidebar.
+  $build['frontend_editing']['#attached']['library'][] = 'frontend_editing/update_content';
+  // Add sidebar size configuration to drupal settings.
+  $build['frontend_editing']['#attached']['drupalSettings']['frontend_editing'] = [
+    'sidebar_width' => $config->get('sidebar_width') ?? 30,
+    'full_width' => $config->get('full_width') ?? 70,
+  ];
+  $build['#attributes']['class'][] = 'frontend-editing';
+  // Check whether it is possible to have preview of the changes.
+  if (\Drupal::moduleHandler()->moduleExists('preview')) {
+    // Check if preview is allowed.
+    $preview_config = \Drupal::config('preview.settings')->getRawData();
+    if (!empty($preview_config[$entity->getEntityTypeId()][$entity->bundle()])) {
+      $build['frontend_editing']['entity_preview'] = [
+        '#type' => 'link',
+        '#title' => t('Preview entity'),
+        '#url' => Url::fromRoute('preview.entity_preview', [
+          'entity_preview' => $entity->uuid(),
+          'view_mode_id' => $build['#view_mode'],
+        ]),
+        '#attributes' => [
+          'title' => t('Reload content with preview'),
+          'class' => [
+            'use-ajax',
+            'frontend-editing-preview-content',
+          ],
+          'data-fe-preview-content' => $entity->uuid(),
+        ],
+      ];
+    }
+  }
+  $build['frontend_editing']['common_actions'] = [
+    '#type' => 'container',
+    '#attributes' => [
+      'class' => [
+        'common-actions-container',
+      ],
+    ],
+  ];
+  $build['frontend_editing']['common_actions']['title_edit'] = [
+    '#type' => 'container',
+    '#attributes' => [
+      'class' => [
+        'title-edit-container',
+      ],
+    ],
+  ];
+  if ($entity->getEntityType()->hasKey('bundle')) {
+    $build['frontend_editing']['common_actions']['title_edit']['title'] = [
+      '#markup' => '<span class="action-title">' . $entity->get($entity->getEntityType()
+        ->getKey('bundle'))->entity->label() . '</span>',
+    ];
+  }
+  // Add the edit link.
+  $build['frontend_editing']['common_actions']['title_edit']['edit'] = [
+    '#type' => 'link',
+    '#title' => t('Edit'),
+    '#url' => Url::fromRoute('frontend_editing.form', [
+      'type' => $entity->getEntityTypeId(),
+      'id' => $entity->id(),
+    ], [
+      'query' => [
+        'view_mode_id' => $build['#view_mode'],
+      ],
+    ]),
+    '#attributes' => [
+      'title' => t('Edit'),
+      'class' => [
+        'frontend-editing-open-sidebar',
+        'frontend-editing__action',
+        'frontend-editing__action--edit',
+      ],
+    ],
+  ];
+  // In case of paragraphs, add the move up/down and add before/after links if
+  // parent entity is already defined.
+  if ($entity instanceof ParagraphInterface && $parent_entity = $entity->getParentEntity()) {
+    $build['frontend_editing']['common_actions']['move_paragraphs'] = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => [
+          'move-paragraphs icons-container',
+        ],
+      ],
+    ];
+    $build['frontend_editing']['add_paragraphs'] = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => [
+          'add-paragraphs' . ($config->get('hover_highlight') ? ' hover-highlight' : ''),
+        ],
+      ],
+    ];
+    if (\Drupal::service('frontend_editing.paragraphs_helper')->allowUp($entity)->isAllowed()) {
+      $build['frontend_editing']['common_actions']['move_paragraphs']['up'] = [
+        '#type' => 'link',
+        '#title' => t('Move up'),
+        '#url' => Url::fromRoute('frontend_editing.paragraph_up', [
+          'paragraph' => $entity->id(),
+        ], [
+          'query' => [
+            'view_mode_id' => $build['#view_mode'],
+          ],
+        ]),
+        '#attributes' => [
+          'title' => t('Move up'),
+          'class' => [
+            $config->get('ajax_content_update') ? 'use-ajax' : 'no-ajax',
+            'frontend-editing__action',
+            'frontend-editing__action--up',
+          ],
+        ],
+      ];
+    }
+    if (\Drupal::service('frontend_editing.paragraphs_helper')->allowDown($entity)->isAllowed()) {
+      $build['frontend_editing']['common_actions']['move_paragraphs']['down'] = [
+        '#type' => 'link',
+        '#title' => t('Move down'),
+        '#url' => Url::fromRoute('frontend_editing.paragraph_down', [
+          'paragraph' => $entity->id(),
+        ], [
+          'query' => [
+            'view_mode_id' => $build['#view_mode'],
+          ],
+        ]),
+        '#attributes' => [
+          'title' => t('Move down'),
+          'class' => [
+            $config->get('ajax_content_update') ? 'use-ajax' : 'no-ajax',
+            'frontend-editing__action',
+            'frontend-editing__action--down',
+          ],
+        ],
+      ];
+    }
+    if (\Drupal::service('frontend_editing.paragraphs_helper')->allowAdd($parent_entity->getEntityTypeId(), $parent_entity->id(), $entity->get('parent_field_name')->value)->isAllowed()) {
+      $path_to_plus_svg = \Drupal::service('extension.list.module')->getPath('frontend_editing') . '/images/svg/plus_circle.svg';
+      $svg_markup = Markup::create(file_get_contents($path_to_plus_svg) ?? '');
+
+      $build['frontend_editing']['add_paragraphs']['before'] = [
+        '#type' => 'link',
+        '#title' => $svg_markup,
+        '#url' => Url::fromRoute('frontend_editing.paragraph_add_page', [
+          'parent_type' => $parent_entity->getEntityTypeId(),
+          'parent' => $parent_entity->id(),
+          'parent_field_name' => $entity->get('parent_field_name')->value,
+          'current_paragraph' => $entity->id(),
+          'before' => 1,
+        ], [
+          'query' => [
+            'view_mode_id' => $build['#view_mode'],
+          ],
+        ]),
+        '#attributes' => [
+          'title' => t('Add before'),
+          'class' => [
+            'frontend-editing-open-sidebar',
+            'frontend-editing__action',
+            'frontend-editing__action--before',
+          ],
+        ],
+      ];
+
+      $build['frontend_editing']['add_paragraphs']['after'] = [
+        '#type' => 'link',
+        '#title' => $svg_markup,
+        '#url' => Url::fromRoute('frontend_editing.paragraph_add_page', [
+          'parent_type' => $parent_entity->getEntityTypeId(),
+          'parent' => $parent_entity->id(),
+          'parent_field_name' => $entity->get('parent_field_name')->value,
+          'current_paragraph' => $entity->id(),
+          'before' => 0,
+        ], [
+          'query' => [
+            'view_mode_id' => $build['#view_mode'],
+          ],
+        ]),
+        '#attributes' => [
+          'title' => t('Add after'),
+          'class' => [
+            'frontend-editing-open-sidebar',
+            'frontend-editing__action',
+            'frontend-editing__action--after',
+          ],
+        ],
+      ];
+    }
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function frontend_editing_theme($existing, $type, $theme, $path) {
+  return [
+    'html__frontend_editing' => [
+      'template' => 'html--frontend-editing',
+      'base hook' => 'html',
+    ],
+    'page__frontend_editing' => [
+      'template' => 'page--frontend-editing',
+      'base hook' => 'page',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_ajax_render_alter().
+ */
+function frontend_editing_ajax_render_alter(array &$data) {
+  foreach ($data as &$command) {
+    if ($command['command'] == 'insert' && $command['method'] == 'prepend') {
+      if (strpos((string) $command['data'], 'data-drupal-messages')) {
+        $command['selector'] = '[data-drupal-messages], [data-drupal-messages-fallback]';
+        $command['method'] = 'replaceWith';
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function frontend_editing_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form_object = $form_state->getFormObject();
+  if ($form_object instanceof EntityForm) {
+    /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
+    $entity = $form_object->getEntity();
+    $supported_entity_types = \Drupal::configFactory()
+      ->get('frontend_editing.settings')
+      ->get('entity_types');
+    // If a value is 0 (for disabled) a search will evaluate to TRUE, e.g.
+    // "'key' == 0" evaluates to TRUE, therefore we need to perform strict
+    // search.
+    if (!in_array($entity->getEntityTypeId(), array_keys($supported_entity_types), TRUE)) {
+      return;
+    }
+    $frontend_editing_routes = [
+      'frontend_editing.form',
+      'frontend_editing.paragraph_add',
+    ];
+    $current_route_name = \Drupal::routeMatch()->getRouteName();
+    // Make the form submit with ajax.
+    if (in_array($current_route_name, $frontend_editing_routes)) {
+      $config = \Drupal::configFactory()->get('frontend_editing.settings');
+      if ($current_route_name == 'frontend_editing.form') {
+        $bundle_key = $entity->getEntityType()->getKey('bundle');
+        if ($bundle_entity = $entity->get($bundle_key)->entity) {
+          $form['#title'] = t('Editing "@bundle_name"', [
+            '@bundle_name' => $bundle_entity->label(),
+          ]);
+        }
+      }
+      $form_state->set('view_mode_id', \Drupal::request()->query->get('view_mode_id', 'default'));
+      $form['actions']['submit']['#ajax'] = [
+        'callback' => 'frontend_editing_success',
+        'progress' => [
+          'type' => 'throbber',
+          'message' => t('Saving...'),
+        ],
+      ];
+      // In case the preview is available.
+      if (!empty($form['actions']['preview'])) {
+        // Add the preview library.
+        $form['frontend_editing']['#attached']['library'][] = 'frontend_editing/preview';
+        // Add the preview callback to the preview button.
+        array_unshift($form['actions']['preview']['#submit'], 'frontend_editing_form_paragraph_form_submit');
+        // Add the preview ajax callback to the preview button.
+        $form['actions']['preview']['#ajax'] = [
+          'callback' => 'frontend_editing_preview',
+          'disable-refocus' => $config->get('automatic_preview'),
+          'progress' => [
+            'type' => 'throbber',
+            'message' => t('Previewing...'),
+          ],
+        ];
+        // Add the automatic preview checkbox.
+        $form['actions']['automatic_preview'] = [
+          '#type' => 'checkbox',
+          '#title' => t('Automatic preview'),
+          '#default_value' => $config->get('automatic_preview'),
+          '#weight' => 100,
+          '#attributes' => [
+            'class' => [
+              'frontend-editing-automatic-preview',
+            ],
+          ],
+        ];
+      }
+    }
+  }
+}
+
+/**
+ * Handles validation errors for the frontend editing form.
+ *
+ * @param array $form
+ *   The original form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
+ *
+ * @return \Drupal\Core\Ajax\AjaxResponse
+ *   The response object.
+ */
+function frontend_editing_validation_errors(array $form, FormStateInterface $form_state, $preview = FALSE) {
+  $response = new AjaxResponse();
+  $errors = $form_state->getErrors();
+  if (!empty($errors)) {
+    // Add all error messages to the sidebar.
+    foreach ($errors as $error) {
+      $command = new MessageCommand($error, NULL, ['type' => 'error']);
+      $response->addCommand($command);
+    }
+    if ($preview) {
+      // The error messages are already sent to the window with MessageCommand,
+      // so we need to remove them, so they are not appearing on other pages
+      // when they are already irrelevant.
+      \Drupal::messenger()->deleteByType('error');
+      return $response;
+    }
+    // Update the form in the sidebar, so the invalid elements show errors.
+    $html_command = new ReplaceCommand('form', $form);
+    $response->addCommand($html_command);
+    // Scroll to the top of the sidebar, so that the error messages are visible.
+    $scroll_command = new ScrollTopCommand('body');
+    $response->addCommand($scroll_command);
+  }
+  return $response;
+}
+
+/**
+ * Sends message that the user requests preview.
+ */
+function frontend_editing_preview(array &$form, FormStateInterface $form_state) {
+  $response = frontend_editing_validation_errors($form, $form_state, TRUE);
+  if (!empty($response->getCommands())) {
+    return $response;
+  }
+  $entity = $form_state->getFormObject()->getEntity();
+  // Preview of new content is different from existing content.
+  if ($entity->isNew()) {
+    $view_mode_id = $form_state->get('view_mode_id');
+    $selector = '.frontend-editing--placeholder';
+    $response->addCommand(new EntityPreviewCommand($selector, $entity->uuid(), $view_mode_id));
+  }
+  else {
+    $response->addCommand(new EntityPreviewCommand('[data-fe-preview-content="' . $entity->uuid() . '"]'));
+  }
+  return $response;
+}
+
+/**
+ * Sends message that the form was successfully submitted.
+ */
+function frontend_editing_success(array &$form, FormStateInterface $form_state) {
+  $response = frontend_editing_validation_errors($form, $form_state);
+  if (!empty($response->getCommands())) {
+    return $response;
+  }
+  $entity = $form_state->getFormObject()->getEntity();
+  // Show the main page be reloaded after closing the sidebar.
+  $selector = \Drupal::request()->query->get('selector');
+  if (!empty($selector)) {
+    $selector = '[data-frontend-editing="' . $selector . '"]';
+  }
+  $parent_entity_id = NULL;
+  $parent_entity_type_id = NULL;
+  $parent_field_name = NULL;
+  // For now only paragraphs update supports no reload.
+  if ($entity instanceof ParagraphInterface) {
+    $parent_entity_id = $entity->getParentEntity()->id();
+    $parent_entity_type_id = $entity->getParentEntity()->getEntityTypeId();
+    $parent_field_name = $entity->get('parent_field_name')->value;
+    $view_mode_id = $form_state->get('view_mode_id');
+    // Selector is the same as for the field wrapper @see
+    // frontend_editing_entity_view_alter.
+    $selector = '[data-frontend-editing="' . $parent_entity_type_id . '--' . $parent_entity_id . '--' . $parent_field_name . '--'. $view_mode_id . '"]';
+  }
+  // In case of success, close the sidebar.
+  $response->addCommand(new CloseSidePanelCommand($selector, $parent_entity_id, $parent_entity_type_id, $parent_field_name));
+  return $response;
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() for paragraph_form.
+ */
+function frontend_editing_form_paragraph_form_alter(&$form, FormStateInterface $form_state) {
+  if (!\Drupal::currentUser()->hasPermission('edit behavior plugin settings')) {
+    return;
+  }
+
+  /** @var \Drupal\Core\Entity\ContentEntityFormInterface $form_object */
+  $form_object = $form_state->getFormObject();
+  /** @var \Drupal\paragraphs\ParagraphInterface $paragraphs_entity */
+  $paragraphs_entity = $form_object->getEntity();
+
+  // Build the behavior plugins fields, do not display behaviors when
+  // translating and untranslatable fields are hidden.
+  $paragraphs_type = $paragraphs_entity->getParagraphType();
+  if ($paragraphs_type) {
+    $form['behavior_plugins']['#tree'] = TRUE;
+    $form['behavior_plugins']['#weight'] = -99;
+    foreach ($paragraphs_type->getEnabledBehaviorPlugins() as $plugin_id => $plugin) {
+      $form['behavior_plugins'][$plugin_id] = [
+        '#type' => 'container',
+        '#group' => implode('][', array_merge($form['#parents'], ['paragraph_behavior'])),
+      ];
+      $subform_state = SubformState::createForSubform($form['behavior_plugins'][$plugin_id], $form, $form_state);
+      if ($plugin_form = $plugin->buildBehaviorForm($paragraphs_entity, $form['behavior_plugins'][$plugin_id], $subform_state)) {
+        $form['behavior_plugins'][$plugin_id] = $plugin_form;
+        // Add the paragraphs-behavior class, so that we are able to show
+        // and hide behavior fields, depending on the active perspective.
+        $form['behavior_plugins'][$plugin_id]['#attributes']['class'][] = 'paragraphs-behavior';
+      }
+    }
+
+    $form['#validate'][] = 'frontend_editing_form_paragraph_form_validate';
+    array_unshift($form['actions']['submit']['#submit'], 'frontend_editing_form_paragraph_form_submit');
+  }
+}
+
+/**
+ * Validation handler for the paragraph entity form.
+ *
+ * @param array $form
+ *   The complete form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The state of the form.
+ */
+function frontend_editing_form_paragraph_form_validate(array &$form, FormStateInterface $form_state) {
+  if (!\Drupal::currentUser()->hasPermission('edit behavior plugin settings')) {
+    return;
+  }
+
+  /** @var \Drupal\Core\Entity\ContentEntityFormInterface $form_object */
+  $form_object = $form_state->getFormObject();
+  /** @var \Drupal\paragraphs\ParagraphInterface $paragraphs_entity */
+  $entity = $form_object->getEntity();
+
+  // Validate all enabled behavior plugins.
+  $paragraphs_type = $entity->getParagraphType();
+  foreach ($paragraphs_type->getEnabledBehaviorPlugins() as $plugin_id => $plugin_values) {
+    if (!empty($form['behavior_plugins'][$plugin_id])) {
+      $subform_state = SubformState::createForSubform($form['behavior_plugins'][$plugin_id], $form_state->getCompleteForm(), $form_state);
+      $plugin_values->validateBehaviorForm($entity, $form['behavior_plugins'][$plugin_id], $subform_state);
+    }
+  }
+}
+
+/**
+ * Submit handler for the paragraph entity form.
+ *
+ * @param array $form
+ *   The complete form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The state of the form.
+ */
+function frontend_editing_form_paragraph_form_submit(array &$form, FormStateInterface $form_state) {
+  if (!\Drupal::currentUser()->hasPermission('edit behavior plugin settings')) {
+    return;
+  }
+
+  /** @var \Drupal\Core\Entity\ContentEntityFormInterface $form_object */
+  $form_object = $form_state->getFormObject();
+  /** @var \Drupal\paragraphs\ParagraphInterface $paragraphs_entity */
+  $paragraphs_entity = $form_object->getEntity();
+  $values = $form_state->getValues();
+
+  if (isset($values['behavior_plugins'])) {
+    // Submit all enabled behavior plugins.
+    $paragraphs_type = $paragraphs_entity->getParagraphType();
+    foreach ($paragraphs_type->getEnabledBehaviorPlugins() as $plugin_id => $plugin_values) {
+      if (!isset($values['behavior_plugins'][$plugin_id])) {
+        $values['behavior_plugins'][$plugin_id] = [];
+      }
+      $subform_state = SubformState::createForSubform($form['behavior_plugins'][$plugin_id], $form, $form_state);
+      $plugin_values->submitBehaviorForm($paragraphs_entity, $values['behavior_plugins'][$plugin_id], $subform_state);
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_type_build().
+ */
+function frontend_editing_entity_type_build(array &$entity_types) {
+  // Override the default delete form for paragraphs until the following issue
+  // https://www.drupal.org/project/paragraphs_edit/issues/3343465 is fixed.
+  $entity_types['paragraph']->setFormClass('entity_delete', ParagraphDeleteForm::class);
+  $entity_types['paragraph']->setFormClass('entity_add', ParagraphAddForm::class);
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function frontend_editing_module_implements_alter(&$implementations, $hook) {
+  if (in_array($hook, ['entity_type_build', 'form_alter'])) {
+    // Move the frontend_editing_entity_type_build() to the end of the list.
+    // So that it is executed after the paragraphs_edit module.
+    $group = $implementations['frontend_editing'];
+    unset($implementations['frontend_editing']);
+    $implementations['frontend_editing'] = $group;
+  }
+}
+
+/**
+ * Enables preview for all enabled entity types and bundles for FE.
+ */
+function frontend_editing_enable_preview() {
+  $enabled_entity_types = \Drupal::config('frontend_editing.settings')->get('entity_types');
+  $enabled_preview = [];
+  foreach ($enabled_entity_types as $entity_type => $bundles) {
+    if (empty($enabled_preview[$entity_type])) {
+      $enabled_preview[$entity_type] = [];
+    }
+    foreach ($bundles as $bundle) {
+      $enabled_preview[$entity_type][$bundle] = 'default';
+    }
+  }
+  \Drupal::service('config.factory')
+    ->getEditable('preview.settings')
+    ->setData($enabled_preview)->save(TRUE);
+}
+
+/**
+ * Implements hook_modules_installed().
+ */
+function frontend_editing_modules_installed($modules, $is_syncing) {
+  if (!$is_syncing && in_array('preview', $modules)) {
+    frontend_editing_enable_preview();
+  }
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function frontend_editing_preprocess_page(&$variables) {
+  // No need to show the toggle in admin UI.
+  if (\Drupal::service('router.admin_context')->isAdminRoute()) {
+    return;
+  }
+  if (\Drupal::currentUser()->hasPermission('access frontend editing')) {
+    // Insert the primary color as a CSS variable.
+    $config = \Drupal::config('frontend_editing.settings');
+    // Add cache metadata for config.
+    $cacheable_metadata = CacheableMetadata::createFromRenderArray($variables);
+    $cacheable_metadata->addCacheableDependency($config);
+    $cacheable_metadata->applyTo($variables);
+    $primary_color = $config->get('primary_color');
+    if (!empty($primary_color) && Color::validateHex($primary_color)) {
+      // Convert hex to RGB as field value is in hex.
+      $rgb = Color::hexToRgb($primary_color);
+      $rule = '--fe-editing-primary-color: ' . implode(',', array_values($rgb));
+      $style = ':root {' . $rule . '}';
+      $variables['#attached']['html_head'][] = [
+        [
+          '#type' => 'html_tag',
+          '#tag' => 'style',
+          '#value' => Markup::create($style),
+          '#attributes' => ['type' => 'text/css'],
+        ],
+        'frontend_editing_color',
+      ];
+    }
+    if ($config->get('ui_toggle')) {
+      $toggle_state = \Drupal::service('user.data')
+        ->get('frontend_editing', \Drupal::currentUser()->id(), 'enabled');
+      $active_class = $toggle_state ? 'frontend-editing--enabled' : '';
+
+      // Construct the link with '#type' => 'link'.
+      $link = [
+        '#title' => $toggle_state ? t('On') : t('Off'),
+        '#type' => 'link',
+        '#url' => Url::fromRoute('frontend_editing.toggle'),
+        '#attributes' => [
+          'class' => [
+            'use-ajax',
+            'frontend-editing-toggle-link',
+            $active_class,
+          ],
+          'id' => 'frontend-editing-toggle-link',
+          'data-toggle-state' => $toggle_state,
+          'title' => $toggle_state ? t('Disable frontend editing actions') : t('Enable frontend editing actions'),
+        ],
+        '#attached' => [
+          'library' => [
+            'core/drupal.ajax',
+            'frontend_editing/ui_toggle',
+          ],
+        ],
+      ];
+      // If user has never toggled frontend editing yet add the class to attract
+      // attention to it.
+      if (is_null($toggle_state)) {
+        $link['#attributes']['class'][] = 'frontend-editing-toggle-not-configured';
+      }
+
+      // Wrap the link in a div with a class 'frontend-editing-toggle'.
+      $variables['page']['content']['frontend_editing_toggle'] = [
+        '#type' => 'container',
+        '#attributes' => [
+          'class' => [
+            'frontend-editing-toggle',
+          ],
+        ],
+        'link' => $link,
+        '#cache' => [
+          'contexts' => [
+            'user',
+          ],
+        ],
+      ];
+
+      $offset_top = $config->get('ui_toggle_settings.offset_top');
+      $offset_bottom = $config->get('ui_toggle_settings.offset_bottom');
+      $offset_right = $config->get('ui_toggle_settings.offset_right');
+      $offset_left = $config->get('ui_toggle_settings.offset_left');
+
+      $rules = [
+        '--fe-editing-toggle-top' => $offset_top ? $offset_top . 'px' : 'auto',
+        '--fe-editing-toggle-bottom' => $offset_bottom ? $offset_bottom . 'px' : 'auto',
+        '--fe-editing-toggle-right' => $offset_right ? $offset_right . 'px' : 'auto',
+        '--fe-editing-toggle-left' => $offset_left ? $offset_left . 'px' : 'auto',
+      ];
+
+      // Generate CSS from rules.
+      $style = ':root {' . implode(';', array_map(function ($property, $value) {
+        return $property . ': ' . $value;
+      }, array_keys($rules), $rules)) . '}';
+
+      $variables['#attached']['html_head'][] = [
+        [
+          '#type' => 'html_tag',
+          '#tag' => 'style',
+          '#value' => Markup::create($style),
+          '#attributes' => [
+            'type' => 'text/css',
+          ],
+        ],
+        'frontend_editing_toggle_css',
+      ];
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function frontend_editing_preprocess_html(&$variables) {
+  if (\Drupal::currentUser()->hasPermission('access frontend editing') && !\Drupal::service('router.admin_context')->isAdminRoute()) {
+    $config = \Drupal::configFactory()->get('frontend_editing.settings');
+    $variables['#cache']['tags'] = array_merge($variables['#cache']['tags'] ?? [], $config->getCacheTags());
+
+    if ($config->get('ui_toggle')) {
+      $toggle_state = \Drupal::service('user.data')
+        ->get('frontend_editing', \Drupal::currentUser()->id(), 'enabled');
+
+      if (empty($toggle_state)) {
+        $variables['attributes']['class'][] = 'frontend-editing--hidden';
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+uuid: 0483d892-6eb4-49df-becc-5d8639994fe6
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'file:file:9bcd5701-57c7-44d3-a719-644a7e8c3ed4'
+  module:
+    - layout_paragraphs
+id: step_item
+label: 'Step Item'
+icon_uuid: 9bcd5701-57c7-44d3-a719-644a7e8c3ed4
+icon_default: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDhweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iNDhweCIgZmlsbD0iIzAwMDAwMCI+PHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTEyIDRjLTQuNDEgMC04IDMuNTktOCA4czMuNTkgOCA4IDggOC0zLjU5IDgtOC0zLjU5LTgtOC04em01IDlIN3YtMmgxMHYyeiIgb3BhY2l0eT0iLjMiLz48cGF0aCBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJzNC40OCAxMCAxMCAxMCAxMC00LjQ4IDEwLTEwUzE3LjUyIDIgMTIgMnptMCAxOGMtNC40MSAwLTgtMy41OS04LThzMy41OS04IDgtOCA4IDMuNTkgOCA4LTMuNTkgOC04IDh6bS01LTloMTB2Mkg3eiIvPjwvc3ZnPg=='
+description: ''
+behavior_plugins:
+  layout_paragraphs:
+    enabled: false
+    available_layouts: {  }

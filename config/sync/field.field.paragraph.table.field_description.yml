@@ -1,0 +1,27 @@
+uuid: 9a24b79e-f2ea-4720-98b8-6f3a83d40981
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_description
+    - filter.format.table_component
+    - paragraphs.paragraphs_type.table
+  module:
+    - text
+id: paragraph.table.field_description
+field_name: field_description
+entity_type: paragraph
+bundle: table
+label: Table
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: '<table><thead><tr><th>Project name</th><th>Description</th><th>Price</th></tr></thead><tbody><tr><td>Invoices</td><td>Add invoice confirmation</td><td><p class="text-align-right">$4,500</p></td></tr><tr><td>Templates</td><td>Refactor templates to use the new templating library</td><td><p class="text-align-right">$9,000</p></td></tr><tr><td>Payments</td><td>Process payments using third party API</td><td><p class="text-align-right">$5,500</p></td></tr><tr><td>Workflow</td><td>Improve account management workflow</td><td><p class="text-align-right">$6,000</p></td></tr><tr><td>&nbsp;</td><td><p class="text-align-right"><strong>Total:&nbsp;</strong></p></td><td><strong>$25,000</strong></td></tr></tbody></table>'
+    format: table_component
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - table_component
+field_type: text_long

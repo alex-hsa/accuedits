@@ -1,0 +1,21 @@
+uuid: d3eb6e3e-fc99-475e-b04a-d8d52e1e4ef4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_icon_material
+    - paragraphs.paragraphs_type.icon_card
+  module:
+    - material_icons
+id: paragraph.icon_card.field_icon_material
+field_name: field_icon_material
+entity_type: paragraph
+bundle: icon_card
+label: Icon
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: material_icons

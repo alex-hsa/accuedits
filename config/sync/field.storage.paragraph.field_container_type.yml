@@ -1,0 +1,30 @@
+uuid: f752499b-44dc-48d7-aa7b-11d683ffd86e
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_container_type
+field_name: field_container_type
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: elevated
+      label: Elevated
+    -
+      value: filled
+      label: Filled
+    -
+      value: outlined
+      label: Outlined
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

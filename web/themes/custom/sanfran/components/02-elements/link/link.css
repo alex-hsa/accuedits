@@ -1,0 +1,34 @@
+a.hover::before {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    top: 100%;
+    left: 0;
+    pointer-events: none;
+}
+
+a.hover::before {
+    content: "";
+    transform-origin: 100% 50%;
+    transform: scale3d(0, 1, 1);
+    transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+}
+  
+a.hover:hover:before {
+    transform-origin: 0% 50%;
+    transform: scale3d(1, 1, 1);
+    transition-timing-function: cubic-bezier(0.4, 1, 0.8, 1);
+}
+  
+.link:after {
+    line-height: 1;
+    font-family: "Unicons";
+    content: "\e94c";
+    padding-left: 0.05rem;
+    font-size: 0.9rem;
+    font-weight: normal;
+    vertical-align: -3px;
+    margin-right: -0.25rem;
+    display: inline-block;
+}

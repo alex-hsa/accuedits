@@ -1,0 +1,53 @@
+{% if background_color %}
+  {% set background_color_class = 'p-4 rounded-lg' %}
+{% else %}
+  {% set background_color_class = '' %}
+{% endif %}
+
+{% if border == 'yes' %}
+  {% set border_class = 'border p-4 rounded-lg' %}
+{% else %}
+  {% set border_class = '' %}
+{% endif %}
+
+{% if placement == 'end' %}
+  {% set placement_class = 'flex flex-row-reverse' %}
+{% elseif placement == 'middle'%}
+  {% set placement_class = 'flex justify-center' %}
+{% else %}
+  {% set placement_class = 'flex flex-row' %}
+{% endif %}
+
+{% set paragraph_classes = [
+    paragraph.bundle|clean_class,
+    'bg-base-' ~ background_color,
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished',
+  ]|join(' ')|trim %}
+
+
+<section {{ attributes.addClass(paragraph_classes).addClass(border_class).addClass(background_color_class) }}>
+  {{ quick_edit }} 
+  <div class="lead p-8 {{ placement_class }}">
+      {% for key, item in lead_item %}
+          {% if key|first != '#' %}
+              {{ item }}
+          {% endif %}
+      {% endfor %}
+  </div>
+{% if orientation == 'horizontal' %}
+  <div class="items grid gap-x-4 gap-y-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-{{ columns }}">
+{% else %}
+  <div class="items grid gap-x-4 gap-y-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-{{ columns }}">
+{% endif %}
+  
+      {% for key, item in media_card_items %}
+          {% if key|first != '#' %}
+              {{ item }}
+          {% endif %}
+      {% endfor %}
+  </div>
+
+</section>

@@ -1,0 +1,14 @@
+frontend_editing.settings_form:
+  title: 'Settings'
+  route_name: frontend_editing.settings_form
+  base_route: frontend_editing.settings_form
+
+frontend_editing.entity_bundle_restrictions:
+  title: 'Entity types and bundles'
+  route_name: frontend_editing.entity_bundle_restrictions
+  base_route: frontend_editing.settings_form
+
+frontend_editing.ui_settings:
+  title: 'UI Settings'
+  route_name: frontend_editing.ui_settings
+  base_route: frontend_editing.settings_form

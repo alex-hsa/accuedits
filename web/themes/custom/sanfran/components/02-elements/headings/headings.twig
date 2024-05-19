@@ -1,0 +1,15 @@
+{% set classes = [
+  'h' ~ level,
+  'font-heading',
+  classes,
+]|join(' ')|trim %}
+
+<h{{level}} class="{{ classes }}">
+  {% if url %}
+    {{ include('sanfran:link', {
+        text: heading,
+        url,
+        })
+    }}
+  {% else %}{{ text }}{% endif %}
+</h{{level}}>

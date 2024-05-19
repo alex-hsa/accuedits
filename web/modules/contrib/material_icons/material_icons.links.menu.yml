@@ -1,0 +1,5 @@
+material_icons.settings:
+  title: 'Material Icons'
+  parent: system.admin_config_content
+  description: 'Material Icons.'
+  route_name: material_icons.settings

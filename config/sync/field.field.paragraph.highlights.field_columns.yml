@@ -1,0 +1,23 @@
+uuid: 4545580a-a000-4828-89c0-764dd6f0f19b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_columns
+    - paragraphs.paragraphs_type.highlights
+id: paragraph.highlights.field_columns
+field_name: field_columns
+entity_type: paragraph
+bundle: highlights
+label: Columns
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: 6
+  prefix: ''
+  suffix: ''
+field_type: integer

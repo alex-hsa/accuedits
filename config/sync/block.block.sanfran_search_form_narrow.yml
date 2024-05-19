@@ -1,0 +1,23 @@
+uuid: 20551d3e-7201-4707-87e4-f7f54da89f39
+langcode: en
+status: false
+dependencies:
+  module:
+    - search
+  theme:
+    - sanfran
+_core:
+  default_config_hash: yEBET0cqDbk8dkWzaJw-8CKft0961VBflsISoSR6Lj8
+id: sanfran_search_form_narrow
+theme: sanfran
+region: primary_menu
+weight: -7
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form (narrow)'
+  label_display: '0'
+  provider: search
+  page_id: ''
+visibility: {  }

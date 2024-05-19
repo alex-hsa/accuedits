@@ -1,0 +1,57 @@
+uuid: 9e8de39c-8256-49c8-b852-27cf8ed91819
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_width
+field_name: field_width
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: w_1_12
+      label: w-1/12
+    -
+      value: w_2_12
+      label: w-2/12
+    -
+      value: w_3_12
+      label: w-3/12
+    -
+      value: w_4_12
+      label: w-4/12
+    -
+      value: w_5_12
+      label: w-5/12
+    -
+      value: w_6_12
+      label: w-6/12
+    -
+      value: w_7_12
+      label: w-7/12
+    -
+      value: w_8_12
+      label: w-8/12
+    -
+      value: w_9_12
+      label: w-9/12
+    -
+      value: w_10_12
+      label: w-10/12
+    -
+      value: w_11_12
+      label: w-11/12
+    -
+      value: w_full
+      label: w-full
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

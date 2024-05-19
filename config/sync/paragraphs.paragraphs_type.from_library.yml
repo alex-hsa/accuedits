@@ -1,0 +1,19 @@
+uuid: 2b2b1686-d64b-4982-bcd7-36417f2f04a2
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'file:file:93519f76-2c44-467d-824c-d83cf47fe80b'
+  module:
+    - layout_paragraphs
+_core:
+  default_config_hash: OJUwL6xTTiHbXZy10swc5Fckkr7qhSm4b0nK3326LO8
+id: from_library
+label: Library
+icon_uuid: 93519f76-2c44-467d-824c-d83cf47fe80b
+icon_default: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjRweCIgZmlsbD0iIzAwMDAwMCI+PHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTggMTZoMTJWNEg4djEyem0yLTEwaDh2MmgtOFY2em0wIDNoOHYyaC04Vjl6bTAgM2g0djJoLTR2LTJ6IiBvcGFjaXR5PSIuMyIvPjxwYXRoIGQ9Ik00IDIyaDE0di0ySDRWNkgydjE0YzAgMS4xLjkgMiAyIDJ6TTYgNHYxMmMwIDEuMS45IDIgMiAyaDEyYzEuMSAwIDItLjkgMi0yVjRjMC0xLjEtLjktMi0yLTJIOGMtMS4xIDAtMiAuOS0yIDJ6bTE0IDEySDhWNGgxMnYxMnpNMTAgOWg4djJoLTh6bTAgM2g0djJoLTR6bTAtNmg4djJoLTh6Ii8+PC9zdmc+'
+description: ''
+behavior_plugins:
+  layout_paragraphs:
+    enabled: false
+    available_layouts: {  }

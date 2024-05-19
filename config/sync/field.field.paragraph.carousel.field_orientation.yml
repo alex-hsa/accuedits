@@ -1,0 +1,23 @@
+uuid: 78b0d24b-def8-4f36-b27a-f8b99b135f09
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_orientation
+    - paragraphs.paragraphs_type.carousel
+  module:
+    - options
+id: paragraph.carousel.field_orientation
+field_name: field_orientation
+entity_type: paragraph
+bundle: carousel
+label: Orientation
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: vertical
+default_value_callback: ''
+settings: {  }
+field_type: list_string

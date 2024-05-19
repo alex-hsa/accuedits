@@ -1,0 +1,10 @@
+paragraphs_library_item:
+  paragraphs_library_item: default
+paragraph:
+  highlights: default
+  highlights_item: default
+  icon_card: default
+  icon_cards: default
+  lead: default
+  media_cards: default
+  spotlight: default

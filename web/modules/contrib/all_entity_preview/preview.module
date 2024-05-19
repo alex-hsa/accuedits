@@ -1,0 +1,52 @@
+<?php
+
+/**
+ * @file
+ * Contains functions and hooks for preview module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function preview_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the all_entity_preview module.
+    case 'help.page.all_entity_preview':
+      $output = '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module allows to set an optional preview on any
+      content entity type and bundle as its currently implemented for nodes. The
+      code is based on the one in the core Node module.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_page_top().
+ */
+function preview_page_top(array &$page): void {
+  // Add 'Back to content editing' link on preview page.
+  $route_match = \Drupal::routeMatch();
+  if ($route_match->getRouteName() == 'preview.entity_preview') {
+    $page['page_top']['entity_preview'] = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => ['entity-preview-container', 'container-inline'],
+      ],
+    ];
+
+    $form = \Drupal::formBuilder()->getForm('\Drupal\preview\Form\PreviewForm', $route_match->getParameter('entity_preview'));
+    $page['page_top']['entity_preview']['view_mode'] = $form;
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function preview_form_alter(array &$form, FormStateInterface $form_state, $form_id): void {
+  \Drupal::service('preview.form_service')->alterForm($form, $form_state, $form_id);
+}

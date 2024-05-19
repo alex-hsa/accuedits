@@ -1,0 +1,12 @@
+uuid: 7a1f4a83-0d93-4e72-909a-d57c92965078
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'file:file:18b3ad1a-a513-467e-9211-67a05872f97a'
+id: lead
+label: Lead
+icon_uuid: 18b3ad1a-a513-467e-9211-67a05872f97a
+icon_default: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDhweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iNDhweCIgZmlsbD0iIzAwMDAwMCI+PHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTQgMThoMTZWNkg0djEyem0xNC0yaC0ydi0yaDJ2MnptLTgtNmg4djJoLTh2LTJ6bS00IDBoMnYySDZ2LTJ6bTAgNGg4djJINnYtMnoiIG9wYWNpdHk9Ii4zIi8+PHBhdGggZD0iTTIwIDRINGMtMS4xIDAtMiAuOS0yIDJ2MTJjMCAxLjEuOSAyIDIgMmgxNmMxLjEgMCAyLS45IDItMlY2YzAtMS4xLS45LTItMi0yem0wIDE0SDRWNmgxNnYxMnpNNiAxMGgydjJINnptMCA0aDh2Mkg2em0xMCAwaDJ2MmgtMnptLTYtNGg4djJoLTh6Ii8+PC9zdmc+'
+description: ''
+behavior_plugins: {  }

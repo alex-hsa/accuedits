@@ -1,0 +1,16 @@
+{# <div {{ attributes.addClass('at-button') }}>
+  {% if type == 'primary' %}
+    {% set bg = 'btn-primary' %}
+  {% elseif type == 'secondary' %}
+    {% set bg = 'btn-secondary' %}
+  {% elseif type == 'accent' %}
+    {% set bg = 'btn-accent' %}
+  {% endif %}
+
+  <button
+    class="btn {{ bg }}">
+    {{ title }}
+  </button>
+</div>
+ #}
+<button class="btn {{ type }} rounded" href="{{ ctaHref }}">{{ ctaText }}</button>

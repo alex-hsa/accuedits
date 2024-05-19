@@ -1,0 +1,49 @@
+{% stories spotlight with { 
+  title: 'AccuEdits/Components/Spotlight', 
+} %}
+
+  {% story spotlight_default with {
+    name: 'Image Spotlight',
+    args: {
+      heading: 'Join us at the conference',
+      image: 'https://accuedits.ddev.site/sites/default/files/2024-03/pexels-golden-gate-bridge-sausalito.jpeg',
+      imageAlt: 'Alt text',
+      description: 'This is a detailed and wordy example for the description field.',
+      ctaText: 'Click me!',
+      ctaHref: 'https://www.sfhsa.org',
+      variant: 'media-left-border',
+    }
+  } %}
+    {{ include('sanfran:spotlight', {
+        heading,
+        image,
+        imageAlt,
+        ctaText,
+        ctaHref,
+        description,
+        variant,
+    }) }}
+  {% endstory %}
+
+  {% story spotlight_video with {
+    name: 'Video Spotlight',
+    args: {
+      heading: 'This is a remote video spotlight',
+      video_remote: 'https://www.youtube.com/watch?v=nGbrVwMlCnM',
+      description: 'This is a detailed and wordy example for the description field.',
+      ctaText: 'Click me!',
+      ctaHref: 'https://www.sfhsa.org',
+      variant: 'media-right-border',
+    }
+  } %}
+    {{ include('sanfran:spotlight', {
+        heading,
+        video_remote,
+        ctaText,
+        ctaHref,
+        description,
+        variant,
+    }) }}
+  {% endstory %}
+
+{% endstories %}

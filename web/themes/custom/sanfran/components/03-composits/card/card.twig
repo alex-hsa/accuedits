@@ -1,0 +1,103 @@
+{% set parent = drupal_entity('paragraph', paragraph.parent_id.value|default('')) %}  
+{% set link_card = parent['#paragraph'].field_link_card.value %}
+
+{% if (link_card == '1') %} 
+    {% set link_card_class = 'hover:ring-2' %}
+{% else %}
+    {% set link_card_class = '' %}
+{% endif %}
+
+{% set orientation = parent['#paragraph'].field_orientation.value %}
+{% if orientation == 'horizontal' %}
+  {% set orientation_class = 'relative flex flex-row w-full [&>div_figure_img]:rounded-l-lg [&>div_figure_iframe]:rounded-l-lg' %}
+  {% set image_style = 'max_325x325' %}
+{% else %}
+  {% set orientation_class = '[&>div.lead]:py-4 [&>div_figure_img]:rounded-t-lg [&>div_figure_iframe]:rounded-t-lg' %}
+  {% set image_style = '21_9_2xl_1218x562' %}
+{% endif %}
+
+{% if placement == 'end' %}
+  {% set placement_class = 'flex flex-row-reverse' %}
+{% elseif placement == 'middle'%}
+  {% set placement_class = 'flex justify-center' %}
+{% else %}
+  {% set placement_class = 'flex flex-row' %}
+{% endif %}
+
+{% set classes_paragraph = [
+    paragraph.bundle,
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished',
+  ]|join(' ')|trim %}
+
+
+  
+{% if (link_card == '1') and (ctaHref != '') %} 
+  <article>
+    {{ quick_edit }}
+    <a href="{{ ctaHref }}"{{ attributes.addClass(classes_paragraph).addClass(link_card_class).addClass(orientation_class).addClass('bg-clip-border bg-base-100 max-w-128 rounded-lg shadow-2xl') }}>
+      <div class="items bg-clip-border overflow-hidden relative rounded-r-none rounded-lg shrink-0  w-2/5 [&>figure]:h-full [&>figure_img]:object-cover [&>figure_img]:w-full [&>figure_img]:h-full">
+{% else %}
+  <article{{ attributes.addClass(classes_paragraph).addClass(orientation_class).addClass('bg-base-100 max-w-128 rounded-lg shadow-2xl') }}>
+    {{ quick_edit }}
+    <div class="items [&>figure]:h-full [&>figure_img]:object-cover [&>figure_img]:w-full [&>figure_img]:h-full">
+{% endif %}
+
+      
+        {% if (image != '') and ((image != '/')) %} 
+          {{ include('sanfran:figure', {
+              image,
+              imageAlt,
+              classes: '',
+              orientation,
+            })
+          }}
+        {% endif %}
+        
+        {% if video_remote != '' %} 
+            {{ include('sanfran:remote-video', {
+                video_remote,
+                classes: '',
+                })
+            }}
+        {% endif %}
+      </div>
+        
+      <div class="lead p-4">
+
+        {% if heading %}
+          {{ include('sanfran:headings', {
+              level: '3',
+              text: heading,
+            })
+          }}
+        {% endif %}
+
+        {% if description %}
+          {{ include('sanfran:wysiwyg', {
+              wysiwyg: description,
+            })
+          }}
+        {% endif %}
+
+        {% if ctaHref and (link_card != '1') %}
+        <div class="card-actions justify-start">
+          {{ include('sanfran:button', {
+            type: 'btn-outline btn-info',
+            ctaText,
+            ctaHref,
+            })
+          }}
+        </div>
+        {% endif %}
+
+      </div>
+  {% if (link_card == '1') and (ctaHref != '') %} 
+    </a>
+  {% endif %}
+
+  </article>
+
+  

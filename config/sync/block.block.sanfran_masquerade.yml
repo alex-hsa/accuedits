@@ -1,0 +1,26 @@
+uuid: 4b13aba3-aa01-4f45-8d5d-a57684d6504e
+langcode: en
+status: true
+dependencies:
+  module:
+    - masquerade
+    - system
+  theme:
+    - sanfran
+id: sanfran_masquerade
+theme: sanfran
+region: content
+weight: -7
+provider: null
+plugin: masquerade
+settings:
+  id: masquerade
+  label: Masquerade
+  label_display: visible
+  provider: masquerade
+  show_unmasquerade_link: true
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '/user/*'

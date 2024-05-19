@@ -1,0 +1,69 @@
+uuid: 3fca2422-7779-465e-a47b-6098b06adcc7
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.table_component
+    - node.type.article
+    - node.type.page
+    - taxonomy.vocabulary.tags
+    - user.role.authenticated
+  module:
+    - comment
+    - contextual
+    - file
+    - filter
+    - frontend_editing
+    - masquerade
+    - node
+    - paragraphs
+    - path
+    - system
+    - taxonomy
+    - toolbar
+_core:
+  default_config_hash: e_wG1u7SrGaJbY2-Szgbgl-c8T3kdirU3uTNq2c_QJQ
+id: content_editor
+label: 'Content editor'
+weight: 2
+is_admin: false
+permissions:
+  - 'access administration pages'
+  - 'access content overview'
+  - 'access contextual links'
+  - 'access files overview'
+  - 'access frontend editing'
+  - 'access toolbar'
+  - 'add paragraphs'
+  - 'administer frontend editing'
+  - 'administer nodes'
+  - 'administer url aliases'
+  - 'create article content'
+  - 'create page content'
+  - 'create terms in tags'
+  - 'create url aliases'
+  - 'delete any article content'
+  - 'delete any page content'
+  - 'delete article revisions'
+  - 'delete own article content'
+  - 'delete own files'
+  - 'delete own page content'
+  - 'delete page revisions'
+  - 'edit any article content'
+  - 'edit any page content'
+  - 'edit own article content'
+  - 'edit own comments'
+  - 'edit own page content'
+  - 'edit terms in tags'
+  - 'masquerade as authenticated'
+  - 'move paragraphs'
+  - 'revert all revisions'
+  - 'revert article revisions'
+  - 'revert page revisions'
+  - 'use text format table_component'
+  - 'view all revisions'
+  - 'view article revisions'
+  - 'view own unpublished content'
+  - 'view page revisions'
+  - 'view the administration theme'
+  - 'view unpublished paragraphs'
