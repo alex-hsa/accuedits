@@ -4313,8 +4313,8 @@ details.collapse summary::-webkit-details-marker{
   border-top-right-radius: 0.5rem;
 }
 
-.rounded-br-lg{
-  border-bottom-right-radius: 0.5rem;
+.rounded-br-xl{
+  border-bottom-right-radius: 0.75rem;
 }
 
 .border{

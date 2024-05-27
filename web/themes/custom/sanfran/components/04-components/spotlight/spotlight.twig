@@ -2,7 +2,7 @@
   {% set variant_classes = 'flex flex-row-reverse [&>div.media_img]:rounded-lg [&>div.media_iframe]:rounded-lg' %}
 {% elseif (flip == 'yes') and (border == 'no') and (background_color != '') %}
   {% set variant_classes = 'flex flex-row-reverse [&>div.media_img]:rounded-l-lg [&>div.media_iframe]:rounded-l-lg rounded-lg' %}
-{% elseif (flip == 'yes') and (border == 'yes') and (background_color != '') %}
+{% elseif (flip == 'yes') and (border == 'yes') and (background_color == '') %}
   {% set variant_classes = 'flex flex-row-reverse [&>div.media_img]:rounded-l-lg [&>div.media_iframe]:rounded-l-lg border rounded-lg' %}
 {% elseif (flip == 'no') and (border == 'no') and (background_color != '') %}
   {% set variant_classes = 'flex flex-row [&>div.media_img]:rounded-r-lg [&>div.media_iframe]:rounded-r-lg rounded-lg' %}
