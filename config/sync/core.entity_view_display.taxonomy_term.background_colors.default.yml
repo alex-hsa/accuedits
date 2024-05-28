@@ -21,3 +21,4 @@ content:
     region: content
 hidden:
   field_hex_value: true
+  langcode: true

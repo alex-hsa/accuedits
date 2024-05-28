@@ -36,3 +36,4 @@ hidden:
   field_parent_page: true
   field_teaser_image: true
   field_teaser_text: true
+  langcode: true
