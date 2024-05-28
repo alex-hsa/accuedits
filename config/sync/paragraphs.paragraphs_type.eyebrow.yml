@@ -1,0 +1,15 @@
+uuid: 9c0463d0-fe99-49d1-9b33-d5bd2eada627
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs_library
+third_party_settings:
+  paragraphs_library:
+    allow_library_conversion: true
+id: eyebrow
+label: Eyebrow
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

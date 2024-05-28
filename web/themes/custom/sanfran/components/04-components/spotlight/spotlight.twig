@@ -13,7 +13,7 @@
 {% endif %}
 
 {% if background_color %}
-  {% set background_color_class = 'bg-' ~ background_color ~ '/[.25]' %}
+  {% set background_color_class = 'bg-' ~ background_color ~ '/[.1]' %}
 {% endif %}
 
 {% set paragraph_classes = [
@@ -24,7 +24,7 @@
     not paragraph.isPublished() ? 'paragraph--unpublished',
   ]|join(' ')|trim %}
 
-<section {{ attributes.addClass(paragraph_classes).addClass(variant_classes).addClass(background_color_class) }}>
+<section {{ attributes.addClass(paragraph_classes).addClass(variant_classes).addClass(background_color_class) }}  style="background-image: url('/themes/custom/sanfran/images/patterns/blue_waves.svg');">
   {{ quick_edit }}
  
   {# Display Lead paragraph #}

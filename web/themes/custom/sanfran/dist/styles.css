@@ -4282,10 +4282,6 @@ details.collapse summary::-webkit-details-marker{
   border-radius: 1rem;
 }
 
-.rounded-box{
-  border-radius: var(--rounded-box, 1rem);
-}
-
 .rounded-full{
   border-radius: 9999px;
 }
@@ -4354,10 +4350,6 @@ details.collapse summary::-webkit-details-marker{
   border-inline-start-width: 8px;
 }
 
-.border-t{
-  border-top-width: 1px;
-}
-
 .border-solid{
   border-style: solid;
 }
@@ -4378,11 +4370,6 @@ details.collapse summary::-webkit-details-marker{
 .border-base-200{
   --tw-border-opacity: 1;
   border-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-border-opacity)));
-}
-
-.border-base-300{
-  --tw-border-opacity: 1;
-  border-color: var(--fallback-b3,oklch(var(--b3)/var(--tw-border-opacity)));
 }
 
 .border-error{
@@ -4711,9 +4698,9 @@ details.collapse summary::-webkit-details-marker{
   padding-right: 2.5rem;
 }
 
-.py-4{
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+.py-8{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .pb-0{
@@ -4850,6 +4837,11 @@ details.collapse summary::-webkit-details-marker{
 .text-warning{
   --tw-text-opacity: 1;
   color: var(--fallback-wa,oklch(var(--wa)/var(--tw-text-opacity)));
+}
+
+.text-neutral-content{
+  --tw-text-opacity: 1;
+  color: var(--fallback-nc,oklch(var(--nc)/var(--tw-text-opacity)));
 }
 
 .no-underline{
@@ -5156,6 +5148,16 @@ section{
   content: var(--tw-content);
 }
 
+.hover\:bg-primary:hover{
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-p,oklch(var(--p)/var(--tw-bg-opacity)));
+}
+
+.hover\:bg-secondary:hover{
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-s,oklch(var(--s)/var(--tw-bg-opacity)));
+}
+
 .hover\:ring-2:hover{
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -5235,6 +5237,19 @@ section{
   .lg\:grid-cols-6{
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
+}
+
+.\[\&\>a\.is-active\]\:bg-transparent>a.is-active{
+  background-color: transparent;
+}
+
+.\[\&\>a\:hover\]\:bg-transparent>a:hover{
+  background-color: transparent;
+}
+
+.\[\&\>a\]\:text-base-200>a{
+  --tw-text-opacity: 1;
+  color: var(--fallback-b2,oklch(var(--b2)/var(--tw-text-opacity)));
 }
 
 .\[\&\>div\.frontend-editing-actions\]\:col-end-12>div.frontend-editing-actions{
@@ -5385,6 +5400,30 @@ section{
 .\[\&\>i\:first-child\]\:text-4xl>i:first-child{
   font-size: 2.25rem;
   line-height: 2.5rem;
+}
+
+.\[\&\>li\.tbm-item\.level-1\]\:border-primary\/\[\.5\]>li.tbm-item.level-1{
+  border-color: var(--fallback-p,oklch(var(--p)/.5));
+}
+
+.\[\&\>li_a\]\:rounded-none>li a{
+  border-radius: 0px;
+}
+
+.\[\&\>li_div_a\.tbm-link\.level-1\:hover\]\:bg-primary\/\[\.5\]>li div a.tbm-link.level-1:hover{
+  background-color: var(--fallback-p,oklch(var(--p)/.5));
+}
+
+.\[\&\>li_div_button\:focus\]\:bg-primary\/\[\.5\]>li div button:focus{
+  background-color: var(--fallback-p,oklch(var(--p)/.5));
+}
+
+.\[\&\>li_div_button\:hover\]\:bg-primary\/\[\.5\]>li div button:hover{
+  background-color: var(--fallback-p,oklch(var(--p)/.5));
+}
+
+.\[\&\>li_div_button\]\:bg-primary\/\[\.01\]>li div button{
+  background-color: var(--fallback-p,oklch(var(--p)/.01));
 }
 
 .\[\&\>p\]\:mb-0>p{

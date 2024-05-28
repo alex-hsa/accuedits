@@ -26,7 +26,11 @@
   {{ quick_edit }} 
 
   {% if eyebrow %}
-      <div class="eyebrow mb-2 uppercase badge badge-{{background_color}}">{{ eyebrow }}</div>
+      {{ include('sanfran:eyebrow', {
+          eyebrow,
+          background_color,
+          })
+      }}
   {% endif %}
 
   {% if heading %}

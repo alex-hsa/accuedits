@@ -1,0 +1,20 @@
+{% stories eyebrow with { 
+  title: 'AccuEdits/Composits/Eyebrow'
+} %}
+
+  {% story eyebrow_default with {
+    name: 'Default',
+      args: {
+        eyebrow: 'Non-interactive text',
+        background_color: 'secondary',
+      }
+  } %}
+
+   {{ include('sanfran:eyebrow', {
+      eyebrow,
+      background_color,
+     })
+   }}
+  {% endstory %}
+
+{% endstories %}
