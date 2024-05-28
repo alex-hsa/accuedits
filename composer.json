@@ -47,7 +47,7 @@
         "drupal/frontend_editing": "^1.7",
         "drupal/gin": "^3.0@RC",
         "drupal/gin_login": "^2.0",
-        "drupal/imagemagick": "^4.0@alpha",
+        "drupal/imagemagick": "^4.0@beta",
         "drupal/key": "^1.17",
         "drupal/layout_paragraphs": "2.0.4",
         "drupal/libraries": "^4.0",

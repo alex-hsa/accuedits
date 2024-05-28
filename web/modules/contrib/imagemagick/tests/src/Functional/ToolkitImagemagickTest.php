@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Drupal\Tests\imagemagick\Functional;
 
 use Drupal\Core\Extension\ModuleExtensionList;
-use Drupal\Core\File\FileSystemInterface;
+use Drupal\Core\File\FileExists;
 use Drupal\Core\Image\ImageInterface;
 use Drupal\imagemagick\EventSubscriber\ImagemagickEventSubscriber;
 use Drupal\imagemagick\PackageSuite;
@@ -492,7 +492,7 @@ class ToolkitImagemagickTest extends BrowserTestBase {
     $this->assertSame('', $toolkit->arguments()->getDestinationLocalPath());
 
     // Test retrieval of EXIF information.
-    $this->fileSystem->copy($this->moduleList->getPath('imagemagick') . '/misc/test-exif.jpeg', 'public://', FileSystemInterface::EXISTS_REPLACE);
+    $this->fileSystem->copy($this->moduleList->getPath('imagemagick') . '/misc/test-exif.jpeg', 'public://', FileExists::Replace);
     // The image files that will be tested.
     $image_files = [
       [

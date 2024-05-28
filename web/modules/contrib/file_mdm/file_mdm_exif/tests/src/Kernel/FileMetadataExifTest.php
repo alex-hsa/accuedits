@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\file_mdm_exif\Kernel;
 
-use Drupal\Core\File\FileSystemInterface;
+use Drupal\Core\File\FileExists;
 use Drupal\file_mdm\FileMetadataInterface;
 use Drupal\file_mdm\FileMetadataManagerInterface;
 use Drupal\file_mdm_exif\ExifTagMapperInterface;
@@ -38,10 +38,10 @@ class FileMetadataExifTest extends FileMetadataManagerTestBase {
    */
   public function testExifPlugin(): void {
     // Prepare a copy of test files.
-    $this->fileSystem->copy('core/tests/fixtures/files/image-test.jpg', 'public://', FileSystemInterface::EXISTS_REPLACE);
-    $this->fileSystem->copy('core/tests/fixtures/files/image-test.png', 'public://', FileSystemInterface::EXISTS_REPLACE);
-    $this->fileSystem->copy($this->moduleList->getPath('file_mdm') . '/tests/files/test-exif.jpeg', 'public://', FileSystemInterface::EXISTS_REPLACE);
-    $this->fileSystem->copy($this->moduleList->getPath('file_mdm') . '/tests/files/test-exif.jpeg', 'temporary://', FileSystemInterface::EXISTS_REPLACE);
+    $this->fileSystem->copy('core/tests/fixtures/files/image-test.jpg', 'public://', FileExists::Replace);
+    $this->fileSystem->copy('core/tests/fixtures/files/image-test.png', 'public://', FileExists::Replace);
+    $this->fileSystem->copy($this->moduleList->getPath('file_mdm') . '/tests/files/test-exif.jpeg', 'public://', FileExists::Replace);
+    $this->fileSystem->copy($this->moduleList->getPath('file_mdm') . '/tests/files/test-exif.jpeg', 'temporary://', FileExists::Replace);
     // The image files that will be tested.
     $image_files = [
       [
@@ -165,7 +165,7 @@ class FileMetadataExifTest extends FileMetadataManagerTestBase {
     $fmdm = $this->container->get(FileMetadataManagerInterface::class);
 
     // Copy test file to public://.
-    $this->fileSystem->copy($this->moduleList->getPath('file_mdm') . '/tests/files/portrait-painting.jpg', 'public://', FileSystemInterface::EXISTS_REPLACE);
+    $this->fileSystem->copy($this->moduleList->getPath('file_mdm') . '/tests/files/portrait-painting.jpg', 'public://', FileExists::Replace);
     $file_uri = 'public://portrait-painting.jpg';
     $file_metadata = $fmdm->uri($file_uri);
 
@@ -312,7 +312,7 @@ class FileMetadataExifTest extends FileMetadataManagerTestBase {
     $this->assertEquals($data['GPSLongitude'], $data_reloaded['GPSLongitude']);
 
     // Test writing metadata to a file that has no EXIF info.
-    $this->fileSystem->copy('core/tests/fixtures/files/image-2.jpg', 'public://', FileSystemInterface::EXISTS_REPLACE);
+    $this->fileSystem->copy('core/tests/fixtures/files/image-2.jpg', 'public://', FileExists::Replace);
     $test_2 = $fmdm->uri('public://image-2.jpg');
     $this->assertEquals(0, $this->countMetadataKeys($test_2, 'exif'));
     // Load EXIF metadata from previous file processed.
@@ -355,7 +355,7 @@ class FileMetadataExifTest extends FileMetadataManagerTestBase {
     $fmdm = $this->container->get(FileMetadataManagerInterface::class);
 
     // Copy test file to public://.
-    $this->fileSystem->copy($this->moduleList->getPath('file_mdm') . '/tests/files/sample-1.tiff', 'public://', FileSystemInterface::EXISTS_REPLACE);
+    $this->fileSystem->copy($this->moduleList->getPath('file_mdm') . '/tests/files/sample-1.tiff', 'public://', FileExists::Replace);
     $file_uri = 'public://sample-1.tiff';
     $file_metadata = $fmdm->uri($file_uri);
 

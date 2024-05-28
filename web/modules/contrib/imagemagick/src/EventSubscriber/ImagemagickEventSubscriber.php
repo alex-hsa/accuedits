@@ -7,6 +7,7 @@ namespace Drupal\imagemagick\EventSubscriber;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Config\ImmutableConfig;
 use Drupal\Core\File\Exception\FileException;
+use Drupal\Core\File\FileExists;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\StreamWrapper\StreamWrapperManagerInterface;
 use Drupal\file_mdm\FileMetadataManagerInterface;
@@ -96,7 +97,7 @@ class ImagemagickEventSubscriber implements EventSubscriberInterface {
           $temp_path = $this->fileSystem->tempnam('temporary://', 'imagemagick_');
           $this->fileSystem->unlink($temp_path);
           $temp_path .= '.' . pathinfo($source, PATHINFO_EXTENSION);
-          $path = $this->fileSystem->copy($arguments->getSource(), $temp_path, FileSystemInterface::EXISTS_ERROR);
+          $path = $this->fileSystem->copy($arguments->getSource(), $temp_path, FileExists::Error);
           $arguments->setSourceLocalPath($this->fileSystem->realpath($path));
           drupal_register_shutdown_function(
             [static::class, 'removeTemporaryRemoteCopy'],
@@ -223,7 +224,7 @@ class ImagemagickEventSubscriber implements EventSubscriberInterface {
       // We are working with a remote file, so move the temp file to the final
       // destination, replacing any existing file with the same name.
       try {
-        $this->fileSystem->move($arguments->getDestinationLocalPath(), $arguments->getDestination(), FileSystemInterface::EXISTS_REPLACE);
+        $this->fileSystem->move($arguments->getDestinationLocalPath(), $arguments->getDestination(), FileExists::Replace);
       }
       catch (FileException $e) {
         $this->logger->error($e->getMessage());

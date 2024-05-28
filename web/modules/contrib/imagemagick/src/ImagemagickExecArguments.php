@@ -18,7 +18,6 @@ class ImagemagickExecArguments {
    * The array of command line arguments to be used by 'convert'.
    *
    * @var array<int,array{mode: ArgumentMode, argument: string, info: array}>
-   * }
    */
   protected array $arguments = [];
 

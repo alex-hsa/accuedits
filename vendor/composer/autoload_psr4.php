@@ -102,7 +102,7 @@ return array(
     'Google\\Protobuf\\' => array($vendorDir . '/google/protobuf/src/Google/Protobuf'),
     'GPBMetadata\\Opentelemetry\\' => array($vendorDir . '/open-telemetry/gen-otlp-protobuf/GPBMetadata/Opentelemetry'),
     'GPBMetadata\\Google\\Protobuf\\' => array($vendorDir . '/google/protobuf/src/GPBMetadata/Google/Protobuf'),
-    'FontLib\\' => array($vendorDir . '/phenx/php-font-lib/src/FontLib'),
+    'FontLib\\' => array($vendorDir . '/dompdf/php-font-lib/src/FontLib'),
     'FileEye\\MimeMap\\' => array($vendorDir . '/fileeye/mimemap/src'),
     'Egulias\\EmailValidator\\' => array($vendorDir . '/egulias/email-validator/src'),
     'Drush\\' => array($vendorDir . '/drush/drush/src'),

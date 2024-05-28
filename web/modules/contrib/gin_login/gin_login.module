@@ -167,6 +167,11 @@ function gin_login_theme() {
   $theme['page__user__login'] = [
     'template' => 'page--user--login',
     'preprocess functions' => ['gin_login_preprocess_ginlogin'],
+    'variables' => [
+      'brand_image' => NULL,
+      'brand_alt' => NULL,
+      'icon_path' => NULL,
+    ],
   ];
   $theme['page__user__password'] = [
     'template' => 'page--user--password',
@@ -189,7 +194,6 @@ function gin_login_preprocess_ginlogin(&$variables) {
   $variables['site_name'] = \Drupal::config('system.site')->get('name');
   $themeIconPath = theme_get_setting('icon_path', $theme);
   $themeUseDefaultIcon = theme_get_setting('icon_default', $theme);
-  $darkmode = theme_get_setting('enable_darkmode', $theme);
   $fileUrlGenerator = \Drupal::service('file_url_generator');
 
   // #3258015: Make sure we're compatible with the new variant.
