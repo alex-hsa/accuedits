@@ -2,6 +2,7 @@
 
 namespace Drupal\webp;
 
+use Drupal\Component\Utility\DeprecationHelper;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\File\Exception\FileException;
 use Drupal\Core\Image\ImageFactory;
@@ -102,16 +103,26 @@ class Webp {
     }
     else {
       // We assume $toolkit == 'gd'.
-      // Generate a GD resource from the source image. You can't pass GD resources
-      // created by the $imageFactory as a parameter to another function, so we
-      // have to do everything in one function.
+      // Generate a GD resource from the source image. You can't pass GD
+      // resources created by the $imageFactory as a parameter to another
+      // function, so we have to do everything in one function.
       $sourceImage = $this->imageFactory->get($uri, 'gd');
       /** @var \Drupal\system\Plugin\ImageToolkit\GDToolkit $toolkit */
       $toolkit = $sourceImage->getToolkit();
-      $sourceImage = $toolkit->getResource();
+      if (!class_exists(DeprecationHelper::class)) {
+        $sourceImage = $toolkit->getResource();
+      }
+      else {
+        $sourceImage = DeprecationHelper::backwardsCompatibleCall(
+          \Drupal::VERSION,
+          '10.2',
+          currentCallable: fn () => $toolkit->getImage(),
+          deprecatedCallable: fn () => $toolkit->getResource(),
+        );
+      }
 
-      // If we can generate a GD resource from the source image, generate the URI
-      // of the WebP copy and try to create it.
+      // If we can generate a GD resource from the source image, generate the
+      // URI of the WebP copy and try to create it.
       if ($sourceImage !== NULL) {
         $destination = $this->getWebpDestination($uri, '@directory@filename.webp');
 
