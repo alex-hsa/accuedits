@@ -17,7 +17,7 @@ use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
 use Symfony\Component\Validator\ConstraintViolation;
 
-// cspell:ignore hurlant layercake tatou
+// cspell:ignore alternatif hurlant layercake tatou texte zartan
 
 /**
  * @coversDefaultClass \Drupal\ckeditor5\Plugin\CKEditor5Plugin\Media
@@ -1007,7 +1007,7 @@ class MediaTest extends MediaTestBase {
   /**
    * For testing view modes in different scenarios.
    */
-  public function providerTestViewMode(): array {
+  public static function providerTestViewMode(): array {
     return [
       'with alignment' => [TRUE],
       'without alignment' => [FALSE],

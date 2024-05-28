@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\file\Kernel;
 
 use Drupal\Core\Database\Database;
@@ -163,7 +165,7 @@ class UsageTest extends FileManagedUnitTestBase {
     $connection->update('file_managed')
       ->fields([
         'status' => 0,
-        'changed' => REQUEST_TIME - $this->config('system.file')->get('temporary_maximum_age') - 1,
+        'changed' => \Drupal::time()->getRequestTime() - $this->config('system.file')->get('temporary_maximum_age') - 1,
       ])
       ->condition('fid', $temp_old->id())
       ->execute();
@@ -180,7 +182,7 @@ class UsageTest extends FileManagedUnitTestBase {
     // Permanent file that is old.
     $perm_old = $fileRepository->writeData('', $destination);
     $connection->update('file_managed')
-      ->fields(['changed' => REQUEST_TIME - $this->config('system.file')->get('temporary_maximum_age') - 1])
+      ->fields(['changed' => \Drupal::time()->getRequestTime() - $this->config('system.file')->get('temporary_maximum_age') - 1])
       ->condition('fid', $temp_old->id())
       ->execute();
     $this->assertFileExists($perm_old->getFileUri());

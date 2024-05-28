@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\system\Functional\Form;
 
 use Drupal\Core\Form\FormState;
@@ -9,6 +11,7 @@ use Drupal\Tests\BrowserTestBase;
  * Tests the tableselect form element for expected behavior.
  *
  * @group Form
+ * @group #slow
  */
 class ElementsTableSelectTest extends BrowserTestBase {
 

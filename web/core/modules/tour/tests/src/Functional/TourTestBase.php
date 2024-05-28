@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\tour\Functional;
 
 use Drupal\Tests\BrowserTestBase;
@@ -16,7 +18,7 @@ abstract class TourTestBase extends BrowserTestBase {
    * // Basic example.
    * $this->assertTourTips();
    *
-   * // Advanced example. The following would be used for multipage or
+   * // Advanced example. The following would be used for multi-page or
    * // targeting a specific subset of tips.
    * $tips = array();
    * $tips[] = array('data-id' => 'foo');

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\media_library\Kernel;
 
 use Drupal\Core\Form\FormState;
@@ -29,6 +31,7 @@ class MediaLibraryAddFormTest extends KernelTestBase {
     'media_library',
     'file',
     'field',
+    'filter',
     'image',
     'system',
     'views',

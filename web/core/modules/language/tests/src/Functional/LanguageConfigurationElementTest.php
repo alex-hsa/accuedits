@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\language\Functional;
 
 use Drupal\Core\Language\LanguageInterface;
@@ -105,6 +107,10 @@ class LanguageConfigurationElementTest extends BrowserTestBase {
         'label' => $this->randomMachineName(),
       ])->save();
     }
+
+    // Ensure the bundles under test exist, to avoid config validation errors.
+    entity_test_create_bundle('custom_bundle');
+    entity_test_create_bundle('some_bundle');
 
     // Fixed language.
     ContentLanguageSettings::loadByEntityTypeBundle('entity_test', 'custom_bundle')

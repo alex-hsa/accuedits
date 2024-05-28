@@ -117,7 +117,7 @@ class UpdateFetcherTest extends UnitTestCase {
    *   - 'site_key' - An arbitrary site key.
    *   - 'expected' - The expected URL from UpdateFetcher::buildFetchUrl().
    */
-  public function providerTestUpdateBuildFetchUrl() {
+  public static function providerTestUpdateBuildFetchUrl() {
     $data = [];
 
     // First test that we didn't break the trivial case.
@@ -131,14 +131,14 @@ class UpdateFetcherTest extends UnitTestCase {
 
     $data[] = [$project, $site_key, $expected];
 
-    // For disabled projects it shouldn't add the site key either.
+    // For uninstalled projects it shouldn't add the site key either.
     $site_key = 'site_key';
     $project['project_type'] = 'disabled';
     $expected = "http://www.example.com/{$project['name']}/current";
 
     $data[] = [$project, $site_key, $expected];
 
-    // For enabled projects, test adding the site key.
+    // For installed projects, test adding the site key.
     $project['project_type'] = '';
     $expected = "http://www.example.com/{$project['name']}/current";
     $expected .= '?site_key=site_key';

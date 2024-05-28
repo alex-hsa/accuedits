@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\block_content\Functional;
 
 use Drupal\block_content\Entity\BlockContent;
@@ -70,7 +72,9 @@ class BlockContentSaveTest extends BlockContentTestBase {
   public function testDeterminingChanges() {
     // Initial creation.
     $block = $this->createBlockContent('test_changes');
-    $this->assertEquals(REQUEST_TIME, $block->getChangedTime(), 'Creating a block sets default "changed" timestamp.');
+    // Creating a block should set the changed date to the current time
+    // which is always greater than the time set by hooks we're testing.
+    $this->assertGreaterThan(979534800, $block->getChangedTime(), 'Creating a block sets default "changed" timestamp.');
 
     // Update the block without applying changes.
     $block->save();

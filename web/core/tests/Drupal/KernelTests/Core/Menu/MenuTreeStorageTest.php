@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\KernelTests\Core\Menu;
 
 use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Core\Menu\MenuTreeParameters;
 use Drupal\Core\Menu\MenuTreeStorage;
 use Drupal\KernelTests\KernelTestBase;
+
+// cspell:ignore mlid
 
 /**
  * Tests the menu tree storage.

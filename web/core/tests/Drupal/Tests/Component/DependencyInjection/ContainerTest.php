@@ -675,7 +675,7 @@ class ContainerTest extends TestCase {
    * @covers ::getServiceIds
    */
   public function testGetServiceIds() {
-    $service_definition_keys = array_keys($this->containerDefinition['services']);
+    $service_definition_keys = array_merge(['service_container'], array_keys($this->containerDefinition['services']));
     $this->assertEquals($service_definition_keys, $this->container->getServiceIds(), 'Retrieved service IDs match definition.');
 
     $mock_service = new MockService();
@@ -698,6 +698,19 @@ class ContainerTest extends TestCase {
   }
 
   /**
+   * Tests that service iterators are lazily instantiated.
+   */
+  public function testIterator() {
+    $iterator = $this->container->get('service_iterator')->getArguments()[0];
+    $this->assertIsIterable($iterator);
+    $this->assertFalse($this->container->initialized('other.service'));
+    foreach ($iterator as $service) {
+      $this->assertIsObject($service);
+    }
+    $this->assertTrue($this->container->initialized('other.service'));
+  }
+
+  /**
    * @covers \Drupal\Component\DependencyInjection\ServiceIdHashTrait::getServiceIdMappings
    * @covers \Drupal\Component\DependencyInjection\ServiceIdHashTrait::generateServiceIdHash
    *
@@ -713,6 +726,25 @@ class ContainerTest extends TestCase {
       $this->container->generateServiceIdHash($s1) => 'other.service',
       $this->container->generateServiceIdHash($s2) => 'late.service',
     ], $this->container->getServiceIdMappings());
+  }
+
+  /**
+   * Tests Container::reset().
+   *
+   * @covers ::reset
+   */
+  public function testReset() {
+    $this->assertFalse($this->container->initialized('late.service'), 'Late service is not initialized.');
+    $this->container->get('late.service');
+    $this->assertTrue($this->container->initialized('late.service'), 'Late service is initialized after it was retrieved once.');
+
+    // Reset the container. All initialized services will be reset.
+    $this->container->reset();
+
+    $this->assertFalse($this->container->initialized('late.service'), 'Late service is not initialized.');
+    $this->container->get('late.service');
+    $this->assertTrue($this->container->initialized('late.service'), 'Late service is initialized after it was retrieved once.');
+    $this->assertSame($this->container, $this->container->get('service_container'));
   }
 
   /**
@@ -733,9 +765,6 @@ class ContainerTest extends TestCase {
     $parameters['service_from_parameter'] = $this->getServiceCall('service.provider_alias');
 
     $services = [];
-    $services['service_container'] = [
-      'class' => '\Drupal\service_container\DependencyInjection\Container',
-    ];
     $services['other.service'] = [
       'class' => get_class($fake_service),
     ];
@@ -977,6 +1006,16 @@ class ContainerTest extends TestCase {
       'arguments' => $this->getCollection([$this->getRaw('ccc')]),
     ];
 
+    // Iterator argument.
+    $services['service_iterator'] = [
+      'class' => '\Drupal\Tests\Component\DependencyInjection\MockInstantiationService',
+      'arguments' => $this->getCollection([
+        $this->getIterator([
+          $this->getServiceCall('other.service'),
+        ]),
+      ]),
+    ];
+
     $aliases = [];
     $aliases['service.provider_alias'] = 'service.provider';
     $aliases['late.service_alias'] = 'late.service';
@@ -1009,6 +1048,16 @@ class ContainerTest extends TestCase {
       'type' => 'service_closure',
       'id' => $id,
       'invalidBehavior' => $invalid_behavior,
+    ];
+  }
+
+  /**
+   * Helper function to return a service iterator.
+   */
+  protected function getIterator($iterator) {
+    return (object) [
+      'type' => 'iterator',
+      'value' => $iterator,
     ];
   }
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\system\Functional\Form;
 
 use Drupal\form_test\Form\FormTestLabelForm;
@@ -144,7 +146,7 @@ class ElementsLabelsTest extends BrowserTestBase {
     $form = $this->getFormWithLimitedProperties();
     $render_service = $this->container->get('renderer');
     // This should not throw any notices.
-    $render_service->renderPlain($form);
+    $render_service->renderInIsolation($form);
   }
 
   /**

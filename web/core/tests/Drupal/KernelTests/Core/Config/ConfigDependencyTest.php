@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\KernelTests\Core\Config;
 
 use Drupal\entity_test\Entity\EntityTest;
@@ -227,7 +229,7 @@ class ConfigDependencyTest extends EntityKernelTestBase {
   /**
    * Data provider for self::testConfigEntityUninstallComplex().
    */
-  public function providerConfigEntityUninstallComplex() {
+  public static function providerConfigEntityUninstallComplex() {
     // Ensure that alphabetical order has no influence on dependency fixing and
     // removal.
     return [

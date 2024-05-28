@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\views\Kernel\Handler;
 
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
@@ -7,6 +9,7 @@ use Drupal\entity_test\Entity\EntityTest;
 use Drupal\entity_test\Entity\EntityTestRev;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\Tests\user\Traits\UserCreationTrait;
 use Drupal\user\Entity\User;
 use Drupal\views\Plugin\views\field\EntityField;
 use Drupal\Tests\views\Kernel\ViewsKernelTestBase;
@@ -21,6 +24,8 @@ use Drupal\views\Views;
  * @group #slow
  */
 class FieldFieldTest extends ViewsKernelTestBase {
+
+  use UserCreationTrait;
 
   /**
    * {@inheritdoc}
@@ -80,8 +85,7 @@ class FieldFieldTest extends ViewsKernelTestBase {
     ViewTestData::createTestViews(static::class, ['views_test_config']);
 
     // Bypass any field access.
-    $this->adminUser = User::create(['name' => $this->randomString()]);
-    $this->adminUser->save();
+    $this->adminUser = $this->createUser(['administer users'], $this->randomString());
     $this->container->get('current_user')->setAccount($this->adminUser);
 
     $this->testUsers = [];
@@ -89,7 +93,7 @@ class FieldFieldTest extends ViewsKernelTestBase {
       $this->testUsers[$i] = User::create([
         'name' => 'test ' . $i,
         'timezone' => User::getAllowedTimezones()[$i],
-        'created' => REQUEST_TIME - rand(0, 3600),
+        'created' => \Drupal::time()->getRequestTime() - rand(0, 3600),
       ]);
       $this->testUsers[$i]->save();
     }

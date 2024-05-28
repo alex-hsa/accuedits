@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\layout_discovery\Kernel;
 
 use Drupal\Core\Form\FormState;
@@ -91,7 +93,7 @@ class LayoutTest extends KernelTestBase {
   /**
    * Data provider for testRenderLayout().
    */
-  public function renderLayoutData() {
+  public static function renderLayoutData() {
     $html = [];
     $html[] = '<div data-drupal-selector="edit-layout" class="layout layout--onecol">';
     $html[] = '<div data-drupal-selector="edit-content" class="layout__region layout__region--content">';

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\book\Functional;
 
 use Drupal\Core\Cache\Cache;
@@ -10,6 +12,7 @@ use Drupal\user\RoleInterface;
  * Create a book, add pages, and test book interface.
  *
  * @group book
+ * @group legacy
  * @group #slow
  */
 class BookTest extends BrowserTestBase {

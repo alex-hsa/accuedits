@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\config\Functional;
 
 use Drupal\Tests\BrowserTestBase;
@@ -12,6 +14,9 @@ use Drupal\Tests\BrowserTestBase;
  */
 class LanguageNegotiationFormOverrideTest extends BrowserTestBase {
 
+  /**
+   * {@inheritdoc}
+   */
   protected static $modules = ['language', 'locale', 'locale_test'];
 
   /**
@@ -23,7 +28,12 @@ class LanguageNegotiationFormOverrideTest extends BrowserTestBase {
    * Tests that overrides do not affect language-negotiation form values.
    */
   public function testFormWithOverride() {
-    $this->drupalLogin($this->rootUser);
+    $this->drupalLogin($this->drupalCreateUser([
+      'access administration pages',
+      'administer site configuration',
+      'administer languages',
+      'view the administration theme',
+    ]));
     $overridden_value_en = 'whatever';
     $overridden_value_es = 'loquesea';
 

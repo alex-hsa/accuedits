@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\KernelTests\Core\Entity;
 
 use Drupal\Core\Entity\EntityViewBuilder;
@@ -306,6 +308,35 @@ class EntityViewBuilderTest extends EntityKernelTestBase {
     $reference_field_array_spanish = $view_builder->viewField($reference_field, 'full');
     $rendered_reference_field_spanish = $renderer->renderRoot($reference_field_array_spanish);
     $this->assertStringContainsString('Text in Spanish', (string) $rendered_reference_field_spanish);
+  }
+
+  /**
+   * Tests a view mode alter on an entity.
+   */
+  public function testHookEntityTypeViewModeAlter(): void {
+    $entity_ids = [];
+    // Create some entities to test.
+    for ($i = 0; $i < 5; $i++) {
+      $entity = $this->createTestEntity('entity_test');
+      $entity->save();
+      $entity_ids[] = $entity->id();
+    }
+    /** @var \Drupal\entity_test\EntityTestViewBuilder $view_builder */
+    $view_builder = $this->container->get('entity_type.manager')->getViewBuilder('entity_test');
+
+    /** @var \Drupal\Core\Entity\EntityStorageInterface $storage */
+    $storage = $this->container->get('entity_type.manager')->getStorage('entity_test');
+    $storage->resetCache();
+    $entities = $storage->loadMultiple($entity_ids);
+
+    $build = $view_builder->viewMultiple($entities, 'entity_test.vm_alter_test');
+    foreach ($build as $key => $entity_build) {
+      if (!is_numeric($key)) {
+        continue;
+      }
+      $this->assertArrayHasKey('#view_mode', $entity_build);
+      $this->assertEquals('entity_test.vm_alter_full', $entity_build['#view_mode']);
+    }
   }
 
   /**

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\forum\Functional\migrate_drupal\d7;
 
 use Drupal\Tests\migrate_drupal_ui\Functional\NoMultilingualReviewPageTestBase;
@@ -10,6 +12,7 @@ use Drupal\Tests\migrate_drupal_ui\Functional\NoMultilingualReviewPageTestBase;
  * The test method is provided by the MigrateUpgradeTestBase class.
  *
  * @group forum
+ * @group legacy
  */
 class NoMultilingualReviewPageTest extends NoMultilingualReviewPageTestBase {
 

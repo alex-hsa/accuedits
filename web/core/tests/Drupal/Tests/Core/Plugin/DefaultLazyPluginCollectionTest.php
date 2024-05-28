@@ -64,7 +64,7 @@ class DefaultLazyPluginCollectionTest extends LazyPluginCollectionTestBase {
    * @return array
    *   The test data.
    */
-  public function providerTestSortHelper() {
+  public static function providerTestSortHelper() {
     return [
       ['apple', 'apple', 0],
       ['apple', 'cherry', -1],
@@ -169,6 +169,37 @@ class DefaultLazyPluginCollectionTest extends LazyPluginCollectionTestBase {
   }
 
   /**
+   * Tests plugin instances are changed if the configuration plugin key changes.
+   *
+   * @covers ::setInstanceConfiguration
+   */
+  public function testSetInstanceConfigurationPluginChange() {
+    $configurable_plugin = $this->prophesize(ConfigurableInterface::class);
+    $configurable_config = ['id' => 'configurable', 'foo' => 'bar'];
+    $configurable_plugin->getConfiguration()->willReturn($configurable_config);
+
+    $nonconfigurable_plugin = $this->prophesize(PluginInspectionInterface::class);
+    $nonconfigurable_config = ['id' => 'non-configurable', 'baz' => 'qux'];
+    $nonconfigurable_plugin->configuration = $nonconfigurable_config;
+
+    $configurations = [
+      'instance' => $configurable_config,
+    ];
+
+    $plugin_manager = $this->prophesize(PluginManagerInterface::class);
+    $plugin_manager->createInstance('configurable', $configurable_config)->willReturn($configurable_plugin->reveal());
+    $plugin_manager->createInstance('non-configurable', $nonconfigurable_config)->willReturn($nonconfigurable_plugin->reveal());
+
+    $collection = new DefaultLazyPluginCollection($plugin_manager->reveal(), $configurations);
+    $this->assertInstanceOf(ConfigurableInterface::class, $collection->get('instance'));
+
+    // Ensure changing the instance to a different plugin via
+    // setInstanceConfiguration() results in a different plugin instance.
+    $collection->setInstanceConfiguration('instance', $nonconfigurable_config);
+    $this->assertNotInstanceOf(ConfigurableInterface::class, $collection->get('instance'));
+  }
+
+  /**
    * @covers ::count
    */
   public function testCount() {
@@ -234,11 +265,25 @@ class DefaultLazyPluginCollectionTest extends LazyPluginCollectionTestBase {
     $plugin = $this->pluginInstances['apple'];
     $this->assertSame(['value' => 'pineapple', 'id' => 'apple'], $plugin->getConfiguration());
 
+    $this->defaultPluginCollection->setConfiguration([]);
+    $this->assertSame([], $this->defaultPluginCollection->getConfiguration());
+
     $this->defaultPluginCollection->setConfiguration(['cherry' => ['value' => 'kiwi', 'id' => 'cherry']]);
     $expected['cherry'] = ['value' => 'kiwi', 'id' => 'cherry'];
     $config = $this->defaultPluginCollection->getConfiguration();
     $this->assertSame($expected, $config);
+  }
 
+  /**
+   * @covers ::setConfiguration
+   * @group legacy
+   */
+  public function testConfigurableSetConfigurationToNull(): void {
+    $this->setupPluginCollection($this->any());
+
+    $this->expectDeprecation('Calling Drupal\Core\Plugin\DefaultLazyPluginCollection::setConfiguration() with a non-array argument is deprecated in drupal:10.3.0 and will fail in drupal:11.0.0. See https://www.drupal.org/node/3406191');
+    $this->defaultPluginCollection->setConfiguration(NULL);
+    $this->assertSame([], $this->defaultPluginCollection->getConfiguration());
   }
 
   /**

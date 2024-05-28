@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\KernelTests\Core\Entity;
 
 use Drupal\Core\Field\BaseFieldDefinition;
@@ -42,7 +44,7 @@ class EntityKeysTest extends EntityKernelTestBase {
   /**
    * Data provider for ::testMultipleKeysCache.
    */
-  public function multipleKeysCacheTestCases() {
+  public static function multipleKeysCacheTestCases() {
     return [
       'translatable Entity Key' => [
         TRUE,

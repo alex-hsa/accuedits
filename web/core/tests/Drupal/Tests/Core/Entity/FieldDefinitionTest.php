@@ -196,7 +196,7 @@ class FieldDefinitionTest extends UnitTestCase {
     ];
     $expected_default_value = [$default_value];
     $definition->setDefaultValue($default_value);
-    $entity = $this->getMockBuilder('Drupal\Core\Entity\ContentEntityBase')
+    $entity = $this->getMockBuilder(ContentEntityBaseMockableClass::class)
       ->disableOriginalConstructor()
       ->getMock();
     // Set the field item list class to be used to avoid requiring the typed
@@ -344,7 +344,7 @@ class FieldDefinitionTest extends UnitTestCase {
   /**
    * A data provider for all the types of factories that can create definitions.
    */
-  public function factoryTypeProvider() {
+  public static function factoryTypeProvider() {
     return [
       '::createFromFieldStorageDefinition factory' => [
         'createFromFieldStorageDefinition',

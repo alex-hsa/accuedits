@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\media\Functional;
 
 use Drupal\media\OEmbed\ProviderException;
@@ -50,7 +52,7 @@ class ProviderRepositoryTest extends MediaFunctionalTestBase {
    *
    * @return array
    */
-  public function providerEmptyProviderList() {
+  public static function providerEmptyProviderList() {
     return [
       'empty array' => ['[]'],
       'empty string' => [''],
@@ -84,7 +86,7 @@ class ProviderRepositoryTest extends MediaFunctionalTestBase {
    *
    * @return array
    */
-  public function providerNonExistingProviderDatabase() {
+  public static function providerNonExistingProviderDatabase() {
     return [
       [
         'http://oembed1.com/providers.json',

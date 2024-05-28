@@ -8,7 +8,6 @@
  * customized by user themes.
  */
 
-use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Url;
 use Drupal\Component\Serialization\Json;
 use Drupal\Component\Utility\Crypt;
@@ -1749,6 +1748,7 @@ function template_preprocess_breadcrumb(&$variables) {
  *     - #tags: An array of labels for the controls in the pager.
  *     - #element: An optional integer to distinguish between multiple pagers on
  *       one page.
+ *     - #pagination_heading_level: An optional heading level for the pager.
  *     - #parameters: An associative array of query string parameters to append
  *       to the pager links.
  *     - #route_parameters: An associative array of the route parameters.
@@ -1875,6 +1875,10 @@ function template_preprocess_pager(&$variables) {
 
   $variables['items'] = $items;
   $variables['heading_id'] = Html::getUniqueId('pagination-heading');
+  $variables['pagination_heading_level'] = $variables['pager']['#pagination_heading_level'] ?? 'h4';
+  if (!preg_match('/^h[1-6]$/', $variables['pagination_heading_level'])) {
+    $variables['pagination_heading_level'] = 'h4';
+  }
 
   // The rendered link needs to play well with any other query parameter used
   // on the page, like exposed filters, so for the cacheability all query
@@ -1903,10 +1907,6 @@ function template_preprocess_menu_local_task(&$variables) {
 
   if (!empty($variables['element']['#active'])) {
     $variables['is_active'] = TRUE;
-
-    // Add text to indicate active tab for non-visual users.
-    $active = new FormattableMarkup('<span class="visually-hidden">@label</span>', ['@label' => t('(active tab)')]);
-    $link_text = t('@local-task-title@active', ['@local-task-title' => $link_text, '@active' => $active]);
   }
 
   $link['localized_options']['set_active_class'] = TRUE;
@@ -2026,7 +2026,7 @@ function drupal_common_theme() {
       'variables' => ['items' => [], 'title' => '', 'list_type' => 'ul', 'wrapper_attributes' => [], 'attributes' => [], 'empty' => NULL, 'context' => []],
     ],
     'feed_icon' => [
-      'variables' => ['url' => NULL, 'title' => NULL],
+      'variables' => ['url' => NULL, 'title' => NULL, 'attributes' => []],
     ],
     'progress_bar' => [
       'variables' => ['label' => NULL, 'percent' => NULL, 'message' => NULL],

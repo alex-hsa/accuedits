@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\update\Kernel;
 
 use Drupal\KernelTests\KernelTestBase;
@@ -31,8 +33,8 @@ class UpdateDeleteFileIfStaleTest extends KernelTestBase {
 
     // During testing, the file change and the stale checking occurs in the same
     // request, so the beginning of request will be before the file changes and
-    // REQUEST_TIME - $filectime is negative or zero. Set the maximum age to a
-    // number greater than that.
+    // \Drupal::time()->getRequestTime() - $filectime is negative or zero.
+    // Set the maximum age to a number even smaller than that.
     $this->config('system.file')
       ->set('temporary_maximum_age', 100000)
       ->save();
@@ -42,7 +44,8 @@ class UpdateDeleteFileIfStaleTest extends KernelTestBase {
     $this->assertFalse($deleted);
     $this->assertFileExists($file_path);
 
-    // Set the maximum age to a number smaller than REQUEST_TIME - $filectime.
+    // Set the maximum age to a number smaller than
+    // \Drupal::time()->getRequestTime() - $filectime.
     $this->config('system.file')
       ->set('temporary_maximum_age', -100000)
       ->save();

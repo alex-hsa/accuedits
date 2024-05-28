@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\book\Functional\Comment;
 
 use Drupal\comment\CommentInterface;
@@ -12,6 +14,7 @@ use Drupal\comment\Entity\Comment;
  * Tests visibility of comments on book pages.
  *
  * @group book
+ * @group legacy
  */
 class CommentBookTest extends BrowserTestBase {
 

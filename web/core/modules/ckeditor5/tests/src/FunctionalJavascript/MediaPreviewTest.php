@@ -94,8 +94,9 @@ class MediaPreviewTest extends MediaTestBase {
       ->save();
 
     // Allow the test user to view the admin theme.
-    $this->adminUser->addRole($this->drupalCreateRole(['view the administration theme']));
-    $this->adminUser->save();
+    $this->adminUser
+      ->addRole($this->drupalCreateRole(['view the administration theme']))
+      ->save();
 
     // Configure a different default and admin theme, like on most Drupal sites.
     $this->config('system.theme')
@@ -186,7 +187,7 @@ class MediaPreviewTest extends MediaTestBase {
   /**
    * Data provider for ::testEmbedPreviewAccess.
    */
-  public function previewAccessProvider() {
+  public static function previewAccessProvider() {
     return [
       'media_embed filter enabled' => [
         TRUE,

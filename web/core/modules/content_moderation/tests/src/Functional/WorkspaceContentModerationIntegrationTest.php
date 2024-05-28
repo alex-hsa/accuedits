@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\content_moderation\Functional;
 
 use Drupal\Tests\workspaces\Functional\WorkspaceTestUtilities;
@@ -19,6 +21,14 @@ class WorkspaceContentModerationIntegrationTest extends ModerationStateTestBase 
    * {@inheritdoc}
    */
   protected static $modules = ['node', 'workspaces'];
+
+  /**
+   * {@inheritdoc}
+   *
+   * @todo Remove and fix test to not rely on super user.
+   * @see https://www.drupal.org/project/drupal/issues/3437620
+   */
+  protected bool $usesSuperUserAccessPolicy = TRUE;
 
   /**
    * {@inheritdoc}

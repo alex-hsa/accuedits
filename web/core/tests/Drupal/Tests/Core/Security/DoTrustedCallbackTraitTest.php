@@ -29,7 +29,7 @@ class DoTrustedCallbackTraitTest extends UnitTestCase {
   /**
    * Data provider for ::testTrustedCallbacks().
    */
-  public function providerTestTrustedCallbacks() {
+  public static function providerTestTrustedCallbacks() {
     $closure = function () {
       return 'test';
     };
@@ -58,7 +58,7 @@ class DoTrustedCallbackTraitTest extends UnitTestCase {
   /**
    * Data provider for ::testUntrustedCallbacks().
    */
-  public function providerTestUntrustedCallbacks() {
+  public static function providerTestUntrustedCallbacks() {
     $tests['TrustedCallbackInterface_object'] = [[new TrustedMethods(), 'unTrustedCallback'], TrustedInterface::class];
     $tests['TrustedCallbackInterface_static_string'] = ['\Drupal\Tests\Core\Security\TrustedMethods::unTrustedCallback', TrustedInterface::class];
     $tests['TrustedCallbackInterface_static_array'] = [[TrustedMethods::class, 'unTrustedCallback'], TrustedInterface::class];
@@ -89,8 +89,10 @@ class DoTrustedCallbackTraitTest extends UnitTestCase {
 
   /**
    * @dataProvider errorTypeProvider
+   * @group legacy
    */
   public function testWarning($callback) {
+    $this->expectDeprecation('Passing E_USER_WARNING for $error_type in Drupal\Core\Security\DoTrustedCallbackTrait::doTrustedCallback() is deprecated in drupal:10.3.0 and will be removed from drupal:11.0.0. Use TrustedCallbackInterface::THROW_EXCEPTION or TrustedCallbackInterface::TRIGGER_SILENCED_DEPRECATION instead. See https://www.drupal.org/node/3427367');
     $this->expectWarning();
     $this->expectWarningMessage('Drupal\Tests\Core\Security\UntrustedObject::callback is not trusted');
     $this->doTrustedCallback($callback, [], '%s is not trusted', TrustedCallbackInterface::TRIGGER_WARNING);
@@ -99,7 +101,7 @@ class DoTrustedCallbackTraitTest extends UnitTestCase {
   /**
    * Data provider for tests of ::doTrustedCallback $error_type argument.
    */
-  public function errorTypeProvider() {
+  public static function errorTypeProvider() {
     $tests['untrusted_object'] = [[new UntrustedObject(), 'callback']];
     $tests['untrusted_object_static_string'] = ['Drupal\Tests\Core\Security\UntrustedObject::callback'];
     $tests['untrusted_object_static_array'] = [[UntrustedObject::class, 'callback']];

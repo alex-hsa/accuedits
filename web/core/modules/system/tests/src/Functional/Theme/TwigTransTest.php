@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\system\Functional\Theme;
 
 use Drupal\Core\Language\LanguageInterface;
@@ -112,7 +114,7 @@ class TwigTransTest extends BrowserTestBase {
     $renderer = \Drupal::service('renderer');
 
     try {
-      $renderer->renderPlain($elements);
+      $renderer->renderInIsolation($elements);
 
       $this->fail('{% trans %}{% endtrans %} did not throw an exception.');
     }

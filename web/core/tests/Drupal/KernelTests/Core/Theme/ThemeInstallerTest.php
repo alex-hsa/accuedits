@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\KernelTests\Core\Theme;
 
 use Drupal\Core\DependencyInjection\ContainerBuilder;
@@ -8,6 +10,7 @@ use Drupal\Core\Extension\ExtensionNameReservedException;
 use Drupal\Core\Extension\MissingDependencyException;
 use Drupal\Core\Extension\ModuleUninstallValidatorException;
 use Drupal\Core\Extension\Exception\UnknownExtensionException;
+use Drupal\Core\Extension\ThemeExtensionList;
 use Drupal\KernelTests\KernelTestBase;
 
 /**
@@ -54,7 +57,7 @@ class ThemeInstallerTest extends KernelTestBase {
     $this->assertEmpty(array_keys(\Drupal::service('theme_handler')->listInfo()));
 
     // Rebuilding available themes should always yield results though.
-    $this->assertNotEmpty($this->themeHandler()->rebuildThemeData()['stark'], 'ThemeHandler::rebuildThemeData() yields all available themes.');
+    $this->assertNotEmpty($this->extensionListTheme()->reset()->getList()['stark'], 'ThemeExtensionList::getList() yields all available themes.');
 
     // theme_get_setting() should return global default theme settings.
     $this->assertTrue(theme_get_setting('features.favicon'));
@@ -192,7 +195,7 @@ class ThemeInstallerTest extends KernelTestBase {
   /**
    * Data provider for testInstallThemeWithUnmetModuleDependencies().
    */
-  public function providerTestInstallThemeWithUnmetModuleDependencies() {
+  public static function providerTestInstallThemeWithUnmetModuleDependencies() {
     return [
       'theme with uninstalled module dependencies' => [
         'test_theme_depending_on_modules',
@@ -486,6 +489,15 @@ class ThemeInstallerTest extends KernelTestBase {
    */
   protected function moduleInstaller() {
     return $this->container->get('module_installer');
+  }
+
+  /**
+   * Returns the ThemeExtensionList.
+   *
+   * @return \Drupal\Core\Extension\ThemeExtensionList
+   */
+  protected function extensionListTheme(): ThemeExtensionList {
+    return $this->container->get('extension.list.theme');
   }
 
 }

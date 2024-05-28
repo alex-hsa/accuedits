@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\field\Kernel;
 
 use Drupal\Core\Extension\ExtensionDiscovery;
@@ -108,6 +110,18 @@ class FieldTypePluginManagerTest extends FieldKernelTestBase {
         $this->assertArrayHasKey($property, $class::propertyDefinitions($storage_definition), $message);
       }
     }
+  }
+
+  /**
+   * Tests UI definitions per entity type.
+   */
+  public function testUiDefinitionsPerEntityType() {
+    /** @var \Drupal\Core\Field\FieldTypePluginManagerInterface $field_type_manager */
+    $field_type_manager = \Drupal::service('plugin.manager.field.field_type');
+    $definitions = $field_type_manager->getEntityTypeUiDefinitions('node');
+    $this->assertEquals('Boolean (overridden by alter)', (string) $definitions['boolean']['label']);
+    $definitions = $field_type_manager->getEntityTypeUiDefinitions('entity_test');
+    $this->assertEquals('Boolean', (string) $definitions['boolean']['label']);
   }
 
   /**

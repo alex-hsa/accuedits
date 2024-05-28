@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\views\Functional\Plugin;
 
 use Drupal\Component\Render\FormattableMarkup;
@@ -12,6 +14,7 @@ use Drupal\views_test_data\Plugin\views\display\DisplayTest as DisplayTestPlugin
  * Tests the basic display plugin.
  *
  * @group views
+ * @group #slow
  */
 class DisplayTest extends ViewTestBase {
 
@@ -28,6 +31,19 @@ class DisplayTest extends ViewTestBase {
    * @var array
    */
   protected static $modules = ['views_ui', 'node', 'block'];
+
+  /**
+   * {@inheritdoc}
+   */
+  protected static $configSchemaCheckerExclusions = [
+    // The availability of Views display plugins is validated by the config
+    // system, but one of our test cases saves a view with an invalid display
+    // plugin ID, to see how Views handles that. Therefore, allow that one view
+    // to be saved with an invalid display plugin without angering the config
+    // schema checker.
+    // @see ::testInvalidDisplayPlugins()
+    'views.view.test_display_invalid',
+  ];
 
   /**
    * {@inheritdoc}

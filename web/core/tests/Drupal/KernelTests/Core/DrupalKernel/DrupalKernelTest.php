@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\KernelTests\Core\DrupalKernel;
 
 use Composer\Autoload\ClassLoader;
@@ -9,6 +11,8 @@ use Drupal\KernelTests\KernelTestBase;
 use org\bovigo\vfs\vfsStream;
 use Prophecy\Argument;
 use Symfony\Component\HttpFoundation\Request;
+
+// cspell:ignore äöüßαβγδεζηθικλμνξοσὠ
 
 /**
  * Tests DIC compilation to disk.
@@ -189,7 +193,7 @@ class DrupalKernelTest extends KernelTestBase {
    * Data provider for self::testClassLoaderAutoDetect.
    * @return array
    */
-  public function providerClassLoaderAutoDetect() {
+  public static function providerClassLoaderAutoDetect() {
     return [
       'TRUE' => [TRUE],
       'FALSE' => [FALSE],
@@ -243,6 +247,67 @@ class DrupalKernelTest extends KernelTestBase {
     $kernel = new DrupalKernel('test', $classloader->reveal(), FALSE, vfsStream::url('root'));
     $kernel->setSitePath(vfsStream::url('root/sites/default'));
     $kernel->boot();
+  }
+
+  /**
+   * @covers ::resetContainer
+   */
+  public function testResetContainer() {
+    $modules_enabled = [
+      'system' => 'system',
+      'user' => 'user',
+    ];
+
+    $request = Request::createFromGlobals();
+    $kernel = $this->getTestKernel($request, $modules_enabled);
+    $container = $kernel->getContainer();
+
+    // Ensure services are reset when ::resetContainer is called.
+    $this->assertFalse($container->initialized('renderer'));
+    $renderer = $container->get('renderer');
+    $this->assertTrue($container->initialized('renderer'));
+
+    // Ensure the current user is maintained through a container reset.
+    $this->assertSame(0, $container->get('current_user')->id());
+    $container->get('current_user')->setInitialAccountId(2);
+
+    // Ensure messages are maintained through a container reset.
+    $this->assertEmpty($container->get('messenger')->messagesByType('Container reset'));
+    $container->get('messenger')->addMessage('Test reset', 'Container reset');
+    $this->assertSame(['Test reset'], $container->get('messenger')->messagesByType('Container reset'));
+
+    // Ensure persisted services are persisted.
+    $request_stack = $container->get('request_stack');
+
+    $kernel->resetContainer();
+
+    // Ensure services are reset when ::resetContainer is called.
+    $this->assertFalse($container->initialized('renderer'));
+    $this->assertNotSame($renderer, $container->get('renderer'));
+    $this->assertTrue($container->initialized('renderer'));
+    $this->assertSame($kernel, $container->get('kernel'));
+
+    // Ensure the current user is maintained through a container reset.
+    $this->assertSame(2, $container->get('current_user')->id());
+
+    // Ensure messages are maintained through a container reset.
+    $this->assertSame(['Test reset'], $container->get('messenger')->messagesByType('Container reset'));
+
+    // Ensure persisted services are persisted.
+    $this->assertSame($request_stack, $container->get('request_stack'));
+  }
+
+  /**
+   * Tests system locale.
+   */
+  public function testLocale(): void {
+    $utf8_string = 'äöüßαβγδεζηθικλμνξοσὠ';
+    // Test environment locale should be UTF-8.
+    $this->assertSame($utf8_string, escapeshellcmd($utf8_string));
+    $request = Request::createFromGlobals();
+    $kernel = $this->getTestKernel($request);
+    // Kernel environment locale should be UTF-8.
+    $this->assertSame($utf8_string, escapeshellcmd($utf8_string));
   }
 
 }

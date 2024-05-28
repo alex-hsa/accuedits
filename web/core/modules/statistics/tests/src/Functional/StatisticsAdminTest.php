@@ -1,15 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\statistics\Functional;
 
 use Drupal\Core\Database\Database;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\Traits\Core\CronRunTrait;
 
+// cspell:ignore accesslog daycount
+
 /**
  * Tests the statistics admin.
  *
  * @group statistics
+ * @group legacy
  */
 class StatisticsAdminTest extends BrowserTestBase {
 
@@ -169,9 +174,9 @@ class StatisticsAdminTest extends BrowserTestBase {
     $this->assertSession()->pageTextContains('1 view');
 
     // statistics_cron() will subtract
-    // statistics.settings:accesslog.max_lifetime config from REQUEST_TIME in
-    // the delete query, so wait two secs here to make sure the access log will
-    // be flushed for the node just hit.
+    // statistics.settings:accesslog.max_lifetime config from
+    // \Drupal::time()->getRequestTime() in the delete query, so wait two secs here to make
+    // sure the access log will be flushed for the node just hit.
     sleep(2);
     $this->cronRun();
 

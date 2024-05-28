@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\layout_builder\Kernel;
 
 use Drupal\Core\Access\AccessResult;
@@ -75,7 +77,7 @@ class FieldBlockTest extends EntityKernelTestBase {
   /**
    * Provides test data for ::testBlockAccessEntityNotAllowed().
    */
-  public function providerTestBlockAccessNotAllowed() {
+  public static function providerTestBlockAccessNotAllowed() {
     $data = [];
     $data['entity_forbidden'] = [
       FALSE,
@@ -176,7 +178,7 @@ class FieldBlockTest extends EntityKernelTestBase {
   /**
    * Provides test data for ::testBlockAccessEntityAllowedFieldHasValue().
    */
-  public function providerTestBlockAccessEntityAllowedFieldHasValue() {
+  public static function providerTestBlockAccessEntityAllowedFieldHasValue() {
     $data = [];
     $data['empty'] = [
       FALSE,
@@ -282,7 +284,7 @@ class FieldBlockTest extends EntityKernelTestBase {
   /**
    * Provides test data for ::testBuild().
    */
-  public function providerTestBuild() {
+  public static function providerTestBuild() {
     $data = [];
     $data['array'] = [
       new ReturnPromise([['content' => ['#markup' => 'The field value']]]),

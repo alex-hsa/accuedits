@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\KernelTests\Core\Entity;
 
 use Drupal\Component\Render\FormattableMarkup;
@@ -343,7 +345,7 @@ class EntityAccessControlHandlerTest extends EntityLanguageTestBase {
     $this->assertEquals('The entity ID cannot be changed.', $access_result->getReason());
   }
 
-  public function providerTestFieldAccess() {
+  public static function providerTestFieldAccess() {
     return [
       'serial ID entity' => [
         EntityTest::class,

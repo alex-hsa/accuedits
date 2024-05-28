@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\content_translation\Kernel;
 
 use Drupal\Core\Form\FormState;
@@ -134,7 +136,7 @@ class ContentTranslationHandlerTest extends KernelTestBase {
    *   An array of test cases, each one containing the element to alter, the
    *   form state, and the expected altered element.
    */
-  public function providerTestEntityFormSharedElements() {
+  public static function providerTestEntityFormSharedElements() {
     $tests = [];
 
     $element = [];

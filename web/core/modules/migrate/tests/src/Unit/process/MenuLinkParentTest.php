@@ -17,6 +17,8 @@ use Drupal\migrate\MigrateSkipRowException;
 use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\Plugin\migrate\process\MenuLinkParent;
 
+// cspell:ignore plid
+
 /**
  * Tests the menu link parent process plugin.
  *
@@ -101,7 +103,7 @@ class MenuLinkParentTest extends MigrateProcessTestCase {
   /**
    * Provides data for testTransformException().
    */
-  public function providerTransformException() {
+  public static function providerTransformException() {
     // The parent ID does not for the following tests.
     return [
       'parent link external and could not be loaded' => [
@@ -159,7 +161,7 @@ class MenuLinkParentTest extends MigrateProcessTestCase {
   /**
    * Provides data for testMenuLinkParent().
    */
-  public function providerMenuLinkParent() {
+  public static function providerMenuLinkParent() {
     return [
       'menu link is route item' => [
         'source_value' => [0, NULL, NULL],

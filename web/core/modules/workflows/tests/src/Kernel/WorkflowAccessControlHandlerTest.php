@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\workflows\Kernel;
 
 use Drupal\Core\Access\AccessResult;
@@ -119,7 +121,7 @@ class WorkflowAccessControlHandlerTest extends KernelTestBase {
    *
    * @return array
    */
-  public function checkAccessProvider() {
+  public static function checkAccessProvider() {
     $container = new ContainerBuilder();
     $cache_contexts_manager = (new Prophet())->prophesize(CacheContextsManager::class);
     $cache_contexts_manager->assertValidTokens()->willReturn(TRUE);
