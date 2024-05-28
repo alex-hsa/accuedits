@@ -1,5 +1,6 @@
 _core:
   default_config_hash: ZYD4Zz6IzdUZR-N_MxkJnacUlP94l-qPt--QRY-OdZc
+langcode: en
 general_settings:
   radio_behavior: simple
   context_lines_leading: 1
