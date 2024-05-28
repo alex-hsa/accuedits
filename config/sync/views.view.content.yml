@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - content_templates
     - node
     - user
 _core:
@@ -196,6 +197,15 @@ display:
               past_format: '@interval ago'
               granularity: 2
               refresh: 60
+        template:
+          id: template
+          table: node_field_data
+          field: template
+          entity_type: node
+          entity_field: template
+          plugin_id: field
+          settings:
+            link: true
         operations:
           id: operations
           table: node
@@ -249,13 +259,13 @@ display:
       pager:
         type: full
         options:
+          pagination_heading_level: h4
           items_per_page: 50
           tags:
             next: 'Next ›'
             previous: '‹ Previous'
             first: '« First'
             last: 'Last »'
-          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -471,6 +481,17 @@ display:
           expose:
             operator_limit_selection: false
             operator_list: {  }
+        template:
+          id: template
+          table: node_field_data
+          field: template
+          entity_type: node
+          entity_field: template
+          plugin_id: template_name
+          exposed: true
+          expose:
+            label: 'Content Template'
+            identifier: template
       filter_groups:
         operator: AND
         groups:

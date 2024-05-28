@@ -5,6 +5,8 @@
  * Contains install and update hooks for content_template module.
  */
 
+use Drupal\Core\Field\BaseFieldDefinition;
+
 /**
  * Implements hook_install().
  */
@@ -13,6 +15,7 @@ function content_templates_install($is_syncing) {
     $config = \Drupal::configFactory()
       ->getEditable('quick_node_clone.settings');
     $config->set('text_to_prepend_to_title', 'Create from template')->save(TRUE);
+    content_templates_adjust_content_overview();
   }
 }
 
@@ -23,4 +26,21 @@ function content_templates_update_10001() {
   $config = \Drupal::configFactory()
     ->getEditable('quick_node_clone.settings');
   $config->set('text_to_prepend_to_title', 'Create from template')->save(TRUE);
+}
+
+/**
+ * Add field 'template' to node entity.
+ */
+function content_templates_update_10002() {
+  $field_storage_definition = BaseFieldDefinition::create('entity_reference')
+    ->setLabel(t('Content Template'))
+    ->setDescription(t('The ID of content template entity.'))
+    ->setRevisionable(FALSE)
+    ->setTranslatable(FALSE)
+    ->setCardinality(1)
+    ->setSetting('target_type', 'node')
+    ->setSetting('handler', 'default')
+    ->setDisplayConfigurable('form', FALSE)
+    ->setDisplayConfigurable('view', FALSE);
+  \Drupal::entityDefinitionUpdateManager()->installFieldStorageDefinition('template', 'node', 'content_template', $field_storage_definition);
 }

@@ -1,27 +1,57 @@
+.template-list .item-list {
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* Base styles for the category list within template list */
 .template-list ul.category-list {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns on small screens */
+  margin: 0 0 20px;
+  padding: 0;
+}
+
+.template-list ul.category-list li {
   list-style: none;
   margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  overflow: hidden;
+  background-color: var(--gin-bg-layer, white);
+}
+
+/* Tablets (breakpoint at 768px) */
+@media (min-width: 768px) {
+  .template-list ul.category-list {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on medium screens */
+  }
+}
+
+/* Desktops (breakpoint at 1024px) */
+@media (min-width: 1024px) {
+  .template-list ul.category-list {
+    grid-template-columns: repeat(4, 1fr); /* 6 columns on large screens */
+  }
+}
+
+/* Large Desktops (breakpoint at 1400px) */
+@media (min-width: 1400px) {
+  .template-list ul.category-list {
+    grid-template-columns: repeat(6, 1fr); /* 6 columns on large screens */
+  }
 }
 
 .template-list ul.category-list .contextual {
   display: none;
 }
 
-.template-list ul.category-list > li {
-  padding: 5px;
-  width: 200px;
-  height: 250px;
-  margin: 10px 10px;
-  list-style: none;
-  text-align: center;
-}
-
-.template-list .content-template {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
+.template-list .content-template .field--name-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
 
 .template-list .template-image {
@@ -75,3 +105,4 @@
   width: 25px;
   height: 25px;
 }
+

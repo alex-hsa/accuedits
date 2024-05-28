@@ -20,3 +20,6 @@ view unpublished content template entities:
 
 create content from template:
   title: 'Create node from template'
+
+access content from template overview:
+  title: 'Access overview of content created from template'
