@@ -11,6 +11,3 @@ services:
     class: Drupal\frontend_editing\Routing\RouteSubscriber
     tags:
       - { name: event_subscriber }
-  frontend_editing.toggle:
-    class: Drupal\frontend_editing\Controller\FrontendEditingController
-    arguments: ['@user.data', '@current_user']

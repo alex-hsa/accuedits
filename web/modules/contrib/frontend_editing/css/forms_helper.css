@@ -1,3 +1,7 @@
+.path-frontend-editing {
+  position: relative;
+}
+
 .path-frontend-editing .layout-node-form__actions {
   display: block;
   z-index: 2;
@@ -19,7 +23,26 @@ body.path-frontend-editing {
   padding-top: 0 !important;
 }
 
-.path-frontend-editing h1 {
-  font-size: 1.25em;
-  margin: 0 0 15px 0;
+.path-frontend-editing > h1 {
+  align-items: center;
+  display: flex;
+  font-size: 1.125em;
+  font-weight: 500;
+  height: 80px;
+  justify-content: center;
+  margin: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+  background-color: #f5f7fb;
+}
+
+.path-frontend-editing .block-system-main-block > form {
+  border-radius: 0;
+  border: 0;
+  position: relative;
+}
+
+.path-frontend-editing .dialog-off-canvas-main-canvas {
+  padding-top: 80px;
 }

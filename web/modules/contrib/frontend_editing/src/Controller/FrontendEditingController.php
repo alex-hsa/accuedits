@@ -12,6 +12,7 @@ use Drupal\Core\Ajax\MessageCommand;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Entity\EntityFormBuilder;
 use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\Core\Render\Element;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Url;
 use Drupal\frontend_editing\Ajax\ReloadWindowCommand;
@@ -445,6 +446,12 @@ class FrontendEditingController extends ControllerBase {
       $response->addCommand(new MessageCommand($message, NULL, ['type' => 'error']));
     }
     $updated_content = $paragraph->getParentEntity()->get($paragraph->get('parent_field_name')->value)->view($view_mode_id);
+    foreach (Element::getVisibleChildren($updated_content) as $delta) {
+      $item = $updated_content[$delta];
+      if (!empty($item['#pre_render'])) {
+        $updated_content[$delta]['#parent_field_view_mode'] = $updated_content['#view_mode'];
+      }
+    }
     $selector = '[data-frontend-editing="' . $paragraph->getParentEntity()->getEntityTypeId() . '--' . $paragraph->getParentEntity()->id() . '--' . $paragraph->get('parent_field_name')->value . '--' . $view_mode_id . '"]';
     $response->addCommand(new HtmlCommand($selector, $updated_content));
     return $response;
@@ -499,6 +506,12 @@ class FrontendEditingController extends ControllerBase {
       return $response;
     }
     $updated_content = $entity->get($field_name)->view($view_mode);
+    foreach (Element::getVisibleChildren($updated_content) as $delta) {
+      $item = $updated_content[$delta];
+      if (!empty($item['#pre_render'])) {
+        $updated_content[$delta]['#parent_field_view_mode'] = $updated_content['#view_mode'];
+      }
+    }
     $selector = '[data-frontend-editing="' . $entity_type_id . '--' . $entity_id . '--' . $field_name . '--' . $view_mode . '"]';
     $response->addCommand(new HtmlCommand($selector, $updated_content));
     return $response;
