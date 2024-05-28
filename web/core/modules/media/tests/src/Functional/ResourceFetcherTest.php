@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\media\Functional;
 
 use Drupal\media\OEmbed\Resource;
 use Drupal\Tests\media\Traits\OEmbedTestTrait;
+
+// cspell:ignore dailymotion Schipulcon
 
 /**
  * Tests the oEmbed resource fetcher service.
@@ -35,7 +39,7 @@ class ResourceFetcherTest extends MediaFunctionalTestBase {
    *
    * @return array
    */
-  public function providerFetchResource() {
+  public static function providerFetchResource() {
     return [
       'JSON resource' => [
         'video_vimeo.json',

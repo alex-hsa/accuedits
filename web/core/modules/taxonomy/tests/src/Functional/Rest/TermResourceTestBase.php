@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\taxonomy\Functional\Rest;
 
 use Drupal\Core\Cache\Cache;
@@ -356,7 +358,7 @@ abstract class TermResourceTestBase extends EntityResourceTestBase {
     $this->assertSame($expected, $actual);
   }
 
-  public function providerTestGetTermWithParent() {
+  public static function providerTestGetTermWithParent() {
     return [
       'root parent: [0] (= no parent)' => [
         [0],

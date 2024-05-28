@@ -142,8 +142,8 @@ class CsrfTokenGeneratorTest extends UnitTestCase {
   public function testValidateParameterTypes($token, $value) {
     $this->setupDefaultExpectations();
 
-    // The following check might throw PHP fatals and notices, so we disable
-    // error assertions.
+    // The following check might throw PHP fatal errors and notices, so we
+    // disable error assertions.
     set_error_handler(function () {
       return TRUE;
     });
@@ -157,7 +157,7 @@ class CsrfTokenGeneratorTest extends UnitTestCase {
    * @return array
    *   An array of data used by the test.
    */
-  public function providerTestValidateParameterTypes() {
+  public static function providerTestValidateParameterTypes() {
     return [
       [[], ''],
       [TRUE, 'foo'],
@@ -189,7 +189,7 @@ class CsrfTokenGeneratorTest extends UnitTestCase {
    * @return array
    *   An array of data used by the test.
    */
-  public function providerTestInvalidParameterTypes() {
+  public static function providerTestInvalidParameterTypes() {
     return [
       [NULL, new \stdClass()],
       [0, []],

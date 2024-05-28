@@ -39,6 +39,7 @@ class ViewUI implements ViewEntityInterface {
    *
    * @var array
    */
+  // phpcs:ignore Drupal.NamingConventions.ValidVariableName.LowerCamelName
   public $changed_display;
 
   /**
@@ -46,6 +47,7 @@ class ViewUI implements ViewEntityInterface {
    *
    * @var float
    */
+  // phpcs:ignore Drupal.NamingConventions.ValidVariableName.LowerCamelName
   public $render_time;
 
   /**
@@ -70,6 +72,7 @@ class ViewUI implements ViewEntityInterface {
    *
    * @var array
    */
+  // phpcs:ignore Drupal.NamingConventions.ValidVariableName.LowerCamelName
   public $temporary_options;
 
   /**
@@ -84,6 +87,7 @@ class ViewUI implements ViewEntityInterface {
    *
    * @var bool
    */
+  // phpcs:ignore Drupal.NamingConventions.ValidVariableName.LowerCamelName
   public $live_preview;
 
   public $renderPreview = FALSE;
@@ -592,6 +596,7 @@ class ViewUI implements ViewEntityInterface {
       foreach ($args as $key => $arg) {
         $request->attributes->set('arg_' . $key, $arg);
       }
+      $request->setSession($request_stack->getSession());
       $request_stack->push($request);
 
       // Suppress contextual links of entities within the result set during a

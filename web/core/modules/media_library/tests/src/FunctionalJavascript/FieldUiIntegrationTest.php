@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\media_library\FunctionalJavascript;
 
+// cspell:ignore shatner
+
 /**
  * Tests field UI integration for media library widget.
  *
@@ -69,6 +71,7 @@ class FieldUiIntegrationTest extends MediaLibraryTestBase {
 
     $this->drupalGet('/admin/structure/types/manage/article/fields/add-field');
     $page->find('css', "[name='new_storage_type'][value='field_ui:entity_reference:media']")->getParent()->click();
+    $page->findButton('Continue')->click();
     $this->assertNotNull($assert_session->waitForField('label'));
     $page->fillField('label', 'Shatner');
     $this->waitForText('field_shatner');

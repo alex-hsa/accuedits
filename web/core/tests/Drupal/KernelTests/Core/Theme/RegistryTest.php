@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\KernelTests\Core\Theme;
 
 use Drupal\Core\Extension\ModuleExtensionList;
@@ -218,7 +220,7 @@ class RegistryTest extends KernelTestBase {
    * @return array
    *   An associative array of 40x theme suggestions.
    */
-  public function provider40xThemeSuggestions() {
+  public static function provider40xThemeSuggestions() {
     return [
       [401, 'page__401'],
       [403, 'page__403'],

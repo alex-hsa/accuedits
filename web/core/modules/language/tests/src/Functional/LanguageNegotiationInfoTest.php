@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\language\Functional;
 
 use Drupal\Core\Language\LanguageInterface;
@@ -134,7 +136,7 @@ class LanguageNegotiationInfoTest extends BrowserTestBase {
 
     // Check language negotiation results.
     $this->drupalGet('');
-    $last = $this->container->get('state')->get('language_test.language_negotiation_last');
+    $last = \Drupal::keyValue('language_test')->get('language_negotiation_last');
     foreach ($this->languageManager()->getDefinedLanguageTypes() as $type) {
       $langcode = $last[$type];
       $value = $type == LanguageInterface::TYPE_CONTENT || str_contains($type, 'test') ? 'it' : 'en';

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\KernelTests\Core\Config;
 
 use Drupal\Component\Utility\Crypt;
@@ -284,6 +286,19 @@ class ConfigCRUDTest extends KernelTestBase {
       // 'octal' => 0775,
       'string' => 'string',
       'string_int' => '1',
+      'nullable_array' => NULL,
+      'nullable_boolean' => NULL,
+      'nullable_exp' => NULL,
+      'nullable_float' => NULL,
+      'nullable_float_as_integer' => NULL,
+      'nullable_hex' => NULL,
+      'nullable_int' => NULL,
+      'nullable_octal' => NULL,
+      'nullable_string' => NULL,
+      'nullable_string_int' => NULL,
+      'mapping_with_only_required_keys' => [],
+      'mapping_with_some_required_keys' => [],
+      'mapping_with_only_optional_keys' => [],
     ];
     $data = ['_core' => ['default_config_hash' => Crypt::hashBase64(serialize($data))]] + $data;
     $this->assertSame($data, $config->get());

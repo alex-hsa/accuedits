@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\workspaces\Functional;
 
 use Drupal\Tests\BrowserTestBase;
@@ -50,7 +52,17 @@ class PathWorkspacesTest extends BrowserTestBase {
       'type' => 'article',
     ]);
 
-    $this->drupalLogin($this->rootUser);
+    $permissions = [
+      'administer languages',
+      'administer nodes',
+      'administer url aliases',
+      'administer workspaces',
+      'create article content',
+      'create content translations',
+      'edit any article content',
+      'translate any entity',
+    ];
+    $this->drupalLogin($this->drupalCreateUser($permissions));
 
     // Enable URL language detection and selection.
     $edit = ['language_interface[enabled][language-url]' => 1];

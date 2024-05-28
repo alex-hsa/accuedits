@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\system\Kernel\Token;
 
 use Drupal\Core\Url;
@@ -7,6 +9,8 @@ use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Render\BubbleableMetadata;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 
 /**
  * Tests token replacement.
@@ -137,6 +141,7 @@ class TokenReplaceKernelTest extends TokenReplaceKernelTestBase {
       'SERVER_NAME' => 'http://localhost',
     ];
     $request = Request::create('/subdir/', 'GET', [], [], [], $server);
+    $request->setSession(new Session(new MockArraySessionStorage()));
     $request->server->add($server);
     $request_stack->push($request);
     $bubbleable_metadata = new BubbleableMetadata();
@@ -153,7 +158,7 @@ class TokenReplaceKernelTest extends TokenReplaceKernelTestBase {
    */
   public function testSystemDateTokenReplacement() {
     // Set time to one hour before request.
-    $date = REQUEST_TIME - 3600;
+    $date = \Drupal::time()->getRequestTime() - 3600;
 
     // Generate and test tokens.
     $tests = [];

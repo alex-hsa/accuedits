@@ -114,6 +114,13 @@ class ViewExecutableTest extends UnitTestCase {
   protected $successCache;
 
   /**
+   * The display plugin manager.
+   *
+   * @var \Drupal\Component\Plugin\PluginManagerInterface;
+   */
+  protected $displayPluginManager;
+
+  /**
    * {@inheritdoc}
    */
   protected function setUp(): void {
@@ -131,8 +138,11 @@ class ViewExecutableTest extends UnitTestCase {
     $this->displayHandlers = $this->getMockBuilder('Drupal\views\DisplayPluginCollection')
       ->disableOriginalConstructor()
       ->getMock();
+    $this->displayPluginManager = $this->getMockBuilder('\Drupal\views\Plugin\ViewsPluginManager')
+      ->disableOriginalConstructor()
+      ->getMock();
 
-    $this->executable = new ViewExecutable($this->view, $this->user, $this->viewsData, $this->routeProvider);
+    $this->executable = new ViewExecutable($this->view, $this->user, $this->viewsData, $this->routeProvider, $this->displayPluginManager);
     $this->executable->display_handler = $this->displayHandler;
     $this->executable->displayHandlers = $this->displayHandlers;
 
@@ -444,7 +454,7 @@ class ViewExecutableTest extends UnitTestCase {
    * @return array[]
    *   Test data set.
    */
-  public function addHandlerProvider() {
+  public static function addHandlerProvider() {
     return [
       'field' => ['fields', 'field'],
       'filter' => ['filters', 'filter'],
@@ -519,7 +529,7 @@ class ViewExecutableTest extends UnitTestCase {
    *   An array of arrays containing the display state, a user's access to the
    *   display and whether it is expected or not that the display gets attached.
    */
-  public function providerAttachDisplays() {
+  public static function providerAttachDisplays() {
     return [
       'enabled-granted' => [static::DISPLAY_ENABLED, static::ACCESS_GRANTED, TRUE],
       'enabled-revoked' => [static::DISPLAY_ENABLED, static::ACCESS_REVOKED, FALSE],
@@ -548,7 +558,7 @@ class ViewExecutableTest extends UnitTestCase {
     ];
 
     $storage = new View($config, 'view');
-    $view = new ViewExecutable($storage, $this->user, $this->viewsData, $this->routeProvider);
+    $view = new ViewExecutable($storage, $this->user, $this->viewsData, $this->routeProvider, $this->displayPluginManager);
     $display = $this->getMockBuilder('Drupal\views\Plugin\views\display\DisplayPluginBase')
       ->disableOriginalConstructor()
       ->getMock();
@@ -742,7 +752,7 @@ class ViewExecutableTest extends UnitTestCase {
    * @return array[]
    *   An array of arrays containing the display state and expected value.
    */
-  public function providerExecuteReturn() {
+  public static function providerExecuteReturn() {
     return [
       'enabled' => [static::DISPLAY_ENABLED, TRUE],
       'disabled' => [static::DISPLAY_DISABLED, FALSE],

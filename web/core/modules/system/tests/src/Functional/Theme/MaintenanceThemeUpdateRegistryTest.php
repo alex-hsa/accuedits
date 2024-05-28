@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\system\Functional\Theme;
 
 use Drupal\Core\Serialization\Yaml;
@@ -64,7 +66,8 @@ class MaintenanceThemeUpdateRegistryTest extends BrowserTestBase {
    * Tests that after installing the profile there are no outstanding updates.
    */
   public function testMaintenanceThemeUpdateRegistration() {
-    $this->drupalLogin($this->rootUser);
+    $this->drupalLogin($this->drupalCreateUser(['administer software updates']));
+
     $this->drupalGet('update.php/selection');
     $this->updateRequirementsProblem();
     $this->drupalGet('update.php/selection');

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\comment\Functional;
 
 use Drupal\user\RoleInterface;
@@ -50,7 +52,7 @@ class CommentBlockTest extends CommentTestBase {
     // Add some test comments, with and without subjects. Because the 10 newest
     // comments should be shown by the block, we create 11 to test that behavior
     // below.
-    $timestamp = REQUEST_TIME;
+    $timestamp = \Drupal::time()->getRequestTime();
     for ($i = 0; $i < 11; ++$i) {
       $subject = ($i % 2) ? $this->randomMachineName() : '';
       $comments[$i] = $this->postComment($this->node, $this->randomMachineName(), $subject);

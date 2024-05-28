@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\menu_ui\Functional;
 
 use Drupal\Core\Language\LanguageInterface;
@@ -101,7 +103,7 @@ class MenuUiContentTranslationTest extends BrowserTestBase {
    * @return array
    *   Data sets to test keyed by data set label.
    */
-  public function provideChangeContentToPseudoLanguageData() {
+  public static function provideChangeContentToPseudoLanguageData() {
     return [
       'und' => ['langcode' => LanguageInterface::LANGCODE_NOT_SPECIFIED],
       'zxx' => ['langcode' => LanguageInterface::LANGCODE_NOT_APPLICABLE],

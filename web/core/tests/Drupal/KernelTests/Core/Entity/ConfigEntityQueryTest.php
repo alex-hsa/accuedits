@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\KernelTests\Core\Entity;
 
 use Drupal\Core\Config\Entity\ConfigEntityStorageInterface;
@@ -755,6 +757,24 @@ class ConfigEntityQueryTest extends KernelTestBase {
     $entity_id = array_pop($expected);
     $test_entities[$entity_id]->delete();
     $this->assertNull($key_value->get('style:test'));
+  }
+
+  /**
+   * Test the entity query alter hooks are invoked.
+   *
+   * @see config_test_entity_query_tag__config_query_test__config_entity_query_alter_hook_test_alter()
+   */
+  public function testAlterHook(): void {
+    // Run a test without any condition.
+    $this->queryResults = $this->entityStorage->getQuery()
+      ->execute();
+    $this->assertResults(['1', '2', '3', '4', '5', '6', '7']);
+
+    // config_test alter hook removes the entity with id '7'.
+    $this->queryResults = $this->entityStorage->getQuery()
+      ->addTag('config_entity_query_alter_hook_test')
+      ->execute();
+    $this->assertResults(['1', '2', '3', '4', '5', '6']);
   }
 
   /**

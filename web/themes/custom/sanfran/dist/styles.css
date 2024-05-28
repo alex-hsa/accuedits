@@ -4839,11 +4839,6 @@ details.collapse summary::-webkit-details-marker{
   color: var(--fallback-wa,oklch(var(--wa)/var(--tw-text-opacity)));
 }
 
-.text-neutral-content{
-  --tw-text-opacity: 1;
-  color: var(--fallback-nc,oklch(var(--nc)/var(--tw-text-opacity)));
-}
-
 .no-underline{
   text-decoration-line: none;
 }

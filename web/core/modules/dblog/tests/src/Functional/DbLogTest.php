@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\dblog\Functional;
 
 use Drupal\Component\Render\FormattableMarkup;
@@ -17,6 +19,7 @@ use Drupal\Tests\system\Functional\Menu\AssertBreadcrumbTrait;
  * Verifies log entries and user access based on permissions.
  *
  * @group dblog
+ * @group #slow
  */
 class DbLogTest extends BrowserTestBase {
   use FakeLogEntries;
@@ -120,7 +123,7 @@ class DbLogTest extends BrowserTestBase {
       'channel' => 'testing',
       'link' => 'foo/bar',
       'ip' => '0.0.1.0',
-      'timestamp' => REQUEST_TIME,
+      'timestamp' => \Drupal::time()->getRequestTime(),
     ];
     \Drupal::service('logger.dblog')->log(RfcLogLevel::NOTICE, 'Test message', $context);
     $query = Database::getConnection()->select('watchdog');
@@ -303,6 +306,7 @@ class DbLogTest extends BrowserTestBase {
     $edit['dblog_row_limit'] = $row_limit;
     $this->drupalGet('admin/config/development/logging');
     $this->submitForm($edit, 'Save configuration');
+    $this->assertSession()->statusMessageContains('The configuration options have been saved.');
     $this->assertSession()->statusCodeEquals(200);
 
     // Check row limit variable.
@@ -628,7 +632,7 @@ class DbLogTest extends BrowserTestBase {
       'request_uri' => $base_root . \Drupal::request()->getRequestUri(),
       'referer'     => \Drupal::request()->server->get('HTTP_REFERER'),
       'ip'          => '127.0.0.1',
-      'timestamp'   => REQUEST_TIME,
+      'timestamp'   => \Drupal::time()->getRequestTime(),
     ];
     // Add a watchdog entry.
     $this->container->get('logger.dblog')->log($log['severity'], $log['message'], $log);

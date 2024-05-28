@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\views_ui\Functional;
 
+use Drupal\Component\Utility\Unicode;
 use Drupal\Tests\views\Functional\Wizard\WizardTestBase;
 
 /**
@@ -65,7 +68,7 @@ class WizardTest extends WizardTestBase {
     $this->submitForm($view, 'Save and edit');
     $this->assertSession()->addressEquals('admin/structure/views/view/' . $view['id']);
     // Assert that the page title is correctly truncated.
-    $this->assertSession()->pageTextContains(views_ui_truncate($view['page[title]'], 32));
+    $this->assertSession()->pageTextContains(Unicode::truncate($view['page[title]'], 32, FALSE, TRUE));
   }
 
 }

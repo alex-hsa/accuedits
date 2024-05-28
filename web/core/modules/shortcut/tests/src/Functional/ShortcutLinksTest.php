@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\shortcut\Functional;
 
 use Drupal\block_content\Entity\BlockContentType;
@@ -32,6 +34,11 @@ class ShortcutLinksTest extends ShortcutTestBase {
   /**
    * {@inheritdoc}
    */
+  protected $adminUser;
+
+  /**
+   * {@inheritdoc}
+   */
   protected $defaultTheme = 'stark';
 
   /**
@@ -39,6 +46,22 @@ class ShortcutLinksTest extends ShortcutTestBase {
    */
   protected function setUp(): void {
     parent::setUp();
+
+    $this->adminUser = $this->drupalCreateUser([
+      'access toolbar',
+      'administer shortcuts',
+      'view the administration theme',
+      'access content overview',
+      'administer users',
+      'administer site configuration',
+      'administer content types',
+      'create article content',
+      'create page content',
+      'edit any article content',
+      'edit any page content',
+      'administer blocks',
+      'access shortcuts',
+    ]);
 
     $this->drupalPlaceBlock('page_title_block');
   }
@@ -154,7 +177,7 @@ class ShortcutLinksTest extends ShortcutTestBase {
     $this->config('node.settings')->set('use_admin_theme', '1')->save();
     $this->container->get('router.builder')->rebuild();
 
-    $this->drupalLogin($this->rootUser);
+    $this->drupalLogin($this->adminUser);
     $this->drupalGet('admin/config/system/cron');
 
     // Test the "Add to shortcuts" link.
@@ -211,8 +234,10 @@ class ShortcutLinksTest extends ShortcutTestBase {
     $this->clickLink('Remove from Default shortcuts');
     $this->assertSession()->pageTextContains("The shortcut $title has been deleted.");
     $this->assertShortcutQuickLink('Add to Default shortcuts');
-
     \Drupal::service('module_installer')->install(['block_content']);
+    $this->adminUser
+      ->addRole($this->drupalCreateRole(['administer block types']))
+      ->save();
     BlockContentType::create([
       'id' => 'basic',
       'label' => 'Basic block',
@@ -274,7 +299,7 @@ class ShortcutLinksTest extends ShortcutTestBase {
    * Tests that changing the route of a shortcut link works.
    */
   public function testShortcutLinkChangeRoute() {
-    $this->drupalLogin($this->rootUser);
+    $this->drupalLogin($this->adminUser);
     $this->drupalGet('admin/content');
     $this->assertSession()->statusCodeEquals(200);
     // Disable the view.
@@ -350,7 +375,7 @@ class ShortcutLinksTest extends ShortcutTestBase {
       ->save();
 
     // Add cron to the default shortcut set.
-    $this->drupalLogin($this->rootUser);
+    $this->drupalLogin($this->adminUser);
     $this->drupalGet('admin/config/system/cron');
     $this->clickLink('Add to Default shortcuts');
 

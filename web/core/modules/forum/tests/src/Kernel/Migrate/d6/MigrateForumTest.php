@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\forum\Kernel\Migrate\d6;
 
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
@@ -13,6 +15,7 @@ use Drupal\Tests\node\Kernel\Migrate\d6\MigrateNodeTestBase;
  * Tests forum migration from Drupal 6 to Drupal 8.
  *
  * @group migrate_drupal_6
+ * @group legacy
  */
 class MigrateForumTest extends MigrateNodeTestBase {
 

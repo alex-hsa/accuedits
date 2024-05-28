@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\locale\Functional;
 
 use Drupal\Component\Gettext\PoItem;
@@ -23,6 +25,7 @@ class LocaleLocaleLookupTest extends BrowserTestBase {
    */
   protected static $modules = ['locale', 'locale_test'];
 
+
   /**
    * {@inheritdoc}
    */
@@ -43,7 +46,9 @@ class LocaleLocaleLookupTest extends BrowserTestBase {
     ConfigurableLanguage::createFromLangcode('fr')->save();
     $this->config('system.site')->set('default_langcode', 'fr')->save();
 
-    $this->drupalLogin($this->rootUser);
+    $this->drupalLogin($this->drupalCreateUser([
+      'administer modules',
+    ]));
   }
 
   /**
@@ -104,7 +109,7 @@ class LocaleLocaleLookupTest extends BrowserTestBase {
    *     - translation value
    *     - expected result
    */
-  public function providerTestFixOldPluralStyle() {
+  public static function providerTestFixOldPluralStyle() {
     return [
       'non-plural translation' => ['@count[2] non-plural test', '@count[2] non-plural test'],
       'plural translation' => ['@count[2] plural test' . PoItem::DELIMITER, '@count plural test'],

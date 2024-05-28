@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\content_moderation\Kernel;
 
 use Drupal\Core\Entity\EntityInterface;
@@ -155,7 +157,7 @@ class WorkspacesContentModerationStateTest extends ContentModerationStateTest {
   /**
    * Test cases for basic moderation test.
    */
-  public function basicModerationTestCases() {
+  public static function basicModerationTestCases() {
     return [
       'Nodes' => [
         'node',
@@ -173,6 +175,17 @@ class WorkspacesContentModerationStateTest extends ContentModerationStateTest {
         'entity_test_revpub',
       ],
     ];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function testContentModerationStateDataRemoval($entity_type_id = NULL): void {
+    // This test creates published default revisions in Live, which can not be
+    // deleted in a workspace. A test scenario for the case when Content
+    // Moderation and Workspaces are used together is covered in
+    // parent::testContentModerationStateRevisionDataRemoval().
+    $this->markTestSkipped();
   }
 
   /**

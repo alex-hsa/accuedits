@@ -1,10 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\image\Functional;
 
 use Drupal\file\Entity\File;
 use Drupal\Tests\content_translation\Traits\ContentTranslationTestTrait;
 use Drupal\Tests\TestFileCreationTrait;
+
+// cspell:ignore Scarlett Johansson
 
 /**
  * Uploads images to translated nodes.
@@ -52,7 +56,7 @@ class ImageOnTranslatedEntityTest extends ImageFieldTestBase {
 
     // Create an image field on the "Basic page" node type.
     $this->fieldName = $this->randomMachineName();
-    $this->createImageField($this->fieldName, 'basic_page', [], ['title_field' => 1]);
+    $this->createImageField($this->fieldName, 'node', 'basic_page', [], ['title_field' => 1]);
 
     // Create and log in user.
     $permissions = [

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\workflows\Functional;
 
 use Drupal\Core\Url;
@@ -10,6 +12,7 @@ use Drupal\workflows\Entity\Workflow;
  * Tests workflow creation UI.
  *
  * @group workflows
+ * @group #slow
  */
 class WorkflowUiTest extends BrowserTestBase {
 

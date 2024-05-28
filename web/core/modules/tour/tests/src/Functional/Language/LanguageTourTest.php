@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\tour\Functional\Language;
 
 use Drupal\Tests\tour\Functional\TourTestBase;
@@ -8,6 +10,7 @@ use Drupal\Tests\tour\Functional\TourTestBase;
  * Tests tour functionality.
  *
  * @group tour
+ * @group legacy
  */
 class LanguageTourTest extends TourTestBase {
 

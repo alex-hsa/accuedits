@@ -10,6 +10,7 @@ use Drupal\Tests\UnitTestCase;
 /**
  * @coversDefaultClass \Drupal\statistics\StatisticsViewsResult
  * @group statistics
+ * @group legacy
  */
 class StatisticsViewsResultTest extends UnitTestCase {
 
@@ -27,7 +28,7 @@ class StatisticsViewsResultTest extends UnitTestCase {
     $this->assertSame((int) $timestamp, $statistics->getTimestamp());
   }
 
-  public function providerTestStatisticsCount() {
+  public static function providerTestStatisticsCount() {
     return [
       [2, 0, 1421727536],
       [1, 0, 1471428059],

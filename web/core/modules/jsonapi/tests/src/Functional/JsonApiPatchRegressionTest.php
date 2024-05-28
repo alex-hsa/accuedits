@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\jsonapi\Functional;
 
 use Drupal\comment\Entity\Comment;
 use Drupal\comment\Plugin\Field\FieldType\CommentItemInterface;
 use Drupal\comment\Tests\CommentTestTrait;
-use Drupal\Component\Serialization\Json;
 use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Language\LanguageInterface;
@@ -17,8 +18,6 @@ use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\node\Entity\Node;
 use Drupal\taxonomy\Entity\Term;
 use GuzzleHttp\RequestOptions;
-
-// cspell:ignore llamalovers catcuddlers Cuddlers
 
 /**
  * JSON:API regression tests.
@@ -271,18 +270,18 @@ class JsonApiPatchRegressionTest extends JsonApiFunctionalTestBase {
     ];
     $node_url = Url::fromUri('internal:/jsonapi/node/page/' . $page->uuid());
     $response = $this->request('GET', $node_url, $request_options);
+    $document = $this->getDocumentFromResponse($response);
     $this->assertSame(200, $response->getStatusCode());
-    $doc = Json::decode((string) $response->getBody());
-    $this->assertSame('2018-12-19', $doc['data']['attributes']['when']);
-    $this->assertSame('2018-12-20T04:00:00+11:00', $doc['data']['attributes']['when_exactly']);
-    $doc['data']['attributes']['when'] = '2018-12-20';
-    $doc['data']['attributes']['when_exactly'] = '2018-12-19T19:00:00+01:00';
-    $request_options = $request_options + [RequestOptions::JSON => $doc];
+    $this->assertSame('2018-12-19', $document['data']['attributes']['when']);
+    $this->assertSame('2018-12-20T04:00:00+11:00', $document['data']['attributes']['when_exactly']);
+    $document['data']['attributes']['when'] = '2018-12-20';
+    $document['data']['attributes']['when_exactly'] = '2018-12-19T19:00:00+01:00';
+    $request_options = $request_options + [RequestOptions::JSON => $document];
     $response = $this->request('PATCH', $node_url, $request_options);
+    $document = $this->getDocumentFromResponse($response);
     $this->assertSame(200, $response->getStatusCode());
-    $doc = Json::decode((string) $response->getBody());
-    $this->assertSame('2018-12-20', $doc['data']['attributes']['when']);
-    $this->assertSame('2018-12-20T05:00:00+11:00', $doc['data']['attributes']['when_exactly']);
+    $this->assertSame('2018-12-20', $document['data']['attributes']['when']);
+    $this->assertSame('2018-12-20T05:00:00+11:00', $document['data']['attributes']['when_exactly']);
   }
 
   /**
@@ -325,10 +324,10 @@ class JsonApiPatchRegressionTest extends JsonApiFunctionalTestBase {
       ],
     ];
     $response = $this->request('PATCH', $url, $request_options);
+    $document = $this->getDocumentFromResponse($response);
     $this->assertSame(200, $response->getStatusCode());
-    $doc = Json::decode((string) $response->getBody());
-    $this->assertArrayHasKey('included', $doc);
-    $this->assertSame($user->label(), $doc['included'][0]['attributes']['name']);
+    $this->assertArrayHasKey('included', $document);
+    $this->assertSame($user->label(), $document['included'][0]['attributes']['name']);
   }
 
   /**
@@ -369,8 +368,8 @@ class JsonApiPatchRegressionTest extends JsonApiFunctionalTestBase {
     // GET the test entity via JSON:API.
     $entity_url = Url::fromUri('internal:/jsonapi/entity_test/entity_test/' . $entity->uuid());
     $response = $this->request('GET', $entity_url, $request_options);
+    $response_document = $this->getDocumentFromResponse($response);
     $this->assertSame(200, $response->getStatusCode());
-    $response_document = Json::decode($response->getBody());
     // Ensure that the entity's langcode attribute is 'und'.
     $this->assertSame(LanguageInterface::LANGCODE_NOT_SPECIFIED, $response_document['data']['attributes']['langcode']);
     // Prepare to PATCH the entity via JSON:API.
@@ -387,8 +386,8 @@ class JsonApiPatchRegressionTest extends JsonApiFunctionalTestBase {
     // Issue the PATCH request and verify that the test entity was successfully
     // updated.
     $response = $this->request('PATCH', $entity_url, $request_options);
+    $response_document = $this->getDocumentFromResponse($response);
     $this->assertSame(200, $response->getStatusCode(), (string) $response->getBody());
-    $response_document = Json::decode($response->getBody());
     // Ensure that the entity's langcode attribute is still 'und' and the name
     // was successfully updated.
     $this->assertSame(LanguageInterface::LANGCODE_NOT_SPECIFIED, $response_document['data']['attributes']['langcode']);
@@ -441,7 +440,7 @@ class JsonApiPatchRegressionTest extends JsonApiFunctionalTestBase {
               // cSpell:disable-next-line
               'sumary' => 'Boring old "Hello World".',
               // And finally, one that is completely absurd.
-              'foobarbaz' => '<script>alert("HI!");</script>',
+              'foobar' => '<script>alert("HI!");</script>',
             ],
           ],
         ],
@@ -450,11 +449,11 @@ class JsonApiPatchRegressionTest extends JsonApiFunctionalTestBase {
     $response = $this->request('PATCH', $url, $request_options);
 
     // Assert a helpful error response is present.
-    $data = Json::decode((string) $response->getBody());
+    $data = $this->getDocumentFromResponse($response, FALSE);
     $this->assertSame(422, $response->getStatusCode());
     $this->assertNotNull($data);
     // cSpell:disable-next-line
-    $this->assertSame("The properties 'form', 'sumary', 'foobarbaz' do not exist on the 'body' field of type 'text_with_summary'. Writable properties are: 'value', 'format', 'summary'.", $data['errors'][0]['detail']);
+    $this->assertSame("The properties 'form', 'sumary', 'foobar' do not exist on the 'body' field of type 'text_with_summary'. Writable properties are: 'value', 'format', 'summary'.", $data['errors'][0]['detail']);
 
     $request_options = [
       RequestOptions::HEADERS => [
@@ -483,7 +482,7 @@ class JsonApiPatchRegressionTest extends JsonApiFunctionalTestBase {
     $response = $this->request('PATCH', $url, $request_options);
 
     // Assert a helpful error response is present.
-    $data = Json::decode((string) $response->getBody());
+    $data = $this->getDocumentFromResponse($response, FALSE);
     $this->assertSame(422, $response->getStatusCode());
     $this->assertNotNull($data);
     // cSpell:disable-next-line

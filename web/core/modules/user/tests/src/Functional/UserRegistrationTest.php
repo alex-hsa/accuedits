@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\user\Functional;
 
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
@@ -272,7 +274,7 @@ class UserRegistrationTest extends BrowserTestBase {
     $this->assertEquals($name, $new_user->getAccountName(), 'Username matches.');
     $this->assertEquals($mail, $new_user->getEmail(), 'Email address matches.');
     // Verify that the creation time is correct.
-    $this->assertGreaterThan(REQUEST_TIME - 20, $new_user->getCreatedTime());
+    $this->assertGreaterThan(\Drupal::time()->getRequestTime() - 20, $new_user->getCreatedTime());
     $this->assertEquals($config_user_settings->get('register') == UserInterface::REGISTER_VISITORS ? 1 : 0, $new_user->isActive(), 'Correct status field.');
     $this->assertEquals($config_system_date->get('timezone.default'), $new_user->getTimezone(), 'Correct time zone field.');
     $this->assertEquals(\Drupal::languageManager()->getDefaultLanguage()->getId(), $new_user->langcode->value, 'Correct language field.');

@@ -91,7 +91,7 @@ class LinkGeneratorTest extends UnitTestCase {
    * @return array
    *   Returns some test data.
    */
-  public function providerTestGenerateHrefs() {
+  public static function providerTestGenerateHrefs() {
     return [
       // Test that the URL returned by the URL generator is used.
       ['test_route_1', [], FALSE, '/test-route-1'],
@@ -251,7 +251,7 @@ class LinkGeneratorTest extends UnitTestCase {
     $this->urlAssembler->expects($this->once())
       ->method('assemble')
       ->with('https://www.drupal.org', ['set_active_class' => TRUE, 'external' => TRUE] + $this->defaultOptions)
-      ->will($this->returnArgument(0));
+      ->willReturnArgument(0);
 
     $this->moduleHandler->expects($this->once())
       ->method('alter')

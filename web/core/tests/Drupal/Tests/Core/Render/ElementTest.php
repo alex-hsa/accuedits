@@ -108,8 +108,8 @@ class ElementTest extends UnitTestCase {
     $element = [
       'foo' => 'bar',
     ];
-    $this->expectError();
-    $this->expectErrorMessage('"foo" is an invalid render array key');
+    $this->expectException(\InvalidArgumentException::class);
+    $this->expectExceptionMessage('"foo" is an invalid render array key. Value should be an array but got a string.');
     Element::children($element);
   }
 
@@ -142,7 +142,7 @@ class ElementTest extends UnitTestCase {
    *
    * @return array
    */
-  public function providerVisibleChildren() {
+  public static function providerVisibleChildren() {
     return [
       [['#property1' => '', '#property2' => []], []],
       [['#property1' => '', 'child1' => []], ['child1']],
@@ -169,7 +169,7 @@ class ElementTest extends UnitTestCase {
   /**
    * Data provider for testSetAttributes().
    */
-  public function providerTestSetAttributes() {
+  public static function providerTestSetAttributes() {
     $base = ['#id' => 'id', '#class' => []];
     return [
       [$base, [], $base],
@@ -187,7 +187,7 @@ class ElementTest extends UnitTestCase {
     $this->assertSame(Element::isEmpty($element), $expected);
   }
 
-  public function providerTestIsEmpty() {
+  public static function providerTestIsEmpty() {
     return [
       [[], TRUE],
       [['#attached' => []], FALSE],
@@ -222,6 +222,28 @@ class ElementTest extends UnitTestCase {
 
       [['#cache' => [], '#any_other_property' => TRUE], FALSE],
       [['#any_other_property' => TRUE], FALSE],
+    ];
+  }
+
+  /**
+   * @covers ::isRenderArray
+   * @dataProvider dataProviderIsRenderArray
+   */
+  public function testIsRenderArray($build, $expected) {
+    $this->assertSame(
+      $expected,
+      Element::isRenderArray($build)
+    );
+  }
+
+  public static function dataProviderIsRenderArray() {
+    return [
+      'valid markup render array' => [['#markup' => 'hello world'], TRUE],
+      'invalid "foo" string' => [['foo', '#markup' => 'hello world'], FALSE],
+      'null is not an array' => [NULL, FALSE],
+      'an empty array is not a render array' => [[], FALSE],
+      'funny enough a key with # is valid' => [['#' => TRUE], TRUE],
+      'nested arrays can be valid too' => [['one' => [2 => ['#three' => 'charm!']]], TRUE],
     ];
   }
 

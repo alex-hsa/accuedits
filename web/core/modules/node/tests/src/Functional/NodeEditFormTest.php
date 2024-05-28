@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\node\Functional;
 
 use Drupal\node\NodeInterface;
@@ -89,7 +91,7 @@ class NodeEditFormTest extends NodeTestBase {
 
     // Check that the title and body fields are displayed with the correct values.
     // @todo Ideally assertLink would support HTML, but it doesn't.
-    $this->assertSession()->responseContains('Edit<span class="visually-hidden">(active tab)</span>');
+    $this->assertSession()->responseContains('Edit');
     $this->assertSession()->fieldValueEquals($title_key, $edit[$title_key]);
     $this->assertSession()->fieldValueEquals($body_key, $edit[$body_key]);
 

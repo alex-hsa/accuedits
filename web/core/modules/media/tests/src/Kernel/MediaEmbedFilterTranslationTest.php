@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\media\Kernel;
 
 use Drupal\language\Entity\ConfigurableLanguage;
@@ -68,7 +70,7 @@ class MediaEmbedFilterTranslationTest extends MediaEmbedFilterTestBase {
   /**
    * Data provider for testTranslationSelection().
    */
-  public function providerTranslationSituations() {
+  public static function providerTranslationSituations() {
     $embedded_entity_translation_languages = ['en', 'pt-br'];
 
     foreach (['en', 'pt-br', 'nl'] as $text_langcode) {

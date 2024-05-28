@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\system\Functional\Entity;
 
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
@@ -12,6 +14,7 @@ use Drupal\Tests\BrowserTestBase;
  * Tests the entity form.
  *
  * @group Entity
+ * @group #slow
  */
 class EntityFormTest extends BrowserTestBase {
 
@@ -70,9 +73,10 @@ class EntityFormTest extends BrowserTestBase {
   }
 
   /**
-   * Tests hook_entity_form_mode_alter().
+   * Tests hook_entity_form_mode_alter() and hook_ENTITY_TYPE_form_mode_alter().
    *
    * @see entity_test_entity_form_mode_alter()
+   * @see entity_test_entity_test_form_mode_alter()
    */
   public function testEntityFormModeAlter() {
     // Create compact entity display.
@@ -103,6 +107,13 @@ class EntityFormTest extends BrowserTestBase {
     ]);
     $entity2->save();
     $this->drupalGet($entity2->toUrl('edit-form'));
+    $this->assertSession()->elementNotExists('css', 'input[name="field_test_text[0][value]"]');
+
+    $entity3 = EntityTest::create([
+      'name' => 'test_entity_type_form_mode_alter',
+    ]);
+    $entity3->save();
+    $this->drupalGet($entity3->toUrl('edit-form'));
     $this->assertSession()->elementNotExists('css', 'input[name="field_test_text[0][value]"]');
   }
 

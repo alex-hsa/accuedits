@@ -7,19 +7,20 @@ use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\views\Attribute\ViewsRow;
 use Drupal\views\Entity\Render\EntityTranslationRenderTrait;
+use Drupal\views\Plugin\Derivative\ViewsEntityRow;
 use Drupal\views\Plugin\views\display\DisplayPluginBase;
 use Drupal\views\ViewExecutable;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Generic entity row plugin to provide a common base for all entity types.
- *
- * @ViewsRow(
- *   id = "entity",
- *   deriver = "Drupal\views\Plugin\Derivative\ViewsEntityRow"
- * )
  */
+#[ViewsRow(
+  id: "entity",
+  deriver: ViewsEntityRow::class
+)]
 class EntityRow extends RowPluginBase {
   use EntityTranslationRenderTrait;
 
@@ -28,6 +29,7 @@ class EntityRow extends RowPluginBase {
    *
    * @var string
    */
+  // phpcs:ignore Drupal.NamingConventions.ValidVariableName.LowerCamelName
   public $base_table;
 
   /**
@@ -215,7 +217,7 @@ class EntityRow extends RowPluginBase {
   public function preRender($result) {
     parent::preRender($result);
     if ($result) {
-      $this->getEntityTranslationRenderer()->preRenderByRelationship($result, isset($this->options['relationship']) ? $this->options['relationship'] : 'none');
+      $this->getEntityTranslationRenderer()->preRenderByRelationship($result, $this->options['relationship'] ?? 'none');
     }
   }
 
@@ -223,7 +225,7 @@ class EntityRow extends RowPluginBase {
    * {@inheritdoc}
    */
   public function render($row) {
-    return $this->getEntityTranslationRenderer()->renderByRelationship($row, isset($this->options['relationship']) ? $this->options['relationship'] : 'none');
+    return $this->getEntityTranslationRenderer()->renderByRelationship($row, $this->options['relationship'] ?? 'none');
   }
 
   /**

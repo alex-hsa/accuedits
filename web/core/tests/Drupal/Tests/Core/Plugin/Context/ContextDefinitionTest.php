@@ -21,7 +21,7 @@ class ContextDefinitionTest extends UnitTestCase {
   /**
    * Very simple data provider.
    */
-  public function providerGetDataDefinition() {
+  public static function providerGetDataDefinition() {
     return [
       [TRUE],
       [FALSE],
@@ -35,15 +35,7 @@ class ContextDefinitionTest extends UnitTestCase {
    */
   public function testGetDataDefinition($is_multiple) {
     $data_type = 'valid';
-    $mock_data_definition = $this->getMockBuilder(ContextDefinitionInterface::class)
-      ->onlyMethods([
-        'getConstraints',
-        'setLabel',
-        'setDescription',
-        'setRequired',
-        'setConstraints',
-      ])
-      ->getMockForAbstractClass();
+    $mock_data_definition = $this->createMock(ContextDefinitionInterface::class);
     $mock_data_definition->expects($this->once())
       ->method('setLabel')
       ->willReturnSelf();
@@ -118,8 +110,7 @@ class ContextDefinitionTest extends UnitTestCase {
     // Since we're trying to make getDataDefinition() throw an exception in
     // isolation, we use a data type which is not valid.
     $data_type = 'not_valid';
-    $mock_data_definition = $this->getMockBuilder('\Drupal\Core\TypedData\ListDataDefinitionInterface')
-      ->getMockForAbstractClass();
+    $mock_data_definition = $this->createMock('\Drupal\Core\TypedData\ListDataDefinitionInterface');
 
     // Follow code paths for both multiple and non-multiple definitions.
     $create_definition_method = 'createDataDefinition';
@@ -163,7 +154,7 @@ class ContextDefinitionTest extends UnitTestCase {
   /**
    * Data provider for testGetConstraint.
    */
-  public function providerGetConstraint() {
+  public static function providerGetConstraint() {
     return [
       [NULL, [], 'nonexistent_constraint_name'],
       [

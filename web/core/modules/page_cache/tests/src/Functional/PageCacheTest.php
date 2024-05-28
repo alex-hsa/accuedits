@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\page_cache\Functional;
 
 use Drupal\Component\Datetime\DateTimePlus;
@@ -52,9 +54,7 @@ class PageCacheTest extends BrowserTestBase {
    * persisted.
    */
   public function testPageCacheTags() {
-    $config = $this->config('system.performance');
-    $config->set('cache.page.max_age', 300);
-    $config->save();
+    $this->enablePageCaching();
 
     $path = 'system-test/cache_tags_page';
     $tags = ['system_test_cache_tags_page'];
@@ -123,9 +123,7 @@ class PageCacheTest extends BrowserTestBase {
    * The request formats are specified via a query parameter.
    */
   public function testQueryParameterFormatRequests() {
-    $config = $this->config('system.performance');
-    $config->set('cache.page.max_age', 300);
-    $config->save();
+    $this->enablePageCaching();
 
     $accept_header_cache_url = Url::fromRoute('system_test.page_cache_accept_header');
     $accept_header_cache_url_with_json = Url::fromRoute('system_test.page_cache_accept_header', ['_format' => 'json']);
@@ -163,9 +161,7 @@ class PageCacheTest extends BrowserTestBase {
    * Tests support of requests with If-Modified-Since and If-None-Match headers.
    */
   public function testConditionalRequests() {
-    $config = $this->config('system.performance');
-    $config->set('cache.page.max_age', 300);
-    $config->save();
+    $this->enablePageCaching();
 
     // Fill the cache.
     $this->drupalGet('');
@@ -226,9 +222,7 @@ class PageCacheTest extends BrowserTestBase {
    * Tests cache headers.
    */
   public function testPageCache() {
-    $config = $this->config('system.performance');
-    $config->set('cache.page.max_age', 300);
-    $config->save();
+    $this->enablePageCaching();
 
     // Fill the cache.
     $this->drupalGet('system-test/set-header', ['query' => ['name' => 'Foo', 'value' => 'bar']]);
@@ -237,7 +231,7 @@ class PageCacheTest extends BrowserTestBase {
     // Symfony's Response logic determines a specific order for the subvalues
     // of the Cache-Control header, even if they are explicitly passed in to
     // the response header bag in a different order.
-    $this->assertSession()->responseHeaderEquals('Cache-Control', 'max-age=300, public');
+    $this->assertCacheMaxAge(300);
     $this->assertSession()->responseHeaderEquals('Expires', 'Sun, 19 Nov 1978 05:00:00 GMT');
     $this->assertSession()->responseHeaderEquals('Foo', 'bar');
 
@@ -245,7 +239,7 @@ class PageCacheTest extends BrowserTestBase {
     $this->drupalGet('system-test/set-header', ['query' => ['name' => 'Foo', 'value' => 'bar']]);
     $this->assertSession()->responseHeaderEquals('X-Drupal-Cache', 'HIT');
     $this->assertSession()->responseHeaderContains('Vary', 'cookie');
-    $this->assertSession()->responseHeaderEquals('Cache-Control', 'max-age=300, public');
+    $this->assertCacheMaxAge(300);
     $this->assertSession()->responseHeaderEquals('Expires', 'Sun, 19 Nov 1978 05:00:00 GMT');
     $this->assertSession()->responseHeaderEquals('Foo', 'bar');
 
@@ -268,8 +262,8 @@ class PageCacheTest extends BrowserTestBase {
     // Until bubbling of max-age up to the response is supported, verify that
     // a custom #cache max-age set on an element does not affect page max-age.
     $this->drupalLogout();
-    $this->drupalGet('system-test/cache_maxage_page');
-    $this->assertSession()->responseHeaderEquals('Cache-Control', 'max-age=300, public');
+    $this->drupalGet('system-test/cache_max_age_page');
+    $this->assertCacheMaxAge(300);
   }
 
   /**
@@ -286,9 +280,7 @@ class PageCacheTest extends BrowserTestBase {
    * roles.
    */
   public function testPageCacheAnonymousRolePermissions() {
-    $config = $this->config('system.performance');
-    $config->set('cache.page.max_age', 300);
-    $config->save();
+    $this->enablePageCaching();
 
     $content_url = Url::fromRoute('system_test.permission_dependent_content');
     $route_access_url = Url::fromRoute('system_test.permission_dependent_route_access');
@@ -414,9 +406,7 @@ class PageCacheTest extends BrowserTestBase {
    * Tests the omit_vary_cookie setting.
    */
   public function testPageCacheWithoutVaryCookie() {
-    $config = $this->config('system.performance');
-    $config->set('cache.page.max_age', 300);
-    $config->save();
+    $this->enablePageCaching();
 
     $settings['settings']['omit_vary_cookie'] = (object) [
       'value' => TRUE,
@@ -428,13 +418,13 @@ class PageCacheTest extends BrowserTestBase {
     $this->drupalGet('');
     $this->assertSession()->responseHeaderEquals('X-Drupal-Cache', 'MISS');
     $this->assertSession()->responseHeaderNotContains('Vary', 'cookie');
-    $this->assertSession()->responseHeaderEquals('Cache-Control', 'max-age=300, public');
+    $this->assertCacheMaxAge(300);
 
     // Check cache.
     $this->drupalGet('');
     $this->assertSession()->responseHeaderEquals('X-Drupal-Cache', 'HIT');
     $this->assertSession()->responseHeaderNotContains('Vary', 'cookie');
-    $this->assertSession()->responseHeaderEquals('Cache-Control', 'max-age=300, public');
+    $this->assertCacheMaxAge(300);
   }
 
   /**
@@ -472,9 +462,7 @@ class PageCacheTest extends BrowserTestBase {
    * CacheableResponseInterface.
    */
   public function testCacheableResponseResponses() {
-    $config = $this->config('system.performance');
-    $config->set('cache.page.max_age', 300);
-    $config->save();
+    $this->enablePageCaching();
 
     // GET a URL, which would be marked as a cache miss if it were cacheable.
     $this->drupalGet('/system-test/respond-response');
@@ -499,12 +487,12 @@ class PageCacheTest extends BrowserTestBase {
     // GET a URL, which should be marked as a cache miss.
     $this->drupalGet('/system-test/respond-cacheable-response');
     $this->assertSession()->responseHeaderEquals('X-Drupal-Cache', 'MISS');
-    $this->assertSession()->responseHeaderEquals('Cache-Control', 'max-age=300, public');
+    $this->assertCacheMaxAge(300);
 
     // GET it again, it should now be a cache hit.
     $this->drupalGet('/system-test/respond-cacheable-response');
     $this->assertSession()->responseHeaderEquals('X-Drupal-Cache', 'HIT');
-    $this->assertSession()->responseHeaderEquals('Cache-Control', 'max-age=300, public');
+    $this->assertCacheMaxAge(300);
 
     // Uninstall page cache. This should flush all caches so the next call to a
     // previously cached page should be a miss now.
@@ -550,9 +538,7 @@ class PageCacheTest extends BrowserTestBase {
    * Tests a cacheable response with custom cache control.
    */
   public function testCacheableWithCustomCacheControl() {
-    $config = $this->config('system.performance');
-    $config->set('cache.page.max_age', 300);
-    $config->save();
+    $this->enablePageCaching();
 
     $this->drupalGet('/system-test/custom-cache-control');
     $this->assertSession()->statusCodeEquals(200);
@@ -560,10 +546,27 @@ class PageCacheTest extends BrowserTestBase {
   }
 
   /**
+   * Tests that the Cache-Control header is added by FinishResponseSubscriber.
+   */
+  public function testCacheabilityOfRedirectResponses(): void {
+    $this->enablePageCaching();
+
+    $this->getSession()->getDriver()->getClient()->followRedirects(FALSE);
+    $this->maximumMetaRefreshCount = 0;
+
+    foreach ([301, 302, 303, 307, 308] as $status_code) {
+      foreach (['local', 'cacheable', 'trusted'] as $type) {
+        $this->drupalGet("/system-test/redirect/{$type}/{$status_code}");
+        $this->assertSession()->statusCodeEquals($status_code);
+        $this->assertCacheMaxAge(300);
+      }
+    }
+  }
+
+  /**
    * Tests that URLs are cached in a not normalized form.
    */
   public function testNoUrlNormalization() {
-
     // Use absolute URLs to avoid any processing.
     $url = Url::fromRoute('<front>')->setAbsolute()->toString();
 

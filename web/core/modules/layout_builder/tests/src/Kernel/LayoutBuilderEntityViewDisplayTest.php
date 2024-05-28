@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\layout_builder\Kernel;
 
 use Drupal\Core\Config\Schema\SchemaIncompleteException;
@@ -64,7 +66,7 @@ class LayoutBuilderEntityViewDisplayTest extends SectionListTestBase {
   /**
    * Provides test data for ::testIsLayoutBuilderEnabled().
    */
-  public function providerTestIsLayoutBuilderEnabled() {
+  public static function providerTestIsLayoutBuilderEnabled() {
     $data = [];
     $data['default enabled'] = [TRUE, 'default', TRUE];
     $data['default disabled'] = [FALSE, 'default', FALSE];
