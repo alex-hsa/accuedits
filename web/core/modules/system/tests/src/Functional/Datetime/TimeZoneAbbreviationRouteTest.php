@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\system\Functional\Datetime;
 
 use Drupal\Tests\BrowserTestBase;
@@ -10,6 +12,7 @@ use Drupal\Tests\BrowserTestBase;
  * Tests converting JavaScript time zone abbreviations to time zone identifiers.
  *
  * @group Datetime
+ * @group #slow
  */
 class TimeZoneAbbreviationRouteTest extends BrowserTestBase {
 
@@ -63,7 +66,7 @@ class TimeZoneAbbreviationRouteTest extends BrowserTestBase {
    * @return array
    *   Test scenarios.
    */
-  public function providerAbbreviationConversion() {
+  public static function providerAbbreviationConversion() {
     return [
       'valid, default offset' => [
         'CST/0/0',

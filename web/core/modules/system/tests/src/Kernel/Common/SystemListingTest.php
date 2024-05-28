@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\system\Kernel\Common;
 
-use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Extension\ExtensionDiscovery;
 use Drupal\KernelTests\KernelTestBase;
 
@@ -46,7 +47,8 @@ class SystemListingTest extends KernelTestBase {
     foreach ($expected_directories as $module => $directories) {
       $expected_directory = array_shift($directories);
       $expected_uri = "$expected_directory/$module/$module.info.yml";
-      $this->assertEquals($expected_uri, $files[$module]->getPathname(), new FormattableMarkup('Module @actual was found at @expected.', ['@actual' => $files[$module]->getPathname(), '@expected' => $expected_uri]));
+      $module_path = $files[$module]->getPathname();
+      $this->assertEquals($expected_uri, $module_path, "Module $module_path was found at $expected_uri.");
     }
   }
 

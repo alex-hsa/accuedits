@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\layout_builder\Kernel;
 
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
@@ -49,7 +51,7 @@ class LayoutEntityHelperTraitTest extends KernelTestBase {
   /**
    * Data provider for testGetSectionStorageForEntity().
    */
-  public function providerTestGetSectionStorageForEntity() {
+  public static function providerTestGetSectionStorageForEntity() {
     $data = [];
     $data['entity_view_display'] = [
       'entity_view_display',
@@ -122,7 +124,7 @@ class LayoutEntityHelperTraitTest extends KernelTestBase {
   /**
    * Data provider for testOriginalEntityUsesDefaultStorage().
    */
-  public function providerTestOriginalEntityUsesDefaultStorage() {
+  public static function providerTestOriginalEntityUsesDefaultStorage() {
     return [
       'original uses default' => [
         [

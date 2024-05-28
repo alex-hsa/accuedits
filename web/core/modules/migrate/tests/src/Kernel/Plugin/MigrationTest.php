@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\migrate\Kernel\Plugin;
 
 use Drupal\KernelTests\KernelTestBase;
@@ -51,15 +53,13 @@ class MigrationTest extends KernelTestBase {
    *
    * @dataProvider getProcessPluginsExceptionMessageProvider
    */
-  public function testGetProcessPluginsExceptionMessage(array $process) {
+  public function testGetProcessPluginsExceptionMessage(array $process): void {
     // Test with an invalid process pipeline.
     $plugin_definition = [
       'id' => 'foo',
       'process' => $process,
     ];
-
-    reset($process);
-    $destination = key(($process));
+    $destination = array_key_first(($process));
 
     $migration = \Drupal::service('plugin.manager.migration')
       ->createStubMigration($plugin_definition);
@@ -71,33 +71,11 @@ class MigrationTest extends KernelTestBase {
   /**
    * Provides data for testing invalid process pipeline.
    */
-  public function getProcessPluginsExceptionMessageProvider() {
-    return [
-      [
-        'Null' =>
-          [
-            'dest' => NULL,
-          ],
-      ],
-      [
-        'boolean' =>
-          [
-            'dest' => TRUE,
-          ],
-      ],
-      [
-        'integer' =>
-          [
-            'dest' => 2370,
-          ],
-      ],
-      [
-        'float' =>
-          [
-            'dest' => 1.61,
-          ],
-      ],
-    ];
+  public static function getProcessPluginsExceptionMessageProvider(): \Generator {
+    yield 'null' => ['process' => ['dest' => NULL]];
+    yield 'boolean' => ['process' => ['dest' => TRUE]];
+    yield 'integer' => ['process' => ['dest' => 2370]];
+    yield 'float' => ['process' => ['dest' => 1.61]];
   }
 
   /**

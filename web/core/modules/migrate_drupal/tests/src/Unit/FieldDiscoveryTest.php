@@ -79,7 +79,7 @@ class FieldDiscoveryTest extends UnitTestCase {
    * @return array
    *   The data.
    */
-  public function getEntityFieldsData() {
+  public static function getEntityFieldsData() {
     return [
       'Node' => [
         'entity_type_id' => 'node',
@@ -156,7 +156,7 @@ class FieldDiscoveryTest extends UnitTestCase {
    * @return array
    *   The data.
    */
-  public function getBundleFieldsData() {
+  public static function getBundleFieldsData() {
     return [
       'Node - Content Type 1' => [
         'entity_type_id' => 'node',
@@ -242,27 +242,27 @@ class FieldDiscoveryTest extends UnitTestCase {
    * @return array
    *   The test data.
    */
-  public function getCoreVersionData() {
+  public static function getCoreVersionData() {
     return [
       'Drupal 7' => [
         'tags' => ['Drupal 7'],
-        'result' => '7',
+        'expected_result' => '7',
       ],
       'Drupal 6' => [
         'tags' => ['Drupal 6'],
-        'result' => '6',
+        'expected_result' => '6',
       ],
       'D7 with others' => [
         'tags' => ['Drupal 7', 'Translation', 'Other Tag'],
-        'result' => '7',
+        'expected_result' => '7',
       ],
       'Both (d7 has priority)' => [
         'tags' => ['Drupal 6', 'Drupal 7'],
-        'result' => '7',
+        'expected_result' => '7',
       ],
       'Neither' => [
         'tags' => ['drupal 6', 'Drupal_6', 'This contains Drupal 7 but is not'],
-        'result' => FALSE,
+        'expected_result' => FALSE,
       ],
     ];
   }
@@ -331,7 +331,7 @@ class FieldDiscoveryTest extends UnitTestCase {
    * @return array
    *   The data.
    */
-  public function getFieldInstanceStubMigrationDefinition() {
+  public static function getFieldInstanceStubMigrationDefinition() {
     return [
       'Drupal 6' => [
         'core' => FieldDiscoveryInterface::DRUPAL_6,

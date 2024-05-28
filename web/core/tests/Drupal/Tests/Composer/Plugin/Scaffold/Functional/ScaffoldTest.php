@@ -8,6 +8,7 @@ use Composer\Util\Filesystem;
 use Drupal\Tests\Composer\Plugin\Scaffold\AssertUtilsTrait;
 use Drupal\Tests\Composer\Plugin\Scaffold\Fixtures;
 use Drupal\Tests\Composer\Plugin\Scaffold\ScaffoldTestResult;
+use Drupal\Tests\PhpUnitCompatibilityTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -20,6 +21,7 @@ use PHPUnit\Framework\TestCase;
  */
 class ScaffoldTest extends TestCase {
   use AssertUtilsTrait;
+  use PhpUnitCompatibilityTrait;
 
   /**
    * The root of this project.
@@ -65,7 +67,7 @@ class ScaffoldTest extends TestCase {
     // a directory will be created in the system's temporary directory.
     $this->fixturesDir = getenv('SCAFFOLD_FIXTURE_DIR');
     if (!$this->fixturesDir) {
-      $this->fixturesDir = $this->fixtures->tmpDir($this->getName());
+      $this->fixturesDir = $this->fixtures->tmpDir($this->name());
     }
   }
 
@@ -135,7 +137,7 @@ class ScaffoldTest extends TestCase {
   /**
    * Data provider for testScaffoldWithExpectedException.
    */
-  public function scaffoldExpectedExceptionTestValues() {
+  public static function scaffoldExpectedExceptionTestValues() {
     return [
       [
         'drupal-drupal-missing-scaffold-file',
@@ -198,7 +200,7 @@ class ScaffoldTest extends TestCase {
     $this->assertAutoloadFileCorrect($result->docroot());
   }
 
-  public function scaffoldOverridingSettingsExcludingHtaccessValues() {
+  public static function scaffoldOverridingSettingsExcludingHtaccessValues() {
     return [
       [
         'drupal-composer-drupal-project',
@@ -258,10 +260,10 @@ class ScaffoldTest extends TestCase {
   /**
    * Provides test values for testDrupalDrupalFileWasAppended.
    */
-  public function scaffoldAppendTestValues() {
+  public static function scaffoldAppendTestValues(): array {
     return array_merge(
-      $this->scaffoldAppendTestValuesToPermute(FALSE),
-      $this->scaffoldAppendTestValuesToPermute(TRUE),
+      static::scaffoldAppendTestValuesToPermute(FALSE),
+      static::scaffoldAppendTestValuesToPermute(TRUE),
       [
         [
           'drupal-drupal-append-settings',
@@ -284,7 +286,7 @@ include __DIR__ . "/settings-custom-additions.php";',
    * @param bool $is_link
    *   Whether or not symlinking should be used.
    */
-  protected function scaffoldAppendTestValuesToPermute($is_link) {
+  protected static function scaffoldAppendTestValuesToPermute($is_link) {
     return [
       [
         'drupal-drupal-test-append',
@@ -342,7 +344,7 @@ include __DIR__ . "/settings-custom-additions.php";',
    *
    * @dataProvider scaffoldAppendTestValues
    */
-  public function testDrupalDrupalFileWasAppended($fixture_name, $is_link, $scaffold_file_path, $scaffold_file_contents, $scaffoldOutputContains) {
+  public function testDrupalDrupalFileWasAppended(string $fixture_name, bool $is_link, string $scaffold_file_path, string $scaffold_file_contents, string $scaffoldOutputContains): void {
     $result = $this->scaffoldSut($fixture_name, $is_link, FALSE);
     $this->assertStringContainsString($scaffoldOutputContains, $result->scaffoldOutput());
 

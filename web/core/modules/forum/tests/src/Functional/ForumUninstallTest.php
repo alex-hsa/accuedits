@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\forum\Functional;
 
 use Drupal\comment\CommentInterface;
@@ -14,6 +16,7 @@ use Drupal\Tests\BrowserTestBase;
  * Tests forum module uninstallation.
  *
  * @group forum
+ * @group legacy
  * @group #slow
  */
 class ForumUninstallTest extends BrowserTestBase {
@@ -133,7 +136,8 @@ class ForumUninstallTest extends BrowserTestBase {
     // Double check everything by reinstalling the forum module again.
     $this->drupalGet('admin/modules');
     $this->submitForm(['modules[forum][enable]' => 1], 'Install');
-    $this->assertSession()->pageTextContains('Module Forum has been enabled.');
+    $this->submitForm([], 'Continue');
+    $this->assertSession()->pageTextContains('Module Forum has been installed.');
   }
 
   /**
@@ -165,7 +169,9 @@ class ForumUninstallTest extends BrowserTestBase {
    * Tests uninstallation of forum module when vocabulary is deleted.
    */
   public function testForumUninstallWithoutForumVocabulary() {
-    $this->drupalLogin($this->rootUser);
+    $this->drupalLogin($this->drupalCreateUser([
+      'administer modules',
+    ]));
     Vocabulary::load('forums')->delete();
 
     // Now attempt to uninstall forum.

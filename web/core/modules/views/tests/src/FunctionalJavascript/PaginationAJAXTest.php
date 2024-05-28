@@ -82,7 +82,7 @@ class PaginationAJAXTest extends WebDriverTestBase {
     $this->assertEquals($expected_view_path, current($settings['views']['ajaxViews'])['view_path']);
 
     // Set the number of items displayed per page to 5 using the exposed pager.
-    $page->selectFieldOption('edit-items-per-page', 5);
+    $page->selectFieldOption('edit-items-per-page', '5');
     $page->pressButton('Filter');
     $session_assert->assertWaitOnAjaxRequest();
 
@@ -107,7 +107,7 @@ class PaginationAJAXTest extends WebDriverTestBase {
     $this->assertNoDuplicateAssetsOnPage();
 
     // Test that no unwanted parameters are added to the URL.
-    $this->assertEquals('?status=All&type=All&title=&langcode=All&items_per_page=5&order=changed&sort=asc&page=2', $link->getAttribute('href'));
+    $this->assertEquals('?status=All&type=All&title=&items_per_page=5&order=changed&sort=asc&page=2', $link->getAttribute('href'));
 
     $this->clickLink('Go to page 3');
     $session_assert->assertWaitOnAjaxRequest();
@@ -166,7 +166,7 @@ class PaginationAJAXTest extends WebDriverTestBase {
     $this->assertEquals($expected_view_path, current($settings['views']['ajaxViews'])['view_path']);
 
     // Set the number of items displayed per page to 5 using the exposed pager.
-    $page->selectFieldOption('edit-items-per-page', 5);
+    $page->selectFieldOption('edit-items-per-page', '5');
     $page->pressButton('Filter');
     $session_assert->assertWaitOnAjaxRequest();
 
@@ -191,7 +191,7 @@ class PaginationAJAXTest extends WebDriverTestBase {
     $this->assertNoDuplicateAssetsOnPage();
 
     // Test that no unwanted parameters are added to the URL.
-    $this->assertEquals('?status=All&type=All&title=default_value&langcode=All&items_per_page=5&order=changed&sort=asc&page=0', $link->getAttribute('href'));
+    $this->assertEquals('?status=All&type=All&title=default_value&items_per_page=5&order=changed&sort=asc&page=0', $link->getAttribute('href'));
 
     // Set the title filter to empty string using the exposed pager.
     $page->fillField('title', '');
@@ -211,7 +211,7 @@ class PaginationAJAXTest extends WebDriverTestBase {
     $this->assertNoDuplicateAssetsOnPage();
 
     // Test that no unwanted parameters are added to the URL.
-    $this->assertEquals('?status=All&type=All&title=&langcode=All&items_per_page=5&page=0', $link->getAttribute('href'));
+    $this->assertEquals('?status=All&type=All&title=&items_per_page=5&page=0', $link->getAttribute('href'));
 
     // Navigate back to the first page.
     $this->clickLink('Go to first page');

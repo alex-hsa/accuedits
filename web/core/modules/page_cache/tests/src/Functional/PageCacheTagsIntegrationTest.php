@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\page_cache\Functional;
 
 use Drupal\comment\Tests\CommentTestTrait;
@@ -158,6 +160,7 @@ class PageCacheTagsIntegrationTest extends BrowserTestBase {
       'config:block.block.olivero_primary_admin_actions',
       'config:block.block.olivero_page_title',
       'node_view',
+      'CACHE_MISS_IF_UNCACHEABLE_HTTP_METHOD:form',
       'node:' . $node_1->id(),
       'user:' . $author_1->id(),
       'config:filter.format.basic_html',
@@ -197,6 +200,7 @@ class PageCacheTagsIntegrationTest extends BrowserTestBase {
       'config:block.block.olivero_primary_admin_actions',
       'config:block.block.olivero_page_title',
       'node_view',
+      'CACHE_MISS_IF_UNCACHEABLE_HTTP_METHOD:form',
       'node:' . $node_2->id(),
       'user:' . $author_2->id(),
       'config:filter.format.full_html',

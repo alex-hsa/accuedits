@@ -664,7 +664,7 @@ function _claro_convert_link_to_action_link(array $link, $icon_name = NULL, $siz
  */
 function claro_form_node_form_alter(&$form, FormStateInterface $form_state) {
   $form['#theme'] = ['node_edit_form'];
-  $form['#attached']['library'][] = 'claro/node-form';
+  $form['#attached']['library'][] = 'claro/form-two-columns';
 
   $form['advanced']['#type'] = 'container';
   $form['advanced']['#accordion'] = TRUE;
@@ -674,6 +674,66 @@ function claro_form_node_form_alter(&$form, FormStateInterface $form_state) {
   $form['revision_information']['#type'] = 'container';
   $form['revision_information']['#group'] = 'meta';
   $form['revision_information']['#attributes']['class'][] = 'entity-meta__revision';
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() for MenuLinkContentForm.
+ *
+ * Alters the menu_link_content_form by organizing form elements into different
+ * 'details' sections.
+ */
+function claro_form_menu_link_content_form_alter(&$form, FormStateInterface $form_state) {
+  $form['#theme'] = ['menu_link_form'];
+  $form['#attached']['library'][] = 'claro/form-two-columns';
+  $form['advanced'] = [
+    '#type' => 'container',
+    '#weight' => 10,
+    '#accordion' => TRUE,
+  ];
+  $form['menu_parent']['#wrapper_attributes'] = ['class' => ['accordion__item', 'entity-meta__header']];
+  $form['menu_parent']['#prefix'] = '<div class="accordion">';
+  $form['menu_parent']['#suffix'] = '</div>';
+  $form['menu_parent']['#group'] = 'advanced';
+
+  $form['menu_link_display_settings'] = [
+    '#type' => 'details',
+    '#group' => 'advanced',
+    '#title' => t('Display settings'),
+    '#attributes' => ['class' => ['entity-meta__options']],
+    '#tree' => TRUE,
+    '#accordion' => TRUE,
+  ];
+  if (!empty($form['weight'])) {
+    $form['menu_link_display_settings']['weight'] = $form['weight'];
+    unset($form['weight'], $form['menu_link_display_settings']['weight']['#weight']);
+  }
+  if (!empty($form['expanded'])) {
+    $form['menu_link_display_settings']['expanded'] = $form['expanded'];
+    unset($form['expanded']);
+  }
+
+  if (isset($form['description'])) {
+    $form['menu_link_description'] = [
+      '#type' => 'details',
+      '#group' => 'advanced',
+      '#title' => t('Description'),
+      '#attributes' => ['class' => ['entity-meta__description']],
+      '#tree' => TRUE,
+      '#accordion' => TRUE,
+      'description' => $form['description'],
+    ];
+    unset($form['description']);
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for MenuLinkEditForm.
+ *
+ * Alters the menu_link_edit form by organizing form elements into different
+ * 'details' sections.
+ */
+function claro_form_menu_link_edit_alter(&$form, FormStateInterface $form_state) {
+  claro_form_menu_link_content_form_alter($form, $form_state);
 }
 
 /**
@@ -1116,9 +1176,7 @@ function claro_preprocess_table(&$variables) {
           $variables['attributes']['class'][] = 'draggable-table';
           $draggable_row_found = TRUE;
         }
-
-        reset($row['cells']);
-        $first_cell_key = key($row['cells']);
+        $first_cell_key = array_key_first($row['cells']);
         // The 'attributes' key is always here and it is an
         // \Drupal\Core\Template\Attribute.
         // @see template_preprocess_table();
@@ -1647,7 +1705,7 @@ function claro_form_views_ui_config_item_form_alter(array &$form, FormStateInter
       foreach (['views-left-30', 'views-left-40'] as $left_class) {
         if (str_contains($form['options']['operator']['#prefix'], $left_class)) {
           $form['options']['operator']['#prefix'] = '<div class="views-config-group-region">' . str_replace($left_class, 'views-group-box--operator', $form['options']['operator']['#prefix']);
-          $form['options']['value']['#suffix'] = $form['options']['value']['#suffix'] . '</div>';
+          $form['options']['value']['#suffix'] = ($form['options']['value']['#suffix'] ?? '') . '</div>';
         }
       }
     }
@@ -1786,5 +1844,15 @@ function claro_form_user_admin_permissions_alter(&$form, FormStateInterface $for
       unset($form['filters']['text']['#title_display']);
       $form['filters']['text']['#title'] = t('Filter');
     }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function claro_form_node_preview_form_select_alter(array &$form, FormStateInterface $form_state) {
+  if (isset($form['backlink'])) {
+    $form['backlink']['#options']['attributes']['class'][] = 'action-link';
+    $form['backlink']['#options']['attributes']['class'][] = 'action-link--icon-chevron-left';
   }
 }

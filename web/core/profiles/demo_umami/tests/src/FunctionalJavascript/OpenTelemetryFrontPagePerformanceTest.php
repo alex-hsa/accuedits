@@ -11,6 +11,7 @@ use Drupal\FunctionalJavascriptTests\PerformanceTestBase;
  *
  * @group OpenTelemetry
  * @group #slow
+ * @requires extension apcu
  */
 class OpenTelemetryFrontPagePerformanceTest extends PerformanceTestBase {
 
@@ -48,9 +49,25 @@ class OpenTelemetryFrontPagePerformanceTest extends PerformanceTestBase {
     // in the browser cache.
     $this->drupalGet('<front>');
     $this->drupalGet('<front>');
-    $this->collectPerformanceData(function () {
+    $performance_data = $this->collectPerformanceData(function () {
       $this->drupalGet('<front>');
-    }, 'umamiFrontPageWarmCache');
+    }, 'umamiFrontPageHotCache');
+    $this->assertSession()->pageTextContains('Umami');
+
+    $expected_queries = [];
+    $recorded_queries = $performance_data->getQueries();
+    $this->assertSame($expected_queries, $recorded_queries);
+    $this->assertSame(0, $performance_data->getQueryCount());
+    $this->assertSame(1, $performance_data->getCacheGetCount());
+    $this->assertSame(0, $performance_data->getCacheSetCount());
+    $this->assertSame(0, $performance_data->getCacheDeleteCount());
+    $this->assertSame(0, $performance_data->getCacheTagChecksumCount());
+    $this->assertSame(1, $performance_data->getCacheTagIsValidCount());
+    $this->assertSame(0, $performance_data->getCacheTagInvalidationCount());
+    $this->assertSame(1, $performance_data->getScriptCount());
+    $this->assertLessThan(7500, $performance_data->getScriptBytes());
+    $this->assertSame(2, $performance_data->getStylesheetCount());
+    $this->assertLessThan(42000, $performance_data->getStylesheetBytes());
   }
 
   /**
@@ -64,7 +81,7 @@ class OpenTelemetryFrontPagePerformanceTest extends PerformanceTestBase {
     $this->drupalGet('<front>');
     $this->rebuildAll();
     // Now visit a different page to warm non-route-specific caches.
-    $this->drupalGet('/user/login');
+    $this->drupalGet('user/login');
     $this->collectPerformanceData(function () {
       $this->drupalGet('<front>');
     }, 'umamiFrontPageCoolCache');

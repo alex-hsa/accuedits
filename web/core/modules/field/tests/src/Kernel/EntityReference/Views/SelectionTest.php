@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\field\Kernel\EntityReference\Views;
 
 use Drupal\Component\Render\MarkupInterface;
@@ -72,6 +74,10 @@ class SelectionTest extends KernelTestBase {
     foreach ([$node1, $node2, $node3] as $node) {
       $this->nodes[$node->id()] = $node;
     }
+
+    // Ensure the bundle to which the field is attached actually exists, or we
+    // will get config validation errors.
+    entity_test_create_bundle('test_bundle');
 
     // Create an entity reference field.
     $handler_settings = [

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\toolbar\Functional;
 
 use Drupal\Core\Cache\Cache;
@@ -82,7 +84,7 @@ class ToolbarCacheContextsTest extends BrowserTestBase {
    */
   public function testToolbarCacheContextsCaller() {
     // Test with default combination and permission to see toolbar.
-    $this->assertToolbarCacheContexts(['user'], 'Expected cache contexts found for default combination and permission to see toolbar.');
+    $this->assertToolbarCacheContexts(['user', 'session'], 'Expected cache contexts found for default combination and permission to see toolbar.');
 
     // Test without user toolbar tab. User module is a required module so we have to
     // manually remove the user toolbar tab.
@@ -95,11 +97,11 @@ class ToolbarCacheContextsTest extends BrowserTestBase {
     $this->assertToolbarCacheContexts(['user.permissions'], 'Expected cache contexts found with contextual module enabled.');
     \Drupal::service('module_installer')->uninstall(['contextual']);
 
-    // Test with the tour module enabled.
-    $this->installExtraModules(['tour']);
-    $this->adminUser2 = $this->drupalCreateUser(array_merge($this->perms, ['access tour']));
-    $this->assertToolbarCacheContexts(['user.permissions'], 'Expected cache contexts found with tour module enabled.');
-    \Drupal::service('module_installer')->uninstall(['tour']);
+    // Test with the comment module enabled.
+    $this->installExtraModules(['comment']);
+    $this->adminUser2 = $this->drupalCreateUser(array_merge($this->perms, ['access comments']));
+    $this->assertToolbarCacheContexts(['user.permissions'], 'Expected cache contexts found with comment module enabled.');
+    \Drupal::service('module_installer')->uninstall(['comment']);
   }
 
   /**

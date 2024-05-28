@@ -41,7 +41,7 @@ class PhpTransliterationTest extends TestCase {
    *   An array of arrays, each containing the parameters for
    *   self::testRemoveDiacritics().
    */
-  public function providerTestPhpTransliterationRemoveDiacritics() {
+  public static function providerTestPhpTransliterationRemoveDiacritics() {
     // cSpell:disable
     return [
       // Test all characters in the Unicode range 0x00bf to 0x017f.
@@ -91,7 +91,7 @@ class PhpTransliterationTest extends TestCase {
    *
    * @dataProvider providerTestPhpTransliteration
    */
-  public function testPhpTransliteration($langcode, $original, $expected, $unknown_character = '?', $max_length = NULL) {
+  public function testPhpTransliteration(string $langcode, string $original, string $expected, string $unknown_character = '?', int $max_length = NULL): void {
     $transliterator_class = new PhpTransliteration();
     $actual = $transliterator_class->transliterate($original, $langcode, $unknown_character, $max_length);
     $this->assertSame($expected, $actual);
@@ -104,7 +104,7 @@ class PhpTransliterationTest extends TestCase {
    *   An array of arrays, each containing the parameters for
    *   self::testPhpTransliteration().
    */
-  public function providerTestPhpTransliteration() {
+  public static function providerTestPhpTransliteration(): array {
     $random_generator = new Random();
     $random = $random_generator->string(10);
     // Make some strings with two, three, and four-byte characters for testing.

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\statistics\Functional;
 
 use Drupal\Core\Cache\Cache;
@@ -10,6 +12,7 @@ use Drupal\Tests\system\Functional\Cache\AssertPageCacheContextsAndTagsTrait;
  * Tests display of statistics report blocks.
  *
  * @group statistics
+ * @group legacy
  */
 class StatisticsReportsTest extends StatisticsTestBase {
 

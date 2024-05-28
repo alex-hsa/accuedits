@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\jsonapi\Functional;
 
 use Drupal\Component\Serialization\Json;
@@ -16,6 +18,7 @@ use GuzzleHttp\RequestOptions;
  * JSON:API integration test for the "Term" content entity type.
  *
  * @group jsonapi
+ * @group #slow
  */
 class TermTest extends ResourceTestBase {
 
@@ -66,7 +69,7 @@ class TermTest extends ResourceTestBase {
   protected function setUpAuthorization($method) {
     switch ($method) {
       case 'GET':
-        $this->grantPermissionsToTestedRole(['access content']);
+        $this->grantPermissionsToTestedRole(['access content', 'view vocabulary labels']);
         break;
 
       case 'POST':
@@ -413,7 +416,7 @@ class TermTest extends ResourceTestBase {
 
     // GET term's current normalization.
     $response = $this->request('GET', $url, $request_options);
-    $normalization = Json::decode((string) $response->getBody());
+    $normalization = $this->getDocumentFromResponse($response);
 
     // Change term's path alias.
     $normalization['data']['attributes']['path']['alias'] .= 's-rule-the-world';
@@ -423,8 +426,8 @@ class TermTest extends ResourceTestBase {
 
     // PATCH request: 200.
     $response = $this->request('PATCH', $url, $request_options);
+    $updated_normalization = $this->getDocumentFromResponse($response);
     $this->assertResourceResponse(200, FALSE, $response);
-    $updated_normalization = Json::decode((string) $response->getBody());
     $this->assertSame($normalization['data']['attributes']['path']['alias'], $updated_normalization['data']['attributes']['path']['alias']);
   }
 
@@ -483,7 +486,7 @@ class TermTest extends ResourceTestBase {
   /**
    * Data provider for ::testGetIndividualTermWithParent().
    */
-  public function providerTestGetIndividualTermWithParent() {
+  public static function providerTestGetIndividualTermWithParent() {
     return [
       'root parent: [0] (= no parent)' => [
         [0],

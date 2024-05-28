@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\KernelTests\Core\Entity;
 
 use Drupal\Core\Database\Database;
@@ -13,6 +15,8 @@ use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\Tests\field\Traits\EntityReferenceFieldCreationTrait;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 
 // cspell:ignore merhaba siema xsiemax
 
@@ -94,7 +98,7 @@ class EntityQueryTest extends EntityKernelTestBase {
       do {
         $bundle = $this->randomMachineName();
       } while ($bundles && strtolower($bundles[0]) >= strtolower($bundle));
-      entity_test_create_bundle($bundle);
+      entity_test_create_bundle($bundle, entity_type: $field_storage->getTargetEntityTypeId());
       foreach ($field_storages as $field_storage) {
         FieldConfig::create([
           'field_storage' => $field_storage,
@@ -464,6 +468,7 @@ class EntityQueryTest extends EntityKernelTestBase {
     $request->query->replace([
       'page' => '0,2',
     ]);
+    $request->setSession(new Session(new MockArraySessionStorage()));
     \Drupal::getContainer()->get('request_stack')->push($request);
     $this->queryResults = $this->storage
       ->getQuery()
@@ -500,6 +505,7 @@ class EntityQueryTest extends EntityKernelTestBase {
       'sort' => 'asc',
       'order' => 'Type',
     ]);
+    $request->setSession(new Session(new MockArraySessionStorage()));
     \Drupal::getContainer()->get('request_stack')->push($request);
 
     $header = [
@@ -558,6 +564,7 @@ class EntityQueryTest extends EntityKernelTestBase {
     ]);
     $field_storage->save();
     $bundle = $this->randomMachineName();
+    entity_test_create_bundle($bundle);
     FieldConfig::create([
       'field_storage' => $field_storage,
       'bundle' => $bundle,
@@ -809,6 +816,7 @@ class EntityQueryTest extends EntityKernelTestBase {
    */
   public function testCaseSensitivity() {
     $bundle = $this->randomMachineName();
+    entity_test_create_bundle($bundle, entity_type: 'entity_test_mulrev');
 
     $field_storage = FieldStorageConfig::create([
       'field_name' => 'field_ci',
@@ -1284,6 +1292,60 @@ class EntityQueryTest extends EntityKernelTestBase {
       ->execute();
     $this->assertCount(1, $result);
     $this->assertEquals($entity->id(), reset($result));
+  }
+
+  /**
+   * Test the entity query alter hooks are invoked.
+   *
+   * Hook functions in field_test.module add additional conditions to the query
+   * removing entities with specific ids.
+   */
+  public function testAlterHook(): void {
+    $basicQuery = $this->storage
+      ->getQuery()
+      ->accessCheck(FALSE)
+      ->exists($this->greetings, 'tr')
+      ->condition($this->figures . ".color", 'red')
+      ->sort('id');
+
+    // Verify assumptions about the unaltered result.
+    $query = clone $basicQuery;
+    $this->queryResults = $query->execute();
+    $this->assertResult(5, 7, 13, 15);
+
+    // field_test_entity_query_alter() removes the entity with id '5'.
+    $query = clone $basicQuery;
+    $this->queryResults = $query
+      // Add a tag that no hook function matches.
+      ->addTag('entity_query_alter_hook_test')
+      ->execute();
+    $this->assertResult(7, 13, 15);
+
+    // field_test_entity_query_entity_test_mulrev_alter() removes the
+    // entity with id '7'.
+    $query = clone $basicQuery;
+    $this->queryResults = $query
+      // Add a tag that no hook function matches.
+      ->addTag('entity_query_entity_test_mulrev_alter_hook_test')
+      ->execute();
+    $this->assertResult(5, 13, 15);
+
+    // field_test_entity_query_tag__entity_query_alter_tag_test_alter() removes
+    // the entity with id '13'.
+    $query = clone $basicQuery;
+    $this->queryResults = $query
+      ->addTag('entity_query_alter_tag_test')
+      ->execute();
+    $this->assertResult(5, 7, 15);
+
+    // field_test_entity_query_tag__entity_test_mulrev__entity_query_
+    // entity_test_mulrev_alter_tag_test_alter()
+    // removes the entity with id '15'.
+    $query = clone $basicQuery;
+    $this->queryResults = $query
+      ->addTag('entity_query_entity_test_mulrev_alter_tag_test')
+      ->execute();
+    $this->assertResult(5, 7, 13);
   }
 
   /**

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\telephone\Functional;
 
 use Drupal\field\Entity\FieldConfig;
@@ -117,7 +119,7 @@ class TelephoneFieldTest extends BrowserTestBase {
   /**
    * Provides the phone numbers to check and expected results.
    */
-  public function providerPhoneNumbers() {
+  public static function providerPhoneNumbers() {
     return [
       'standard phone number' => ['123456789', '123456789'],
       'whitespace is removed' => ['1234 56789', '123456789'],

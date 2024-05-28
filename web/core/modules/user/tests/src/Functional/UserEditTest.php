@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\user\Functional;
 
 use Drupal\Core\Cache\Cache;
@@ -92,7 +94,7 @@ class UserEditTest extends BrowserTestBase {
     $this->assertSame(1, (int) \Drupal::database()->select('sessions', 's')->countQuery()->execute()->fetchField());
 
     // Make sure the changed timestamp is updated.
-    $this->assertEquals(REQUEST_TIME, $user1->getChangedTime(), 'Changing a user sets "changed" timestamp.');
+    $this->assertEquals(\Drupal::time()->getRequestTime(), $user1->getChangedTime(), 'Changing a user sets "changed" timestamp.');
 
     // Make sure the user can log in with their new password.
     $this->drupalLogout();

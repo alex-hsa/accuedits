@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\views\Functional\Plugin;
 
 use Drupal\Tests\system\Functional\Cache\AssertPageCacheContextsAndTagsTrait;
@@ -12,6 +14,7 @@ use Drupal\language\Entity\ConfigurableLanguage;
  * Tests the pluggable pager system.
  *
  * @group views
+ * @group #slow
  */
 class PagerTest extends ViewTestBase {
 
@@ -104,6 +107,9 @@ class PagerTest extends ViewTestBase {
     $this->assertSession()->fieldValueEquals("pager_options[offset]", 0);
     $this->assertSame('number', $offset->getAttribute('type'));
     $this->assertEquals(0, $offset->getAttribute('min'));
+
+    $pagerHeading = $this->assertSession()->fieldExists("pager_options[pagination_heading_level]");
+    $this->assertSession()->fieldValueEquals("pager_options[pagination_heading_level]", 'h4');
 
     $id = $this->assertSession()->fieldExists("pager_options[id]");
     $this->assertSession()->fieldValueEquals("pager_options[id]", 0);
@@ -367,7 +373,44 @@ class PagerTest extends ViewTestBase {
     $view->display_handler->setOption('pager', $pager);
     $view->save();
     $this->drupalGet('test_pager_full', ['query' => ['page' => 2]]);
-    $this->assertEquals('Current page 3', $this->assertSession()->elementExists('css', '.pager__items li.is-active')->getText());
+    $this->assertEquals('Page 3', $this->assertSession()->elementExists('css', '.pager__items li.is-active')->getText());
+    $link = $this->assertSession()->elementExists('css', '.pager__items li.is-active a');
+    $this->assertSame('page', $link->getAttribute('aria-current'));
+    $this->assertSame('Current page', $link->getAttribute('title'));
+  }
+
+  /**
+   * Tests changing the heading level.
+   */
+  public function testPagerHeadingLevel() {
+    // Create 2 nodes and make sure that everyone is returned.
+    $this->drupalCreateContentType(['type' => 'page']);
+    for ($i = 0; $i < 2; $i++) {
+      $this->drupalCreateNode();
+    }
+
+    // Set "Pager Heading" to h2 and check that it is correct.
+    $view = Views::getView('test_pager_full');
+    $view->setDisplay();
+    $pager = [
+      'type' => 'full',
+      'options' => [
+        'pagination_heading_level' => 'h2',
+        'items_per_page' => 1,
+        'quantity' => 1,
+      ],
+    ];
+    $view->display_handler->setOption('pager', $pager);
+    $view->save();
+
+    $themes = ['stark', 'olivero', 'claro', 'starterkit_theme', 'stable9'];
+    $this->container->get('theme_installer')->install($themes);
+
+    foreach ($themes as $theme) {
+      $this->config('system.theme')->set('default', $theme)->save();
+      $this->drupalGet('test_pager_full');
+      $this->assertEquals('h2', $this->assertSession()->elementExists('css', ".pager .visually-hidden")->getTagName());
+    }
   }
 
   /**
@@ -387,7 +430,7 @@ class PagerTest extends ViewTestBase {
     $view->pager = NULL;
     $output = $view->render();
     $output = (string) \Drupal::service('renderer')->renderRoot($output);
-    $this->assertEquals(0, preg_match('/<ul class="pager">/', $output), 'The pager is not rendered.');
+    $this->assertStringNotContainsString('<ul class="pager">', $output);
   }
 
   /**

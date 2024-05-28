@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\file\Kernel;
 
 use Drupal\file\Entity\File;
@@ -86,7 +88,7 @@ class LegacyValidatorTest extends FileManagedUnitTestBase {
    * @return array[][]
    *   The test cases.
    */
-  public function providerTestFileValidateExtensionsOnUri(): array {
+  public static function providerTestFileValidateExtensionsOnUri(): array {
     $temporary_txt_file_properties = [
       'filename' => 'asdf.txt',
       'uri' => 'temporary://asdf',

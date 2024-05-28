@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\statistics\Kernel\Migrate\d6;
 
 use Drupal\Tests\SchemaCheckTestTrait;
@@ -8,7 +10,8 @@ use Drupal\Tests\migrate_drupal\Kernel\d6\MigrateDrupal6TestBase;
 /**
  * Upgrade variables to statistics.settings.yml.
  *
- * @group migrate_drupal_6
+ * @group statistics
+ * @group legacy
  */
 class MigrateStatisticsConfigsTest extends MigrateDrupal6TestBase {
 
@@ -25,6 +28,13 @@ class MigrateStatisticsConfigsTest extends MigrateDrupal6TestBase {
   protected function setUp(): void {
     parent::setUp();
     $this->executeMigration('statistics_settings');
+  }
+
+  /**
+   * Gets the path to the fixture file.
+   */
+  protected function getFixtureFilePath() {
+    return __DIR__ . '/../../../../fixtures/drupal6.php';
   }
 
   /**

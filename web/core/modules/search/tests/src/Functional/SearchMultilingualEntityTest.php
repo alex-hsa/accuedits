@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\search\Functional;
 
 use Drupal\Core\Database\Database;
@@ -228,7 +230,7 @@ class SearchMultilingualEntityTest extends BrowserTestBase {
     // The request time is always the same throughout test runs. Update the
     // request time to a previous time, to simulate it having been marked
     // previously.
-    $current = REQUEST_TIME;
+    $current = \Drupal::time()->getRequestTime();
     $old = $current - 10;
     $connection = Database::getConnection();
     $connection->update('search_dataset')

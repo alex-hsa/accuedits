@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\rest\Kernel\Entity;
 
 use Drupal\KernelTests\KernelTestBase;
@@ -56,7 +58,7 @@ class ConfigDependenciesTest extends KernelTestBase {
    *   An array with numerical keys:
    *   0. The original REST resource configuration.
    */
-  public function providerBasicDependencies() {
+  public static function providerBasicDependencies() {
     return [
       'method' => [
         [
@@ -151,7 +153,7 @@ class ConfigDependenciesTest extends KernelTestBase {
    *   1. The module to uninstall (the dependency that is about to be removed).
    *   2. The expected configuration after uninstalling this module.
    */
-  public function providerOnDependencyRemovalForResourceGranularity() {
+  public static function providerOnDependencyRemovalForResourceGranularity() {
     return [
       'resource with multiple formats' => [
         [

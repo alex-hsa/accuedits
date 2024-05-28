@@ -3,6 +3,7 @@
 namespace Drupal\Core\Render\Element;
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Attribute\FormElement;
 use Drupal\Core\Render\Element;
 
 /**
@@ -20,10 +21,9 @@ use Drupal\Core\Render\Element;
  * @endcode
  *
  * @see \Drupal\Core\Render\Element\Checkboxes
- *
- * @FormElement("checkbox")
  */
-class Checkbox extends FormElement {
+#[FormElement('checkbox')]
+class Checkbox extends FormElementBase {
 
   /**
    * {@inheritdoc}

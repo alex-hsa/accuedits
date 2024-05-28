@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\migrate_drupal\Kernel;
 
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
@@ -83,7 +85,7 @@ class MigrateFieldPluginManagerTest extends MigrateDrupalTestBase {
    * @return array
    *   The data.
    */
-  public function nonExistentPluginExceptionsData() {
+  public static function nonExistentPluginExceptionsData() {
     return [
       'D7 Filefield' => [
         'core' => 7,

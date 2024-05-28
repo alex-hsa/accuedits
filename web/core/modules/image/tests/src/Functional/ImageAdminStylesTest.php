@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\image\Functional;
 
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
@@ -315,7 +317,7 @@ class ImageAdminStylesTest extends ImageFieldTestBase {
 
     // Create an image field that uses the new style.
     $field_name = $this->randomMachineName(10);
-    $this->createImageField($field_name, 'article');
+    $this->createImageField($field_name, 'node', 'article');
     \Drupal::service('entity_display.repository')
       ->getViewDisplay('node', 'article')
       ->setComponent($field_name, [
@@ -468,7 +470,7 @@ class ImageAdminStylesTest extends ImageFieldTestBase {
 
     // Create an image field that uses the new style.
     $field_name = $this->randomMachineName(10);
-    $this->createImageField($field_name, 'article');
+    $this->createImageField($field_name, 'node', 'article');
     \Drupal::service('entity_display.repository')
       ->getViewDisplay('node', 'article')
       ->setComponent($field_name, [

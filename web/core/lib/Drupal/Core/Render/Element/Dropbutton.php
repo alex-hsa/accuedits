@@ -2,6 +2,8 @@
 
 namespace Drupal\Core\Render\Element;
 
+use Drupal\Core\Render\Attribute\RenderElement;
+
 /**
  * Provides a render element for a set of links rendered as a drop-down button.
  *
@@ -39,10 +41,9 @@ namespace Drupal\Core\Render\Element;
  * @endcode
  *
  * @see \Drupal\Core\Render\Element\Operations
- *
- * @RenderElement("dropbutton")
  */
-class Dropbutton extends RenderElement {
+#[RenderElement('dropbutton')]
+class Dropbutton extends RenderElementBase {
 
   /**
    * {@inheritdoc}

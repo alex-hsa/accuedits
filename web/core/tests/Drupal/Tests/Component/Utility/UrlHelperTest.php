@@ -19,7 +19,7 @@ class UrlHelperTest extends TestCase {
    *
    * @return array
    */
-  public function providerTestBuildQuery() {
+  public static function providerTestBuildQuery() {
     return [
       [['a' => ' &#//+%20@۞'], 'a=%20%26%23//%2B%2520%40%DB%9E', 'Value was properly encoded.'],
       [[' &#//+%20@۞' => 'a'], '%20%26%23%2F%2F%2B%2520%40%DB%9E=a', 'Key was properly encoded.'],
@@ -129,8 +129,8 @@ class UrlHelperTest extends TestCase {
    */
   public function testUncompressInvalidString() {
     // Pass an invalid string to ::uncompressQueryParameter() and ensure it
-    // doesn't result in a PHP warning.
-    $this->assertFalse(UrlHelper::uncompressQueryParameter('llama'));
+    // returns the passed string without resulting in a PHP warning.
+    $this->assertSame('llama', UrlHelper::uncompressQueryParameter('llama'));
   }
 
   /**
@@ -607,7 +607,7 @@ class UrlHelperTest extends TestCase {
    *
    * @see \Drupal\Tests\Component\Utility\UrlHelperTest::testExternalIsLocal()
    */
-  public function providerTestExternalIsLocal() {
+  public static function providerTestExternalIsLocal() {
     return [
       // Different mixes of trailing slash.
       ['http://example.com', 'http://example.com', TRUE],
@@ -660,7 +660,7 @@ class UrlHelperTest extends TestCase {
    *
    * @see \Drupal\Tests\Component\Utility\UrlHelperTest::testExternalIsLocalInvalid()
    */
-  public function providerTestExternalIsLocalInvalid() {
+  public static function providerTestExternalIsLocalInvalid() {
     return [
       ['http://example.com/foo', ''],
       ['http://example.com/foo', 'bar'],

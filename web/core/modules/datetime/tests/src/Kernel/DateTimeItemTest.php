@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\datetime\Kernel;
 
 use Drupal\Core\Field\FieldItemListInterface;
@@ -16,6 +18,7 @@ use PHPUnit\Framework\AssertionFailedError;
  * Tests the new entity API for the date field type.
  *
  * @group datetime
+ * @group #slow
  */
 class DateTimeItemTest extends FieldKernelTestBase {
 
@@ -272,7 +275,7 @@ class DateTimeItemTest extends FieldKernelTestBase {
   /**
    * Provider for testDatetimeValidation().
    */
-  public function datetimeValidationProvider() {
+  public static function datetimeValidationProvider() {
     return [
       // Valid ISO 8601 dates, but unsupported by DateTimeItem.
       ['2014-01-01T20:00:00Z'],
@@ -332,7 +335,7 @@ class DateTimeItemTest extends FieldKernelTestBase {
   /**
    * Provider for testDatetimeValidation().
    */
-  public function dateOnlyValidationProvider() {
+  public static function dateOnlyValidationProvider() {
     return [
       // Valid date strings, but unsupported by DateTimeItem.
       ['Thu, 03 Nov 2014'],

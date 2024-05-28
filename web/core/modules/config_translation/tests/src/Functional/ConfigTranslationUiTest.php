@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\config_translation\Functional;
 
 use Drupal\Core\Language\Language;
 use Drupal\Core\Language\LanguageInterface;
 
-// cspell:ignore viewsviewfiles
+// cspell:ignore anonyme viewsviewfiles
 
 /**
  * Translate settings and entities to various languages.

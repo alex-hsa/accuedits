@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\action\Functional;
 
 use Drupal\system\Entity\Action;
@@ -9,6 +11,7 @@ use Drupal\Tests\BrowserTestBase;
  * Tests complex actions configuration.
  *
  * @group action
+ * @group legacy
  */
 class ConfigurationTest extends BrowserTestBase {
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\book\Kernel;
 
 use Drupal\KernelTests\KernelTestBase;
@@ -9,6 +11,7 @@ use Drupal\node\Entity\NodeType;
  * Test installation of Book module.
  *
  * @group book
+ * @group legacy
  */
 class BookInstallTest extends KernelTestBase {
 

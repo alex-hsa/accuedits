@@ -69,3 +69,10 @@ function layout_builder_post_update_timestamp_formatter(array &$sandbox = NULL):
     return $update;
   });
 }
+
+/**
+ * Enable the expose all fields feature flag module.
+ */
+function layout_builder_post_update_enable_expose_field_block_feature_flag(): void {
+  \Drupal::service('module_installer')->install(['layout_builder_expose_all_field_blocks']);
+}

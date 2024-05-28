@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\KernelTests\Core\Asset;
 
 use Drupal\Core\Extension\ExtensionLifecycle;
@@ -119,6 +121,10 @@ class ResolvedLibraryDefinitionsFilesMatchTest extends KernelTestBase {
     // on the workspace which will fail because the user table is not present.
     // @todo Remove this in https://www.drupal.org/node/3039217.
     $this->installEntitySchema('user');
+
+    // Install the 'path_alias' entity schema because the path alias path
+    // processor requires it.
+    $this->installEntitySchema('path_alias');
 
     // Remove demo_umami_content module as its install hook creates content
     // that relies on the presence of entity tables and various other elements

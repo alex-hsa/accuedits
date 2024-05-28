@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\image\Kernel;
 
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
-use Drupal\Core\File\FileSystemInterface;
+use Drupal\Core\File\FileExists;
 use Drupal\Core\Url;
 use Drupal\entity_test\Entity\EntityTest;
 use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\KernelTests\KernelTestBase;
-use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\Tests\TestFileCreationTrait;
 
 /**
@@ -91,7 +93,7 @@ class ImageThemeFunctionTest extends KernelTestBase {
     // Create an image.
     $files = $this->drupalGetTestFiles('image');
     $file = reset($files);
-    $original_uri = \Drupal::service('file_system')->copy($file->uri, 'public://', FileSystemInterface::EXISTS_RENAME);
+    $original_uri = \Drupal::service('file_system')->copy($file->uri, 'public://', FileExists::Rename);
 
     // Create a style.
     $style = ImageStyle::create(['name' => 'test', 'label' => 'Test']);
@@ -153,7 +155,7 @@ class ImageThemeFunctionTest extends KernelTestBase {
     // Create an image.
     $files = $this->drupalGetTestFiles('image');
     $file = reset($files);
-    $original_uri = \Drupal::service('file_system')->copy($file->uri, 'public://', FileSystemInterface::EXISTS_RENAME);
+    $original_uri = \Drupal::service('file_system')->copy($file->uri, 'public://', FileExists::Rename);
 
     // Create a style.
     $style = ImageStyle::create(['name' => 'image_test', 'label' => 'Test']);

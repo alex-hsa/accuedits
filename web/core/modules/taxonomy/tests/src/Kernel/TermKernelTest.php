@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\taxonomy\Kernel;
 
 use Drupal\taxonomy\Entity\Term;
@@ -167,7 +169,7 @@ class TermKernelTest extends KernelTestBase {
     $this->assertNotEmpty($render_array, 'Term view builder is built.');
 
     // Confirm we can render said view.
-    $rendered = (string) \Drupal::service('renderer')->renderPlain($render_array);
+    $rendered = (string) \Drupal::service('renderer')->renderInIsolation($render_array);
     $this->assertNotEmpty(trim($rendered), 'Term is able to be rendered.');
   }
 

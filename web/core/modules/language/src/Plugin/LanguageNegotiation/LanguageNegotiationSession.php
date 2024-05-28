@@ -6,7 +6,9 @@ use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\PathProcessor\OutboundPathProcessorInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Render\BubbleableMetadata;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
+use Drupal\language\Attribute\LanguageNegotiation;
 use Drupal\language\LanguageNegotiationMethodBase;
 use Drupal\language\LanguageSwitcherInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -15,15 +17,14 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Identify language from a request/session parameter.
- *
- * @LanguageNegotiation(
- *   id = Drupal\language\Plugin\LanguageNegotiation\LanguageNegotiationSession::METHOD_ID,
- *   weight = -6,
- *   name = @Translation("Session"),
- *   description = @Translation("Language from a request/session parameter."),
- *   config_route_name = "language.negotiation_session"
- * )
  */
+#[LanguageNegotiation(
+  id: LanguageNegotiationSession::METHOD_ID,
+  name: new TranslatableMarkup('Session'),
+  weight: -6,
+  description: new TranslatableMarkup("Language from a request/session parameter."),
+  config_route_name: 'language.negotiation_session'
+)]
 class LanguageNegotiationSession extends LanguageNegotiationMethodBase implements OutboundPathProcessorInterface, LanguageSwitcherInterface, ContainerFactoryPluginInterface {
 
   /**
@@ -87,9 +88,7 @@ class LanguageNegotiationSession extends LanguageNegotiationMethodBase implement
       if ($request->query->has($param)) {
         return $request->query->get($param);
       }
-      // @todo Remove hasSession() from condition in
-      //   https://www.drupal.org/node/2484991
-      if ($request->hasSession() && $request->getSession()->has($param)) {
+      if ($request->getSession()->has($param)) {
         return $request->getSession()->get($param);
       }
     }

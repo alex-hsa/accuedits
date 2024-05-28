@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\system\Kernel\Mail;
 
 use Drupal\Component\Utility\Random;
@@ -12,6 +14,8 @@ use Drupal\Core\Url;
 use Drupal\file\Entity\File;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\system_mail_failure_test\Plugin\Mail\TestPhpMailFailure;
+
+// cspell:ignore drépal
 
 /**
  * Performs tests on the pluggable mailing framework.
@@ -40,6 +44,7 @@ class MailTest extends KernelTestBase {
     parent::setUp();
     $this->installEntitySchema('user');
     $this->installEntitySchema('file');
+    $this->installConfig(['system']);
 
     // Set required site configuration.
     $this->config('system.site')
@@ -64,10 +69,10 @@ class MailTest extends KernelTestBase {
     $this->assertInstanceOf(TestPhpMailFailure::class, $mail_backend);
 
     // Add a module-specific mail backend.
-    $this->config('system.mail')->set('interface.mymodule_testkey', 'test_mail_collector')->save();
+    $this->config('system.mail')->set('interface.my_module_testkey', 'test_mail_collector')->save();
 
     // Get the added MailInterface class instance.
-    $mail_backend = \Drupal::service('plugin.manager.mail')->getInstance(['module' => 'mymodule', 'key' => 'testkey']);
+    $mail_backend = \Drupal::service('plugin.manager.mail')->getInstance(['module' => 'my_module', 'key' => 'testkey']);
 
     // Assert whether the added mail backend is an instance of the expected
     // class.

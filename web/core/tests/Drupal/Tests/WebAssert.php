@@ -45,9 +45,16 @@ class WebAssert extends MinkWebAssert {
   }
 
   /**
-   * {@inheritdoc}
+   * Trims the base URL from the URL.
+   *
+   * @param string|\Drupal\Core\Url $url
+   *   A url string, or object.
+   * @param bool $include_query
+   *   Whether to include the query string in the return value.
+   *
+   * @return string
    */
-  protected function cleanUrl($url, $include_query = FALSE) {
+  protected function cleanUrl(string|Url $url, bool $include_query = FALSE) {
     if ($url instanceof Url) {
       $url = $url->setAbsolute()->toString();
     }
@@ -139,6 +146,11 @@ class WebAssert extends MinkWebAssert {
    *   When the element doesn't exist.
    */
   public function buttonExists($button, TraversableElement $container = NULL) {
+    if (!is_string($button)) {
+      // @todo Trigger deprecation in
+      //   https://www.drupal.org/project/drupal/issues/3421105.
+      $button = (string) $button;
+    }
     $container = $container ?: $this->session->getPage();
     $node = $container->findButton($button);
 
@@ -747,9 +759,16 @@ class WebAssert extends MinkWebAssert {
   }
 
   /**
-   * {@inheritdoc}
+   * Checks that current session address is equals to provided one.
+   *
+   * @param string|\Drupal\Core\Url $page
+   *   A url string, or object.
+   *
+   * @return void
+   *
+   * @throws \Behat\Mink\Exception\ExpectationException
    */
-  public function addressEquals($page) {
+  public function addressEquals(string|Url $page) {
     $expected = $this->cleanUrl($page, TRUE);
     $actual = $this->cleanUrl($this->session->getCurrentUrl(), str_contains($expected, '?'));
 
@@ -757,9 +776,14 @@ class WebAssert extends MinkWebAssert {
   }
 
   /**
-   * {@inheritdoc}
+   * Checks that current session address is not equals to provided one.
+   *
+   * @param string|\Drupal\Core\Url $page
+   *   A url string, or object.
+   *
+   * @throws \Behat\Mink\Exception\ExpectationException
    */
-  public function addressNotEquals($page) {
+  public function addressNotEquals(string|Url $page) {
     $expected = $this->cleanUrl($page, TRUE);
     $actual = $this->cleanUrl($this->session->getCurrentUrl(), str_contains($expected, '?'));
 
@@ -916,6 +940,51 @@ class WebAssert extends MinkWebAssert {
     }
 
     return $selector;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function responseHeaderEquals($name, $value) {
+    if (!is_string($name)) {
+      // @todo Trigger deprecation in
+      //   https://www.drupal.org/project/drupal/issues/3421105.
+      $name = (string) $name;
+    }
+    if ($value === NULL) {
+      // @todo Trigger deprecation in
+      //   https://www.drupal.org/project/drupal/issues/3421105.
+      $this->responseHeaderDoesNotExist($name);
+      return;
+    }
+    if (!is_string($value)) {
+      $value = (string) $value;
+    }
+    parent::responseHeaderEquals($name, $value);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function pageTextContains($text) {
+    if (!is_string($text)) {
+      // @todo Trigger deprecation in
+      //   https://www.drupal.org/project/drupal/issues/3421105.
+      $text = (string) $text;
+    }
+    parent::pageTextContains($text);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function fieldValueEquals(string $field, $value, TraversableElement $container = NULL) {
+    if (!is_string($value)) {
+      // @todo Trigger deprecation in
+      //   https://www.drupal.org/project/drupal/issues/3421105.
+      $value = (string) $value;
+    }
+    parent::fieldValueEquals($field, $value, $container);
   }
 
 }

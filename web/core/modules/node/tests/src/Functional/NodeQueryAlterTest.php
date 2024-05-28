@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\node\Functional;
 
 use Drupal\Core\Database\Database;
@@ -9,6 +11,7 @@ use Drupal\user\Entity\User;
  * Tests that node access queries are properly altered by the node module.
  *
  * @group node
+ * @group #slow
  */
 class NodeQueryAlterTest extends NodeTestBase {
 

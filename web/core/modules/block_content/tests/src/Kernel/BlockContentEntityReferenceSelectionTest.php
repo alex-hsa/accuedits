@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\block_content\Kernel;
 
 use Drupal\block_content\Entity\BlockContent;
@@ -177,7 +179,7 @@ class BlockContentEntityReferenceSelectionTest extends KernelTestBase {
   /**
    * Provides possible fields and condition types.
    */
-  public function fieldConditionProvider() {
+  public static function fieldConditionProvider() {
     $cases = [];
     foreach (['base', 'group', 'nested_group'] as $condition_type) {
       foreach ([TRUE, FALSE] as $reusable) {

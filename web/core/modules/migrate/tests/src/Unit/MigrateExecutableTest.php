@@ -336,6 +336,8 @@ class MigrateExecutableTest extends MigrateTestCase {
       ->willReturn('transform_return_string');
     $plugin->multiple()->willReturn(TRUE);
     $plugin->getPluginId()->willReturn('plugin_id');
+    $plugin->reset()->shouldBeCalled();
+    $plugin->isPipelineStopped()->willReturn(FALSE);
     $plugin = $plugin->reveal();
     $plugins['destination_id'] = [$plugin, $plugin];
     $this->migration->method('getProcessPlugins')->willReturn($plugins);
@@ -343,6 +345,63 @@ class MigrateExecutableTest extends MigrateTestCase {
     $this->expectException(MigrateException::class);
     $this->expectExceptionMessage('Pipeline failed at plugin_id plugin for destination destination_id: transform_return_string received instead of an array,');
     $this->executable->processRow($row);
+  }
+
+  /**
+   * Tests a plugin which stops the pipeline.
+   */
+  public function testStopPipeline() {
+    $row = new Row();
+    // Prophesize a plugin that stops the pipeline and returns 'first_plugin'.
+    $stop_plugin = $this->prophesize(MigrateProcessInterface::class);
+    $stop_plugin->getPluginDefinition()->willReturn(['handle_multiples' => FALSE]);
+    $stop_plugin->transform(NULL, $this->executable, $row, 'destination_id')
+      ->willReturn('first_plugin');
+    $stop_plugin->multiple()->willReturn(FALSE);
+    $stop_plugin->reset()->shouldBeCalled();
+    $stop_plugin->isPipelineStopped()->willReturn(TRUE);
+
+    // Prophesize a plugin that transforms 'first_plugin' to 'final_plugin'.
+    $final_plugin = $this->prophesize(MigrateProcessInterface::class);
+    $final_plugin->getPluginDefinition()->willReturn(['handle_multiples' => FALSE]);
+    $final_plugin->transform('first_plugin', $this->executable, $row, 'destination_id')
+      ->willReturn('final_plugin');
+    $plugins['destination_id'] = [$stop_plugin->reveal(), $final_plugin->reveal()];
+    $this->migration->method('getProcessPlugins')->willReturn($plugins);
+
+    // Process the row and confirm that destination value is 'first_plugin'.
+    $this->executable->processRow($row);
+    $this->assertEquals('first_plugin', $row->getDestinationProperty('destination_id'));
+  }
+
+  /**
+   * Tests a plugin which does not stop the pipeline.
+   */
+  public function testContinuePipeline() {
+    $row = new Row();
+    // Prophesize a plugin that does not stop the pipeline.
+    $continue_plugin = $this->prophesize(MigrateProcessInterface::class);
+    $continue_plugin->getPluginDefinition()->willReturn(['handle_multiples' => FALSE]);
+    $continue_plugin->transform(NULL, $this->executable, $row, 'destination_id')
+      ->willReturn('first_plugin');
+    $continue_plugin->multiple()->willReturn(FALSE);
+    $continue_plugin->reset()->shouldBeCalled();
+    $continue_plugin->isPipelineStopped()->willReturn(FALSE);
+
+    // Prophesize a plugin that transforms 'first_plugin' to 'final_plugin'.
+    $final_plugin = $this->prophesize(MigrateProcessInterface::class);
+    $final_plugin->getPluginDefinition()->willReturn(['handle_multiples' => FALSE]);
+    $final_plugin->transform('first_plugin', $this->executable, $row, 'destination_id')
+      ->willReturn('final_plugin');
+    $final_plugin->multiple()->willReturn(FALSE);
+    $final_plugin->reset()->shouldBeCalled();
+    $final_plugin->isPipelineStopped()->willReturn(FALSE);
+    $plugins['destination_id'] = [$continue_plugin->reveal(), $final_plugin->reveal()];
+    $this->migration->method('getProcessPlugins')->willReturn($plugins);
+
+    // Process the row and confirm that the destination value is 'final_plugin'.
+    $this->executable->processRow($row);
+    $this->assertEquals('final_plugin', $row->getDestinationProperty('destination_id'));
   }
 
   /**
@@ -361,6 +420,8 @@ class MigrateExecutableTest extends MigrateTestCase {
       $plugin->getPluginDefinition()->willReturn([]);
       $plugin->transform(NULL, $this->executable, $row, $key)->willReturn($value);
       $plugin->multiple()->willReturn(TRUE);
+      $plugin->reset()->shouldBeCalled();
+      $plugin->isPipelineStopped()->willReturn(FALSE);
       $plugins[$key][0] = $plugin->reveal();
     }
     $this->migration->method('getProcessPlugins')->willReturn($plugins);
@@ -394,7 +455,7 @@ class MigrateExecutableTest extends MigrateTestCase {
       ->willReturn([]);
     $source->expects($this->any())
       ->method('valid')
-      ->will($this->onConsecutiveCalls(TRUE, FALSE));
+      ->willReturn(TRUE, FALSE);
 
     return $source;
   }
@@ -449,10 +510,10 @@ class MigrateExecutableTest extends MigrateTestCase {
    * @return array
    *   The test cases.
    */
-  public function providerTestRollback() {
+  public static function providerTestRollback() {
     return [
       'Rollback delete' => [
-        'ID map records' => [
+        'id_map_records' => [
           [
             'source' => '1',
             'destination' => '1',
@@ -461,17 +522,17 @@ class MigrateExecutableTest extends MigrateTestCase {
         ],
       ],
       'Rollback preserve' => [
-        'ID map records' => [
+        'id_map_records' => [
           [
             'source' => '1',
             'destination' => '1',
             'rollback_action' => MigrateIdMapInterface::ROLLBACK_PRESERVE,
           ],
         ],
-        'Rollback called' => FALSE,
+        'rollback_called' => FALSE,
       ],
       'Rolling back a failed row' => [
-        'ID map records' => [
+        'id_map_records' => [
           [
             'source' => '1',
             'destination' => NULL,
@@ -479,10 +540,10 @@ class MigrateExecutableTest extends MigrateTestCase {
             'rollback_action' => MigrateIdMapInterface::ROLLBACK_DELETE,
           ],
         ],
-        'Rollback called' => FALSE,
+        'rollback_called' => FALSE,
       ],
       'Rolling back with ID map having records with duplicated destination ID' => [
-        'ID map records' => [
+        'id_map_records' => [
           [
             'source_1' => '1',
             'source_2' => '1',
@@ -502,11 +563,11 @@ class MigrateExecutableTest extends MigrateTestCase {
             'rollback_action' => MigrateIdMapInterface::ROLLBACK_DELETE,
           ],
         ],
-        'Rollback called' => TRUE,
-        'Source ID keys' => ['source_1', 'source_2'],
+        'rollback_called' => TRUE,
+        'source_id_keys' => ['source_1', 'source_2'],
       ],
       'Rollback NULL' => [
-        'ID map records' => [
+        'id_map_records' => [
           [
             'source' => '1',
             'destination' => '1',
@@ -515,7 +576,7 @@ class MigrateExecutableTest extends MigrateTestCase {
         ],
       ],
       'Rollback missing' => [
-        'ID map records' => [
+        'id_map_records' => [
           [
             'source' => '1',
             'destination' => '1',

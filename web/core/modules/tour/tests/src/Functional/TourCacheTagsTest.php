@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\tour\Functional;
 
 use Drupal\Core\Url;
@@ -12,6 +14,7 @@ use Drupal\user\RoleInterface;
  * Tests the Tour entity's cache tags.
  *
  * @group tour
+ * @group legacy
  */
 class TourCacheTagsTest extends PageCacheTagsTestBase {
 

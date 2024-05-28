@@ -26,6 +26,7 @@ display:
         type: mini
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 12
           total_pages: 0
           id: 0
@@ -285,7 +286,7 @@ display:
       query:
         type: views_query
         options: {  }
-      rendering_language: '***LANGUAGE_language_interface***'
+      rendering_language: '***LANGUAGE_language_content***'
       display_extenders: {  }
       path: taxonomy/term/%/feed
       displays:
@@ -308,7 +309,7 @@ display:
       query:
         type: views_query
         options: {  }
-      rendering_language: '***LANGUAGE_language_interface***'
+      rendering_language: '***LANGUAGE_language_content***'
       display_extenders: {  }
       path: taxonomy/term/%
     cache_metadata:

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\Core\Extension;
 
+// cspell:ignore skynet
+
 use Drupal\Core\Extension\ExtensionLifecycle;
 use Drupal\Core\Extension\InfoParser;
 use Drupal\Core\Extension\InfoParserDynamic;
@@ -268,7 +270,7 @@ CORE_INCOMPATIBILITY;
   /**
    * Data provider for testCoreIncompatibility().
    */
-  public function providerCoreIncompatibility() {
+  public static function providerCoreIncompatibility() {
     // Remove possible stability suffix to properly parse 11.0-dev.
     $version = preg_replace('/-dev$/', '', \Drupal::VERSION);
     [$major, $minor] = explode('.', $version, 2);
@@ -382,7 +384,7 @@ INFO;
   /**
    * Data provider for testValidLifecycle().
    */
-  public function providerValidLifecycle() {
+  public static function providerValidLifecycle() {
     return [
       'empty' => [
         '',
@@ -439,7 +441,7 @@ INFO;
   /**
    * Data provider for testInvalidLifecycle().
    */
-  public function providerInvalidLifecycle() {
+  public static function providerInvalidLifecycle() {
     return [
       'bogus' => [
         'bogus',
@@ -497,7 +499,7 @@ INFO;
   /**
    * Data provider for testLifecycleLink().
    */
-  public function providerLifecycleLink() {
+  public static function providerLifecycleLink() {
     return [
       'valid deprecated' => [
         ExtensionLifecycle::DEPRECATED,

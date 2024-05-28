@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\jsonapi\Kernel\Normalizer;
 
 use Drupal\Component\Serialization\Json;
@@ -156,7 +158,7 @@ class JsonApiDocumentTopLevelNormalizerTest extends JsonapiKernelTestBase {
     );
     $this->createTextField('node', 'article', 'body', 'Body');
 
-    $this->createImageField('field_image', 'article');
+    $this->createImageField('field_image', 'node', 'article');
 
     $this->user = User::create([
       'name' => 'user1',
@@ -776,7 +778,7 @@ class JsonApiDocumentTopLevelNormalizerTest extends JsonapiKernelTestBase {
   /**
    * Provides test cases for asserting cacheable metadata behavior.
    */
-  public function testCacheableMetadataProvider() {
+  public static function testCacheableMetadataProvider() {
     $cacheable_metadata = function ($metadata) {
       return CacheableMetadata::createFromRenderArray(['#cache' => $metadata]);
     };

@@ -115,15 +115,18 @@ class ModuleHandlerTest extends UnitTestCase {
       ])
       ->onlyMethods(['load'])
       ->getMock();
-    $module_handler->expects($this->exactly(3))
+    $calls = [
+      // First reload.
+      'module_handler_test',
+      // Second reload.
+      'module_handler_test',
+      'module_handler_test_added',
+    ];
+    $module_handler->expects($this->exactly(count($calls)))
       ->method('load')
-      ->withConsecutive(
-        // First reload.
-        ['module_handler_test'],
-        // Second reload.
-        ['module_handler_test'],
-        ['module_handler_test_added'],
-      );
+      ->with($this->callback(function (string $module) use (&$calls): bool {
+        return $module === array_shift($calls);
+      }));
     $module_handler->reload();
     $module_handler->addModule('module_handler_test_added', 'core/tests/Drupal/Tests/Core/Extension/modules/module_handler_test_added');
     $module_handler->reload();
@@ -337,7 +340,7 @@ class ModuleHandlerTest extends UnitTestCase {
       ->with('hook')
       ->willReturnOnConsecutiveCalls(
         [],
-        ['mymodule' => FALSE],
+        ['my_module' => FALSE],
       );
 
     // ModuleHandler::buildImplementationInfo mock returns no implementations.
@@ -358,9 +361,7 @@ class ModuleHandlerTest extends UnitTestCase {
   public function testCachedGetImplementations() {
     $this->cacheBackend->expects($this->exactly(1))
       ->method('get')
-      ->will($this->onConsecutiveCalls(
-        (object) ['data' => ['hook' => ['module_handler_test' => 'test']]]
-      ));
+      ->willReturn((object) ['data' => ['hook' => ['module_handler_test' => 'test']]]);
 
     // Ensure buildImplementationInfo doesn't get called and that we work off cached results.
     $module_handler = $this->getMockBuilder(ModuleHandler::class)
@@ -397,14 +398,14 @@ class ModuleHandlerTest extends UnitTestCase {
   public function testCachedGetImplementationsMissingMethod() {
     $this->cacheBackend->expects($this->exactly(1))
       ->method('get')
-      ->will($this->onConsecutiveCalls((object) [
+      ->willReturn((object) [
         'data' => [
           'hook' => [
             'module_handler_test' => [],
             'module_handler_test_missing' => [],
           ],
         ],
-      ]));
+      ]);
 
     // Ensure buildImplementationInfo doesn't get called and that we work off cached results.
     $module_handler = $this->getMockBuilder(ModuleHandler::class)
@@ -475,10 +476,10 @@ class ModuleHandlerTest extends UnitTestCase {
     $this->cacheBackend
       ->expects($this->exactly(2))
       ->method('get')
-      ->will($this->onConsecutiveCalls(
+      ->willReturn(
         NULL,
         (object) ['data' => ['hook_foo' => ['group' => 'hook']]]
-      ));
+      );
 
     // Results from building from mocked environment.
     $this->assertEquals([

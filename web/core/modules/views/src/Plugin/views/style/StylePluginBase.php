@@ -88,6 +88,7 @@ abstract class StylePluginBase extends PluginBase {
    *
    * @var array|null
    */
+  // phpcs:ignore Drupal.NamingConventions.ValidVariableName.LowerCamelName
   protected $rendered_fields;
 
   /**
@@ -114,6 +115,7 @@ abstract class StylePluginBase extends PluginBase {
    *
    * @var string[]
    */
+  // phpcs:ignore Drupal.NamingConventions.ValidVariableName.LowerCamelName
   public array $render_tokens = [];
 
   /**
@@ -347,7 +349,7 @@ abstract class StylePluginBase extends PluginBase {
       ];
 
       if ($this->usesFields()) {
-        $form['row_class']['#description'] .= ' ' . $this->t('You may use field tokens from as per the "Replacement patterns" used in "Rewrite the output of this field" for all fields.');
+        $form['row_class']['#description'] .= ' ' . $this->t('You may use field tokens as per the "Replacement patterns" used in "Rewrite the output of this field" for all fields.');
       }
 
       $form['default_row_class'] = [
@@ -562,7 +564,7 @@ abstract class StylePluginBase extends PluginBase {
     // This is for backward compatibility, when $groupings was a string
     // containing the ID of a single field.
     if (is_string($groupings)) {
-      $rendered = $group_rendered === NULL ? TRUE : $group_rendered;
+      $rendered = $group_rendered ?? TRUE;
       $groupings = [['field' => $groupings, 'rendered' => $rendered]];
     }
 
@@ -699,12 +701,12 @@ abstract class StylePluginBase extends PluginBase {
           // - HTML views are rendered inside a render context: then we want to
           //   use ::render(), so that attachments and cacheability are bubbled.
           // - non-HTML views are rendered outside a render context: then we
-          //   want to use ::renderPlain(), so that no bubbling happens
+          //   want to use ::renderInIsolation(), so that no bubbling happens
           if ($renderer->hasRenderContext()) {
             $renderer->render($data);
           }
           else {
-            $renderer->renderPlain($data);
+            $renderer->renderInIsolation($data);
           }
 
           // Extract field output from the render array and post process it.

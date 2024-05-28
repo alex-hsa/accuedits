@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\migrate\Kernel\Plugin;
 
 use Drupal\KernelTests\FileSystemModuleDiscoveryDataProviderTrait;
@@ -200,7 +202,7 @@ class MigrationProvidersExistTest extends MigrateDrupalTestBase {
    * @return array
    *   Array of plugin definitions.
    */
-  public function fieldPluginDefinitionsProvider() {
+  public static function fieldPluginDefinitionsProvider() {
     return [
       'missing_core_scenario' => [
         'definitions' => [

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\migrate_drupal_ui\Functional\d6;
 
 use Drupal\migrate_drupal\NodeMigrateType;
@@ -27,7 +29,6 @@ class NodeClassicTest extends MigrateUpgradeExecuteTestBase {
     'config_translation',
     'migrate_drupal_ui',
     'telephone',
-    'statistics',
   ];
 
   /**

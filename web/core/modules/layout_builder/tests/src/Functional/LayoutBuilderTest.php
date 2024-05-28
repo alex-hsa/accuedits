@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\layout_builder\Functional;
 
+use Drupal\layout_builder\Entity\LayoutBuilderEntityViewDisplay;
 use Drupal\layout_builder\Section;
 use Drupal\node\Entity\Node;
+use Drupal\Tests\layout_builder\Traits\EnableLayoutBuilderTrait;
 
 /**
  * Tests the Layout Builder UI.
@@ -12,6 +16,8 @@ use Drupal\node\Entity\Node;
  * @group #slow
  */
 class LayoutBuilderTest extends LayoutBuilderTestBase {
+
+  use EnableLayoutBuilderTrait;
 
   /**
    * Tests the Layout Builder UI for an entity type without a bundle.
@@ -545,9 +551,9 @@ class LayoutBuilderTest extends LayoutBuilderTestBase {
     ]));
 
     $field_ui_prefix = 'admin/structure/types/manage/bundle_with_section_field';
+    $display = LayoutBuilderEntityViewDisplay::load('node.bundle_with_section_field.default');
+    $this->enableLayoutBuilder($display);
     $this->drupalGet("$field_ui_prefix/display/default");
-    $page->checkField('layout[enabled]');
-    $page->pressButton('Save');
 
     $page->clickLink('Manage layout');
     $page->clickLink('Add block');
@@ -577,11 +583,8 @@ class LayoutBuilderTest extends LayoutBuilderTestBase {
       'administer node display',
     ]));
 
-    $this->drupalGet('admin/structure/types/manage/bundle_with_section_field/display/default');
-    $page->checkField('layout[enabled]');
-    $page->pressButton('Save');
-    $page->checkField('layout[allow_custom]');
-    $page->pressButton('Save');
+    $display = LayoutBuilderEntityViewDisplay::load('node.bundle_with_section_field.default');
+    $this->enableLayoutBuilder($display);
 
     $this->drupalGet('node/1/layout');
     $page->clickLink('Add section');
@@ -700,6 +703,10 @@ class LayoutBuilderTest extends LayoutBuilderTestBase {
     // Prepare an object with a pre-existing section.
     $this->container->get('config.factory')->getEditable('layout_builder_test.test_simple_config.existing')
       ->set('sections', [(new Section('layout_twocol'))->toArray()])
+      // `layout_builder_test.test_simple_config.existing.sections.0.layout_settings.label`
+      // contains a translatable label, so a `langcode` is required.
+      // @see \Drupal\Core\Config\Plugin\Validation\Constraint\LangcodeRequiredIfTranslatableValuesConstraint
+      ->set('langcode', 'en')
       ->save();
 
     // The pre-existing section is found.

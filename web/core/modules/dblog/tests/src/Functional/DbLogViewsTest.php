@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\dblog\Functional;
 
 use Drupal\views\Views;
@@ -10,6 +12,7 @@ use Drupal\views\Views;
  * @see Drupal\dblog\Tests\DbLogTest
  *
  * @group dblog
+ * @group #slow
  */
 class DbLogViewsTest extends DbLogTest {
 

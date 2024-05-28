@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\book\Functional;
 
 use Drupal\Tests\BrowserTestBase;
@@ -9,6 +11,7 @@ use Drupal\Tests\content_moderation\Traits\ContentModerationTestTrait;
  * Tests Book and Content Moderation integration.
  *
  * @group book
+ * @group legacy
  */
 class BookContentModerationTest extends BrowserTestBase {
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\image\Kernel\Migrate\d7;
 
 use Drupal\Tests\migrate_drupal\Kernel\d7\MigrateDrupal7TestBase;
@@ -29,7 +31,7 @@ class MigrateImageSettingsTest extends MigrateDrupal7TestBase {
     // These settings are not recommended...
     $this->assertTrue($config->get('allow_insecure_derivatives'));
     $this->assertTrue($config->get('suppress_itok_output'));
-    $this->assertSame("core/modules/image/testsample.png", $config->get('preview_image'));
+    $this->assertSame("core/misc/druplicon.png", $config->get('preview_image'));
   }
 
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\user\Functional;
 
 use Drupal\Core\Cache\CacheableMetadata;
@@ -101,8 +103,8 @@ class UserRegistrationRestTest extends ResourceTestBase {
     $config->save();
     $name = 'Jason.Taverner';
     $user = $this->registerUser($name, FALSE);
-    $this->assertEmpty($user->getPassword());
-    $this->assertTrue($user->isBlocked());
+    $this->assertNotEmpty($user->getPassword());
+    $this->assertFalse($user->isBlocked());
     $this->resetAll();
 
     $this->assertMailString('body', 'You may now log in by clicking this link', 1);
@@ -126,7 +128,7 @@ class UserRegistrationRestTest extends ResourceTestBase {
     $name = 'PhilipK.Dick';
     $user = $this->registerUser($name, FALSE);
     $this->resetAll();
-    $this->assertEmpty($user->getPassword());
+    $this->assertNotEmpty($user->getPassword());
     $this->assertTrue($user->isBlocked());
 
     $this->assertMailString('body', 'Your application for an account is', 2);

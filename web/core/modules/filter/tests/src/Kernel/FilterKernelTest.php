@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\filter\Kernel;
 
-use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Language\Language;
 use Drupal\Core\Render\RenderContext;
@@ -437,6 +438,20 @@ class FilterKernelTest extends KernelTestBase {
         '<!-- comment -->' => TRUE,
         "<!--\nThree.\n-->" => TRUE,
       ],
+      // Do not add paragraph tags around Twig theme debugging.
+      "<p>Text here\n<!-- THEME DEBUG -->\n<!-- THEME HOOK: 'html' -->\n<!-- FILE NAME SUGGESTIONS:\n* html--node.html.twig\nx html.html.twig\n-->\n<!-- BEGIN OUTPUT from 'core/themes/olivero/templates/layout/html.html.twig' -->\n<span>Test</span></p>" => [
+        "<p>Text here" => TRUE,
+        "<p>Text here</p>" => FALSE,
+        "<span>Test</span></p>" => TRUE,
+        "<p><span>Test</span></p>" => FALSE,
+      ],
+      // Do not add paragraph tags around custom template Twig theme debugging.
+      "<p>Text here\n<!-- THEME DEBUG -->\n<!-- THEME HOOK: 'html' -->\n<!-- FILE NAME SUGGESTIONS:\n* html--node.html.twig\nx html.html.twig\n-->\n<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'custom/themes/custom-theme/templates/layout/html.html.twig' -->\n<span>Test</span></p>" => [
+        "<p>Text here" => TRUE,
+        "<p>Text here</p>" => FALSE,
+        "<span>Test</span></p>" => TRUE,
+        "<p><span>Test</span></p>" => FALSE,
+      ],
       // Resulting HTML should produce matching paragraph tags.
       '<p><div>  </div></p>' => [
         "<p>\n<div>  </div>\n</p>" => TRUE,
@@ -479,6 +494,44 @@ class FilterKernelTest extends KernelTestBase {
     $source = $this->randomMachineName($limit);
     $result = _filter_autop($source);
     $this->assertEquals($result, '<p>' . $source . "</p>\n", 'Line break filter can process very long strings.');
+  }
+
+  /**
+   * Tests that the line break filter does not apply to twig debug.
+   */
+  public function testLineBreakFilterTwigDebug(): void {
+
+    // Enable twig theme debug to ensure that any
+    // changes to theme debugging format force checking
+    // that the auto paragraph filter continues to be applied
+    // correctly.
+    $twig = \Drupal::service('twig');
+    $twig->enableDebug();
+
+    // Manually render a template in its simplest form.
+    $variables = [
+      'theme_hook_original' => 'container',
+      'directory' => '',
+      'children' => 'Test two',
+    ];
+    include_once $this->root . '/core/themes/engines/twig/twig.engine';
+    $render = (string) twig_render_template('container.html.twig', $variables);
+    $render = trim($render);
+
+    // Render text before applying the auto paragraph filter.
+    $this->assertSame("<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'container' -->
+<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'container.html.twig' -->
+<div>Test two</div>
+
+<!-- END CUSTOM TEMPLATE OUTPUT from 'container.html.twig' -->", $render);
+    $result = _filter_autop($render);
+
+    // After auto-p is applied, the theme debug should no longer have
+    // line breaks but the true line breaks should still.
+    $this->assertSame("<!-- THEME DEBUG --><!-- THEME HOOK: 'container' --><!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'container.html.twig' --><div>Test two</div>
+
+<!-- END CUSTOM TEMPLATE OUTPUT from 'container.html.twig' -->", $result);
   }
 
   /**
@@ -766,7 +819,7 @@ class FilterKernelTest extends KernelTestBase {
       Absolute URL and query string with 2 different punctuation characters (http://www.example.com/q=abc).
       Partial URL with brackets in the URL as well as surrounded brackets (www.foo.com/more_(than)_one_(parens)).
       Absolute URL with square brackets in the URL as well as surrounded brackets [https://www.drupal.org/?class[]=1]
-      Absolute URL with quotes "https://www.drupal.org/sample"' => [
+      Absolute URL with quotes "https://www.example.org/sample"' => [
         'period <a href="http://www.partial.com">www.partial.com</a>.' => TRUE,
         'comma <a href="mailto:person@example.com">person@example.com</a>,' => TRUE,
         'question <a href="http://www.absolute.com">http://www.absolute.com</a>?' => TRUE,
@@ -776,7 +829,7 @@ class FilterKernelTest extends KernelTestBase {
         'characters (<a href="http://www.example.com/q=abc">http://www.example.com/q=abc</a>).' => TRUE,
         'brackets (<a href="http://www.foo.com/more_(than)_one_(parens)">www.foo.com/more_(than)_one_(parens)</a>).' => TRUE,
         'brackets [<a href="https://www.drupal.org/?class[]=1">https://www.drupal.org/?class[]=1</a>]' => TRUE,
-        'quotes "<a href="https://www.drupal.org/sample">https://www.drupal.org/sample</a>"' => TRUE,
+        'quotes "<a href="https://www.example.org/sample">https://www.example.org/sample</a>"' => TRUE,
       ],
       '(www.parenthesis.com/dir?a=1&b=2#a)' => [
         '(<a href="http://www.parenthesis.com/dir?a=1&amp;b=2#a">www.parenthesis.com/dir?a=1&amp;b=2#a</a>)' => TRUE,
@@ -940,18 +993,18 @@ class FilterKernelTest extends KernelTestBase {
       $result = $filter->process($source, $filter)->getProcessedText();
       foreach ($tasks as $value => $is_expected) {
         if ($is_expected) {
-          $this->assertStringContainsString($value, $result, new FormattableMarkup('@source: @value found. Filtered result: @result.', [
-            '@source' => var_export($source, TRUE),
-            '@value' => var_export($value, TRUE),
-            '@result' => var_export($result, TRUE),
-          ]));
+          $this->assertStringContainsString($value, $result, sprintf('%s: %s found. Filtered result: %s.',
+            var_export($source, TRUE),
+            var_export($value, TRUE),
+            var_export($result, TRUE),
+          ));
         }
         else {
-          $this->assertStringNotContainsString($value, $result, new FormattableMarkup('@source: @value not found. Filtered result: @result.', [
-            '@source' => var_export($source, TRUE),
-            '@value' => var_export($value, TRUE),
-            '@result' => var_export($result, TRUE),
-          ]));
+          $this->assertStringNotContainsString($value, $result, sprintf('%s: %s not found. Filtered result: %s.',
+            var_export($source, TRUE),
+            var_export($value, TRUE),
+            var_export($result, TRUE),
+          ));
         }
       }
     }
@@ -1124,7 +1177,7 @@ class FilterKernelTest extends KernelTestBase {
 body {color:red}
 /*]]>*/
 </style></p>';
-    $this->assertEquals($html, Html::normalize($html), new FormattableMarkup('HTML corrector -- Existing cdata section @pattern_name properly escaped', ['@pattern_name' => '/*<![CDATA[*/']));
+    $this->assertEquals($html, Html::normalize($html), 'HTML corrector -- Existing cdata section /*<![CDATA[*/ properly escaped');
 
     $html = '<p><style>
 /*<![CDATA[*/
@@ -1132,28 +1185,28 @@ body {color:red}
   body {color:red}
 /*]]>*/
 </style></p>';
-    $this->assertEquals($html, Html::normalize($html), new FormattableMarkup('HTML corrector -- Existing cdata section @pattern_name properly escaped', ['@pattern_name' => '<!--/*--><![CDATA[/* ><!--*/']));
+    $this->assertEquals($html, Html::normalize($html), 'HTML corrector -- Existing cdata section <!--/*--><![CDATA[/* ><!--*/ properly escaped');
 
     $html = '<p><script>
 //<![CDATA[
   alert("test");
 //]]>
 </script></p>';
-    $this->assertEquals($html, Html::normalize($html), new FormattableMarkup('HTML corrector -- Existing cdata section @pattern_name properly escaped', ['@pattern_name' => '<!--//--><![CDATA[// ><!--']));
+    $this->assertEquals($html, Html::normalize($html), 'HTML corrector -- Existing cdata section <!--//--><![CDATA[// ><!-- properly escaped');
 
     $html = '<p><script>
 // <![CDATA[
   alert("test");
 //]]>
 </script></p>';
-    $this->assertEquals($html, Html::normalize($html), new FormattableMarkup('HTML corrector -- Existing cdata section @pattern_name properly escaped', ['@pattern_name' => '// <![CDATA[']));
+    $this->assertEquals($html, Html::normalize($html), 'HTML corrector -- Existing cdata section // <![CDATA[ properly escaped');
 
     $html = '<p><script>
 // <![CDATA[![CDATA[![CDATA[
   alert("test");
 //]]]]]]>
 </script></p>';
-    $this->assertEquals($html, Html::normalize($html), new FormattableMarkup('HTML corrector -- Existing cdata section @pattern_name properly escaped', ['@pattern_name' => '// <![CDATA[![CDATA[![CDATA[']));
+    $this->assertEquals($html, Html::normalize($html), 'HTML corrector -- Existing cdata section // <![CDATA[![CDATA[![CDATA[ properly escaped');
 
     // Test calling Html::normalize() twice.
     $html = '<p><script>
@@ -1161,7 +1214,7 @@ body {color:red}
   alert("test");
 //]]]]]]>
 </script></p>';
-    $this->assertEquals($html, Html::normalize(Html::normalize($html)), new FormattableMarkup('HTML corrector -- Existing cdata section @pattern_name properly escaped', ['@pattern_name' => '// <![CDATA[![CDATA[![CDATA[']));
+    $this->assertEquals($html, Html::normalize(Html::normalize($html)), 'HTML corrector -- Existing cdata section // <![CDATA[![CDATA[![CDATA[ properly escaped');
   }
 
   /**

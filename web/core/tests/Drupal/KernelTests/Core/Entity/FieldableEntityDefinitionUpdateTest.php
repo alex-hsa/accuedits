@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\KernelTests\Core\Entity;
 
 use Drupal\Core\Entity\EntityStorageException;
@@ -185,7 +187,7 @@ class FieldableEntityDefinitionUpdateTest extends EntityKernelTestBase {
   /**
    * Data provider for testFieldableEntityTypeUpdates().
    */
-  public function providerTestFieldableEntityTypeUpdates() {
+  public static function providerTestFieldableEntityTypeUpdates() {
     return [
       'no change' => [
         'initial_rev' => FALSE,

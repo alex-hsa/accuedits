@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\block_content\Functional;
 
 use Drupal\block_content\Entity\BlockContent;
@@ -67,6 +69,22 @@ class BlockContentListTest extends BlockContentTestBase {
       'edit any basic block content',
       'delete any basic block content',
     ]);
+  }
+
+  /**
+   * Tests the region value when a new block is saved.
+   */
+  public function testBlockRegionPlacement(): void {
+    $this->drupalLogin($this->drupalCreateUser($this->permissions));
+    $this->drupalGet("admin/structure/block/library/stark", ['query' => ['region' => 'content']]);
+
+    $this->clickLink('Add content block');
+    $this->assertSession()->statusCodeEquals(200);
+    $edit = [
+      'info[0][value]' => 'foo',
+    ];
+    $this->submitForm($edit, 'Save');
+    $this->assertSession()->fieldValueEquals('region', 'content');
   }
 
   /**

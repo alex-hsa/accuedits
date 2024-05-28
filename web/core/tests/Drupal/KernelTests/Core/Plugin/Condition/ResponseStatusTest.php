@@ -9,6 +9,8 @@ use Drupal\KernelTests\KernelTestBase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
@@ -61,6 +63,7 @@ class ResponseStatusTest extends KernelTestBase {
       $request = new Request();
       $request->attributes->set('exception', new HttpException($response_code));
     }
+    $request->setSession(new Session(new MockArraySessionStorage()));
     $this->requestStack->push($request);
 
     /** @var \Drupal\system\Plugin\Condition\ResponseStatus $condition */
@@ -74,7 +77,7 @@ class ResponseStatusTest extends KernelTestBase {
   /**
    * Provides test data for testConditions.
    */
-  public function providerTestConditions() {
+  public static function providerTestConditions() {
     // Default values with 200 response code.
     yield [
       'status_codes' => [],
