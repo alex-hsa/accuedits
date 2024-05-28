@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\KernelTests\Core\Plugin\Condition;
 
 use Drupal\Core\Path\CurrentPathStack;
@@ -7,6 +9,8 @@ use Drupal\KernelTests\KernelTestBase;
 use Drupal\system\Tests\Routing\MockAliasManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 
 /**
  * Tests system.module's request path condition.
@@ -83,6 +87,7 @@ class RequestPathTest extends KernelTestBase {
     $pages = "/my/pass/page\r\n/my/pass/page2\r\n/foo";
 
     $request = Request::create('/my/pass/page2');
+    $request->setSession(new Session(new MockArraySessionStorage()));
     $this->requestStack->push($request);
 
     /** @var \Drupal\system\Plugin\Condition\RequestPath $condition */

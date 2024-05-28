@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\views\Kernel\Handler;
 
 use Drupal\Tests\views\Kernel\ViewsKernelTestBase;
@@ -130,7 +132,7 @@ class FilterNumericTest extends ViewsKernelTestBase {
    *   An array of arrays, each containing the parameters for
    *   self::testFilterNumericBetween().
    */
-  public function providerTestFilterNumericBetween() {
+  public static function providerTestFilterNumericBetween() {
     $all_result = [
       ['name' => 'John', 'age' => 25],
       ['name' => 'George', 'age' => 27],

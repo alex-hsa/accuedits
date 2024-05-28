@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\file\Kernel;
 
 use Drupal\Core\Database\Database;
@@ -65,7 +67,7 @@ class DeleteTest extends FileManagedUnitTestBase {
     // would set the timestamp.
     Database::getConnection()->update('file_managed')
       ->fields([
-        'changed' => REQUEST_TIME - ($this->config('system.file')->get('temporary_maximum_age') + 1),
+        'changed' => \Drupal::time()->getRequestTime() - ($this->config('system.file')->get('temporary_maximum_age') + 3),
       ])
       ->condition('fid', $file->id())
       ->execute();
@@ -92,7 +94,7 @@ class DeleteTest extends FileManagedUnitTestBase {
     // configuration value.
     \Drupal::database()->update('file_managed')
       ->fields([
-        'changed' => REQUEST_TIME - ($this->config('system.file')->get('temporary_maximum_age') + 1),
+        'changed' => \Drupal::time()->getRequestTime() - ($this->config('system.file')->get('temporary_maximum_age') + 3),
       ])
       ->condition('fid', $file->id())
       ->execute();

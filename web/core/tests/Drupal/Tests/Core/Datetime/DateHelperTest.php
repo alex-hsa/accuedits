@@ -36,10 +36,10 @@ class DateHelperTest extends UnitTestCase {
     $language = new Language(['langcode' => 'en']);
     $this->languageManager->expects($this->any())
       ->method('getDefaultLanguage')
-      ->will($this->returnValue($language));
+      ->willReturn($language);
     $this->languageManager->expects($this->any())
       ->method('getCurrentLanguage')
-      ->will($this->returnValue($language));
+      ->willReturn($language);
     $container->set('language_manager', $this->languageManager);
 
     \Drupal::setContainer($container);
@@ -60,7 +60,7 @@ class DateHelperTest extends UnitTestCase {
     $this->assertSame($expected, DateHelper::weekDaysOrdered($weekdays));
   }
 
-  public function providerTestWeekDaysOrdered() {
+  public static function providerTestWeekDaysOrdered() {
     $data = [];
     $data[] = [
       0,

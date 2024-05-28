@@ -180,7 +180,7 @@ class ContentLanguageSettingsUnitTest extends UnitTestCase {
     $this->assertSame($expected, $config->isLanguageAlterable());
   }
 
-  public function providerLanguageAlterable() {
+  public static function providerLanguageAlterable() {
     $alterableConfig = new ContentLanguageSettings([
       'target_entity_type_id' => 'test_entity_type',
       'target_bundle' => 'test_bundle',
@@ -267,7 +267,7 @@ class ContentLanguageSettingsUnitTest extends UnitTestCase {
       ->with('language_content_settings')
       ->willReturn($this->configEntityStorageInterface);
 
-    $entity_type_repository = $this->getMockForAbstractClass(EntityTypeRepositoryInterface::class);
+    $entity_type_repository = $this->createMock(EntityTypeRepositoryInterface::class);
     $entity_type_repository->expects($this->any())
       ->method('getEntityTypeFromClass')
       ->with(ContentLanguageSettings::class)

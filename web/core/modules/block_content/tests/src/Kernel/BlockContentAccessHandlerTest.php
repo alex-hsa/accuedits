@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\block_content\Kernel;
 
 use Drupal\block_content\BlockContentAccessControlHandler;
@@ -160,8 +162,7 @@ class BlockContentAccessHandlerTest extends KernelTestBase {
       }
       $this->role->save();
     }
-    $user->addRole($this->role->id());
-    $user->save();
+    $user->addRole($this->role->id())->save();
 
     if ($parent_access !== NULL) {
       $parent_entity = $this->prophesize(AccessibleInterface::class);
@@ -191,7 +192,7 @@ class BlockContentAccessHandlerTest extends KernelTestBase {
   /**
    * Data provider for testAccess().
    */
-  public function providerTestAccess(): array {
+  public static function providerTestAccess(): array {
     $cases = [
       'view:published:reusable' => [
         'view',

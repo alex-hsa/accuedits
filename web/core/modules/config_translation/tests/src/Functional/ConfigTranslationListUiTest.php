@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\config_translation\Functional;
 
 use Drupal\block_content\Entity\BlockContentType;
@@ -190,6 +192,11 @@ class ConfigTranslationListUiTest extends BrowserTestBase {
     // Test if the link to translate actually goes to the translate page.
     $this->drupalGet($translate_link);
     $this->assertSession()->responseContains('<th>Language</th>');
+
+    // Test if the local task for translation is on this page.
+    $this->assertSession()->linkExists('Translate taxonomy vocabulary');
+    $local_task_url = parse_url($this->getSession()->getPage()->findLink('Translate taxonomy vocabulary')->getAttribute('href'));
+    $this->assertSame(base_path() . $translate_link, $local_task_url['path']);
   }
 
   /**

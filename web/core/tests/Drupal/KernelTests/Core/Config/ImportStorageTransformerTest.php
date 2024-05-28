@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\KernelTests\Core\Config;
 
 use Drupal\Core\Config\ConfigImporter;
@@ -8,6 +10,8 @@ use Drupal\Core\Config\MemoryStorage;
 use Drupal\Core\Config\StorageTransformerException;
 use Drupal\Core\Lock\NullLockBackend;
 use Drupal\KernelTests\KernelTestBase;
+
+// cspell:ignore arrr
 
 /**
  * Tests the import storage transformer.

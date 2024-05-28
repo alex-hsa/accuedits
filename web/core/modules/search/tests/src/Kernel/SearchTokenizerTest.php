@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\search\Kernel;
 
 use Drupal\KernelTests\KernelTestBase;
@@ -18,6 +20,14 @@ class SearchTokenizerTest extends KernelTestBase {
    * {@inheritdoc}
    */
   protected static $modules = ['search'];
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp(): void {
+    parent::setUp();
+    $this->installConfig(['search']);
+  }
 
   /**
    * Verifies that strings of CJK characters are tokenized.

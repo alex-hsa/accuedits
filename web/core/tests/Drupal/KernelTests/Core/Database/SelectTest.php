@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\KernelTests\Core\Database;
 
 use Drupal\Core\Database\InvalidQueryException;
@@ -498,7 +500,7 @@ class SelectTest extends DatabaseTestBase {
    *     - the regular expression pattern to search for.
    *     - the regular expression operator 'REGEXP' or 'NOT REGEXP'.
    */
-  public function providerRegularExpressionCondition() {
+  public static function providerRegularExpressionCondition() {
     return [
       [['John'], 'name', 'hn$', 'REGEXP'],
       [['Paul'], 'name', '^Pau', 'REGEXP'],
@@ -598,7 +600,7 @@ class SelectTest extends DatabaseTestBase {
    *   Array of non array compatible operators and its value in the expected
    *   exception message.
    */
-  public function providerNonArrayOperatorWithArrayValueCondition() {
+  public static function providerNonArrayOperatorWithArrayValueCondition() {
     return [
       '=' => ['=', '='],
       '>' => ['>', '>'],

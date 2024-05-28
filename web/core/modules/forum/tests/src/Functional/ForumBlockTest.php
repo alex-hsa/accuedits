@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\forum\Functional;
 
 use Drupal\Component\Render\FormattableMarkup;
@@ -11,6 +13,7 @@ use Drupal\Tests\BrowserTestBase;
  * Tests the forum blocks.
  *
  * @group forum
+ * @group legacy
  */
 class ForumBlockTest extends BrowserTestBase {
 

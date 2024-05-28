@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\filter\Kernel\Plugin\migrate\process;
 
 use Drupal\filter\Plugin\migrate\process\FilterSettings;
@@ -44,7 +46,7 @@ class FilterSettingsTest extends MigrateTestCase {
    *
    * @return array
    */
-  public function dataProvider() {
+  public static function dataProvider() {
     return [
       // Tests that the transformed value is identical to the input value when
       // destination is not the filter_html.

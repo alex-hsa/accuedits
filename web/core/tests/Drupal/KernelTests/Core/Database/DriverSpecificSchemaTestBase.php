@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\KernelTests\Core\Database;
 
 use Drupal\Core\Database\Connection;
@@ -649,7 +651,7 @@ abstract class DriverSpecificSchemaTestBase extends DriverSpecificKernelTestBase
    * @return array
    *   An array of test cases for SchemaTest::testSchemaCreateTablePrimaryKey().
    */
-  public function providerTestSchemaCreateTablePrimaryKey() {
+  public static function providerTestSchemaCreateTablePrimaryKey() {
     $tests = [];
 
     $tests['simple_primary_key'] = [

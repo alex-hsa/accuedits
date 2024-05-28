@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\statistics\Functional;
 
 use Drupal\Tests\BrowserTestBase;
@@ -12,6 +14,7 @@ use Drupal\node\Entity\Node;
  * want to test requests from an anonymous user.
  *
  * @group statistics
+ * @group legacy
  */
 class StatisticsLoggingTest extends BrowserTestBase {
 

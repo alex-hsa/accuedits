@@ -2,6 +2,7 @@
 
 namespace Drupal\image\Plugin\Field\FieldWidget;
 
+use Drupal\Core\Field\Attribute\FieldWidget;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Image\ImageFactory;
@@ -14,15 +15,12 @@ use Drupal\image\Entity\ImageStyle;
 
 /**
  * Plugin implementation of the 'image_image' widget.
- *
- * @FieldWidget(
- *   id = "image_image",
- *   label = @Translation("Image"),
- *   field_types = {
- *     "image"
- *   }
- * )
  */
+#[FieldWidget(
+  id: 'image_image',
+  label: new TranslatableMarkup('Image'),
+  field_types: ['image'],
+)]
 class ImageWidget extends FileWidget {
 
   /**
@@ -127,7 +125,7 @@ class ImageWidget extends FileWidget {
       // If there's only one field, return it as delta 0.
       if (empty($elements[0]['#default_value']['fids'])) {
         $file_upload_help['#description'] = $this->getFilteredDescription();
-        $elements[0]['#description'] = \Drupal::service('renderer')->renderPlain($file_upload_help);
+        $elements[0]['#description'] = \Drupal::service('renderer')->renderInIsolation($file_upload_help);
       }
     }
     else {

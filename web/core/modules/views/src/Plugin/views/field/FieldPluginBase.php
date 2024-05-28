@@ -24,9 +24,9 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  * Field handlers handle both querying and display of fields in views.
  *
  * Field handler plugins extend
- * \Drupal\views\Plugin\views\field\FieldPluginBase. They must be
- * annotated with \Drupal\views\Annotation\ViewsField annotation, and they
- * must be in namespace directory Plugin\views\field.
+ * \Drupal\views\Plugin\views\field\FieldPluginBase. They must be attributed
+ * with \Drupal\views\Attribute\ViewsField attribute, and they must be in
+ * namespace directory Plugin\views\field.
  *
  * The following items can go into a hook_views_data() implementation in a
  * field section to affect how the field handler will behave:
@@ -74,6 +74,7 @@ abstract class FieldPluginBase extends HandlerBase implements FieldHandlerInterf
   /**
    * @var string
    */
+  // phpcs:ignore Drupal.NamingConventions.ValidVariableName.LowerCamelName
   public $field_alias = 'unknown';
   public $aliases = [];
 
@@ -82,6 +83,7 @@ abstract class FieldPluginBase extends HandlerBase implements FieldHandlerInterf
    *
    * @var mixed
    */
+  // phpcs:ignore Drupal.NamingConventions.ValidVariableName.LowerCamelName
   public $original_value = NULL;
 
   /**
@@ -91,6 +93,7 @@ abstract class FieldPluginBase extends HandlerBase implements FieldHandlerInterf
    *
    * @var array
    */
+  // phpcs:ignore Drupal.NamingConventions.ValidVariableName.LowerCamelName
   public $additional_fields = [];
 
   /**
@@ -110,16 +113,19 @@ abstract class FieldPluginBase extends HandlerBase implements FieldHandlerInterf
   /**
    * The last rendered value.
    */
+  // phpcs:ignore Drupal.NamingConventions.ValidVariableName.LowerCamelName
   public string|MarkupInterface|NULL $last_render;
 
   /**
    * The last rendered text.
    */
+  // phpcs:ignore Drupal.NamingConventions.ValidVariableName.LowerCamelName
   public string|MarkupInterface|NULL $last_render_text;
 
   /**
    * The last rendered tokens.
    */
+  // phpcs:ignore Drupal.NamingConventions.ValidVariableName.LowerCamelName
   public array $last_tokens;
 
   /**

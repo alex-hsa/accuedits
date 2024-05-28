@@ -47,7 +47,7 @@ class StaticMenuLinkOverridesTest extends UnitTestCase {
   /**
    * Provides test data for testLoadOverride.
    */
-  public function providerTestLoadOverride() {
+  public static function providerTestLoadOverride() {
     $data = [];
     // Valid ID.
     $data[] = [['test1' => ['parent' => 'test0']], 'test1', ['parent' => 'test0']];
@@ -110,13 +110,16 @@ class StaticMenuLinkOverridesTest extends UnitTestCase {
         $definition_save_1['definitions'],
         $definition_save_1['definitions'],
       );
-    $config->expects($this->exactly(2))
+    $definitions = [
+      $definition_save_1['definitions'],
+      $definitions_save_2['definitions'],
+    ];
+    $config->expects($this->exactly(count($definitions)))
       ->method('set')
-      ->withConsecutive(
-        ['definitions', $definition_save_1['definitions']],
-        ['definitions', $definitions_save_2['definitions']],
-      )
-      ->will($this->returnSelf());
+      ->with('definitions', $this->callback(function (array $value) use (&$definitions): bool {
+        return array_shift($definitions) === $value;
+      }))
+      ->willReturnSelf();
     $config->expects($this->exactly(2))
       ->method('save');
 
@@ -156,7 +159,7 @@ class StaticMenuLinkOverridesTest extends UnitTestCase {
     $config->expects($old_definitions != $new_definitions ? $this->once() : $this->never())
       ->method('set')
       ->with('definitions', $new_definitions)
-      ->will($this->returnSelf());
+      ->willReturnSelf();
     $config->expects($old_definitions != $new_definitions ? $this->once() : $this->never())
       ->method('save');
 
@@ -178,7 +181,7 @@ class StaticMenuLinkOverridesTest extends UnitTestCase {
   /**
    * Provides test data for testDeleteOverrides.
    */
-  public function providerTestDeleteOverrides() {
+  public static function providerTestDeleteOverrides() {
     $data = [];
     // Delete a non existing ID.
     $data[] = ['test0', [], []];

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\views\Functional\Plugin;
 
 use Drupal\Tests\system\Functional\Cache\AssertPageCacheContextsAndTagsTrait;
@@ -141,7 +143,7 @@ class DisplayPageWebTest extends ViewTestBase {
    * Tests the views page path functionality.
    */
   public function testPagePaths() {
-    $this->drupalLogin($this->rootUser);
+    $this->drupalLogin($this->createUser(['administer views']));
     $this->assertPagePath('0');
     $this->assertPagePath('9999');
     $this->assertPagePath('☺');

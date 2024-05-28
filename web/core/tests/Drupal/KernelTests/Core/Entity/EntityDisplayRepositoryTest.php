@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\KernelTests\Core\Entity;
 
 use Drupal\Core\Entity\Display\EntityFormDisplayInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 use Drupal\KernelTests\KernelTestBase;
+
+// cspell:ignore pastafazoul
 
 /**
  * @coversDefaultClass \Drupal\Core\Entity\EntityDisplayRepository

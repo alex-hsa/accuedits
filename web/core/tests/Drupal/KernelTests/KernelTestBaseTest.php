@@ -1,16 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\KernelTests;
 
 use Drupal\Component\FileCache\FileCacheFactory;
 use Drupal\Component\Utility\Random;
 use Drupal\Core\Database\Database;
-use GuzzleHttp\Exception\GuzzleException;
 use Drupal\Tests\StreamCapturer;
 use Drupal\user\Entity\Role;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\visitor\vfsStreamStructureVisitor;
 use PHPUnit\Framework\SkippedTestError;
+use Psr\Http\Client\ClientExceptionInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @coversDefaultClass \Drupal\KernelTests\KernelTestBase
@@ -176,7 +179,7 @@ class KernelTestBaseTest extends KernelTestBase {
     }
     catch (\Throwable $e) {
       // Ignore any HTTP errors, any other exception is considered an error.
-      self::assertInstanceOf(GuzzleException::class, $e, sprintf('Asserting that a possible exception is thrown. Got "%s" with message: "%s".', get_class($e), $e->getMessage()));
+      self::assertInstanceOf(ClientExceptionInterface::class, $e, sprintf('Asserting that a possible exception is thrown. Got "%s" with message: "%s".', get_class($e), $e->getMessage()));
     }
   }
 
@@ -237,6 +240,34 @@ class KernelTestBaseTest extends KernelTestBase {
   }
 
   /**
+   * Tests that a usable session is on the request.
+   *
+   * @covers ::bootKernel
+   */
+  public function testSessionOnRequest(): void {
+    /** @var \Symfony\Component\HttpFoundation\Session\Session $session */
+    $session = $this->container->get('request_stack')->getSession();
+
+    $session->set('some-val', 'do-not-cleanup');
+    $this->assertEquals('do-not-cleanup', $session->get('some-val'));
+
+    $session->set('some-other-val', 'do-cleanup');
+    $this->assertEquals('do-cleanup', $session->remove('some-other-val'));
+  }
+
+  /**
+   * Tests deprecation of modified request stack lacking a session.
+   *
+   * @covers ::tearDown
+   *
+   * @group legacy
+   */
+  public function testDeprecatedSessionMissing(): void {
+    $this->expectDeprecation('Pushing requests without a session onto the request_stack is deprecated in drupal:10.3.0 and an error will be thrown from drupal:11.0.0. See https://www.drupal.org/node/3337193');
+    $this->container->get('request_stack')->push(Request::create('/'));
+  }
+
+  /**
    * Tests the assumption that local time is in 'Australia/Sydney'.
    */
   public function testLocalTimeZone() {
@@ -252,8 +283,12 @@ class KernelTestBaseTest extends KernelTestBase {
    *
    * @covers ::checkRequirements
    * @covers ::checkModuleRequirements
+   *
+   * @group legacy
    */
   public function testMethodRequiresModule() {
+    $this->expectDeprecation('Drupal\Tests\TestRequirementsTrait::checkModuleRequirements() is deprecated in drupal:10.3.0 and is removed from drupal:11.0.0. There is no replacement. See https://www.drupal.org/node/3418480');
+
     require __DIR__ . '/../../fixtures/KernelMissingDependentModuleMethodTest.php';
 
     // @phpstan-ignore-next-line
@@ -280,8 +315,12 @@ class KernelTestBaseTest extends KernelTestBase {
    *
    * @covers ::checkRequirements
    * @covers ::checkModuleRequirements
+   *
+   * @group legacy
    */
   public function testRequiresModule() {
+    $this->expectDeprecation('Drupal\Tests\TestRequirementsTrait::checkModuleRequirements() is deprecated in drupal:10.3.0 and is removed from drupal:11.0.0. There is no replacement. See https://www.drupal.org/node/3418480');
+
     require __DIR__ . '/../../fixtures/KernelMissingDependentModuleTest.php';
 
     // @phpstan-ignore-next-line
@@ -341,11 +380,11 @@ class KernelTestBaseTest extends KernelTestBase {
    * Tests the dump() function provided by the var-dumper Symfony component.
    */
   public function testVarDump() {
-    // Append the stream capturer to the STDOUT stream, so that we can test the
+    // Append the stream capturer to the STDERR stream, so that we can test the
     // dump() output and also prevent it from actually outputting in this
     // particular test.
     stream_filter_register("capture", StreamCapturer::class);
-    stream_filter_append(STDOUT, "capture");
+    stream_filter_append(STDERR, "capture");
 
     // Dump some variables.
     $this->enableModules(['system', 'user']);

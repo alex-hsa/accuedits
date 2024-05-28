@@ -124,8 +124,7 @@ class AccessManagerTest extends UnitTestCase {
     $this->account = $this->createMock('Drupal\Core\Session\AccountInterface');
     $this->currentUser = $this->createMock('Drupal\Core\Session\AccountInterface');
     $this->argumentsResolverFactory = $this->createMock('Drupal\Core\Access\AccessArgumentsResolverFactoryInterface');
-    $this->checkProvider = new CheckProvider();
-    $this->checkProvider->setContainer($this->container);
+    $this->checkProvider = new CheckProvider([], $this->container);
 
     $this->accessManager = new AccessManager($this->routeProvider, $this->paramConverter, $this->argumentsResolverFactory, $this->currentUser, $this->checkProvider);
   }
@@ -154,14 +153,14 @@ class AccessManagerTest extends UnitTestCase {
    * Tests setChecks with a dynamic access checker.
    */
   public function testSetChecksWithDynamicAccessChecker() {
-    // Setup the access manager.
-    $this->accessManager = new AccessManager($this->routeProvider, $this->paramConverter, $this->argumentsResolverFactory, $this->currentUser, $this->checkProvider);
-
     // Setup the dynamic access checker.
     $access_check = $this->createMock('Drupal\Tests\Core\Access\TestAccessCheckInterface');
     $this->container->set('test_access', $access_check);
-    $this->container->setParameter('dynamic_access_check_services', ['test_access']);
+    $this->checkProvider = new CheckProvider(['test_access'], $this->container);
     $this->checkProvider->addCheckService('test_access', 'access');
+
+    // Setup the access manager.
+    $this->accessManager = new AccessManager($this->routeProvider, $this->paramConverter, $this->argumentsResolverFactory, $this->currentUser, $this->checkProvider);
 
     $route = new Route('/test-path', [], ['_foo' => '1', '_bar' => '1']);
     $route2 = new Route('/test-path', [], ['_foo' => '1', '_bar' => '2']);
@@ -249,7 +248,7 @@ class AccessManagerTest extends UnitTestCase {
    *
    * @see \Drupal\Tests\Core\Access\AccessManagerTest::testCheckConjunctions()
    */
-  public function providerTestCheckConjunctions() {
+  public static function providerTestCheckConjunctions() {
     $access_allow = AccessResult::allowed();
     $access_deny = AccessResult::neutral();
     $access_kill = AccessResult::forbidden();
@@ -259,37 +258,37 @@ class AccessManagerTest extends UnitTestCase {
       'name' => 'test_route_4',
       'condition_one' => 'TRUE',
       'condition_two' => 'FALSE',
-      'expected' => $access_kill,
+      'expected_access' => $access_kill,
     ];
     $access_configurations[] = [
       'name' => 'test_route_5',
       'condition_one' => 'TRUE',
       'condition_two' => 'NULL',
-      'expected' => $access_deny,
+      'expected_access' => $access_deny,
     ];
     $access_configurations[] = [
       'name' => 'test_route_6',
       'condition_one' => 'FALSE',
       'condition_two' => 'NULL',
-      'expected' => $access_kill,
+      'expected_access' => $access_kill,
     ];
     $access_configurations[] = [
       'name' => 'test_route_7',
       'condition_one' => 'TRUE',
       'condition_two' => 'TRUE',
-      'expected' => $access_allow,
+      'expected_access' => $access_allow,
     ];
     $access_configurations[] = [
       'name' => 'test_route_8',
       'condition_one' => 'FALSE',
       'condition_two' => 'FALSE',
-      'expected' => $access_kill,
+      'expected_access' => $access_kill,
     ];
     $access_configurations[] = [
       'name' => 'test_route_9',
       'condition_one' => 'NULL',
       'condition_two' => 'NULL',
-      'expected' => $access_deny,
+      'expected_access' => $access_deny,
     ];
 
     return $access_configurations;
@@ -375,8 +374,6 @@ class AccessManagerTest extends UnitTestCase {
         return $route_match->getParameters()->get('value') == 'upcasted_value';
       }));
 
-    $this->accessManager = new AccessManager($this->routeProvider, $this->paramConverter, $this->argumentsResolverFactory, $this->currentUser, $this->checkProvider);
-
     $access_check = $this->createMock('Drupal\Tests\Core\Access\TestAccessCheckInterface');
     $access_check->expects($this->atLeastOnce())
       ->method('applies')
@@ -386,10 +383,11 @@ class AccessManagerTest extends UnitTestCase {
       ->willReturn(AccessResult::forbidden());
 
     $this->container->set('test_access', $access_check);
-    $this->container->setParameter('dynamic_access_check_services', ['test_access']);
-
+    $this->checkProvider = new CheckProvider(['test_access'], $this->container);
     $this->checkProvider->addCheckService('test_access', 'access');
     $this->checkProvider->setChecks($this->routeCollection);
+
+    $this->accessManager = new AccessManager($this->routeProvider, $this->paramConverter, $this->argumentsResolverFactory, $this->currentUser, $this->checkProvider);
 
     $this->assertEquals(FALSE, $this->accessManager->checkNamedRoute('test_route_1', ['value' => 'example'], $this->account));
     $this->assertEquals(AccessResult::forbidden(), $this->accessManager->checkNamedRoute('test_route_1', ['value' => 'example'], $this->account, TRUE));
@@ -424,8 +422,6 @@ class AccessManagerTest extends UnitTestCase {
         return $route_match->getParameters()->get('value') == 'upcasted_value';
       }));
 
-    $this->accessManager = new AccessManager($this->routeProvider, $this->paramConverter, $this->argumentsResolverFactory, $this->currentUser, $this->checkProvider);
-
     $access_check = $this->createMock('Drupal\Tests\Core\Access\TestAccessCheckInterface');
     $access_check->expects($this->atLeastOnce())
       ->method('applies')
@@ -435,10 +431,11 @@ class AccessManagerTest extends UnitTestCase {
       ->willReturn(AccessResult::forbidden());
 
     $this->container->set('test_access', $access_check);
-    $this->container->setParameter('dynamic_access_check_services', ['test_access']);
-
+    $this->checkProvider = new CheckProvider(['test_access'], $this->container);
     $this->checkProvider->addCheckService('test_access', 'access');
     $this->checkProvider->setChecks($this->routeCollection);
+
+    $this->accessManager = new AccessManager($this->routeProvider, $this->paramConverter, $this->argumentsResolverFactory, $this->currentUser, $this->checkProvider);
 
     $this->assertEquals(FALSE, $this->accessManager->checkNamedRoute('test_route_1', [], $this->account));
     $this->assertEquals(AccessResult::forbidden(), $this->accessManager->checkNamedRoute('test_route_1', [], $this->account, TRUE));
@@ -497,9 +494,9 @@ class AccessManagerTest extends UnitTestCase {
       ->willReturn($return_value);
     $container->set('test_incorrect_value', $access_check);
 
-    $access_manager = new AccessManager($route_provider, $this->paramConverter, $this->argumentsResolverFactory, $this->currentUser, $this->checkProvider);
-    $this->checkProvider->setContainer($container);
+    $this->checkProvider = new CheckProvider([], $container);
     $this->checkProvider->addCheckService('test_incorrect_value', 'access');
+    $access_manager = new AccessManager($route_provider, $this->paramConverter, $this->argumentsResolverFactory, $this->currentUser, $this->checkProvider);
 
     $this->expectException(AccessException::class);
     $access_manager->checkNamedRoute('test_incorrect_value', [], $this->account);
@@ -510,7 +507,7 @@ class AccessManagerTest extends UnitTestCase {
    *
    * @return array
    */
-  public function providerCheckException() {
+  public static function providerCheckException() {
     return [
       [[1]],
       ['string'],

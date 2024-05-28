@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\olivero\Functional\Update;
 
 use Drupal\FunctionalTests\Update\UpdatePathTestBase;
@@ -8,6 +10,7 @@ use Drupal\FunctionalTests\Update\UpdatePathTestBase;
  * Tests the update path for Olivero.
  *
  * @group Update
+ * @group #slow
  */
 class OliveroPostUpdateTest extends UpdatePathTestBase {
 

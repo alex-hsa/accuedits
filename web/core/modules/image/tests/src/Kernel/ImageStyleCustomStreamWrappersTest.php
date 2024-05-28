@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\image\Kernel;
 
 use Drupal\Core\DependencyInjection\ContainerBuilder;
@@ -102,7 +104,7 @@ class ImageStyleCustomStreamWrappersTest extends KernelTestBase {
    *   - The derivative expected stream wrapper scheme.
    *   - The stream wrapper service class.
    */
-  public function providerTestCustomStreamWrappers() {
+  public static function providerTestCustomStreamWrappers() {
     return [
       ['public', 'public', PublicStream::class],
       ['private', 'private', PrivateStream::class],

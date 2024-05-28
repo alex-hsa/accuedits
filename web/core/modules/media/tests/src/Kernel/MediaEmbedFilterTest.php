@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\media\Kernel;
 
 use Drupal\Core\Cache\Cache;
@@ -44,7 +46,7 @@ class MediaEmbedFilterTest extends MediaEmbedFilterTestBase {
   /**
    * Data provider for testBasics().
    */
-  public function providerTestBasics() {
+  public static function providerTestBasics() {
     $default_cacheability = (new CacheableMetadata())
       ->setCacheTags([
         '_media_test_embed_filter_access:media:1',
@@ -162,7 +164,7 @@ class MediaEmbedFilterTest extends MediaEmbedFilterTestBase {
   /**
    * Data provider for testAccessUnpublished().
    */
-  public function providerAccessUnpublished() {
+  public static function providerAccessUnpublished() {
     return [
       'user cannot access embedded media' => [
         FALSE,
@@ -260,7 +262,7 @@ class MediaEmbedFilterTest extends MediaEmbedFilterTestBase {
   /**
    * Data provider for testOverridesAltAndTitle().
    */
-  public function providerOverridesAltAndTitle() {
+  public static function providerOverridesAltAndTitle() {
     return [
       '`title` field property disabled ⇒ `title` is not overridable' => [
         FALSE,
@@ -306,7 +308,7 @@ class MediaEmbedFilterTest extends MediaEmbedFilterTestBase {
   /**
    * Data provider for testMissingEntityIndicator().
    */
-  public function providerMissingEntityIndicator() {
+  public static function providerMissingEntityIndicator() {
     return [
       'invalid UUID' => [
         'uuid' => 'invalidUUID',
@@ -425,7 +427,7 @@ class MediaEmbedFilterTest extends MediaEmbedFilterTestBase {
   /**
    * Data provider for testFilterIntegration().
    */
-  public function providerFilterIntegration() {
+  public static function providerFilterIntegration() {
     $default_asset_libraries = ['media/filter.caption'];
 
     $caption_additional_attributes = ['data-caption' => 'Yo.'];

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\user\Kernel\Migrate\d7;
 
 use Drupal\migrate\Plugin\MigrationInterface;
@@ -55,6 +57,7 @@ class MigrateUserRoleTest extends MigrateDrupal7TestBase {
       'access site in maintenance mode',
       'access site reports',
       'access user profiles',
+      'administer actions',
       'administer menu',
       'administer modules',
       'administer permissions',
@@ -141,7 +144,6 @@ class MigrateUserRoleTest extends MigrateDrupal7TestBase {
       'access toolbar',
       'access user contact forms',
       'add content to books',
-      'administer actions',
       'administer blocks',
       'administer book outlines',
       'administer comments',

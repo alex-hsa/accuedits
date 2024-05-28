@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\forum\Functional;
 
 use Drupal\Tests\BrowserTestBase;
@@ -9,6 +11,7 @@ use Drupal\node\Entity\NodeType;
  * Tests forum block view for private node access.
  *
  * @group forum
+ * @group legacy
  */
 class ForumNodeAccessTest extends BrowserTestBase {
 

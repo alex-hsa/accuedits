@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\KernelTests\Core\Entity;
 
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
@@ -171,7 +173,7 @@ class EntityTypedDataDefinitionTest extends KernelTestBase {
   /**
    * Provides test cases for testEntityDefinitionIsInternal.
    */
-  public function entityDefinitionIsInternalProvider() {
+  public static function entityDefinitionIsInternalProvider() {
     return [
       'internal' => [TRUE, TRUE],
       'external' => [FALSE, FALSE],

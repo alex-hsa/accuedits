@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\forum\Kernel\Migrate\d6;
 
 use Drupal\Tests\SchemaCheckTestTrait;
@@ -9,6 +11,7 @@ use Drupal\Tests\migrate_drupal\Kernel\d6\MigrateDrupal6TestBase;
  * Upgrade variables to forum.settings.yml.
  *
  * @group migrate_drupal_6
+ * @group legacy
  */
 class MigrateForumConfigsTest extends MigrateDrupal6TestBase {
 

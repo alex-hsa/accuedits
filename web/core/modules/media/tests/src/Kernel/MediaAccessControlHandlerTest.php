@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\media\Kernel;
 
 use Drupal\Core\Access\AccessResult;
@@ -11,6 +13,7 @@ use Drupal\Tests\user\Traits\UserCreationTrait;
  * Tests the media access control handler.
  *
  * @group media
+ * @group #slow
  *
  * @coversDefaultClass \Drupal\media\MediaAccessControlHandler
  */
@@ -132,7 +135,7 @@ class MediaAccessControlHandlerTest extends MediaKernelTestBase {
    * @return array
    *   The data sets to test.
    */
-  public function providerAccess() {
+  public static function providerAccess() {
     $test_data = [];
 
     // Check published / unpublished media access for a user owning the media
@@ -624,7 +627,7 @@ class MediaAccessControlHandlerTest extends MediaKernelTestBase {
    * @return array
    *   The data sets to test.
    */
-  public function providerCreateAccess() {
+  public static function providerCreateAccess() {
     $test_data = [];
 
     // Check create access for a user without permissions.

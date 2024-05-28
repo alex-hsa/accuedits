@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\content_translation\Functional;
 
 use Drupal\Core\Cache\Cache;
@@ -327,7 +329,7 @@ abstract class ContentTranslationUITestBase extends ContentTranslationTestBase {
       $user = $this->drupalCreateUser();
       $values[$langcode] = [
         'uid' => $user->id(),
-        'created' => REQUEST_TIME - mt_rand(0, 1000),
+        'created' => \Drupal::time()->getRequestTime() - mt_rand(0, 1000),
       ];
       $edit = [
         'content_translation[uid]' => $user->getAccountName(),

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\book\Kernel;
 
 use Drupal\node\Entity\Node;
@@ -10,6 +12,7 @@ use Drupal\KernelTests\KernelTestBase;
  * Tests that the Book module handles pending revisions correctly.
  *
  * @group book
+ * @group legacy
  */
 class BookPendingRevisionTest extends KernelTestBase {
 

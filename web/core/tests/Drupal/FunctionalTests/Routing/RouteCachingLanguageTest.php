@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\FunctionalTests\Routing;
 
 use Drupal\field\Entity\FieldConfig;
@@ -190,7 +192,7 @@ class RouteCachingLanguageTest extends BrowserTestBase {
   /**
    * Data provider for testFromUri().
    */
-  public function providerLanguage() {
+  public static function providerLanguage() {
     return [
       ['en'],
       ['fr'],

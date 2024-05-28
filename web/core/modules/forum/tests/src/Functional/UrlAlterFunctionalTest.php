@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\forum\Functional;
 
 use Drupal\Core\Database\Database;
@@ -10,6 +12,7 @@ use Drupal\taxonomy\Entity\Term;
  * Tests altering the inbound path and the outbound path.
  *
  * @group form
+ * @group legacy
  */
 class UrlAlterFunctionalTest extends BrowserTestBase {
 
