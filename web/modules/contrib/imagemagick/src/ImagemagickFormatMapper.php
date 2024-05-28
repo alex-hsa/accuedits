@@ -39,7 +39,6 @@ class ImagemagickFormatMapper implements ImagemagickFormatMapperInterface {
     protected readonly CacheBackendInterface $cache,
     protected readonly ConfigFactoryInterface $configFactory,
     protected readonly TypedConfigManagerInterface $typedConfig,
-    #[Autowire(service: 'sophron.mime_map.manager')]
     protected readonly MimeMapManagerInterface $mimeMapManager,
   ) {
   }

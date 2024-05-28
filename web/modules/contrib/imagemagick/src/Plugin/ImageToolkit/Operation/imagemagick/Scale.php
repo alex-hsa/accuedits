@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace Drupal\imagemagick\Plugin\ImageToolkit\Operation\imagemagick;
 
+use Drupal\Core\ImageToolkit\Attribute\ImageToolkitOperation;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+
 /**
  * Defines imagemagick Scale operation.
- *
- * @ImageToolkitOperation(
- *   id = "imagemagick_scale",
- *   toolkit = "imagemagick",
- *   operation = "scale",
- *   label = @Translation("Scale"),
- *   description = @Translation("Scales an image while maintaining aspect ratio. The resulting image can be smaller for one or both target dimensions.")
- * )
  */
+#[ImageToolkitOperation(
+  id: "imagemagick_scale",
+  toolkit: "imagemagick",
+  operation: "scale",
+  label: new TranslatableMarkup("Scale"),
+  description: new TranslatableMarkup("Scales an image while maintaining aspect ratio. The resulting image can be smaller for one or both target dimensions.")
+)]
 class Scale extends Resize {
 
   /**

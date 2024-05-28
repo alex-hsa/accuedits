@@ -5,19 +5,20 @@ declare(strict_types=1);
 namespace Drupal\imagemagick\Plugin\ImageToolkit\Operation\imagemagick;
 
 use Drupal\Component\Utility\Color;
+use Drupal\Core\ImageToolkit\Attribute\ImageToolkitOperation;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\imagemagick\PackageSuite;
 
 /**
  * Defines imagemagick CreateNew operation.
- *
- * @ImageToolkitOperation(
- *   id = "imagemagick_create_new",
- *   toolkit = "imagemagick",
- *   operation = "create_new",
- *   label = @Translation("Set a new image"),
- *   description = @Translation("Creates a new transparent resource and sets it for the image.")
- * )
  */
+#[ImageToolkitOperation(
+  id: "imagemagick_create_new",
+  toolkit: "imagemagick",
+  operation: "create_new",
+  label: new TranslatableMarkup("Set a new image"),
+  description: new TranslatableMarkup("Creates a new transparent image.")
+)]
 class CreateNew extends ImagemagickImageToolkitOperationBase {
 
   /**

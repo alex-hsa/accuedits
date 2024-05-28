@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace Drupal\imagemagick\Plugin\ImageToolkit\Operation\imagemagick;
 
+use Drupal\Core\ImageToolkit\Attribute\ImageToolkitOperation;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+
 /**
  * Defines imagemagick resize operation.
- *
- * @ImageToolkitOperation(
- *   id = "imagemagick_resize",
- *   toolkit = "imagemagick",
- *   operation = "resize",
- *   label = @Translation("Resize"),
- *   description = @Translation("Resizes an image to the given dimensions (ignoring aspect ratio).")
- * )
  */
+#[ImageToolkitOperation(
+  id: "imagemagick_resize",
+  toolkit: "imagemagick",
+  operation: "resize",
+  label: new TranslatableMarkup("Resize"),
+  description: new TranslatableMarkup("Resizes an image to the given dimensions (ignoring aspect ratio).")
+)]
 class Resize extends ImagemagickImageToolkitOperationBase {
 
   /**

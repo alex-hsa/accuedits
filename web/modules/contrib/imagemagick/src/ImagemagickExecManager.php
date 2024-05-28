@@ -77,7 +77,7 @@ class ImagemagickExecManager implements ImagemagickExecManagerInterface {
   /**
    * {@inheritdoc}
    */
-  public function getPackageSuite(string $package = NULL): PackageSuite {
+  public function getPackageSuite(?string $package = NULL): PackageSuite {
     if ($package === NULL) {
       $package = $this->configFactory->get('imagemagick.settings')->get('binaries');
     }
@@ -131,7 +131,7 @@ class ImagemagickExecManager implements ImagemagickExecManagerInterface {
 
     // Unless we had errors so far, try to invoke convert.
     if (!$status['errors']) {
-      $error = NULL;
+      $error = '';
       $this->runProcess([$executable, '-version'], $packageSuite->value, $status['output'], $error);
       if ($error !== '') {
         $status['errors'][] = $error;
@@ -144,7 +144,7 @@ class ImagemagickExecManager implements ImagemagickExecManagerInterface {
   /**
    * {@inheritdoc}
    */
-  public function execute(PackageCommand $command, ImagemagickExecArguments $arguments, string &$output = NULL, string &$error = NULL, string $path = NULL): bool {
+  public function execute(PackageCommand $command, ImagemagickExecArguments $arguments, string &$output, string &$error, ?string $path = NULL): bool {
     $packageSuite = $this->getPackageSuite();
 
     $cmdline = [];
@@ -290,7 +290,7 @@ class ImagemagickExecManager implements ImagemagickExecManagerInterface {
   /**
    * {@inheritdoc}
    */
-  public function runProcess(array $command, string $id, string &$output = NULL, string &$error = NULL): int|bool {
+  public function runProcess(array $command, string $id, string &$output, string &$error): int|bool {
     $command_line = '[' . implode('] [', $command) . ']';
     $output = '';
     $error = '';
@@ -374,7 +374,7 @@ class ImagemagickExecManager implements ImagemagickExecManagerInterface {
    * @return string
    *   The full path to the executable.
    */
-  protected function getExecutable(string $binary, string $path = NULL): string {
+  protected function getExecutable(string $binary, ?string $path = NULL): string {
     // $path is only passed from the validation of the image toolkit form, on
     // which the path to convert is configured. @see ::checkPath()
     if (!isset($path)) {

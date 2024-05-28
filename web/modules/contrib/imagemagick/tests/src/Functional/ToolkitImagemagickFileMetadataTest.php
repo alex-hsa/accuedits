@@ -6,6 +6,7 @@ namespace Drupal\Tests\imagemagick\Functional;
 
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Extension\ModuleExtensionList;
+use Drupal\Core\File\FileExists;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\file_mdm\FileMetadataInterface;
 use Drupal\file_mdm\FileMetadataManagerInterface;
@@ -154,9 +155,9 @@ class ToolkitImagemagickFileMetadataTest extends BrowserTestBase {
     $fmdm = $this->container->get(FileMetadataManagerInterface::class);
 
     // Prepare a copy of test files.
-    $this->fileSystem->copy($this->moduleList->getPath('imagemagick') . '/misc/test-multi-frame.gif', 'public://', FileSystemInterface::EXISTS_REPLACE);
-    $this->fileSystem->copy($this->moduleList->getPath('imagemagick') . '/misc/test-exif.jpeg', 'public://', FileSystemInterface::EXISTS_REPLACE);
-    $this->fileSystem->copy($this->moduleList->getPath('imagemagick') . '/misc/test-exif-icc.jpeg', 'public://', FileSystemInterface::EXISTS_REPLACE);
+    $this->fileSystem->copy($this->moduleList->getPath('imagemagick') . '/misc/test-multi-frame.gif', 'public://', FileExists::Replace);
+    $this->fileSystem->copy($this->moduleList->getPath('imagemagick') . '/misc/test-exif.jpeg', 'public://', FileExists::Replace);
+    $this->fileSystem->copy($this->moduleList->getPath('imagemagick') . '/misc/test-exif-icc.jpeg', 'public://', FileExists::Replace);
 
     // Perform tests without caching.
     $config_mdm->set('metadata_cache.enabled', FALSE)->save();
@@ -388,7 +389,7 @@ class ToolkitImagemagickFileMetadataTest extends BrowserTestBase {
     }
 
     // Files in temporary:// must not be cached.
-    $this->fileSystem->copy($this->moduleList->getPath('imagemagick') . '/misc/test-multi-frame.gif', 'temporary://', FileSystemInterface::EXISTS_REPLACE);
+    $this->fileSystem->copy($this->moduleList->getPath('imagemagick') . '/misc/test-multi-frame.gif', 'temporary://', FileExists::Replace);
     $source_uri = 'temporary://test-multi-frame.gif';
     $fmdm->release($source_uri);
     $source_image_md = $fmdm->uri($source_uri);

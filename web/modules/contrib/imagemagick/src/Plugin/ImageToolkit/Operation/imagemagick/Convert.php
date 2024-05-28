@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace Drupal\imagemagick\Plugin\ImageToolkit\Operation\imagemagick;
 
+use Drupal\Core\ImageToolkit\Attribute\ImageToolkitOperation;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+
 /**
  * Defines imagemagick Convert operation.
- *
- * @ImageToolkitOperation(
- *   id = "imagemagick_convert",
- *   toolkit = "imagemagick",
- *   operation = "convert",
- *   label = @Translation("Convert"),
- *   description = @Translation("Instructs the toolkit to save the image with a specified format.")
- * )
  */
+#[ImageToolkitOperation(
+  id: "imagemagick_convert",
+  toolkit: "imagemagick",
+  operation: "convert",
+  label: new TranslatableMarkup("Convert"),
+  description: new TranslatableMarkup("Instructs the toolkit to save the image with a specified extension.")
+)]
 class Convert extends ImagemagickImageToolkitOperationBase {
 
   /**

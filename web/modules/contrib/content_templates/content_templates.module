@@ -7,6 +7,8 @@
 
 use Drupal\content_templates\Form\NodeDeleteForm;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\field\Entity\FieldConfig;
@@ -106,7 +108,7 @@ function content_templates_form_alter(&$form, FormStateInterface $form_state, $f
     $node = \Drupal::routeMatch()->getParameter('node');
     if ($node instanceof NodeInterface) {
       $form_state->set('cloned_from', $node->id());
-      $form['actions']['submit']['#submit'][] = 'content_templates_quick_node_clone_submit';
+      array_unshift($form['actions']['submit']['#submit'], 'content_templates_quick_node_clone_submit');
     }
   }
 }
@@ -117,7 +119,7 @@ function content_templates_form_alter(&$form, FormStateInterface $form_state, $f
 function content_templates_quick_node_clone_submit($form, FormStateInterface $form_state) {
   $node = $form_state->getFormObject()->getEntity();
   // Add mapping for the cloned node.
-  \Drupal::keyValue('content_templates')->set($node->id(), $form_state->get('cloned_from'));
+  $node->set('template', $form_state->get('cloned_from'));
 }
 
 /**
@@ -125,22 +127,18 @@ function content_templates_quick_node_clone_submit($form, FormStateInterface $fo
  */
 function content_templates_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   $node = $form_state->getFormObject()->getEntity();
-  if (!$node->isNew()) {
+  if (!$node->get('template')->isEmpty()) {
     // Get the mapping.
-    $template = \Drupal::keyValue('content_templates')->get($node->id());
+    $template = $node->get('template')->entity;
     if ($template) {
-      // Try to load the template node.
-      $template = \Drupal::entityTypeManager()->getStorage('node')->load($template);
-      if ($template) {
-        $url = $template->toUrl('edit-form');
-        $url->setOption('attributes', ['target' => '_blank']);
-        $form['meta']['template'] = [
-          '#type' => 'item',
-          '#title' => t('Created from'),
-          '#markup' => Link::fromTextAndUrl($template->label(), $url)->toString(),
-          '#wrapper_attributes' => ['class' => ['entity-meta__template']],
-        ];
-      }
+      $url = $template->toUrl('edit-form');
+      $url->setOption('attributes', ['target' => '_blank']);
+      $form['meta']['template'] = [
+        '#type' => 'item',
+        '#title' => t('Created from'),
+        '#markup' => Link::fromTextAndUrl($template->label(), $url)->toString(),
+        '#wrapper_attributes' => ['class' => ['entity-meta__template']],
+      ];
     }
   }
 }
@@ -152,5 +150,71 @@ function content_templates_menu_local_tasks_alter(&$data, $route_name) {
   if ($route_name == 'quick_node_clone.node.quick_clone') {
     // Remove all tabs from the quick node clone form because it is confusing.
     $data['tabs'][0] = [];
+  }
+}
+
+/**
+ * Implements hook_entity_base_field_info().
+ */
+function content_templates_entity_base_field_info(EntityTypeInterface $entity_type) {
+  $fields = [];
+  if ($entity_type->id() == 'node') {
+    $fields['template'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Content Template'))
+      ->setDescription(t('The ID of content template entity.'))
+      ->setRevisionable(FALSE)
+      ->setTranslatable(FALSE)
+      ->setCardinality(1)
+      ->setSetting('target_type', 'node')
+      ->setSetting('handler', 'default')
+      ->setDisplayConfigurable('form', FALSE)
+      ->setDisplayConfigurable('view', FALSE);
+  }
+  return $fields;
+}
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function content_templates_views_data_alter(array &$data) {
+  $data['node_field_data']['template']['filter']['id'] = 'template_name';
+}
+
+/**
+ * Adds content template field and filter to "Content" view.
+ */
+function content_templates_adjust_content_overview() {
+  if (\Drupal::moduleHandler()->moduleExists('views')) {
+    $view = \Drupal::entityTypeManager()->getStorage('view')->load('content');
+    if ($view) {
+      /** @var \Drupal\views\ViewExecutable $view_exec */
+      $view_exec = \Drupal::service('views.executable')->get($view);
+      $filter_settings = [
+        'exposed' => TRUE,
+        'expose' => [
+          'label' => 'Content Template',
+          'identifier' => 'template',
+        ],
+      ];
+      $view_exec->addHandler('default', 'filter', 'node_field_data', 'template', $filter_settings, NULL);
+      $field_settings = [
+        'settings' => [
+          'link' => TRUE,
+        ],
+      ];
+      $view_exec->addHandler('default', 'field', 'node_field_data', 'template', $field_settings, NULL);
+      $fields = $view_exec->displayHandlers->get('default')->options['fields'];
+      // Re-arrange fields order.
+      $template = $fields['template'];
+      unset($fields['template']);
+      $key = 'operations';
+      $key_pos = array_search($key, array_keys($fields));
+      if ($key_pos !== FALSE) {
+        $second_array = array_splice($fields, $key_pos);
+        $sorted_fields = array_merge($fields, ['template' => $template], $second_array);
+        $view_exec->displayHandlers->get('default')->setOption('fields', $sorted_fields);
+      }
+      $view_exec->save();
+    }
   }
 }

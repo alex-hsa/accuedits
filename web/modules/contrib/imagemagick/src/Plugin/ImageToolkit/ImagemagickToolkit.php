@@ -10,9 +10,11 @@ use Drupal\Component\Serialization\Yaml;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\ImageToolkit\Attribute\ImageToolkit;
 use Drupal\Core\ImageToolkit\ImageToolkitBase;
 use Drupal\Core\ImageToolkit\ImageToolkitOperationManagerInterface;
 use Drupal\Core\Link;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\file_mdm\FileMetadataManagerInterface;
 use Drupal\imagemagick\ArgumentMode;
@@ -28,12 +30,11 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Provides ImageMagick integration toolkit for image manipulation.
- *
- * @ImageToolkit(
- *   id = "imagemagick",
- *   title = @Translation("ImageMagick image toolkit")
- * )
  */
+#[ImageToolkit(
+  id: "imagemagick",
+  title: new TranslatableMarkup("ImageMagick image toolkit"),
+)]
 class ImagemagickToolkit extends ImageToolkitBase {
 
   /**
@@ -236,8 +237,9 @@ class ImagemagickToolkit extends ImageToolkitBase {
     // Image formats supported by the package.
     if (empty($status['errors'])) {
       $this->arguments()->add(['-list', 'format'], ArgumentMode::PreSource);
-      $output = NULL;
-      $this->getExecManager()->execute(PackageCommand::Convert, $this->arguments(), $output);
+      $output = '';
+      $error = '';
+      $this->getExecManager()->execute(PackageCommand::Convert, $this->arguments(), $output, $error);
       $this->arguments()->reset();
       $formats_info = implode('<br />', explode("\n", preg_replace('/\r/', '', Html::escape($output))));
       $form['formats']['list'] = [
@@ -745,7 +747,9 @@ class ImagemagickToolkit extends ImageToolkitBase {
     }
 
     // Execute the command and return.
-    return $this->getExecManager()->execute(PackageCommand::Convert, $this->arguments) && file_exists($this->arguments()->getDestinationLocalPath());
+    $output = '';
+    $error = '';
+    return $this->getExecManager()->execute(PackageCommand::Convert, $this->arguments, $output, $error) && file_exists($this->arguments()->getDestinationLocalPath());
   }
 
   /**

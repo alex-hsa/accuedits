@@ -193,8 +193,9 @@ class ImagemagickIdentify extends FileMetadataPluginBase {
     $this->eventDispatcher->dispatch(new ImagemagickExecutionEvent($arguments), ImagemagickExecutionEvent::PRE_IDENTIFY_EXECUTE);
 
     // Execute the 'identify' command.
-    $output = NULL;
-    $ret = $this->execManager->execute(PackageCommand::Identify, $arguments, $output);
+    $output = '';
+    $error = '';
+    $ret = $this->execManager->execute(PackageCommand::Identify, $arguments, $output, $error);
 
     // Process results.
     $data = [];

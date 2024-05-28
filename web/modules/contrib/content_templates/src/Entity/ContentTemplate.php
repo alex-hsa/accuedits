@@ -2,12 +2,12 @@
 
 namespace Drupal\content_templates\Entity;
 
-use Drupal\Core\Entity\EntityStorageInterface;
-use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityPublishedTrait;
+use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\user\UserInterface;
 
 /**
@@ -48,10 +48,6 @@ use Drupal\user\UserInterface;
  *     "published" = "status",
  *   },
  *   links = {
- *     "canonical" = "/admin/content/template/{content_template}",
- *     "add-form" = "/admin/content/template/add",
- *     "edit-form" = "/admin/content/template/{content_template}/edit",
- *     "delete-form" = "/admin/content/template/{content_template}/delete",
  *     "collection" = "/admin/content/template",
  *   },
  *   field_ui_base_route = "content_template.settings"

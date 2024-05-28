@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace Drupal\imagemagick\Plugin\ImageToolkit\Operation\imagemagick;
 
+use Drupal\Core\ImageToolkit\Attribute\ImageToolkitOperation;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+
 /**
  * Defines imagemagick Desaturate operation.
- *
- * @ImageToolkitOperation(
- *   id = "imagemagick_desaturate",
- *   toolkit = "imagemagick",
- *   operation = "desaturate",
- *   label = @Translation("Desaturate"),
- *   description = @Translation("Converts an image to grayscale.")
- * )
  */
+#[ImageToolkitOperation(
+  id: "imagemagick_desaturate",
+  toolkit: "imagemagick",
+  operation: "desaturate",
+  label: new TranslatableMarkup("Desaturate"),
+  description: new TranslatableMarkup("Converts an image to grayscale.")
+)]
 class Desaturate extends ImagemagickImageToolkitOperationBase {
 
   /**

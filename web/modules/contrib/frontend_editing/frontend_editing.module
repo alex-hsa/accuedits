@@ -204,6 +204,13 @@ function frontend_editing_entity_view_alter(&$build, EntityInterface $entity, En
           ],
         ],
       ];
+      // Add parent field view mode to render array of children.
+      foreach (Element::getVisibleChildren($build[$field_name]) as $delta) {
+        $item = $build[$field_name][$delta];
+        if (!empty($item['#pre_render'])) {
+          $build[$field_name][$delta]['#parent_field_view_mode'] = $build[$field_name]['#view_mode'];
+        }
+      }
       $build['frontend_editing'][$field_name . '_update_content'] = [
         '#type' => 'link',
         '#title' => t('Reload content for this field'),
@@ -339,7 +346,7 @@ function frontend_editing_entity_view_alter(&$build, EntityInterface $entity, En
           'paragraph' => $entity->id(),
         ], [
           'query' => [
-            'view_mode_id' => $build['#view_mode'],
+            'view_mode_id' => $build['#parent_field_view_mode'] ?? 'default',
           ],
         ]),
         '#attributes' => [
@@ -360,7 +367,7 @@ function frontend_editing_entity_view_alter(&$build, EntityInterface $entity, En
           'paragraph' => $entity->id(),
         ], [
           'query' => [
-            'view_mode_id' => $build['#view_mode'],
+            'view_mode_id' => $build['#parent_field_view_mode'] ?? 'default',
           ],
         ]),
         '#attributes' => [
@@ -388,7 +395,7 @@ function frontend_editing_entity_view_alter(&$build, EntityInterface $entity, En
           'before' => 1,
         ], [
           'query' => [
-            'view_mode_id' => $build['#view_mode'],
+            'view_mode_id' => $build['#parent_field_view_mode'] ?? 'default',
           ],
         ]),
         '#attributes' => [
@@ -412,7 +419,7 @@ function frontend_editing_entity_view_alter(&$build, EntityInterface $entity, En
           'before' => 0,
         ], [
           'query' => [
-            'view_mode_id' => $build['#view_mode'],
+            'view_mode_id' => $build['#parent_field_view_mode'] ?? 'default',
           ],
         ]),
         '#attributes' => [

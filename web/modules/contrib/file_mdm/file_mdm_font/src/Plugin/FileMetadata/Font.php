@@ -14,7 +14,7 @@ use FontLib\Table\Type\name;
 /**
  * FileMetadata plugin for TTF/OTF/WOFF font information.
  *
- * Uses the 'PHP Font Lib' library (PhenX/php-font-lib).
+ * Uses the 'PHP Font Lib' library (dompdf/php-font-lib).
  */
 #[FileMetadata(
   id: 'font',

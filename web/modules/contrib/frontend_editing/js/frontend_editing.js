@@ -69,9 +69,14 @@
       removePlaceholder();
     });
 
+    const actions = document.createElement("div");
+    actions.classList.add('editing-container__actions');
+    actions.appendChild(widthToggle);
+    actions.appendChild(editClose);
+
     // Populate container.
-    editContainer.appendChild(widthToggle);
-    editContainer.appendChild(editClose);
+    editContainer.appendChild(actions);
+
     // Load editing iFrame and append.
     const iframe = document.createElement('iframe');
     iframe.onload = function () {

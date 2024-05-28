@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace Drupal\imagemagick\Plugin\ImageToolkit\Operation\imagemagick;
 
+use Drupal\Core\ImageToolkit\Attribute\ImageToolkitOperation;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+
 /**
  * Defines imagemagick Scale and crop operation.
- *
- * @ImageToolkitOperation(
- *   id = "imagemagick_scale_and_crop",
- *   toolkit = "imagemagick",
- *   operation = "scale_and_crop",
- *   label = @Translation("Scale and crop"),
- *   description = @Translation("Scales an image to the exact width and height given. This plugin achieves the target aspect ratio by cropping the original image equally on both sides, or equally on the top and bottom. This function is useful to create uniform sized avatars from larger images.")
- * )
  */
+#[ImageToolkitOperation(
+  id: "imagemagick_scale_and_crop",
+  toolkit: "imagemagick",
+  operation: "scale_and_crop",
+  label: new TranslatableMarkup("Scale and crop"),
+  description: new TranslatableMarkup("Scales an image to the exact width and height given. This plugin achieves the target aspect ratio by cropping the original image equally on both sides, or equally on the top and bottom. This function is useful to create uniform sized avatars from larger images.")
+)]
 class ScaleAndCrop extends ImagemagickImageToolkitOperationBase {
 
   /**

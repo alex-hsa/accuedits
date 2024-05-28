@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace Drupal\imagemagick\Plugin\ImageToolkit\Operation\imagemagick;
 
+use Drupal\Core\ImageToolkit\Attribute\ImageToolkitOperation;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+
 /**
  * Defines imagemagick Crop operation.
- *
- * @ImageToolkitOperation(
- *   id = "imagemagick_crop",
- *   toolkit = "imagemagick",
- *   operation = "crop",
- *   label = @Translation("Crop"),
- *   description = @Translation("Crops an image to a rectangle specified by the given dimensions.")
- * )
  */
+#[ImageToolkitOperation(
+  id: "imagemagick_crop",
+  toolkit: "imagemagick",
+  operation: "crop",
+  label: new TranslatableMarkup("Crop"),
+  description: new TranslatableMarkup("Crops an image to a rectangle specified by the given dimensions.")
+)]
 class Crop extends ImagemagickImageToolkitOperationBase {
 
   /**

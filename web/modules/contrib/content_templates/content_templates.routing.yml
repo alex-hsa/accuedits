@@ -4,7 +4,20 @@ content_templates.node.template:
     _controller: '\Drupal\content_templates\Controller\TemplateController::addEdit'
     _title_callback: '\Drupal\content_templates\Controller\TemplateController::templatePageTitle'
   requirements:
-    _custom_access: '\Drupal\content_templates\Controller\TemplateAccess::create'
+    _custom_access: '\Drupal\content_templates\Controller\TemplateController::createAccess'
+  options:
+    _node_operation_route: TRUE
+    parameters:
+      node:
+        type: entity:node
+
+content_templates.node.overview:
+  path: '/node/{node}/overview'
+  defaults:
+    _controller: '\Drupal\content_templates\Controller\TemplateController::overview'
+    _title_callback: '\Drupal\content_templates\Controller\TemplateController::overviewPageTitle'
+  requirements:
+    _custom_access: '\Drupal\content_templates\Controller\TemplateController::overviewAccess'
   options:
     _node_operation_route: TRUE
     parameters:

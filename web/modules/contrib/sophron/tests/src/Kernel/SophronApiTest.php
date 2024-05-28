@@ -40,7 +40,7 @@ class SophronApiTest extends KernelTestBase {
    * @covers ::getExtension
    */
   public function testGetExtension(): void {
-    $manager = \Drupal::service('sophron.mime_map.manager');
+    $manager = \Drupal::service(MimeMapManagerInterface::class);
     $this->assertEquals(DrupalMap::class, $manager->getMapClass());
     $this->assertContains('atomsrv', $manager->listExtensions());
     $this->assertEquals('application/atomserv+xml', $manager->getExtension('atomsrv')->getDefaultType());
@@ -55,7 +55,7 @@ class SophronApiTest extends KernelTestBase {
    * @covers ::getType
    */
   public function testGetType(): void {
-    $manager = \Drupal::service('sophron.mime_map.manager');
+    $manager = \Drupal::service(MimeMapManagerInterface::class);
     $this->assertContains('application/atomserv+xml', $manager->listTypes());
     $this->assertEquals(['atomsrv'], $manager->getType('application/atomserv+xml')->getExtensions());
   }
@@ -64,7 +64,7 @@ class SophronApiTest extends KernelTestBase {
    * @covers ::getType
    */
   public function testGetMissingType(): void {
-    $manager = \Drupal::service('sophron.mime_map.manager');
+    $manager = \Drupal::service(MimeMapManagerInterface::class);
     // No extensions for type.
     $this->expectException(MappingException::class);
     $manager->getType('a/b')->getExtensions();
@@ -74,7 +74,7 @@ class SophronApiTest extends KernelTestBase {
    * @covers ::getType
    */
   public function testGetMalformedType(): void {
-    $manager = \Drupal::service('sophron.mime_map.manager');
+    $manager = \Drupal::service(MimeMapManagerInterface::class);
     // Malformed MIME type.
     $this->expectException(MalformedTypeException::class);
     $manager->getType('application/');
@@ -107,7 +107,7 @@ class SophronApiTest extends KernelTestBase {
         ],
       ])
       ->save();
-    $manager = \Drupal::service('sophron.mime_map.manager');
+    $manager = \Drupal::service(MimeMapManagerInterface::class);
     $this->assertSame(DefaultMap::class, $manager->getMapClass());
     $this->assertCount(4, $manager->getMappingErrors(DefaultMap::class));
   }

@@ -38,7 +38,7 @@ interface ImagemagickExecManagerInterface {
    * @return \Drupal\imagemagick\PackageSuite
    *   The package suite.
    */
-  public function getPackageSuite(string $package = NULL): PackageSuite;
+  public function getPackageSuite(?string $package = NULL): PackageSuite;
 
   /**
    * Verifies file path of the executable binary by checking its version.
@@ -64,11 +64,9 @@ interface ImagemagickExecManagerInterface {
    * @param \Drupal\imagemagick\ImagemagickExecArguments $arguments
    *   An ImageMagick execution arguments object.
    * @param string &$output
-   *   (optional) A variable to assign the shell stdout to, passed by
-   *   reference.
+   *   A variable to assign the shell STDOUT to, passed by reference.
    * @param string &$error
-   *   (optional) A variable to assign the shell stderr to, passed by
-   *   reference.
+   *   A variable to assign the shell STDERR to, passed by reference.
    * @param string $path
    *   (optional) A custom file path to the executable binary.
    *
@@ -76,7 +74,7 @@ interface ImagemagickExecManagerInterface {
    *   TRUE if the command succeeded, FALSE otherwise. The error exit status
    *   code integer returned by the executable is logged.
    */
-  public function execute(PackageCommand $command, ImagemagickExecArguments $arguments, string &$output = NULL, string &$error = NULL, string $path = NULL): bool;
+  public function execute(PackageCommand $command, ImagemagickExecArguments $arguments, string &$output, string &$error, ?string $path = NULL): bool;
 
   /**
    * Executes a command on the operating system, via Symfony Process.
@@ -86,12 +84,10 @@ interface ImagemagickExecManagerInterface {
    * @param string $id
    *   An identifier for the process to be spawned on the operating system.
    * @param string &$output
-   *   (optional) A variable to assign the shell stdout to, passed by
-   *   reference.
+   *   A variable to assign the shell STDOUT to, passed by reference.
    * @param string &$error
-   *   (optional) A variable to assign the shell stderr to, passed by
-   *   reference.
+   *   A variable to assign the shell STDERR to, passed by reference.
    */
-  public function runProcess(array $command, string $id, string &$output = NULL, string &$error = NULL): int|bool;
+  public function runProcess(array $command, string $id, string &$output, string &$error): int|bool;
 
 }

@@ -51,9 +51,9 @@ class SettingsForm extends ConfigFormBase {
   public function __construct(
     ConfigFactoryInterface $config_factory,
     protected MimeMapManagerInterface $mimeMapManager,
-    protected TypedConfigManagerInterface $typedConfig
+    protected TypedConfigManagerInterface $typedConfig,
   ) {
-    parent::__construct($config_factory);
+    parent::__construct($config_factory, $typedConfig);
   }
 
   /**
@@ -62,7 +62,7 @@ class SettingsForm extends ConfigFormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('config.factory'),
-      $container->get('sophron.mime_map.manager'),
+      $container->get(MimeMapManagerInterface::class),
       $container->get('config.typed')
     );
   }

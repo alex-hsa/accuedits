@@ -9,7 +9,7 @@ dependencies:
   - drupal:taxonomy
   - quick_node_clone:quick_node_clone
 
-# Information added by Drupal.org packaging script on 2023-10-11
-version: '1.0.0'
+# Information added by Drupal.org packaging script on 2024-05-25
+version: '1.1.0'
 project: 'content_templates'
-datestamp: 1697041551
+datestamp: 1716616879
