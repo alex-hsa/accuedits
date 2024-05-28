@@ -1,6 +1,14 @@
+media:
+  image: default
 paragraphs_library_item:
   paragraphs_library_item: default
 paragraph:
+  accordion: default
+  accordion_item: default
+  card: default
+  carousel: default
+  from_library: default
+  hero: default
   highlights: default
   highlights_item: default
   icon_card: default
@@ -8,3 +16,8 @@ paragraph:
   lead: default
   media_cards: default
   spotlight: default
+  step_item: default
+  steps: default
+  table: default
+  text_shout: default
+  textbox: default

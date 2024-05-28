@@ -3,6 +3,7 @@ module.exports = {
   content: [
     "./templates/**/*.html.twig",
     "./components/**/*.twig",
+    "../../../modules/contrib/tb_megamenu/templates/*.html.twig",
   ],
   safelist: [
     'badge-gray',
@@ -18,6 +19,7 @@ module.exports = {
     'badge-warning',
     'bg-gray',
     'bg-primary',
+    'hover:bg-primary',
     'bg-secondary',
     'bg-accent',
     'bg-neutral',

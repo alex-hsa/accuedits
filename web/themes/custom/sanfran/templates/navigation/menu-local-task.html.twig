@@ -14,4 +14,4 @@
  * @see template_preprocess_menu_local_task()
  */
 #}
-<li{{ attributes.addClass('btn join-item').addClass(is_active ? 'is-active btn-active') }}>{{ link }}</li>
+<li{{ attributes.addClass('btn join-item bg-info [&>a]:text-base-200 hover:bg-secondary [&>a:hover]:bg-transparent').addClass(is_active ? 'is-active btn-active bg-secondary [&>a.is-active]:bg-transparent [&>a]:text-base-200') }}>{{ link }}</li>

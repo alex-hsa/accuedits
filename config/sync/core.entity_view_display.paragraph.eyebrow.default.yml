@@ -1,0 +1,31 @@
+uuid: 738967dc-2e18-4640-b0b4-0cfe5e4b3b6e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.eyebrow.field_background_color
+    - field.field.paragraph.eyebrow.field_eyebrow
+    - paragraphs.paragraphs_type.eyebrow
+id: paragraph.eyebrow.default
+targetEntityType: paragraph
+bundle: eyebrow
+mode: default
+content:
+  field_background_color:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: full
+      link: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_eyebrow:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

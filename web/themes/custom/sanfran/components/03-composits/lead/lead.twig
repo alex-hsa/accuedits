@@ -9,7 +9,7 @@
 {% if background_glass == 'yes' %}
   {% set background_glass_classes = ' p-8 glass gui-block' %}
   {% if background_color %}
-    {% set background_glass_classes = background_glass_classes ~ ' relative rounded-2xl rounded-br-lg border-[3px] border-solid border-' ~ background_color ~ ' after:border-[3px] after:border-solid after:border-primary' %}
+    {% set background_glass_classes = background_glass_classes ~ ' relative rounded-2xl rounded-br-xl border-[3px] border-solid border-' ~ background_color ~ ' after:border-[3px] after:border-solid after:border-primary' %}
   {% endif %}
 {% endif %}
 
@@ -22,11 +22,15 @@
   ]|join(' ')|trim %}
 
 
-<hgroup {{ attributes.addClass(paragraph_classes).addClass(alignment_class).addClass(background_glass_classes).addClass('rounded-lg ' ~ width) }}>
+<hgroup {{ attributes.addClass(paragraph_classes).addClass(alignment_class).addClass(background_glass_classes).addClass('rounded-2xl ' ~ width) }}>
   {{ quick_edit }} 
 
   {% if eyebrow %}
-      <div class="eyebrow mb-2 uppercase badge badge-{{background_color}}">{{ eyebrow }}</div>
+      {{ include('sanfran:eyebrow', {
+          eyebrow,
+          background_color,
+          })
+      }}
   {% endif %}
 
   {% if heading %}

@@ -18,6 +18,10 @@ function admin_template_overrides_theme($existing, $type, $theme, $path) {
       'template' => 'paragraph--carousel',
       'base hook' => 'paragraph'
     ],
+    'paragraph__eyebrow' => [
+      'template' => 'paragraph--eyebrow',
+      'base hook' => 'paragraph'
+    ],
     'paragraph__featured' => [
       'template' => 'paragraph--featured',
       'base hook' => 'paragraph'

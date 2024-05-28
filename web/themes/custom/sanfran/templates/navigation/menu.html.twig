@@ -30,7 +30,7 @@
   {% import _self as menus %}
   {% if items %}
     {% if menu_level == 0 %}
-      <ul{{ attributes.addClass('menu xl:menu-horizontal lg:min-w-max bg-base-200 rounded-box') }} id="main-menu">
+      <ul{{ attributes.addClass('menu xl:menu-horizontal lg:min-w-max bg-primary/[.25] [&>li_a]:rounded-none rounded-lg') }} id="main-menu">
     {% else %}
       <ul class="menu">
     {% endif %}
