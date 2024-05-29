@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.spotlight.field_background_color
+    - field.field.paragraph.spotlight.field_background_pattern
     - field.field.paragraph.spotlight.field_border
     - field.field.paragraph.spotlight.field_flip
     - field.field.paragraph.spotlight.field_lead
@@ -17,6 +18,7 @@ third_party_settings:
   field_group:
     group_options:
       children:
+        - field_background_pattern
         - field_background_color
         - field_flip
         - field_border
@@ -39,20 +41,27 @@ mode: default
 content:
   field_background_color:
     type: options_select
-    weight: 4
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_background_pattern:
+    type: media_library_widget
+    weight: 6
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
   field_border:
     type: boolean_checkbox
-    weight: 6
+    weight: 9
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_flip:
     type: boolean_checkbox
-    weight: 5
+    weight: 8
     region: content
     settings:
       display_label: true

@@ -7,15 +7,19 @@
 {% endif %}
 
 {% if orientation == 'horizontal' %}
-  {% set orientation_class = 'flex flex-row [&>div.header]:px-8' %}
+  {% set orientation_class = 'flex flex-row [&>div.lead]:mr-4 pr-4' %}
 {% else %}
-  {% set orientation_class = '[&>div.header]:py-8' %}
+  {% set orientation_class = '[&>div.lead]:mb-4' %}
 {% endif %}
 
 {% if border == 'yes' %}
-  {% set border_class = 'border p-4 rounded-lg' %}
+  {% set border_class = 'border rounded-lg' %}
 {% else %}
   {% set border_class = '' %}
+{% endif %}
+
+{% if background_pattern %}
+  {% set background_pattern_style = "background-image: url('" ~ background_pattern|file_url ~ "');" %}
 {% endif %}
 
 {# {% set background_color_array = [
@@ -41,7 +45,7 @@
 
 <section {{ attributes.addClass(paragraph_classes).addClass(orientation_class).addClass(border_class) }}>
   {{ quick_edit }}
-  <div class="lead m-8">
+  <div class="lead p-8 rounded-lg"{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
       {% for key, item in lead_item %}
           {% if key|first != '#' %}
               {{ item }}
@@ -49,12 +53,11 @@
       {% endfor %}
   </div>
 
-
-    <div class="items my-auto">
-        {% for key, item in accordion_items %}
-            {% if key|first != '#' %}
-                {{ item }}
-            {% endif %}
-        {% endfor %}
-    </div>
+  <div class="items my-auto">
+      {% for key, item in accordion_items %}
+          {% if key|first != '#' %}
+              {{ item }}
+          {% endif %}
+      {% endfor %}
+  </div>
 </section>

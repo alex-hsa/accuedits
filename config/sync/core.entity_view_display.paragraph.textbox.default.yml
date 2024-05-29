@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.textbox.field_background_color
+    - field.field.paragraph.textbox.field_background_pattern
     - field.field.paragraph.textbox.field_border
     - field.field.paragraph.textbox.field_lead
     - field.field.paragraph.textbox.field_placement
@@ -24,6 +25,15 @@ content:
       link: false
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_background_pattern:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 1
     region: content
   field_border:
     type: boolean

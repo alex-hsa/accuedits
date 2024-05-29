@@ -29,6 +29,7 @@
 {% set imageAlt =  'Alt text for media image' %}
 {% set video_remote = content.field_media.0['#media'].field_media_oembed_video.0.value %}
 {% set background_color = content.field_background_color|field_target_entity.name.entity.name.value|lower|default('') %}
+{% set background_pattern = content.field_background_pattern|field_target_entity.field_media_image.entity.uri.value|default('') %}
 {% set flip = content.field_flip.0['#markup']|lower|default('') %}
 {% set border = content.field_border.0['#markup']|lower|default('') %}
 {% set lead_item = content.field_lead %}
@@ -40,6 +41,7 @@
   imageAlt,
   video_remote,
   background_color,
+  background_pattern,
   flip,
   border,
   lead_item,

@@ -1,0 +1,29 @@
+uuid: 363d76d7-f856-4592-9b00-0cab627800d0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_background_pattern
+    - media.type.pattern
+    - paragraphs.paragraphs_type.carousel
+id: paragraph.carousel.field_background_pattern
+field_name: field_background_pattern
+entity_type: paragraph
+bundle: carousel
+label: 'Background Pattern'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      pattern: pattern
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: image
+field_type: entity_reference

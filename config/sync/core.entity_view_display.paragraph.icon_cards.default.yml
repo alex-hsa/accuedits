@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.icon_cards.field_background_color
+    - field.field.paragraph.icon_cards.field_background_pattern
     - field.field.paragraph.icon_cards.field_border
     - field.field.paragraph.icon_cards.field_columns
     - field.field.paragraph.icon_cards.field_items
@@ -28,6 +29,15 @@ content:
       link: false
     third_party_settings: {  }
     weight: 4
+    region: content
+  field_background_pattern:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 1
     region: content
   field_border:
     type: boolean

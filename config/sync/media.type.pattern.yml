@@ -1,0 +1,14 @@
+uuid: 54ddd725-eb31-4e5e-940e-c27261aa2f50
+langcode: en
+status: true
+dependencies: {  }
+id: pattern
+label: Pattern
+description: ''
+source: image
+queue_thumbnail_downloads: false
+new_revision: false
+source_configuration:
+  source_field: field_media_image
+field_map:
+  name: name

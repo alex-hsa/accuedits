@@ -4719,6 +4719,10 @@ details.collapse summary::-webkit-details-marker{
   padding-right: 2rem;
 }
 
+.pr-4{
+  padding-right: 1rem;
+}
+
 .text-left{
   text-align: left;
 }
@@ -5286,6 +5290,36 @@ section{
   margin-bottom: 0px;
 }
 
+.\[\&\>div\.lead22\]\:m-8>div.lead22{
+  margin: 2rem;
+}
+
+.\[\&\>div\.lead22\]\:mb-8>div.lead22{
+  margin-bottom: 2rem;
+}
+
+.\[\&\>div\.lead22\]\:mb-4>div.lead22{
+  margin-bottom: 1rem;
+}
+
+.\[\&\>div\.lead22\]\:mr-8>div.lead22{
+  margin-right: 2rem;
+}
+
+.\[\&\>div\.lead22\]\:mr-4>div.lead22{
+  margin-right: 1rem;
+}
+
+.\[\&\>div\.lead22\]\:py-8>div.lead22{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.\[\&\>div\.lead22\]\:px-8>div.lead22{
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
 .\[\&\>div\.lead\]\:order-2>div.lead{
   order: 2;
 }
@@ -5296,6 +5330,26 @@ section{
 
 .\[\&\>div\.lead\]\:ml-0>div.lead{
   margin-left: 0px;
+}
+
+.\[\&\>div\.lead\]\:mb-4>div.lead{
+  margin-bottom: 1rem;
+}
+
+.\[\&\>div\.lead\]\:mb-2>div.lead{
+  margin-bottom: 0.5rem;
+}
+
+.\[\&\>div\.lead\]\:mb-24>div.lead{
+  margin-bottom: 6rem;
+}
+
+.\[\&\>div\.lead\]\:mb-8>div.lead{
+  margin-bottom: 2rem;
+}
+
+.\[\&\>div\.lead\]\:mr-4>div.lead{
+  margin-right: 1rem;
 }
 
 .\[\&\>div\.lead\]\:w-1\/2>div.lead{
@@ -5309,6 +5363,20 @@ section{
 .\[\&\>div\.lead\]\:py-4>div.lead{
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.\[\&\>div\.lead\]\:px-8>div.lead{
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.\[\&\>div\.lead\]\:py-8>div.lead{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.\[\&\>div\.lead\]\:pr-4>div.lead{
+  padding-right: 1rem;
 }
 
 .\[\&\>div\.lead_hgroup\]\:sticky>div.lead hgroup{

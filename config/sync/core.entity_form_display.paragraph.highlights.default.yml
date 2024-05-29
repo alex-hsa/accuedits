@@ -3,17 +3,20 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.highlights.field_background_pattern
     - field.field.paragraph.highlights.field_columns
     - field.field.paragraph.highlights.field_items
     - field.field.paragraph.highlights.field_lead
     - paragraphs.paragraphs_type.highlights
   module:
     - field_group
+    - media_library
     - paragraphs
 third_party_settings:
   field_group:
     group_options:
       children:
+        - field_background_pattern
         - field_columns
       label: Settings
       region: content
@@ -32,9 +35,16 @@ targetEntityType: paragraph
 bundle: highlights
 mode: default
 content:
+  field_background_pattern:
+    type: media_library_widget
+    weight: 6
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
   field_columns:
     type: number
-    weight: 6
+    weight: 7
     region: content
     settings:
       placeholder: ''

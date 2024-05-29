@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.accordion.field_background_color
+    - field.field.paragraph.accordion.field_background_pattern
     - field.field.paragraph.accordion.field_border
     - field.field.paragraph.accordion.field_items
     - field.field.paragraph.accordion.field_lead
@@ -11,11 +12,13 @@ dependencies:
     - paragraphs.paragraphs_type.accordion
   module:
     - field_group
+    - media_library
     - paragraphs
 third_party_settings:
   field_group:
     group_options:
       children:
+        - field_background_pattern
         - field_background_color
         - field_orientation
         - field_border
@@ -41,6 +44,13 @@ content:
     weight: 7
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_background_pattern:
+    type: media_library_widget
+    weight: 6
+    region: content
+    settings:
+      media_types: {  }
     third_party_settings: {  }
   field_border:
     type: boolean_checkbox
