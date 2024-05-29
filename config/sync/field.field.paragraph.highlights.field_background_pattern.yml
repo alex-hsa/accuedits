@@ -1,0 +1,29 @@
+uuid: 72be96b0-300e-4cec-8fc3-0fd5195f5162
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_background_pattern
+    - media.type.pattern
+    - paragraphs.paragraphs_type.highlights
+id: paragraph.highlights.field_background_pattern
+field_name: field_background_pattern
+entity_type: paragraph
+bundle: highlights
+label: 'Background Pattern'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      pattern: pattern
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: image
+field_type: entity_reference

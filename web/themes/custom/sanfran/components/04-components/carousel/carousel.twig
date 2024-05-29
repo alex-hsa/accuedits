@@ -18,6 +18,10 @@
   {% set border_class = 'rounded-lg' %}
 {% endif %}
 
+{% if background_pattern %}
+  {% set background_pattern_style = "background-image: url('" ~ background_pattern|file_url ~ "');" %}
+{% endif %}
+
 {% set paragraph_classes = [
     paragraph.bundle,
     'paragraph',
@@ -27,12 +31,11 @@
     'bg-' ~ background_color ~ '/[.25]',
   ]|join(' ')|trim %}
 
-
 <section {{ attributes.addClass(paragraph_classes).addClass(orientation_class).addClass(flip_class).addClass(border_class) }}>
     {{ quick_edit }}
 
     {# Display Lead paragraph #}
-    <div class="lead m-8">
+    <div class="lead p-8 rounded-lg"{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
         {% for key, item in lead_item %}
             {% if key|first != '#' %}
                 {{ item }}
@@ -41,7 +44,6 @@
     </div>
 
     <div class="items carousel">
-
         {% set item_count = 0 %}
         {% for key, item in carousel_items %}
             {% if key|first != '#' %}

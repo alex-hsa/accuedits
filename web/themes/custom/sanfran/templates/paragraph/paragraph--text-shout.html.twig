@@ -29,6 +29,7 @@
 {% set level = content.field_heading_level.0['#markup']|default('') %}
 {% set description = content.field_description.0|default('') %}
 {% set background_color = content.field_background_color|field_target_entity.name.entity.name.value|lower|default('') %}
+{% set background_pattern = content.field_background_pattern|field_target_entity.field_media_image.entity.uri.value|default('') %}
 {% set border = content.field_border.0['#markup']|lower|default('') %}
 {% set quick_edit = content.frontend_editing|default('') %}
 
@@ -38,6 +39,7 @@
     level,
     description,
     background_color,
+    background_pattern,
     border,
     quick_edit,
   })

@@ -4,6 +4,10 @@
   {% set border_class = '' %}
 {% endif %}
 
+{% if background_pattern %}
+  {% set background_pattern_style = "margin-bottom: 1rem; background-image: url('" ~ background_pattern|file_url ~ "');" %}
+{% endif %}
+
 {% set paragraph_classes = [
     paragraph.bundle,
     'bg-' ~ background_color ~ '/[.25]',
@@ -14,7 +18,11 @@
   ]|join(' ')|trim %}
 
 
-  <section {{ attributes.addClass(paragraph_classes).addClass(border_class).addClass('flex flex-row p-4 rounded-lg') }}>
+{# {% if background_pattern %}
+  {% set attributes = attributes.setAttribute('style', 'background-image: url("' ~ background_pattern|file_url ~ '");') %}
+{% endif %} #}
+
+  <section {{ attributes.addClass(paragraph_classes).addClass(border_class).addClass('flex flex-row p-4 rounded-lg') }}{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
 
     {{ quick_edit }}
     <div class="lead p-4 pr-8 text-center my-auto w-5/12">

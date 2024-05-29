@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.text_shout.field_background_color
+    - field.field.paragraph.text_shout.field_background_pattern
     - field.field.paragraph.text_shout.field_border
     - field.field.paragraph.text_shout.field_description
     - field.field.paragraph.text_shout.field_heading_level
@@ -11,11 +12,13 @@ dependencies:
     - paragraphs.paragraphs_type.text_shout
   module:
     - field_group
+    - media_library
     - text
 third_party_settings:
   field_group:
     group_settings:
       children:
+        - field_background_pattern
         - field_background_color
         - field_border
       label: Settings
@@ -37,13 +40,20 @@ mode: default
 content:
   field_background_color:
     type: options_select
-    weight: 4
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_background_pattern:
+    type: media_library_widget
+    weight: 6
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
   field_border:
     type: boolean_checkbox
-    weight: 5
+    weight: 8
     region: content
     settings:
       display_label: true

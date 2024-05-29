@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.text_shout.field_background_color
+    - field.field.paragraph.text_shout.field_background_pattern
     - field.field.paragraph.text_shout.field_border
     - field.field.paragraph.text_shout.field_description
     - field.field.paragraph.text_shout.field_heading_level
@@ -25,6 +26,15 @@ content:
     third_party_settings: {  }
     weight: 3
     region: content
+  field_background_pattern:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
   field_border:
     type: boolean
     label: hidden
@@ -33,14 +43,14 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 6
+    weight: 5
     region: content
   field_description:
     type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 2
+    weight: 1
     region: content
   field_heading_level:
     type: number_integer

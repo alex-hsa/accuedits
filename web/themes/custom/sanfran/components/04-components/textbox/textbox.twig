@@ -20,6 +20,10 @@
   {% set placement_class = 'flex flex-row' %}
 {% endif %}
 
+{% if background_pattern %}
+  {% set background_pattern_style = "margin-bottom: 1rem; background-image: url('" ~ background_pattern|file_url ~ "');" %}
+{% endif %}
+
 {% set paragraph_classes = [
     paragraph.bundle,
     'bg-' ~ background_color ~ '/[.1]',
@@ -30,7 +34,7 @@
   ]|join(' ')|trim %}
 
 
-<section {{ attributes.addClass(paragraph_classes).addClass(border_class).addClass(placement_class).addClass('p-8 rounded-lg') }} style="background-image: url('/themes/custom/sanfran/images/patterns/blue_swirls.svg');">
+<section {{ attributes.addClass(paragraph_classes).addClass(border_class).addClass(placement_class).addClass('p-8 rounded-lg') }}{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
   {{ quick_edit }} 
  
   {# Display Lead paragraph #}

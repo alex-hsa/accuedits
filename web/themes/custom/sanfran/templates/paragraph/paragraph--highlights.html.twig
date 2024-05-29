@@ -29,6 +29,7 @@
 {% set highlights_items = content.field_items %}
 
 {% set background_color = content.field_background_color|field_target_entity.name.entity.name.value|lower|default('') %}
+{% set background_pattern = content.field_background_pattern|field_target_entity.field_media_image.entity.uri.value|default('') %}
 {% set columns = content.field_columns.0|default('') %}
 {% set quick_edit = content.frontend_editing %}
 
@@ -36,6 +37,7 @@
     lead_item,
     highlights_items,
     background_color,
+    background_pattern,
     columns,
     quick_edit,
   })
