@@ -1,0 +1,16 @@
+[data-drupal-selector="edit-sdc-display-mappings-dynamic"] fieldset fieldset {
+  border-bottom: 1px solid #aaaaaa;
+  padding-bottom: var(--space-l);
+}
+[data-drupal-selector="edit-sdc-display-mappings-dynamic"] fieldset fieldset:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+[data-drupal-selector="edit-sdc-display-mappings-dynamic"] .form-radios,
+[data-drupal-selector="edit-sdc-display-mappings-dynamic"] .form-checkboxes {
+  display: flex;
+}
+[data-drupal-selector="edit-sdc-display-mappings-dynamic"] .form-radios .form-type--radio,
+[data-drupal-selector="edit-sdc-display-mappings-dynamic"] .form-checkboxes .form-type--checkbox {
+  margin-right: 2em;
+}

@@ -1,0 +1,7 @@
+services:
+  Drupal\cl_editorial\NoThemeComponentManager:
+    arguments:
+      - '@plugin.manager.sdc'
+
+  cl_editorial.form_generator:
+    class: SchemaForms\Drupal\FormGeneratorDrupal

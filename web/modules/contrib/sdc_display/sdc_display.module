@@ -1,0 +1,322 @@
+<?php
+
+/**
+ * @file
+ * Module implementation file.
+ */
+
+declare(strict_types=1);
+
+use Drupal\cl_editorial\Form\ComponentInputToForm;
+use Drupal\cl_editorial\Util as EditorialUtil;
+use Drupal\Component\Utility\Crypt;
+use Drupal\Core\Entity\Display\EntityDisplayInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityFieldManagerInterface;
+use Drupal\Core\Entity\EntityFormInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Field\FieldDefinitionInterface;
+use Drupal\Core\Field\FormatterInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\RendererInterface;
+use Drupal\Core\Utility\Error;
+use Drupal\layout_builder\LayoutBuilderEnabledInterface;
+use Drupal\sdc\ComponentPluginManager;
+use Drupal\sdc\Exception\ComponentNotFoundException;
+use Drupal\sdc\Plugin\Component;
+use Drupal\sdc_display\Form\FieldFormatterMappingsSettings;
+use Drupal\sdc_display\Form\ViewModeMappingsSettings;
+use Drupal\sdc_display\Util;
+use SchemaForms\FormGeneratorInterface;
+
+/**
+ * Implements hook_field_formatter_third_party_settings_form().
+ */
+function sdc_display_field_formatter_third_party_settings_form(FormatterInterface $plugin, FieldDefinitionInterface $field_definition, $view_mode, $form, FormStateInterface $form_state) {
+  $stored_values = [
+    'enabled' => $plugin->getThirdPartySetting(
+      'sdc_display',
+      'enabled',
+      FALSE,
+    ),
+    'component' => $plugin->getThirdPartySetting(
+      'sdc_display',
+      'component',
+      ['machine_name' => NULL],
+    ),
+    'mappings' => $plugin->getThirdPartySetting(
+      'sdc_display',
+      'mappings',
+      ['props' => [], 'slots' => []],
+    ),
+  ];
+
+  $field_name = $field_definition->getName();
+  $settings = [];
+  try {
+    $component_manager = \Drupal::service('plugin.manager.sdc');
+    assert($component_manager instanceof ComponentPluginManager);
+    $form_generator = \Drupal::service('cl_editorial.form_generator');
+    assert($form_generator instanceof FormGeneratorInterface);
+    $component_to_form = new ComponentInputToForm(
+      $component_manager,
+      $form_generator
+    );
+    $form_mappings = new FieldFormatterMappingsSettings(
+      $component_manager,
+      $component_to_form
+    );
+    $form_mappings->alter(
+      $settings,
+      $form_state,
+      $field_name,
+      $stored_values,
+      substr(Crypt::hashBase64($field_name), 0, 6)
+    );
+  }
+  catch (ComponentNotFoundException $e) {
+    $logger = \Drupal::logger('sdc_display');
+    Error::logException($logger, $e);
+  }
+
+  return $settings;
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary_alter().
+ */
+function sdc_display_field_formatter_settings_summary_alter(array &$summary, array $context) {
+  $enabled = (bool) $context['formatter']->getThirdPartySetting(
+    'sdc_display',
+    'enabled',
+    FALSE,
+  );
+  $mappings = $context['formatter']->getThirdPartySetting(
+    'sdc_display',
+    'mappings',
+    ['slots' => [], 'props' => []],
+  );
+  $component_id = $context['formatter']->getThirdPartySetting(
+    'sdc_display',
+    'component',
+    ['machine_name' => NULL],
+  )['machine_name'] ?? NULL;
+  if ($enabled && $component_id) {
+    $component_manager = \Drupal::service('plugin.manager.sdc');
+    $input_name = $mappings['dynamic']['mapped'] ?? NULL;
+    assert($component_manager instanceof ComponentPluginManager);
+    try {
+      $component = $component_manager->find($component_id);
+    }
+    catch (ComponentNotFoundException $e) {
+      return;
+    }
+    $mapped_on = EditorialUtil::isPropOrSlot($component, $input_name);
+    $summary[] = t(
+      'This field renders using the %name component. The field contents displays in the %input_name @input_type.',
+      [
+        '%name' => $component->metadata->name,
+        '%input_name' => $input_name,
+        '@input_type' => $mapped_on,
+      ]
+    );
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function sdc_display_preprocess_field(&$variables) {
+  $enabled = $variables['element']['#third_party_settings']['sdc_display']['enabled'] ?? FALSE;
+  // If the setting is enabled, suggest our own template.
+  if (!$enabled) {
+    return;
+  }
+  $component_id = $variables['element']['#third_party_settings']['sdc_display']['component']['machine_name'] ?? NULL;
+  $component = NULL;
+  $component_manager = \Drupal::service('plugin.manager.sdc');
+  assert($component_manager instanceof ComponentPluginManager);
+  try {
+    $component = $component_manager->find($component_id);
+  }
+  catch (ComponentNotFoundException $e) {
+  }
+  if (!$component instanceof Component) {
+    // Nothing we can do if there is corrupt info for the component.
+    return;
+  }
+  // Props are a mixture of fixed values with the dynamic value on top.
+  $fixed_values = $variables['element']['#third_party_settings']['sdc_display']['mappings']['static'] ?? [];
+  $props = $fixed_values['props'] ?? [];
+  //  $props = array_map(
+  //    ['TODO: token replacement here as well'],
+  //    $props
+  //  );
+  $slots = $fixed_values['slots'] ?? [];
+  // Fixed values for slots need to be converted to a render array.
+  $slots = array_map(
+    static function(array $value) {
+      $raw_value = $value['value'] ?? '';
+      // Now it's time to replace the tokens.
+      // TODO: token replacement.
+      return [
+        '#type' => 'processed_text',
+        '#text' => $raw_value,
+        '#format' => $value['format'] ?? 'plain_text',
+      ];
+    },
+    $slots,
+  );
+
+  $input_name = $variables['element']['#third_party_settings']['sdc_display']['mappings']['dynamic']['mapped'] ?? NULL;
+  // Figure out if $input_name is for a prop or a slot.
+  $mapped_on = EditorialUtil::isPropOrSlot($component, $input_name);
+
+  foreach ($variables['items'] ?? [] as $delta => $item) {
+    $field_is_empty = Util::fieldIsEmpty(
+      $variables['element']['#items'] ?? NULL,
+      $delta
+    );
+    if (!$field_is_empty) {
+      if ($mapped_on === 'prop') {
+        $props[$input_name] = $item['content'];
+      }
+      elseif ($mapped_on === 'slot') {
+        $slots[$input_name] = $item['content'];
+      }
+    }
+    $variables['items'][$delta] = [
+      ...$item,
+      'content' => [
+        '#type' => 'component',
+        '#component' => $component_id,
+        '#props' => $props,
+        '#slots' => $slots,
+      ],
+    ];
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sdc_display_form_entity_view_display_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form_object = $form_state->getFormObject();
+  assert($form_object instanceof EntityFormInterface);
+  $entity = $form_object->getEntity();
+  assert($entity instanceof EntityDisplayInterface);
+  $default_mappings = [
+    'static' => ['props' => [], 'slots' => []],
+    'dynamic' => ['props' => [], 'slots' => []],
+  ];
+  $default_component = ['machine_name' => ''];
+  $stored_values = [
+    'enabled' => $entity->getThirdPartySetting('sdc_display', 'enabled') ?? '0',
+    'component' => $entity->getThirdPartySetting('sdc_display', 'component') ?? $default_component,
+    'mappings' => $entity->getThirdPartySetting('sdc_display', 'mappings') ?? $default_mappings,
+  ];
+  // Check layout builder.
+  if (
+    $entity instanceof LayoutBuilderEnabledInterface &&
+    $entity->isLayoutBuilderEnabled()
+  ) {
+    return;
+  }
+  $form['sdc_display'] = [];
+  // The form fingerprint is used to identify which, of the multiple forms in
+  // the page, the AJAX response should update.
+  try {
+    $form_fingerprint = substr(Crypt::hashBase64(sprintf(
+      '%s%s',
+      $form['#form_id'] ?? '',
+      json_encode($form['#parents'] ?? [], JSON_THROW_ON_ERROR),
+    )), 0, 6);
+    $component_manager = \Drupal::service('plugin.manager.sdc');
+    assert($component_manager instanceof ComponentPluginManager);
+    $form_generator = \Drupal::service('cl_editorial.form_generator');
+    assert($form_generator instanceof FormGeneratorInterface);
+    $entity_field_manager = \Drupal::service('entity_field.manager');
+    assert($entity_field_manager instanceof EntityFieldManagerInterface);
+    $component_to_form = new ComponentInputToForm(
+      $component_manager,
+      $form_generator
+    );
+    $form_mappings = new ViewModeMappingsSettings(
+      $component_manager,
+      $component_to_form,
+      $entity_field_manager
+    );
+    $form_mappings->alter(
+      $form['sdc_display'],
+      $form_state,
+      $entity->getMode(),
+      $stored_values,
+      $form_fingerprint,
+    );
+    array_unshift($form['actions']['submit']['#submit'], [
+      ViewModeMappingsSettings::class,
+      'submit',
+    ]);
+  }
+  catch (JsonException|ComponentNotFoundException $e) {
+    // Intentionally left blank.
+  }
+}
+
+/**
+ * Implements hook_entity_view_alter().
+ */
+function sdc_display_entity_view_alter(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
+  $enabled = (bool) $display->getThirdPartySetting('sdc_display', 'enabled');
+  if (!$enabled) {
+    return;
+  }
+  $component_id = $display->getThirdPartySetting('sdc_display', 'component')['machine_name'] ?? NULL;
+  if (!$component_id) {
+    return;
+  }
+  $component_manager = \Drupal::service('plugin.manager.sdc');
+  assert($component_manager instanceof ComponentPluginManager);
+  try {
+    $component = $component_manager->find($component_id);
+  }
+  catch (ComponentNotFoundException $e) {
+    return;
+  }
+  $mappings = $display->getThirdPartySetting('sdc_display', 'mappings') ?? [];
+  $renderer = \Drupal::service('renderer');
+  assert($renderer instanceof RendererInterface);
+
+  // Iterate over all the component props and slots and populate their values
+  // based o the dynamic mappings, falling back to the static mappings.
+  $prop_values = Util::computePropValues(
+    array_keys($component->metadata->schema['properties'] ?? []),
+    $mappings['static']['props'] ?? [],
+    $mappings['dynamic']['props'] ?? [],
+    $build,
+    $entity,
+    \Drupal::service('renderer'),
+  );
+  $slot_values = Util::computeSlotValues(
+    array_keys($component->metadata->slots),
+    $mappings['static']['slots'] ?? [],
+    $mappings['dynamic']['slots'] ?? [],
+    $build,
+    $entity,
+  );
+  $entity_type = $entity->getEntityTypeId();
+  $build = [
+    '#cache' => $build['#cache'],
+    '#entity_type' => $entity_type,
+    '#' . $entity_type => $build['#' . $entity_type],
+    '#contextual_links' => $build['#contextual_links'] ?? [],
+    '#view_mode' => $build['#view_mode'] ?? 'default',
+    'component' => [
+      '#type' => 'component',
+      '#component' => $component_id,
+      '#props' => $prop_values,
+      '#slots' => $slot_values,
+    ],
+  ];
+}
+

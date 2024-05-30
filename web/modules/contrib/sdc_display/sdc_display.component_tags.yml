@@ -1,0 +1,6 @@
+'sdc_display:field_formatter':
+  label: Field Formatter (SDC Display)
+  description: Components tagged with this tag will be available in the field formatter configuration form.
+'sdc_display:view_mode':
+  label: View Mode (SDC Display)
+  description: Components tagged with this tag will be available in the view mode configuration form.

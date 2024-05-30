@@ -1,6 +1,6 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
-name: Text Shout
-description: Text with callout and description
+name: Lead
+description: Provides information about the component
 props:
   type: object
   properties:

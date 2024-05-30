@@ -1,0 +1,10 @@
+name: 'Single Directory Components: Tagging'
+description: Allows tagging components so other modules can understand components better.
+package: Components
+core_version_requirement: ^10.1
+type: module
+
+# Information added by Drupal.org packaging script on 2024-04-05
+version: '2.0.0-rc1'
+project: 'cl_editorial'
+datestamp: 1712299647

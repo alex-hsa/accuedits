@@ -1,0 +1,30 @@
+<label for="{{ element['#id'] }}" class="radio-details--wrapper component-status--{{ element['#component_status'] }}">
+
+  {% if element['#thumbnail_url'] is empty %}
+    <div class="radio-details--thumbnail radio-details--thumbnail__empty">
+      <div class="radio-details--group">{{ element['#group'] }}</div>
+    </div>
+  {% else %}
+    <div class="radio-details--thumbnail" style="background-image: url('{{ element['#thumbnail_url'] }}')">
+      <div class="radio-details--group">{{ element['#group'] }}</div>
+    </div>
+  {% endif %}
+  <div class="radio-details--name">
+    {{ element }} <span class="radio-details--human-name">{{ element['#human_name'] }}</span>
+  </div>
+  <div class="radio-details--machine-name">{{ element['#machine_name'] }}</div>
+  <div class="radio-details--search">{{ element['#human_name'] }}|{{ element['#machine_name'] }}|{{ element['#group'] }}</div>
+  <div class="radio-details--documentation">
+    <h4>{{ 'Documentation'|t }}</h4>
+    {{ element['#readme']|raw }}
+  </div>
+  <div class="radio-details--description">{{ element['#component_description'] }}</div>
+  <div
+    class="radio-details--status radio-details--status--{{ element['#component_status']|lower }}">{{ element['#component_status']|capitalize }}
+  </div>
+  <div class="radio-details--preview-url">{{ element['#preview_url'] }}</div>
+  <div class="radio-details--languages">{{ element['#remote_languages'] }}</div>
+  {% if element['#thumbnail_url'] is not empty %}
+    <img class="radio-details--image" src="{{ element['#thumbnail_url'] }}" alt="{{ 'Component thumbnail'|t }}" title="{{ 'Component thumbnail'|t }}">
+  {% endif %}
+</label>

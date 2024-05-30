@@ -1,0 +1,38 @@
+.component-tags h3 a {
+  font-size: 0.5em;
+  text-decoration: none;
+}
+
+.component-tags .item-list ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  margin: 0.4em 0.4em 0.4em 0;
+  white-space: nowrap;
+  height: 100%;
+  text-align: center;
+}
+.component-tags .item-list li {
+  margin: 2px 5px 0 5px;
+  list-style: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.component-tags .item-list li.selected {
+  background-color: #56c080;
+}
+.component-tags .item-list li.unselected {
+  border: 1px dotted #aaaaaa;
+  opacity: 40%;
+}
+.component-tags .item-list li.selected {
+  border-bottom: 3px solid #56c080;
+  background-color: #56c08033;
+}
+.component-tags .item-list li {
+  padding: 10px 10px 5px 5px;
+}
+.tag-rules-actions {
+  display: flex;
+  font-size: 0.8em;
+  align-items: center;
+}

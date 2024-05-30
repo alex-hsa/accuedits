@@ -1,0 +1,64 @@
+.component-cards--wrapper {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.component-cards--wrapper .component-card--wrapper {
+  outline: 1px solid black;
+  border-radius: 3px;
+  width: 150px;
+  min-height: 150px;
+  padding: 10px;
+  position: relative;
+  margin-right: 15px;
+}
+
+.component-card--name {
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin: 10px 0;
+}
+
+.component-status--obsolete .component-card--name,
+.component-status--deprecated .component-card--name {
+  text-decoration: line-through;
+}
+
+.component-card--wrapper .component-card--description {
+  font-size: 0.7rem;
+  color: #666;
+  line-height: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.0rem;
+  padding-right: 10px;
+}
+
+.component-card--wrapper .component-card--thumbnail {
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  border: 1px solid #bbb;
+  background-image: url("./img/default_thumbnail.png");
+  background-color: #f0f0f0;
+  background-size: 100%;
+  background-clip: content-box;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.component-card--wrapper .component-card--thumbnail__empty {
+  background-size: cover;
+}
+
+.component-card--wrapper .component-card--group {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0 5px;
+  max-width: 85%;
+  font-size: 0.75rem;
+  background: #f0f0f0;
+}

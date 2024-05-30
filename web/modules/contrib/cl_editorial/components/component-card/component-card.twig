@@ -1,0 +1,16 @@
+<div class="component-card--wrapper component-status--{{ status }}">
+  {% if thumbnailHref is empty %}
+    <div class="component-card--thumbnail component-card--thumbnail__empty">
+      <div class="component-card--group">{{ group }}</div>
+    </div>
+  {% else %}
+    <div class="component-card--thumbnail"
+         style="background-image: url('{{ thumbnailHref }}')">
+      <div class="component-card--group">{{ group }}</div>
+    </div>
+  {% endif %}
+  <div class="component-card--name">
+    <span class="component-card--human-name">{{ name }}</span>
+  </div>
+  <div class="component-card--description">{{ description }}</div>
+</div>

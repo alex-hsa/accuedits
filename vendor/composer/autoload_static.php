@@ -130,10 +130,14 @@ class ComposerStaticInit707f7590d632e07d7add8405a30a9cb8
             'Symfony\\Bridge\\PsrHttpMessage\\' => 30,
             'Symfony\\Bridge\\PhpUnit\\' => 23,
             'SlevomatCodingStandard\\' => 23,
+            'Shaper\\Tests\\' => 13,
+            'Shaper\\' => 7,
             'SelfUpdate\\' => 11,
             'Seld\\Signal\\' => 12,
             'Seld\\PharUtils\\' => 15,
             'Seld\\JsonLint\\' => 14,
+            'SchemaForms\\Tests\\' => 18,
+            'SchemaForms\\' => 12,
         ),
         'R' => 
         array (
@@ -471,6 +475,14 @@ class ComposerStaticInit707f7590d632e07d7add8405a30a9cb8
         array (
             0 => __DIR__ . '/..' . '/slevomat/coding-standard/SlevomatCodingStandard',
         ),
+        'Shaper\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/e0ipso/shaper/tests/src',
+        ),
+        'Shaper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/e0ipso/shaper/src',
+        ),
         'SelfUpdate\\' => 
         array (
             0 => __DIR__ . '/..' . '/consolidation/self-update/src',
@@ -486,6 +498,14 @@ class ComposerStaticInit707f7590d632e07d7add8405a30a9cb8
         'Seld\\JsonLint\\' => 
         array (
             0 => __DIR__ . '/..' . '/seld/jsonlint/src/Seld/JsonLint',
+        ),
+        'SchemaForms\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/e0ipso/schema-forms/tests/src',
+        ),
+        'SchemaForms\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/e0ipso/schema-forms/src',
         ),
         'Robo\\' => 
         array (

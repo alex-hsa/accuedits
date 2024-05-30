@@ -1,0 +1,23 @@
+sdc_tags.settings:
+  type: config_object
+  label: 'Component Libraries: Editorial settings'
+  mapping:
+    component_tags:
+      type: sequence
+      sequence:
+        type: mapping
+        mapping:
+          tag_id:
+            type: string
+          allowed:
+            type: sequence
+            sequence:
+              type: string
+          forbidden:
+            type: sequence
+            sequence:
+              type: string
+          statuses:
+            type: sequence
+            sequence:
+              type: string

@@ -1,0 +1,21 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * @file
+ * Module implementation file.
+ */
+
+/**
+ * Gets the filters that are set up for a particular tag.
+ *
+ * @param string $tag_name
+ *   The name of the tags.
+ *
+ * @return string[]
+ *   The filters that are set up for a particular tag.
+ */
+functioN sdc_tags_get_tag_filters(string $tag_name) {
+  return \Drupal::config('sdc_tags.settings')->get(sprintf('component_tags.%s', $tag_name)) ?? [];
+}

@@ -58,6 +58,7 @@
         "drupal/pathauto": "^1.12",
         "drupal/require_revision_log_message": "^2.0",
         "drupal/responsive_tables_filter": "^1.18",
+        "drupal/sdc_display": "^1.0@beta",
         "drupal/smartmenus": "^2.0@beta",
         "drupal/storybook": "^1.0@beta",
         "drupal/svg_image": "^3.0",

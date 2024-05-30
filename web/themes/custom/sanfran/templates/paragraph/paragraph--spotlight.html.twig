@@ -26,7 +26,7 @@
 #}
 
 {% set image = content.field_media|field_target_entity.field_media_image.entity.uri.value|default('') %}
-{% set imageAlt =  'Alt text for media image' %}
+{% set image_alt =  content.field_media.0['#media'].field_media_image.0.alt|default('') %}
 {% set video_remote = content.field_media.0['#media'].field_media_oembed_video.0.value %}
 {% set background_color = content.field_background_color|field_target_entity.name.entity.name.value|lower|default('') %}
 {% set background_pattern = content.field_background_pattern|field_target_entity.field_media_image.entity.uri.value|default('') %}
@@ -35,10 +35,12 @@
 {% set lead_item = content.field_lead %}
 {% set quick_edit = content.frontend_editing|default('') %}
 
+{# {% set media_single = content.field_items|field_target_entity.field_media|file_uri|default('') %} #}
+
 
 {{ include('sanfran:spotlight', {
   image,
-  imageAlt,
+  image_alt,
   video_remote,
   background_color,
   background_pattern,

@@ -1,6 +1,6 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
-name: Page Title
-description: Page title with callout and description
+name: Featured
+description: Featured consists of header, description and cta
 props:
   type: object
   properties:

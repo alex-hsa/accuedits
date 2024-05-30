@@ -1,0 +1,41 @@
+core.entity_view_display.*.*.*.third_party.sdc_display:
+  type: sdc_display.third_party_settings
+
+sdc_display.third_party_settings:
+  type: mapping
+  label: 'Per-view-mode SDC display settings'
+  mapping:
+    enabled:
+      type: boolean
+      label: Enabled
+    component:
+      type: mapping
+      mapping:
+        machine_name:
+          type: string
+          label: Component Name
+    mappings:
+      type: mapping
+      mapping:
+        static:
+          type: mapping
+          mapping:
+            props:
+              type: sequence
+              sequence:
+                type: ignore
+            slots:
+              type: sequence
+              sequence:
+                type: ignore
+        dynamic:
+          type: mapping
+          mapping:
+            props:
+              type: sequence
+              sequence:
+                type: ignore
+            slots:
+              type: sequence
+              sequence:
+                type: ignore
