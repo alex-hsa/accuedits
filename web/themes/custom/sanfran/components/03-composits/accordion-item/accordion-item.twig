@@ -34,6 +34,12 @@
         {{ heading }}
     </h2>
     <div class="collapse-content"> 
-        <p>{{ description }}</p>
+        {% if description %}
+            {{ include('sanfran:wysiwyg', {
+                wysiwyg: description,
+                classes: 'pb-0',
+                })
+            }}
+        {% endif %}
     </div>
 </article>

@@ -7,6 +7,7 @@ dependencies:
     - field.field.paragraph.spotlight.field_background_pattern
     - field.field.paragraph.spotlight.field_border
     - field.field.paragraph.spotlight.field_flip
+    - field.field.paragraph.spotlight.field_items
     - field.field.paragraph.spotlight.field_lead
     - field.field.paragraph.spotlight.field_media
     - paragraphs.paragraphs_type.spotlight
@@ -65,6 +66,26 @@ content:
     region: content
     settings:
       display_label: true
+    third_party_settings: {  }
+  field_items:
+    type: paragraphs
+    weight: 2
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: preview
+      autocollapse: all
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: accordion_item
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        convert: convert
+        duplicate: duplicate
     third_party_settings: {  }
   field_lead:
     type: paragraphs

@@ -1,19 +1,19 @@
-uuid: 97f1cc37-a408-499c-9697-69f7ca45ab32
+uuid: 65c2d6a8-2699-4f99-9448-66d853740394
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.spotlight.field_background_color
-    - field.field.paragraph.spotlight.field_background_pattern
-    - field.field.paragraph.spotlight.field_border
-    - field.field.paragraph.spotlight.field_flip
-    - field.field.paragraph.spotlight.field_items
-    - field.field.paragraph.spotlight.field_lead
-    - field.field.paragraph.spotlight.field_media
-    - paragraphs.paragraphs_type.spotlight
+    - field.field.paragraph.parallel_callout.field_background_color
+    - field.field.paragraph.parallel_callout.field_background_pattern
+    - field.field.paragraph.parallel_callout.field_border
+    - field.field.paragraph.parallel_callout.field_description
+    - field.field.paragraph.parallel_callout.field_eyebrow
+    - field.field.paragraph.parallel_callout.field_heading_level
+    - field.field.paragraph.parallel_callout.field_main_title
+    - paragraphs.paragraphs_type.parallel_callout
   module:
-    - entity_reference_revisions
     - sdc_display
+    - text
 third_party_settings:
   sdc_display:
     enabled: false
@@ -26,9 +26,9 @@ third_party_settings:
       dynamic:
         props: {  }
         slots: {  }
-id: paragraph.spotlight.default
+id: paragraph.parallel_callout.default
 targetEntityType: paragraph
-bundle: spotlight
+bundle: parallel_callout
 mode: default
 content:
   field_background_color:
@@ -38,7 +38,7 @@ content:
       view_mode: full
       link: false
     third_party_settings: {  }
-    weight: 1
+    weight: 0
     region: content
   field_background_pattern:
     type: entity_reference_entity_view
@@ -57,43 +57,38 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
+    weight: 2
+    region: content
+  field_description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_eyebrow:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
     weight: 3
     region: content
-  field_flip:
-    type: boolean
+  field_heading_level:
+    type: number_integer
     label: hidden
     settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    weight: 4
-    region: content
-  field_items:
-    type: entity_reference_revisions_entity_view
-    label: hidden
-    settings:
-      view_mode: default
-      link: ''
+      thousand_separator: ''
+      prefix_suffix: true
     third_party_settings: {  }
     weight: 5
     region: content
-  field_lead:
-    type: entity_reference_revisions_entity_view
+  field_main_title:
+    type: string
     label: hidden
     settings:
-      view_mode: default
-      link: ''
+      link_to_entity: false
     third_party_settings: {  }
-    weight: 0
-    region: content
-  field_media:
-    type: entity_reference_entity_view
-    label: hidden
-    settings:
-      view_mode: default
-      link: false
-    third_party_settings: {  }
-    weight: 2
+    weight: 4
     region: content
 hidden: {  }

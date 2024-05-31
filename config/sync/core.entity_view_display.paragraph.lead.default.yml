@@ -7,6 +7,7 @@ dependencies:
     - field.field.paragraph.lead.field_background_color
     - field.field.paragraph.lead.field_background_glass
     - field.field.paragraph.lead.field_cta
+    - field.field.paragraph.lead.field_cta_secondary
     - field.field.paragraph.lead.field_description
     - field.field.paragraph.lead.field_eyebrow
     - field.field.paragraph.lead.field_heading_level
@@ -16,7 +17,20 @@ dependencies:
   module:
     - link
     - options
+    - sdc_display
     - text
+third_party_settings:
+  sdc_display:
+    enabled: false
+    component:
+      machine_name: ''
+    mappings:
+      static:
+        props: {  }
+        slots: {  }
+      dynamic:
+        props: {  }
+        slots: {  }
 id: paragraph.lead.default
 targetEntityType: paragraph
 bundle: lead
@@ -27,7 +41,7 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 4
+    weight: 5
     region: content
   field_background_color:
     type: entity_reference_entity_view
@@ -36,7 +50,7 @@ content:
       view_mode: full
       link: false
     third_party_settings: {  }
-    weight: 4
+    weight: 6
     region: content
   field_background_glass:
     type: boolean
@@ -60,6 +74,18 @@ content:
     third_party_settings: {  }
     weight: 3
     region: content
+  field_cta_secondary:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
   field_description:
     type: text_default
     label: hidden
@@ -82,7 +108,7 @@ content:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 5
+    weight: 7
     region: content
   field_main_title:
     type: string

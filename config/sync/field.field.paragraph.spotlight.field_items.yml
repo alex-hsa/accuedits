@@ -1,0 +1,97 @@
+uuid: b1f9f99a-4b7f-4c02-bad6-2ce2fab0475d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_items
+    - paragraphs.paragraphs_type.media_single
+    - paragraphs.paragraphs_type.spotlight
+  module:
+    - entity_reference_revisions
+id: paragraph.spotlight.field_items
+field_name: field_items
+entity_type: paragraph
+bundle: spotlight
+label: Items
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      media_single: media_single
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 6
+        enabled: false
+      accordion_item:
+        weight: 7
+        enabled: false
+      card:
+        weight: 3
+        enabled: false
+      carousel:
+        weight: 27
+        enabled: false
+      eyebrow:
+        weight: 28
+        enabled: false
+      featured:
+        weight: 29
+        enabled: false
+      from_library:
+        weight: 30
+        enabled: false
+      grid:
+        weight: 4
+        enabled: false
+      hero:
+        weight: 10
+        enabled: false
+      highlights:
+        weight: 33
+        enabled: false
+      highlights_item:
+        weight: 34
+        enabled: false
+      icon_card:
+        weight: 35
+        enabled: false
+      icon_cards:
+        weight: 36
+        enabled: false
+      lead:
+        weight: 37
+        enabled: false
+      media_cards:
+        weight: 38
+        enabled: false
+      media_single:
+        weight: 39
+        enabled: true
+      section:
+        weight: 40
+        enabled: false
+      spotlight:
+        weight: 41
+        enabled: false
+      step_item:
+        weight: 43
+        enabled: false
+      steps:
+        weight: 42
+        enabled: false
+      table:
+        weight: 44
+        enabled: false
+      text_shout:
+        weight: 46
+        enabled: false
+      textbox:
+        weight: 45
+        enabled: false
+field_type: entity_reference_revisions

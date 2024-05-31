@@ -32,7 +32,7 @@
   {{ dump(media_single) }}
   {{ dump(image) }} #}
 
-<section {{ attributes.addClass(paragraph_classes).addClass(variant_classes).addClass(background_color_class) }}{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
+<section {{ attributes.addClass(paragraph_classes).addClass(variant_classes).addClass(background_color_class).addClass('[&>div:first-child]:absolute') }}{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
   {{ quick_edit }}
  
   {# Display Lead paragraph #}

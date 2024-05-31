@@ -1,0 +1,29 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Parallel Callout
+description: Callout with heading and description
+props:
+  type: object
+  properties:
+    heading:
+      title: Heading
+      type: string
+      description: The title for the heading.
+    heading_level:
+      title: Level
+      type: number
+      description: Heading level
+      enum:
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+    description:
+      title: Description
+      type: string
+      description: Wysiwyg text field
+    background_color:
+      title: Background color
+      type: string
+      description: Taxonomy based color options
+

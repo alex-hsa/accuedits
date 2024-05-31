@@ -27,7 +27,6 @@ third_party_settings:
         - field_placement
         - field_orientation
         - field_border
-        - status
       label: Settings
       region: content
       parent_name: ''
@@ -124,13 +123,7 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  status:
-    type: boolean_checkbox
-    weight: 14
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
 hidden:
   created: true
   field_link_card: true
+  status: true

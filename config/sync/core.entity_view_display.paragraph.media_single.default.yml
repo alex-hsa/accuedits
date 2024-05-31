@@ -1,0 +1,49 @@
+uuid: edb427d2-a9fd-4287-937e-0585ae083fc1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.media_single.field_media
+    - paragraphs.paragraphs_type.media_single
+  module:
+    - sdc_display
+third_party_settings:
+  sdc_display:
+    enabled: false
+    component:
+      machine_name: ''
+    mappings:
+      static:
+        props: {  }
+        slots: {  }
+      dynamic:
+        props: {  }
+        slots: {  }
+id: paragraph.media_single.default
+targetEntityType: paragraph
+bundle: media_single
+mode: default
+content:
+  field_media:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings:
+      sdc_display:
+        enabled: '1'
+        component:
+          machine_name: 'sanfran:figure'
+          show_deprecated: 0
+        mappings:
+          static:
+            props:
+              image: ''
+              imageAlt: ''
+              image_style: ''
+          dynamic:
+            mapped: ''
+    weight: 0
+    region: content
+hidden: {  }

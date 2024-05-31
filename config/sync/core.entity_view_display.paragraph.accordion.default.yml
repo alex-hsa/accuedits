@@ -13,6 +13,19 @@ dependencies:
   module:
     - entity_reference_revisions
     - options
+    - sdc_display
+third_party_settings:
+  sdc_display:
+    enabled: false
+    component:
+      machine_name: ''
+    mappings:
+      static:
+        props: {  }
+        slots: {  }
+      dynamic:
+        props: {  }
+        slots: {  }
 id: paragraph.accordion.default
 targetEntityType: paragraph
 bundle: accordion
@@ -61,7 +74,21 @@ content:
     settings:
       view_mode: default
       link: ''
-    third_party_settings: {  }
+    third_party_settings:
+      sdc_display:
+        enabled: '1'
+        component:
+          machine_name: 'sanfran:featured'
+          show_deprecated: 0
+        mappings:
+          static:
+            props:
+              heading: ''
+              description: ''
+              callout: ''
+              background_color: ''
+          dynamic:
+            mapped: ''
     weight: 0
     region: content
   field_orientation:

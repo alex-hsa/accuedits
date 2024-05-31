@@ -1,0 +1,25 @@
+uuid: 7dc5abeb-9648-4dcd-bb7b-8e05debfeecb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_heading_level
+    - paragraphs.paragraphs_type.parallel_callout
+id: paragraph.parallel_callout.field_heading_level
+field_name: field_heading_level
+entity_type: paragraph
+bundle: parallel_callout
+label: 'Heading Level'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 2
+default_value_callback: ''
+settings:
+  min: 1
+  max: 6
+  prefix: ''
+  suffix: ''
+field_type: integer

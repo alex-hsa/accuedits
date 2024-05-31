@@ -1,31 +1,27 @@
-uuid: 7488d7bd-9521-4aa7-a4fb-4d804d3b6a32
+uuid: c1c3de37-03fd-42e1-9c7e-18c7246ad91e
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.lead.field_alignment
-    - field.field.paragraph.lead.field_background_color
-    - field.field.paragraph.lead.field_background_glass
-    - field.field.paragraph.lead.field_cta
-    - field.field.paragraph.lead.field_cta_secondary
-    - field.field.paragraph.lead.field_description
-    - field.field.paragraph.lead.field_eyebrow
-    - field.field.paragraph.lead.field_heading_level
-    - field.field.paragraph.lead.field_main_title
-    - field.field.paragraph.lead.field_width
-    - paragraphs.paragraphs_type.lead
+    - field.field.paragraph.parallel_callout.field_background_color
+    - field.field.paragraph.parallel_callout.field_background_pattern
+    - field.field.paragraph.parallel_callout.field_border
+    - field.field.paragraph.parallel_callout.field_description
+    - field.field.paragraph.parallel_callout.field_eyebrow
+    - field.field.paragraph.parallel_callout.field_heading_level
+    - field.field.paragraph.parallel_callout.field_main_title
+    - paragraphs.paragraphs_type.parallel_callout
   module:
     - field_group
-    - link
+    - media_library
     - text
 third_party_settings:
   field_group:
     group_settings:
       children:
-        - field_alignment
+        - field_background_pattern
         - field_background_color
-        - field_background_glass
-        - field_width
+        - field_border
       label: Settings
       region: content
       parent_name: ''
@@ -37,15 +33,13 @@ third_party_settings:
         id: ''
         open: true
         description: ''
-        required_fields: false
+        required_fields: true
     group_content:
       children:
         - field_eyebrow
         - field_main_title
         - field_heading_level
         - field_description
-        - field_cta
-        - field_cta_secondary
       label: Content
       region: content
       parent_name: ''
@@ -58,49 +52,34 @@ third_party_settings:
         open: true
         description: ''
         required_fields: true
-id: paragraph.lead.default
+id: paragraph.parallel_callout.default
 targetEntityType: paragraph
-bundle: lead
+bundle: parallel_callout
 mode: default
 content:
-  field_alignment:
-    type: options_select
-    weight: 6
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_background_color:
     type: options_select
     weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_background_glass:
+  field_background_pattern:
+    type: media_library_widget
+    weight: 6
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_border:
     type: boolean_checkbox
     weight: 8
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
-  field_cta:
-    type: link_default
-    weight: 6
-    region: content
-    settings:
-      placeholder_url: ''
-      placeholder_title: 'Read more'
-    third_party_settings: {  }
-  field_cta_secondary:
-    type: link_default
-    weight: 7
-    region: content
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
   field_description:
     type: text_textarea
-    weight: 5
+    weight: 4
     region: content
     settings:
       rows: 5
@@ -108,7 +87,7 @@ content:
     third_party_settings: {  }
   field_eyebrow:
     type: string_textfield
-    weight: 2
+    weight: 1
     region: content
     settings:
       size: 60
@@ -116,24 +95,18 @@ content:
     third_party_settings: {  }
   field_heading_level:
     type: number
-    weight: 4
+    weight: 3
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_main_title:
     type: string_textfield
-    weight: 3
+    weight: 2
     region: content
     settings:
       size: 60
       placeholder: ''
-    third_party_settings: {  }
-  field_width:
-    type: options_select
-    weight: 9
-    region: content
-    settings: {  }
     third_party_settings: {  }
 hidden:
   created: true

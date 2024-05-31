@@ -9,6 +9,27 @@
     {% set background_color_class = '' %}
 {% endif %}
 
+{% set bg_colors_25_opacity = {
+    primary: 'bg-[#CEE6F6]',
+    secondary: 'bg-[#C4C9D6]',
+    accent: 'bg-[#F1EEFB]',
+    neutral: 'bg-[#C6C6C6]',
+    error: 'bg-[#F8DBD5]',
+    info: 'bg-[#C8DAE9]',
+    success: 'bg-[#D1DCC8]',
+    warning: 'bg-[#FDF0CF]',
+} %} 
+
+{% set border_colors_25_opacity = {
+    primary: 'border-[#CEE6F6]',
+    secondary: 'border-[#C4C9D6]',
+    accent: 'border-[#F1EEFB]',
+    neutral: 'border-[#C6C6C6]',
+    error: 'border-[#F8DBD5]',
+    info: 'border-[#C8DAE9]',
+    success: 'border-[#D1DCC8]',
+    warning: 'border-[#FDF0CF]',
+} %} 
 
 {% set classes_step_item = [
     'step-item',
@@ -16,14 +37,14 @@
     'paragraph--type--' ~ paragraph.bundle|clean_class,
     view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
     not paragraph.isPublished() ? 'paragraph--unpublished',
-    'border-' ~ background_color ~ '/[.25]',
+    border_colors_25_opacity[background_color],
   ]|join(' ')|trim %}
 
 <article {{ attributes.addClass(classes_step_item).addClass('border-s-8 ml-8') }}>
 {{ edit_icon  }}
   <div class="step-marker flex flex-row -ml-9">
   
-    <div class="bg-{{ background_color }}/[.25] flex h-16 items-center justify-center rounded-full -start-24  w-16">
+    <div class="{{ bg_colors_25_opacity[background_color] }} flex h-16 items-center justify-center rounded-full -start-24  w-16">
         {% if icon %}
           <span class="bg-{{ background_color }}/[.25] flex items-center h-16 justify-center rounded-full shrink-0 w-16 text-4xl text-white">
             {{ icon }}

@@ -34,7 +34,7 @@
   ]|join(' ')|trim %}
 
 
-<section {{ attributes.addClass(paragraph_classes).addClass(border_class).addClass(placement_class).addClass('p-8 rounded-lg') }}{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
+<section {{ attributes.addClass(paragraph_classes).addClass(border_class).addClass(placement_class).addClass('p-8 rounded-lg [&>div:first-child]:absolute') }}{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
   {{ quick_edit }} 
  
   {# Display Lead paragraph #}

@@ -1,5 +1,5 @@
 {% if orientation == 'horizontal' %}
-    {% set orientation_class = 'flex flex-row [&>div.lead]:w-1/2 [&>div.items]:w-1/2' %}
+    {% set orientation_class = 'flex flex-row [&>div.lead]:w-1/2 [&>div.items]:w-1/2 [&>div:first-child]:absolute' %}
     {% set image_style = '16_9_2xl_768x432' %}
 {% else %}
     {% set orientation_class = 'flex flex-col rounded-b-lg' %}
