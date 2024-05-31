@@ -1,0 +1,66 @@
+<?php
+
+/**
+ * @file
+ * Module implementation file.
+ */
+
+use Drupal\cl_editorial\Form\ComponentInputToForm;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\sdc\ComponentPluginManager;
+use SchemaForms\Drupal\FormGeneratorDrupal;
+
+/**
+ * Implements hook_theme().
+ */
+function cl_editorial_theme($existing, $type, $theme, $path) {
+  return [
+    'cl_component_selector' => [
+      'render element' => 'element',
+    ],
+    'form_element__radio__cl_component' => [
+      'render element' => 'element',
+    ],
+  ];
+}
+
+/**
+ * Generate a form for mapping props and slots into user input.
+ *
+ * @param string $selected_component
+ *   The plugin ID of the selected component.
+ * @param mixed $current_input
+ *   The currently stored input.
+ * @param array $form
+ *   The form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
+ * @param string[] $supported_token_types
+ *
+ * @return array
+ *   The form with the mappings.
+ *
+ * @throws \Drupal\sdc\Exception\ComponentNotFoundException
+ */
+function cl_editorial_component_mappings_form(
+  string $selected_component,
+  array $current_input,
+  array $form,
+  FormStateInterface $form_state,
+  array $supported_token_types = []
+) {
+  // Gather services and global dependencies.
+  $component_manager = \Drupal::service('plugin.manager.sdc');
+  assert($component_manager instanceof ComponentPluginManager);
+  $form_generator = \Drupal::service('cl_editorial.form_generator');
+  assert($form_generator instanceof FormGeneratorDrupal);
+
+  $component_to_form = new ComponentInputToForm($component_manager, $form_generator);
+  return $component_to_form->buildForm(
+    $selected_component,
+    $current_input,
+    $form,
+    $form_state,
+    $supported_token_types
+  );
+}

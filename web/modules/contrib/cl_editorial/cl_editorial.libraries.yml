@@ -1,0 +1,13 @@
+options-filter:
+  js:
+    src/assets/js/options-filter.js: {}
+  css:
+    component:
+      src/assets/css/options-filter.css: {}
+  dependencies:
+    - core/once
+
+filter-settings:
+  css:
+    component:
+      src/assets/css/filter-settings.css: { }

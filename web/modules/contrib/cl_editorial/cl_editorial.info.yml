@@ -1,0 +1,12 @@
+name: 'Component Libraries: Editorial'
+type: module
+description: Provides shared features to aid low-code approaches using Single Directory Components.
+package: Components
+core_version_requirement: ^9 || ^10
+dependencies:
+  - drupal:serialization
+
+# Information added by Drupal.org packaging script on 2024-04-05
+version: '2.0.0-rc1'
+project: 'cl_editorial'
+datestamp: 1712299647

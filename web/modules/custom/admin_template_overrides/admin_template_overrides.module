@@ -62,6 +62,10 @@ function admin_template_overrides_theme($existing, $type, $theme, $path) {
       'template' => 'paragraph--page-title',
       'base hook' => 'paragraph'
     ],
+    'paragraph__parallel_callout' => [
+      'template' => 'paragraph--parallel-callout',
+      'base hook' => 'paragraph'
+    ],
     'paragraph__spotlight' => [
       'template' => 'paragraph--spotlight',
       'base hook' => 'paragraph'

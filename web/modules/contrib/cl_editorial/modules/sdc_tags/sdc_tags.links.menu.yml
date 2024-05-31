@@ -1,0 +1,6 @@
+sdc_tags.component_tagging:
+  title: 'Single Directory Components: Tagging'
+  description: Tag your components
+  route_name: sdc_tags.component_tagging
+  parent: system.admin_config_ui
+  weight: 10

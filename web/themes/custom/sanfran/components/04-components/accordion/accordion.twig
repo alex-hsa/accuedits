@@ -7,7 +7,7 @@
 {% endif %}
 
 {% if orientation == 'horizontal' %}
-  {% set orientation_class = 'flex flex-row [&>div.lead]:mr-4 pr-4' %}
+  {% set orientation_class = 'flex flex-row [&>div.lead]:mr-4 pr-4 [&>div:first-child]:absolute' %}
 {% else %}
   {% set orientation_class = '[&>div.lead]:mb-4' %}
 {% endif %}

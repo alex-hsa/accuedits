@@ -1,0 +1,17 @@
+uuid: ea0255b7-8418-4f5f-8c5f-bf85e7254bb3
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'file:file:c83d1128-a0c4-4248-8586-471381171aa4'
+  module:
+    - paragraphs_library
+third_party_settings:
+  paragraphs_library:
+    allow_library_conversion: true
+id: parallel_callout
+label: 'Parallel Callout'
+icon_uuid: c83d1128-a0c4-4248-8586-471381171aa4
+icon_default: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDhweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iNDhweCIgZmlsbD0iIzAwMDAwMCI+PHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTMgNmg4djEzSDN6IiBvcGFjaXR5PSIuMyIvPjxwYXRoIGQ9Ik0yMSA0SDNjLTEuMSAwLTIgLjktMiAydjEzYzAgMS4xLjkgMiAyIDJoMThjMS4xIDAgMi0uOSAyLTJWNmMwLTEuMS0uOS0yLTItMnpNMTEgMTlIM1Y2aDh2MTN6bTEwIDBoLThWNmg4djEzem0tNy05LjVoNlYxMWgtNnptMCAyLjVoNnYxLjVoLTZ6bTAgMi41aDZWMTZoLTZ6Ii8+PC9zdmc+'
+description: ''
+behavior_plugins: {  }

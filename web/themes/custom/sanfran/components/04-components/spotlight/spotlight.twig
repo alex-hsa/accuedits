@@ -2,7 +2,7 @@
   {% set variant_classes = 'flex flex-row-reverse [&>div.media_img]:rounded-lg [&>div.media_iframe]:rounded-lg' %}
 {% elseif (flip == 'yes') and (border == 'no') and (background_color != '') %}
   {% set variant_classes = 'flex flex-row-reverse [&>div.media_img]:rounded-l-lg [&>div.media_iframe]:rounded-l-lg rounded-lg' %}
-{% elseif (flip == 'yes') and (border == 'yes') and (background_color == '') %}
+{% elseif (flip == 'yes') and (border == 'yes') and (background_color != '') %}
   {% set variant_classes = 'flex flex-row-reverse [&>div.media_img]:rounded-l-lg [&>div.media_iframe]:rounded-l-lg border rounded-lg' %}
 {% elseif (flip == 'no') and (border == 'no') and (background_color != '') %}
   {% set variant_classes = 'flex flex-row [&>div.media_img]:rounded-r-lg [&>div.media_iframe]:rounded-r-lg rounded-lg' %}
@@ -28,7 +28,11 @@
     not paragraph.isPublished() ? 'paragraph--unpublished',
   ]|join(' ')|trim %}
 
-<section {{ attributes.addClass(paragraph_classes).addClass(variant_classes).addClass(background_color_class) }}{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
+  {# {{drupal_image(media_single,'16_9_2xl_768x432')}}
+  {{ dump(media_single) }}
+  {{ dump(image) }} #}
+
+<section {{ attributes.addClass(paragraph_classes).addClass(variant_classes).addClass(background_color_class).addClass('[&>div:first-child]:absolute') }}{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
   {{ quick_edit }}
  
   {# Display Lead paragraph #}
@@ -45,7 +49,7 @@
     {% if image is not empty %} 
       {{ include('sanfran:figure', {
           image,
-          imageAlt,
+          image_alt,
           image_style: '16_9_2xl_768x432',
         })
       }}

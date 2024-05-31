@@ -49,20 +49,23 @@
       }}
   {% endif %}
 
-  {% if ctaText is not empty %}
-    <div class="hero--cta">
+  <div class="hero--cta">
+    {% if ctaText is not empty %}
+      {{ include('sanfran:button', {
+          type: 'btn-primary',
+          ctaText,
+          ctaHref,
+          })
+      }}
+    {% endif %}
+  
+    {% if cta_title_secondary is not empty %}
         {{ include('sanfran:button', {
-            type: 'btn-primary',
-            ctaText,
-            ctaHref,
+            type: 'btn-outline btn-secondary',
+            ctaText: cta_title_secondary,
+            ctaHref: cta_url_secondary,
             })
         }}
-    </div>
-  {% endif %}
-
-  {# {% if background_glass == 'yeseee' %}
-    <span class="relative border-success border-warning">
-      <span class="after:content-[""] after:absolute after:bg-transparent after:border-[3px] after:border-solid after:border-error after:rounded-2xl after:rounded-tl-lg after:buttom-0 after:left-0 after:right-0 after:top-0 after:z-10 after:translate-x-6 after:translate-y-8 after:transition after:ease-in-out after:cursor-pointer" aria-hidden="true">&nbsp;</span>
-    </span>
-  {% endif %} #}
+    {% endif %}
+  </div>
 </hgroup>

@@ -13,6 +13,6 @@ props:
     imageAlt:
       type: 'string'
       title: 'Alternative text for image'
-    ratio:
+    image_style:
       type: 'string'
-      title: 'Aspect ratio of image'
+      title: 'Machine name of image style'

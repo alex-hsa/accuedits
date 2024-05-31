@@ -1,0 +1,4 @@
+tagging:
+  css:
+    component:
+      src/assets/css/tagging.css: {}

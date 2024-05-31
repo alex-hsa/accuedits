@@ -6,12 +6,6 @@
   {% set alignment_class = 'text-left' %}
 {% endif %}
 
-{% if orientation == 'horizontal' %}
-  {% set orientation_class = 'flex flex-row [&>div.header]:px-8' %}
-{% else %}
-  {% set orientation_class = '[&>div.header]:py-4' %}
-{% endif %}
-
 {% if border == 'yes' %}
   {% set border_class = 'border p-4 rounded-lg' %}
 {% else %}
@@ -44,7 +38,7 @@
     .addClass(orientation_class)
     .addClass(border_class)
     .addClass(placement_class)
-    .addClass('p-8 place-items-start rounded-lg') 
+    .addClass('p-8 place-items-start rounded-lg [&>div:first-child]:absolute') 
   }}>
   {{ quick_edit }} 
 

@@ -16,13 +16,14 @@ entity_types:
     - icon_cards
     - lead
     - media_cards
+    - parallel_callout
     - section
     - spotlight
-    - step_item
     - steps
+    - step_item
     - table
-    - text_shout
     - textbox
+    - text_shout
   paragraphs_library_item:
     - paragraphs_library_item
 sidebar_width: 30

@@ -1,0 +1,4 @@
+services:
+  plugin.manager.sdc_tags.component_tag:
+    class: Drupal\sdc_tags\ComponentTagPluginManager
+    arguments: ['@module_handler', '@theme_handler', '@cache.discovery']

@@ -1,5 +1,5 @@
 {% if orientation == 'horizontal' %}
-    {% set orientation_class = 'flex flex-row [&>div.lead]:w-5/12 [&>div.items]:w-7/12' %}
+    {% set orientation_class = 'flex flex-row [&>div.lead]:w-5/12 [&>div.items]:w-7/12 [&>div:first-child]:absolute' %}
 {% else %}
     {% set orientation_class = 'flex flex-col' %}
 {% endif %}

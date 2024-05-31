@@ -13,7 +13,7 @@ settings:
   allowed_values:
     -
       value: vertical
-      label: Vertical
+      label: Stacked
     -
       value: horizontal
       label: Horizontal

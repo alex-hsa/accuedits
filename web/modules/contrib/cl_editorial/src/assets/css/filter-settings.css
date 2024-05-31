@@ -1,0 +1,8 @@
+.long-checkboxes-list .form-checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.long-checkboxes-list .form-checkboxes .form-item {
+  width: 14em;
+}

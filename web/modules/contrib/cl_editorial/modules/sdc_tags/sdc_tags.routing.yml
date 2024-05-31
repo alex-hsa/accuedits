@@ -1,0 +1,15 @@
+sdc_tags.component_tagging:
+  path: '/admin/config/user-interface/sdc/component-tagging'
+  defaults:
+    _title: 'Single Directory Components: Tagging'
+    _controller: 'Drupal\sdc_tags\Controller\ComponentTaggingController'
+  requirements:
+    _permission: 'administer site configuration'
+sdc_tags.auto_tagging:
+  path: '/admin/config/user-interface/sdc/component-tagging/auto/{tag}'
+  defaults:
+    _title: 'Single Directory Components: Tagging'
+    _form: 'Drupal\sdc_tags\Form\AutoTaggingForm'
+    tag: ''
+  requirements:
+    _permission: 'administer site configuration'

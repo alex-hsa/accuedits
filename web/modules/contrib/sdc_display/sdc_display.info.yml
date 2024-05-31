@@ -1,0 +1,13 @@
+name: SDC Display
+description: Integrates fields and view modes with single directory components.
+package: Components
+core_version_requirement: ^10.1
+type: module
+dependencies:
+  - cl_editorial:cl_editorial
+  - cl_editorial:sdc_tags
+
+# Information added by Drupal.org packaging script on 2024-03-20
+version: '1.0.0-beta5'
+project: 'sdc_display'
+datestamp: 1710933937

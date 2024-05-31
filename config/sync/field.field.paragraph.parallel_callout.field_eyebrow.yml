@@ -1,0 +1,19 @@
+uuid: 059c79bc-ad64-4c4b-87bc-2b0f7b68dfd1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_eyebrow
+    - paragraphs.paragraphs_type.parallel_callout
+id: paragraph.parallel_callout.field_eyebrow
+field_name: field_eyebrow
+entity_type: paragraph
+bundle: parallel_callout
+label: Eyebrow
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

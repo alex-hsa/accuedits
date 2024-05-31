@@ -24,4 +24,4 @@ filters:
     weight: 0
     settings:
       tablesaw_type: stack
-      tablesaw_persist: '1'
+      tablesaw_persist: 1

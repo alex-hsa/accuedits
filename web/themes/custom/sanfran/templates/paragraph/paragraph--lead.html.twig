@@ -31,6 +31,8 @@
 {% set description = content.field_description.0|default('') %}
 {% set ctaText = content.field_cta[0]['#title']|default('') %}
 {% set ctaHref = content.field_cta[0]['#url']|default('') %}
+{% set cta_title_secondary = content.field_cta_secondary[0]['#title']|default('') %}
+{% set cta_url_secondary = content.field_cta_secondary[0]['#url']|default('') %}
 {% set alignment = content.field_alignment.0['#markup']|lower|default('') %}
 {% set background_glass = content.field_background_glass.0['#markup']|lower|default('') %}
 {% set background_color = content.field_background_color|field_target_entity.name.entity.name.value|lower|default('') %}
@@ -43,6 +45,8 @@
     level,
     description,
     ctaText,
+    cta_title_secondary,
+    cta_url_secondary,
     ctaHref,
     alignment,
     background_glass,

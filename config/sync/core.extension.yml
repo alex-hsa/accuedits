@@ -12,6 +12,7 @@ module:
   block_content: 0
   breakpoint: 0
   ckeditor5: 0
+  cl_editorial: 0
   comment: 0
   config: 0
   contact: 0
@@ -66,6 +67,8 @@ module:
   responsive_image: 0
   responsive_tables_filter: 0
   sdc: 0
+  sdc_display: 0
+  sdc_tags: 0
   search: 0
   serialization: 0
   shortcut: 0

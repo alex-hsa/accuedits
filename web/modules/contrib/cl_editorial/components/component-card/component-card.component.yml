@@ -1,0 +1,45 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Component Card
+description: Card to represent a component
+status: stable
+props:
+  type: object
+  properties:
+    name:
+      type: string
+      title: Name
+      description: Human readable version of the component name
+    machineName:
+      type: string
+      title: Machine Name
+      description: 'Used in combination with the module or theme (provider) to create the component ID: {provider}:{machineName}. Component ID used for reference on other Twig templates and other parts of the system'
+      pattern: ^[a-z]([a-zA-Z0-9_-]*[a-zA-Z0-9])*$
+      examples:
+        - button
+        - module_23F
+    id:
+      type: string
+      title: ID
+      description: The plugin ID.
+      pattern: ^[a-z]([a-zA-Z0-9_-]*[a-zA-Z0-9])*:[a-z]([a-zA-Z0-9_-]*[a-zA-Z0-9])*$
+    description:
+      type: string
+      title: Description
+      description: Human readable description for the component
+    status:
+      type: string
+      title: Development Status
+      description: Use this property to identify if the component can be safely used in production.
+      enum:
+        - experimental
+        - stable
+        - deprecated
+        - obsolete
+    thumbnailHref:
+      type: string
+      title: Thumbnail
+      description: The source URL for the thumbnail image.
+    group:
+      type: string
+      title: Group
+      description: The group the component belongs to.

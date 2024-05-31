@@ -1,0 +1,23 @@
+uuid: defe21f4-5cae-4203-9273-188513b7ab5c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_border
+    - paragraphs.paragraphs_type.parallel_callout
+id: paragraph.parallel_callout.field_border
+field_name: field_border
+entity_type: paragraph
+bundle: parallel_callout
+label: 'Show Border'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean
