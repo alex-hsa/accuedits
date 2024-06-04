@@ -1,0 +1,17 @@
+uuid: 7b0a76a8-0869-4d8e-80bd-80df7df53dc6
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: 1_1_md_208x208
+label: '1:1 md (208x208)'
+effects:
+  2597e01e-718e-466e-8647-e3b308b77538:
+    uuid: 2597e01e-718e-466e-8647-e3b308b77538
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 208
+      height: 208
+      crop_type: focal_point

@@ -1,0 +1,23 @@
+uuid: 77791b1a-ba47-4aa4-ab7d-cb737e85bd57
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: 21_9_xs_315x135
+label: '21:9 xs (315x135)'
+effects:
+  e4045f88-e0ef-42c0-bb33-65f225a61c19:
+    uuid: e4045f88-e0ef-42c0-bb33-65f225a61c19
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 315
+      height: 135
+      crop_type: focal_point
+  a050f315-ffae-4121-910a-fcb6268c4399:
+    uuid: a050f315-ffae-4121-910a-fcb6268c4399
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

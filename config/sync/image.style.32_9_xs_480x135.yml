@@ -1,0 +1,23 @@
+uuid: 583b5727-2979-4096-865f-9f3eefa7f09a
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: 32_9_xs_480x135
+label: '32:9 xs (480x135)'
+effects:
+  40002cc4-1f30-41b9-8319-7229e10934e3:
+    uuid: 40002cc4-1f30-41b9-8319-7229e10934e3
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 480
+      height: 135
+      crop_type: focal_point
+  14a9bfe8-70ba-4d17-bdfe-e16d5a740d75:
+    uuid: 14a9bfe8-70ba-4d17-bdfe-e16d5a740d75
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

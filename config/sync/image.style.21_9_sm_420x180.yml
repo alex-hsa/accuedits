@@ -1,0 +1,23 @@
+uuid: eb25ccdf-3a68-44bc-88c9-31f3f982b7d1
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: 21_9_sm_420x180
+label: '21:9 sm (420x180)'
+effects:
+  a22e631e-7ccd-443b-8e8b-15c1caaa755a:
+    uuid: a22e631e-7ccd-443b-8e8b-15c1caaa755a
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 420
+      height: 180
+      crop_type: focal_point
+  f2a890cf-acfd-48af-9f75-5b288e4c3675:
+    uuid: f2a890cf-acfd-48af-9f75-5b288e4c3675
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

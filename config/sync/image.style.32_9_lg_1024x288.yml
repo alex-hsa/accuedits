@@ -1,0 +1,23 @@
+uuid: 11c7c647-0b20-4271-8d43-d2e3bb709b22
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: 32_9_lg_1024x288
+label: '32:9 lg (1024x288)'
+effects:
+  bf79df97-f451-49fc-9dc8-ea362b1b0bd6:
+    uuid: bf79df97-f451-49fc-9dc8-ea362b1b0bd6
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 1024
+      height: 288
+      crop_type: focal_point
+  1151feed-9c1d-4f50-9b0e-b427837dac8f:
+    uuid: 1151feed-9c1d-4f50-9b0e-b427837dac8f
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

@@ -1,0 +1,23 @@
+uuid: 4e204528-6f8f-4c23-8be0-92cae1ce306c
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: 16_9_xl_640x360
+label: '16:9 xl (640x360)'
+effects:
+  07f4d3ea-04dd-40e0-8d82-0401c5b44451:
+    uuid: 07f4d3ea-04dd-40e0-8d82-0401c5b44451
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 640
+      height: 360
+      crop_type: focal_point
+  4f5ffa0b-4f33-4cc5-9d74-5a92ec9c033c:
+    uuid: 4f5ffa0b-4f33-4cc5-9d74-5a92ec9c033c
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

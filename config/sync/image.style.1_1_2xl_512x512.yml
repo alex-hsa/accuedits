@@ -1,0 +1,23 @@
+uuid: 4bd26f67-63a8-4a2c-9faf-c1e6b410f511
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: 1_1_2xl_512x512
+label: '1:1 2xl (512x512)'
+effects:
+  6e74e4d2-4a56-42ec-bbca-c73d66ee294c:
+    uuid: 6e74e4d2-4a56-42ec-bbca-c73d66ee294c
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 512
+      height: 512
+      crop_type: focal_point
+  67776150-eadb-40a2-96d4-68a23616b234:
+    uuid: 67776150-eadb-40a2-96d4-68a23616b234
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

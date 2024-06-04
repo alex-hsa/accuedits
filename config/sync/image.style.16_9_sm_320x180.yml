@@ -1,0 +1,23 @@
+uuid: 5219d7e5-d5cc-4f6d-9403-350de34d44d9
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: 16_9_sm_320x180
+label: '16:9 sm (320x180)'
+effects:
+  1bdc3b19-02e5-4620-9723-fdbe4488ca60:
+    uuid: 1bdc3b19-02e5-4620-9723-fdbe4488ca60
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 320
+      height: 180
+      crop_type: focal_point
+  6ed68305-d350-4bdf-8d5b-e68c66641c05:
+    uuid: 6ed68305-d350-4bdf-8d5b-e68c66641c05
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

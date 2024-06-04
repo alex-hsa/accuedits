@@ -1,0 +1,23 @@
+uuid: dc656d31-702f-4277-a319-d79150c5df8e
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: 32_9_xl_1280x360
+label: '32:9 xl (1280x360)'
+effects:
+  94fc9f69-9209-4cfb-818e-f5c6dc0e56db:
+    uuid: 94fc9f69-9209-4cfb-818e-f5c6dc0e56db
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 1280
+      height: 360
+      crop_type: focal_point
+  653560e5-fd81-43df-b0bb-307c693bd011:
+    uuid: 653560e5-fd81-43df-b0bb-307c693bd011
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

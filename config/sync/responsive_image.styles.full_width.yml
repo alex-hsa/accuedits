@@ -1,0 +1,42 @@
+uuid: cd4d8c18-d026-4ffc-b5a0-c5f03ac69153
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.32_9_2xl_1536x432
+    - image.style.32_9_lg_1024x288
+    - image.style.32_9_md_768x216
+    - image.style.32_9_sm_640x180
+    - image.style.32_9_xl_1280x360
+  theme:
+    - sanfran
+id: full_width
+label: Full-width
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: 32_9_2xl_1536x432
+    breakpoint_id: sanfran.xl
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: 32_9_xl_1280x360
+    breakpoint_id: sanfran.lg
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: 32_9_lg_1024x288
+    breakpoint_id: sanfran.md
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: 32_9_md_768x216
+    breakpoint_id: sanfran.sm
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: 32_9_sm_640x180
+    breakpoint_id: sanfran.xs
+    multiplier: 1x
+breakpoint_group: sanfran
+fallback_image_style: 32_9_xl_1280x360

@@ -1,0 +1,23 @@
+uuid: 578a1d0f-6f71-4b01-8e07-a1af93375416
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: 32_9_sm_640x180
+label: '32:9 sm (640x180)'
+effects:
+  e605a776-af48-4264-b55a-d89dd4a0f686:
+    uuid: e605a776-af48-4264-b55a-d89dd4a0f686
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 640
+      height: 180
+      crop_type: focal_point
+  0ec2a9e7-d724-4d63-bb31-acd792c1207e:
+    uuid: 0ec2a9e7-d724-4d63-bb31-acd792c1207e
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp
