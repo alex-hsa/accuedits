@@ -8,14 +8,14 @@
     name: 'Default',
       args: {
         image: 'https://picsum.photos/seed/affse3/1200/150',
-        imageAlt: 'Alternative text for this image',
+        image_alt: 'Alternative text for this image',
         ratio: '16/9',
       }
   } %}
 
    {{ include('sanfran:figure', {
       image,
-      imageAlt,
+      image_alt,
       ratio,
      })
    }}

@@ -1,4 +1,5 @@
 <figure class="h-full">
-  {# <img class="bg-auto" src="{{ image }}" alt="{{ imageAlt }}" /> #}
-  {{ drupal_image(image, image_style, { alt: image_alt, title: image_alt } ) }}
+  {# <img class="bg-auto" src="{{ image }}" alt="{{ image_alt }}" /> #}
+  {# {{ drupal_image(image, image_style, { alt: image_alt, title: image_alt } ) }} #}
+  {{ drupal_image(image, image_style, { alt: image_alt, title: image_alt }, responsive=true ) }}
 </figure>

@@ -1,0 +1,3 @@
+services:
+  paragraphs_responsive_background_image_formatter.settings_service:
+    class: Drupal\paragraphs_responsive_background_image_formatter\SettingsService

@@ -1,0 +1,85 @@
+<?php
+
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
+use Drupal\Core\Render\Element;
+use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function paragraphs_responsive_background_image_formatter_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the paragraphs_responsive_background_image_formatter module.
+    case 'help.page.paragraphs_responsive_background_image_formatter':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module provides a responsive background image formatter for paragaphs. The module extends the Responsive Background Image formatter module.') . '</p>';
+      return $output;
+  }
+}
+
+/**
+ * Implements template_preprocess_paragraph().
+ */
+function paragraphs_responsive_background_image_formatter_preprocess_paragraph(&$variables) {
+  /** @var Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  // Get the content render array and loop over it checking for children.
+  $content_items = $variables['content'];
+  foreach ($content_items as $content_item_key => $content_item_values) {
+    $child_keys = Element::children($content_item_values);
+    if (!empty($child_keys)) {
+      // Loop over the children and check for media entities.
+      foreach ($child_keys as $child_key) {
+        $element = $content_item_values[$child_key];
+        if (isset($element['#media'])) {
+          /** @var $media \Drupal\media\Entity\Media */
+          $media = $element['#media'];
+          if ($media->bundle() === 'image') {
+            // Collect the render display and check the view mode type.
+            $entity_display = EntityViewDisplay::collectRenderDisplay($media, $element['#view_mode']);
+            $component = $entity_display->getComponent('field_media_image');
+            if (isset($component['type']) && $component['type'] === 'paragraphs_responsive_background_image_formatter') {
+              [
+                $parent_css_class,
+                $field_css_class,
+              ] = _paragraphs_responsive_background_image_formatter_css_class($paragraph);
+              /** @var $settings_service \Drupal\paragraphs_responsive_background_image_formatter\SettingsService */
+              $settings_service = \Drupal::service('paragraphs_responsive_background_image_formatter.settings_service');
+              // Create the settings array.
+              $settings = [];
+              $settings['css_settings'] = [];
+              // Create CSS variables to assign to render array elements.
+              if (isset($component['settings']['dom_element_target'])) {
+                if ($component['settings']['dom_element_target'] === 'paragraph') {
+                  $variables['attributes']['class'][] = $parent_css_class;
+                  $settings['css_settings']['bg_image_selector'] = '.' . $parent_css_class;
+                }
+                if ($component['settings']['dom_element_target'] === 'field') {
+                  $variables['content'][$content_item_key]['#attributes']['class'] = $field_css_class;
+                  $settings['css_settings']['bg_image_selector'] = '.' . $field_css_class;
+                }
+              }
+              $settings_service->setFormatterSettings($settings);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Provides a module alter hook for css class names used in the DOM.
+ */
+function _paragraphs_responsive_background_image_formatter_css_class(Paragraph $paragraph): array {
+  $css_classes = [
+    Html::cleanCssIdentifier('paragraphs_responsive_background_image_formatter' . '_' . $paragraph->id()),
+    Html::cleanCssIdentifier('paragraphs_responsive_background_image_field_formatter' . '_' . $paragraph->id()),
+  ];
+  \Drupal::moduleHandler()
+    ->alter('paragraphs_responsive_background_image_formatter_css_class', $css_classes, $paragraph);
+  return $css_classes;
+}

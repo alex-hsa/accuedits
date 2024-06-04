@@ -1,0 +1,13 @@
+{
+  "name": "drupal/paragraphs_responsive_background_image_formatter",
+  "description": "Provides a display formatter for Media",
+  "type": "drupal-module",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Justin Norton",
+      "email": "info@jnorton.co.uk",
+      "homepage": "https://www.jnorton.co.uk"
+    }
+  ]
+}

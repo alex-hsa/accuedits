@@ -1,0 +1,36 @@
+sanfran.xs:
+  label: extra-small
+  mediaQuery: '(min-width: 480px)'
+  weight: 0
+  multipliers:
+    - 1x
+sanfran.sm:
+  label: small
+  mediaQuery: '(min-width: 640px)'
+  weight: 1
+  multipliers:
+    - 1x
+sanfran.md:
+    label: medium
+    mediaQuery: '(min-width: 768px)'
+    weight: 2
+    multipliers:
+      - 1x
+sanfran.lg:
+  label: large
+  mediaQuery: '(min-width: 1024px)'
+  weight: 3
+  multipliers:
+    - 1x
+sanfran.xl:
+  label: extra-large
+  mediaQuery: '(min-width: 1280px)'
+  weight: 4
+  multipliers:
+    - 1x
+sanfran.2xl:
+  label: double-extra-large
+  mediaQuery: '(min-width: 1536px)'
+  weight: 5
+  multipliers:
+    - 1x

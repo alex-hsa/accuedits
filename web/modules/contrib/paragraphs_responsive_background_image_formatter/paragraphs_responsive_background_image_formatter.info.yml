@@ -1,0 +1,14 @@
+name: 'Paragraphs Responsive Background Images Formatter'
+description: 'Paragraphs Responsive Background Images Formatter provides an image formatter to display images responsively in paragraphs using CSS.'
+core_version_requirement: ^9.3 || ^10
+type: module
+dependencies:
+  - drupal:media
+  - bg_image_formatter:bg_image_formatter
+  - bg_image_formatter:responsive_bg_image_formatter
+  - paragraphs:paragraphs
+
+# Information added by Drupal.org packaging script on 2023-08-17
+version: '1.0.0'
+project: 'paragraphs_responsive_background_image_formatter'
+datestamp: 1692263592
