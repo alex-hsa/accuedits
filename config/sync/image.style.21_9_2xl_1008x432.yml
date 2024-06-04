@@ -1,0 +1,23 @@
+uuid: 62a8c759-8202-4c1d-af42-392cf8bb26dd
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: 21_9_2xl_1008x432
+label: '21:9 2xl (1008x432)'
+effects:
+  25d00943-668c-48f6-b3e1-ade1c7000b95:
+    uuid: 25d00943-668c-48f6-b3e1-ade1c7000b95
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 1008
+      height: 432
+      crop_type: focal_point
+  d839426b-a272-423c-a016-1602b2d018fe:
+    uuid: d839426b-a272-423c-a016-1602b2d018fe
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

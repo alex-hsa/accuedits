@@ -1,5 +1,5 @@
 {% if border == 'yes' %}
-  {% set border_class = 'border p-4 rounded-lg' %}
+  {% set border_class = 'border p-4 rounded-lg border-' ~ background_color %}
 {% else %}
   {% set border_class = '' %}
 {% endif %}

@@ -1,0 +1,23 @@
+uuid: 6eecab6e-ce8e-4b51-a43d-7cf2b97ec906
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: 1_1_xs_100x100
+label: '1:1 xs (100x100)'
+effects:
+  4c8cf455-4d88-4a80-8cd2-8303f834bccc:
+    uuid: 4c8cf455-4d88-4a80-8cd2-8303f834bccc
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 100
+      height: 100
+      crop_type: focal_point
+  55581192-2a35-4499-8e4c-9802029ac534:
+    uuid: 55581192-2a35-4499-8e4c-9802029ac534
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

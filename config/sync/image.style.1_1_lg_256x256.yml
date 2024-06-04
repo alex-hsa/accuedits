@@ -1,0 +1,23 @@
+uuid: 5a856796-50a3-41ef-acb7-479b9092fb65
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: 1_1_lg_256x256
+label: '1:1 lg (256x256)'
+effects:
+  fafdd1dd-eb1e-4457-8ed8-6b5439d7f3df:
+    uuid: fafdd1dd-eb1e-4457-8ed8-6b5439d7f3df
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 256
+      height: 256
+      crop_type: focal_point
+  b1ebf23a-f637-4ffc-8e58-031c1184e8d3:
+    uuid: b1ebf23a-f637-4ffc-8e58-031c1184e8d3
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

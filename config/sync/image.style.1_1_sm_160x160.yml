@@ -1,0 +1,23 @@
+uuid: f21390c9-f5fa-428a-89b5-f8f66e647e05
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: 1_1_sm_160x160
+label: '1:1 sm (160x160)'
+effects:
+  8ca17727-02c2-46ba-8423-8f72c887fed0:
+    uuid: 8ca17727-02c2-46ba-8423-8f72c887fed0
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 160
+      height: 160
+      crop_type: focal_point
+  d2a43599-b3d3-44b2-9be4-23b741452064:
+    uuid: d2a43599-b3d3-44b2-9be4-23b741452064
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

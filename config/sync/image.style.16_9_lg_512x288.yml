@@ -1,0 +1,23 @@
+uuid: 50b70252-03d9-44f8-8991-6f72755cbe6a
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: 16_9_lg_512x288
+label: '16:9 lg (512x288)'
+effects:
+  66a1806b-048f-4887-a5c3-68e75f20309c:
+    uuid: 66a1806b-048f-4887-a5c3-68e75f20309c
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 512
+      height: 288
+      crop_type: focal_point
+  1ea2cdcb-016d-4dca-8055-098617dc4e5d:
+    uuid: 1ea2cdcb-016d-4dca-8055-098617dc4e5d
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

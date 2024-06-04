@@ -1,11 +1,11 @@
-.video {
+.video-remote {
   height: 0;
   max-width: 100%;
-  padding-bottom: 56.25%;
+  padding-bottom: 43%;
   position: relative;
 }
 
-.video iframe {
+.video-remote iframe {
   height: 100%;
   left: 0;
   position: absolute;

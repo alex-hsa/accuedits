@@ -448,7 +448,7 @@ menu_config: |-
                           }
                       ],
                       "col_config": {
-                          "width": "3",
+                          "width": "4",
                           "class": "",
                           "hidewcol": "0",
                           "showblocktitle": "1"
@@ -469,20 +469,20 @@ menu_config: |-
                               "weight": "0"
                           },
                           {
-                              "plugin_id": "menu_link_content:68d77bd1-bac4-4960-8d95-1acfd188c3c2",
+                              "plugin_id": "menu_link_content:c07e1f2f-9a50-4c1f-b558-1d544586f14d",
                               "type": "menu_item",
                               "tb_item_config": [],
                               "weight": "0"
                           },
                           {
-                              "plugin_id": "menu_link_content:09565c4d-59e9-4f6c-8029-61d04d838b9b",
+                              "plugin_id": "menu_link_content:68d77bd1-bac4-4960-8d95-1acfd188c3c2",
                               "type": "menu_item",
                               "tb_item_config": [],
                               "weight": "0"
                           }
                       ],
                       "col_config": {
-                          "width": "3",
+                          "width": "4",
                           "class": "",
                           "hidewcol": "",
                           "showblocktitle": "1"
@@ -491,13 +491,13 @@ menu_config: |-
                   {
                       "col_content": [
                           {
-                              "plugin_id": "menu_link_content:f9163358-d9bd-4808-8391-d1ad80468293",
+                              "plugin_id": "menu_link_content:09565c4d-59e9-4f6c-8029-61d04d838b9b",
                               "type": "menu_item",
                               "tb_item_config": [],
                               "weight": "0"
                           },
                           {
-                              "plugin_id": "menu_link_content:c07e1f2f-9a50-4c1f-b558-1d544586f14d",
+                              "plugin_id": "menu_link_content:f9163358-d9bd-4808-8391-d1ad80468293",
                               "type": "menu_item",
                               "tb_item_config": [],
                               "weight": "0"
@@ -510,7 +510,7 @@ menu_config: |-
                           }
                       ],
                       "col_config": {
-                          "width": "3",
+                          "width": "4",
                           "class": "",
                           "hidewcol": "",
                           "showblocktitle": "1"
@@ -642,6 +642,24 @@ menu_config: |-
               "label": ""
           }
       },
+      "menu_link_content:c07e1f2f-9a50-4c1f-b558-1d544586f14d": {
+          "rows_content": [],
+          "submenu_config": {
+              "width": "",
+              "class": "",
+              "group": "1"
+          },
+          "item_config": {
+              "class": "",
+              "xicon": "",
+              "caption": "",
+              "alignsub": "",
+              "group": "1",
+              "hidewcol": "0",
+              "hidesub": "0",
+              "label": ""
+          }
+      },
       "menu_link_content:68d77bd1-bac4-4960-8d95-1acfd188c3c2": {
           "rows_content": [],
           "submenu_config": {
@@ -679,24 +697,6 @@ menu_config: |-
           }
       },
       "menu_link_content:f9163358-d9bd-4808-8391-d1ad80468293": {
-          "rows_content": [],
-          "submenu_config": {
-              "width": "",
-              "class": "",
-              "group": "1"
-          },
-          "item_config": {
-              "class": "",
-              "xicon": "",
-              "caption": "",
-              "alignsub": "",
-              "group": "1",
-              "hidewcol": "0",
-              "hidesub": "0",
-              "label": ""
-          }
-      },
-      "menu_link_content:c07e1f2f-9a50-4c1f-b558-1d544586f14d": {
           "rows_content": [],
           "submenu_config": {
               "width": "",

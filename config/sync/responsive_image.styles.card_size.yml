@@ -1,0 +1,58 @@
+uuid: 46e93bee-74ba-41ce-b2a0-0c0cc72834c2
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.16_9_md_384x216
+    - image.style.21_9_2xl_1008x432
+    - image.style.21_9_lg_672x288
+    - image.style.21_9_md_504x216
+    - image.style.21_9_sm_420x180
+    - image.style.21_9_xl_840x360
+  theme:
+    - sanfran
+id: card_size
+label: Card-size
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: 21_9_xl_840x360
+    breakpoint_id: sanfran.xl
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: 21_9_2xl_1008x432
+    breakpoint_id: sanfran.xl
+    multiplier: 2x
+  -
+    image_mapping_type: image_style
+    image_mapping: 21_9_lg_672x288
+    breakpoint_id: sanfran.lg
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: 21_9_xl_840x360
+    breakpoint_id: sanfran.lg
+    multiplier: 2x
+  -
+    image_mapping_type: image_style
+    image_mapping: 16_9_md_384x216
+    breakpoint_id: sanfran.md
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: 21_9_lg_672x288
+    breakpoint_id: sanfran.md
+    multiplier: 2x
+  -
+    image_mapping_type: image_style
+    image_mapping: 21_9_sm_420x180
+    breakpoint_id: sanfran.sm
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: 21_9_md_504x216
+    breakpoint_id: sanfran.sm
+    multiplier: 2x
+breakpoint_group: sanfran
+fallback_image_style: 21_9_lg_672x288

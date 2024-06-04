@@ -1,0 +1,23 @@
+uuid: 8e2c2959-e8ae-4e0f-b39d-2ccfbfc42c3d
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: 21_9_md_504x216
+label: '21:9 md (504x216)'
+effects:
+  fb701924-8db8-498f-a7b6-0bf39f4ac311:
+    uuid: fb701924-8db8-498f-a7b6-0bf39f4ac311
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 504
+      height: 216
+      crop_type: focal_point
+  11e9d223-ab2a-4ed5-8dba-0d82fe900b6a:
+    uuid: 11e9d223-ab2a-4ed5-8dba-0d82fe900b6a
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

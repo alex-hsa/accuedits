@@ -16,7 +16,7 @@
   {% set video_src = video_src %}
 {% else %}
   {% set video_src %}
-    <div class="video {{ classes }}">
+    <div class="video-remote {{ classes }}">
       <iframe src="{{ video_src }}" allowfullscreen frameborder="0" class="w-full h-full"></iframe>
     </div>
   {% endset %}

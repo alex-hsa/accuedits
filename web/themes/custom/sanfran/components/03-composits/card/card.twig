@@ -10,10 +10,10 @@
 {% set orientation = parent['#paragraph'].field_orientation.value %}
 {% if orientation == 'horizontal' %}
   {% set orientation_class = 'relative flex flex-row w-full [&>div_figure_img]:rounded-l-lg [&>div_figure_iframe]:rounded-l-lg' %}
-  {% set image_style = 'max_325x325' %}
+  {% set image_style = 'square' %}
 {% else %}
   {% set orientation_class = '[&>div.lead]:py-4 [&>div_figure_img]:rounded-t-lg [&>div_figure_iframe]:rounded-t-lg' %}
-  {% set image_style = '21_9_2xl_1218x562' %}
+  {% set image_style = 'card_size' %}
 {% endif %}
 
 {% if placement == 'end' %}
@@ -49,9 +49,8 @@
         {% if (image != '') and ((image != '/')) %} 
           {{ include('sanfran:figure', {
               image,
-              imageAlt,
-              classes: '',
-              orientation,
+              image_alt,
+              image_style,
             })
           }}
         {% endif %}
@@ -85,7 +84,7 @@
         {% if ctaHref and (link_card != '1') %}
         <div class="card-actions justify-start">
           {{ include('sanfran:button', {
-            type: 'btn-outline btn-info',
+            type: 'btn-outline btn-primary',
             ctaText,
             ctaHref,
             })

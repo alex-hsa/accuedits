@@ -1,0 +1,23 @@
+uuid: 214b4d14-44e7-4579-87a4-1e91cadc94c9
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: 21_9_xl_840x360
+label: '21:9 xl (840x360)'
+effects:
+  c44bee95-7322-40df-aec9-a708d49d0369:
+    uuid: c44bee95-7322-40df-aec9-a708d49d0369
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 840
+      height: 360
+      crop_type: focal_point
+  91207690-f91f-447e-bd97-0d90703fd72e:
+    uuid: 91207690-f91f-447e-bd97-0d90703fd72e
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

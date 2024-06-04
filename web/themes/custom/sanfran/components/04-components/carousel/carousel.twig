@@ -1,9 +1,9 @@
 {% if orientation == 'horizontal' %}
-    {% set orientation_class = 'flex flex-row [&>div.lead]:w-1/2 [&>div.items]:w-1/2 [&>div:first-child]:absolute' %}
-    {% set image_style = '16_9_2xl_768x432' %}
+    {% set orientation_class = 'flex flex-col md:flex-row md:[&>div.lead]:w-1/2 md:[&>div.items]:w-1/2 md:[&>div:first-child]:absolute' %}
+    {% set image_style = 'half_width' %}
 {% else %}
     {% set orientation_class = 'flex flex-col rounded-b-lg' %}
-    {% set image_style = '32_9_2xl_1536x432' %}
+    {% set image_style = 'full_width' %}
 {% endif %}
 
 {% if flip == 'yes' %}
@@ -72,7 +72,8 @@
                     {% else %}
                         {% set carousel_item_target_id = item['#media'].field_media_image.0.target_id %}
                         {% set carousel_item_title = item['#media'].field_media_image.0.alt %} 
-                        {{ drupal_image(carousel_item_target_id, image_style, { alt: carousel_item_title, title: carousel_item_title, class: 'w-full' } ) }}
+                        {# {{ drupal_image(carousel_item_target_id, image_style, { alt: carousel_item_title, title: carousel_item_title, class: 'w-full' } ) }} #}
+                        {{ drupal_image(carousel_item_target_id, image_style, { alt: carousel_item_title, title: carousel_item_title, class: 'w-full' }, responsive=true ) }}
                     {% endif %}
                     <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                         <a href="#slide{{prev}}" class="btn btn-circle">❮</a> 

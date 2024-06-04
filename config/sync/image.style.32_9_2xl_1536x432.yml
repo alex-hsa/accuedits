@@ -5,7 +5,7 @@ dependencies:
   module:
     - focal_point
 name: 32_9_2xl_1536x432
-label: '32:9 2xl (1536x432'
+label: '32:9 2xl (1536x432)'
 effects:
   beb0232f-8349-497c-bd04-125fd850fafa:
     uuid: beb0232f-8349-497c-bd04-125fd850fafa

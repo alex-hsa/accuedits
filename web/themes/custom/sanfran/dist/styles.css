@@ -5204,6 +5204,10 @@ section{
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
+  .md\:flex-row{
+    flex-direction: row;
+  }
+
   .md\:place-self-center{
     place-self: center;
   }
@@ -5261,12 +5265,14 @@ section{
   grid-column: span 7 / span 7;
 }
 
-.\[\&\>div\.items\]\:w-1\/2>div.items{
-  width: 50%;
-}
-
 .\[\&\>div\.items\]\:w-7\/12>div.items{
   width: 58.333333%;
+}
+
+@media (min-width: 768px){
+  .md\:\[\&\>div\.items\]\:w-1\/2>div.items{
+    width: 50%;
+  }
 }
 
 .\[\&\>div\.items_article\:last-child_div\.step-text\]\:mb-0>div.items article:last-child div.step-text{
@@ -5293,10 +5299,6 @@ section{
   margin-right: 1rem;
 }
 
-.\[\&\>div\.lead\]\:w-1\/2>div.lead{
-  width: 50%;
-}
-
 .\[\&\>div\.lead\]\:w-5\/12>div.lead{
   width: 41.666667%;
 }
@@ -5304,6 +5306,12 @@ section{
 .\[\&\>div\.lead\]\:py-4>div.lead{
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+@media (min-width: 768px){
+  .md\:\[\&\>div\.lead\]\:w-1\/2>div.lead{
+    width: 50%;
+  }
 }
 
 .\[\&\>div\.lead_hgroup\]\:sticky>div.lead hgroup{
@@ -5352,6 +5360,12 @@ section{
 
 .\[\&\>div\:first-child\]\:self-center>div:first-child{
   align-self: center;
+}
+
+@media (min-width: 768px){
+  .md\:\[\&\>div\:first-child\]\:absolute>div:first-child{
+    position: absolute;
+  }
 }
 
 .\[\&\>div_figure_iframe\]\:rounded-l-lg>div figure iframe{
