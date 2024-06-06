@@ -7,13 +7,13 @@
 {% endif %}
 
 {% if orientation == 'horizontal' %}
-  {% set orientation_class = 'flex flex-row [&>div.lead]:mr-4 pr-4 [&>div:first-child]:absolute' %}
+  {% set orientation_class = 'md:flex md:flex-row [&>div:first-child]:absolute' %}
 {% else %}
-  {% set orientation_class = '[&>div.lead]:mb-4' %}
+  {% set orientation_class = '' %}
 {% endif %}
 
 {% if border == 'yes' %}
-  {% set border_class = 'border rounded-lg' %}
+  {% set border_class = 'border p-4 rounded-lg' %}
 {% else %}
   {% set border_class = '' %}
 {% endif %}
@@ -45,7 +45,8 @@
 
 <section {{ attributes.addClass(paragraph_classes).addClass(orientation_class).addClass(border_class) }}>
   {{ quick_edit }}
-  <div class="lead p-8 rounded-lg"{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
+  <div class="lead p-8 rounded-lg{% if background_pattern_style %} mb-4 md:mr-4 {% endif %}"
+  {% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
       {% for key, item in lead_item %}
           {% if key|first != '#' %}
               {{ item }}

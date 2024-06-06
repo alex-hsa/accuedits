@@ -32,7 +32,6 @@
     not paragraph.isPublished() ? 'paragraph--unpublished',
   ]|join(' ')|trim %}
 
-
   
 {% if (link_card == '1') and (ctaHref != '') %} 
   <article>
@@ -51,6 +50,7 @@
               image,
               image_alt,
               image_style,
+              storybook,
             })
           }}
         {% endif %}
@@ -58,7 +58,7 @@
         {% if video_remote != '' %} 
             {{ include('sanfran:remote-video', {
                 video_remote,
-                classes: '',
+                classes: 'video-remote',
                 })
             }}
         {% endif %}

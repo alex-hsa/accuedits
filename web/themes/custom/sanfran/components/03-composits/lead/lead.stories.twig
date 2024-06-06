@@ -1,33 +1,69 @@
 {% stories lead with { 
-  title: 'AccuEdits/Composits/Lead'
+  title: 'AccuEdits/Composits/Lead',
+  argTypes: {
+    alignment: {
+      options: ['left', 'center', 'right'],
+      control: 'radio'
+    },
+    background_color: {
+      options: ['primary', 'secondary', 'accent', 'neutral', 'base', 'error', 'info', 'success', 'warning'],
+      control: 'select'
+    },
+    background_glass: {
+      options: ['no', 'yes'],
+      control: 'radio'
+    },
+    level: {
+      options: ['1', '2', '3', '4', '5', '6'],
+      control: 'select'
+    },
+    width: {
+      options: ['w-1/12', 'w-2/12', 'w-3/12', 'w-4/12', 'w-5/12', 'w-6/12', 'w-7/12', 'w-8/12', 'w-9/12', 'w-10/12', 'w-11/12', 'w-full'],
+      control: 'select'
+    },
+  }
 } %}
 
   {% story lead_default with {
     name: 'Default',
     args: {
-      heading: 'Wecome to the Page Title component',
-      text: '<ul><li>Live at home or in a shelter.</li><li>Receive Medi-Cal or <a href="https://www.dhcs.ca.gov/services/medi-cal/pages/doyouqualifyformedi-cal.aspx"><strong>qualify for Medi-Cal</strong></a>.</li><li>Demonstrate a need for help with activities of daily living.</li></ul>',
-      ctaText: 'Click me!',
-      ctaHref: 'https://www.sfhsa.org',
-      background_color: '#F7BF35',
+        eyebrow: 'AccuEdits.com',
+        heading: 'Web publishing, streamlined',
+        level: '1',
+        text: 'AccuEdits is quick, stylish, and gives your team all the tools they need to handle large amounts of content efficiently.',
+        ctaText: 'Get Started',
+        ctaHref: 'https://www.accuedits.com/getstarted',
+        cta_title_secondary: 'Why AccuEdits',
+        cta_url_secondary: 'https://www.accuedits.com/why',
+        alignment: 'left',
+        background_color: 'accent',
+        background_glass: 'yes',
+        width: 'w-6/12',
     }
   } %}
 
-    {% set hmtl_text = {
+    {% set description = {
       '#type':   'processed_text',
       '#text':    text,
       '#format':  'basic_html',
     } %}
 
 
-    {{ include('sanfran:textbox', {
-      heading,
-      level: '2',
-      description: hmtl_text,
-      ctaText,
-      ctaHref,
-      background_color,
+    {{ include('sanfran:lead', {
+        eyebrow,
+        heading,
+        level: '1',
+        description,
+        ctaText,
+        ctaHref,
+        cta_title_secondary,
+        cta_url_secondary,
+        alignment,
+        background_color,
+        background_glass,
+        width,
     }) }}
+
   {% endstory %}
 
 {% endstories %}

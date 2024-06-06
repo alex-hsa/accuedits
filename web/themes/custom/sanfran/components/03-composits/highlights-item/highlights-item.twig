@@ -1,7 +1,7 @@
 {% if (background_color == 'white') or (background_color == '') %}
   {% set background_color_class = 'border border-l-8' %}
 {% else %}
-  {% set background_color_class = 'bg-base-' ~ background_color ~ ' border-l-8 border-' ~ background_color %}
+  {% set background_color_class = 'bg-' ~ background_color ~ '/[.25] border-l-8 border-' ~ background_color %}
 {% endif %}
 
 {% set classes_paragraph = [

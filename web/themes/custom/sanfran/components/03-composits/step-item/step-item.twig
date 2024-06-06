@@ -1,12 +1,15 @@
-
-{% set parent = drupal_entity('paragraph', paragraph.parent_id.value|default('')) %}  
-{% set term_id = parent['#paragraph'].field_background_color.value.0.target_id %}
-{% if term_id %} 
-    {% set term_details = drupal_entity('taxonomy_term', term_id|number_format) %} 
-    {% set background_color = term_details['#taxonomy_term'].name.value|lower %}
-    {% set background_color_class = background_color ~ '/[.25]' %}
+{% if not storybook%}
+  {% set parent = drupal_entity('paragraph', paragraph.parent_id.value|default('')) %}  
+  {% set term_id = parent['#paragraph'].field_background_color.value.0.target_id %}
+  {% if term_id %} 
+      {% set term_details = drupal_entity('taxonomy_term', term_id|number_format) %} 
+      {% set background_color = term_details['#taxonomy_term'].name.value|lower %}
+      {% set background_color_class = background_color ~ '/[.25]' %}
+  {% else %}
+      {% set background_color_class = '' %}
+  {% endif %}
 {% else %}
-    {% set background_color_class = '' %}
+    {% set background_color_class = background_color ~ '/[.25]' %}
 {% endif %}
 
 {% set bg_colors_25_opacity = {

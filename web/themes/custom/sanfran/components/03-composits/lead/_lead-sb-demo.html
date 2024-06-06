@@ -1,0 +1,22 @@
+
+    {% set description = {
+      '#type':   'processed_text',
+      '#text':    'AccuEdits is quick, stylish, and gives your team all the tools they need to handle large amounts of content efficiently.',
+      '#format':  'basic_html',
+    } %}
+
+
+    {{ include('sanfran:lead', {
+        eyebrow: 'AccuEdits.com',
+        heading: 'Web publishing, streamlined',
+        level: '2',
+        description,
+        ctaText: 'Get Started',
+        ctaHref: 'https://www.accuedits.com/getstarted',
+        cta_title_secondary: 'Why AccuEdits',
+        cta_url_secondary: 'https://www.accuedits.com/why',
+        alignment: 'left',
+        background_color: 'accent',
+        background_glass: 'yes',
+        width: 'w-6/12',
+    }) }}

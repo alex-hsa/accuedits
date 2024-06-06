@@ -21,7 +21,7 @@
       '#format':  'basic_html',
     } %}
 
-   <ol class="border-s-8 border-accent relative left-4 pl-4"> 
+   <ol class="relative left-4 pl-4"> 
     {{ include('sanfran:step-item', {
         icon: '',
         step_number,
@@ -29,6 +29,8 @@
         description: hmtl_text,
         ctaText,
         ctaHref,
+        storybook: 'true',
+        background_color: 'primary',
       })
     }}
     </ol>

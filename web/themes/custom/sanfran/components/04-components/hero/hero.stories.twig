@@ -1,65 +1,140 @@
 {% stories hero with { 
-  title: 'AccuEdits/Components/Hero', 
-  argTypes: {
-    ctaTarget: {
-      control: 'radio',
-      options: { Empty: '', Blank: '_blank' },
-      }
-    }
+  title: 'AccuEdits/Components/Hero'
 } %}
 
   {% story hero_default with {
     name: '1. Default',
     args: {
-      heading: 'Join us at the conference',
-      description: 'Ask anyone to describe what makes San Francisco special and Victorian architecture would land near the top of the list, somewhere between sourdough bread and tech money.',
-      image: 'https://images.pexels.com/photos/61109/pexels-photo-61109.jpeg',
-      ctaText: 'Click me!',
-      ctaHref: 'https://www.sfhsa.org',
+      lead_item: [
+        {
+          eyebrow: 'AccuEdits.com',
+          heading: 'Web publishing, streamlined',
+          level: '1',
+          description: 'AccuEdits is quick, stylish, and gives your team all the tools they need to handle large amounts of content efficiently.',
+          ctaText: 'Get Started',
+          ctaHref: 'https://www.accuedits.com/getstarted',
+          cta_title_secondary: 'Why AccuEdits',
+          cta_url_secondary: 'https://www.accuedits.com/why',
+          alignment: 'left',
+          background_color: 'accent',
+          background_glass: 'yes',
+          width: 'w-6/12',
+        }
+      ],
+      image: 'public://2024-04/pexels-kampus-8204379.jpg', 
+      image_alt: 'This is the Golden Gate Bridge',
+      border: 'yes',
+      placement: 'start',
     }
   } %}
 
+    {% set storybook_lead_item %}
+      {% for item in lead_item %}
+        
+        {% if item.description %}
+          {% set hmtl_text = {
+            '#type':   'processed_text',
+            '#text':    item.description,
+            '#format':  'basic_html',
+          } %}
+        {% endif %}
+
+
+        {{ include('sanfran:lead', {
+            eyebrow: item.eyebrow,
+            heading: item.heading,
+            level: '1',
+            description: hmtl_text,
+            ctaText: item.ctaText,
+            ctaHref: item.ctaHref,
+            cta_title_secondary: item.cta_title_secondary,
+            cta_url_secondary: item.cta_url_secondary,
+            alignment: item.alignment,
+            background_glass: item.background_glass,
+            background_color: item.background_color,
+            width: item.width,
+        }) }}
+
+      {% endfor %}
+    {% endset %}
+
+
     {{ include('sanfran:hero', {
-      image,
-      heading,
-      description,
-      ctaText,
-      ctaHref,
+        lead_item: storybook_lead_item,
+        image,
+        image_alt,
+        border,
+        placement,
+        quick_edit: '',
+        storybook: 'yes',
     }) }}
   {% endstory %}
 
-  {% story hero_no_image with {
-    name: '2. No image',
+  {% story hero_minimal_lead with {
+    name: '2. Minimal Lead',
     args: {
-      heading: 'Are you sure you want to end the session?',
-      description: 'This is a detailed and wordy example for the description field.',
-      ctaText: 'Logout',
-      ctaHref: 'https://www.sfhsa.org',
+      lead_item: [
+        {
+          eyebrow: '',
+          heading: 'Web publishing, streamlined',
+          level: '1',
+          description: ' ',
+          ctaText: '',
+          ctaHref: '',
+          cta_title_secondary: '',
+          cta_url_secondary: '',
+          alignment: 'left',
+          background_color: '',
+          background_glass: 'yes',
+          width: 'w-6/12',
+        }
+      ],
+      image: 'public://2024-04/pexels-kampus-8204379.jpg', 
+      image_alt: 'This is the Golden Gate Bridge',
+      border: 'no',
+      placement: 'start',
     }
   } %}
-    {{ include('sanfran:hero', {
-      heading,
-      description,
-      ctaText,
-      ctaHref,
-    }) }}
-  {% endstory %}
 
-  {% story hero_with_body with {
-    name: '3. With Body',
-    args: {
-      image: 'https://images.pexels.com/photos/61109/pexels-photo-61109.jpeg',
-      heading: 'Improve perceived performance',
-      description: 'This is a detailed and wordy example for the description field.',
-      ctaText: 'Learn more',
-      ctaHref: 'https://www.sfhsa.org',
-    }
-  } %}
+  {% set storybook_lead_item %}
+      {% for item in lead_item %}
+        
+        {% if item.description %}
+          {% set hmtl_text = {
+            '#type':   'processed_text',
+            '#text':    item.description,
+            '#format':  'basic_html',
+          } %}
+        {% endif %}
+
+
+        {{ include('sanfran:lead', {
+            eyebrow: item.eyebrow,
+            heading: item.heading,
+            level: '1',
+            description: hmtl_text,
+            ctaText: item.ctaText,
+            ctaHref: item.ctaHref,
+            cta_title_secondary: item.cta_title_secondary,
+            cta_url_secondary: item.cta_url_secondary,
+            alignment: item.alignment,
+            background_glass: item.background_glass,
+            background_color: item.background_color,
+            width: item.width,
+        }) }}
+
+      {% endfor %}
+    {% endset %}
+
+
     {{ include('sanfran:hero', {
-      heading,
-      description,
-      ctaText,
-      ctaHref,
+        lead_item: storybook_lead_item,
+        image,
+        image_alt,
+        border,
+        placement,
+        quick_edit: '',
+        storybook: 'yes',
     }) }}
   {% endstory %}
 

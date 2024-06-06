@@ -40,7 +40,7 @@
   ]|join(' ')|trim %}
 
 <div {{ attributes.addClass(paragraph_classes).addClass('icon-card flex h-full p-4 rounded-lg') }}>
-  {{ edit_icon }}
+  {{ quick_edit }}
   <div class="media {{ placement_class }}">
     {% if icon %}
       <div class="{{ alignment_class }} bg-{{ background_color }}/[.25] h-16 inline-flex items-center justify-center mb-4 rounded-lg w-16 [&>i:first-child]:text-4xl text-{{ background_color }}">
