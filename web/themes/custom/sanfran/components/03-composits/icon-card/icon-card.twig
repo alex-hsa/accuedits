@@ -39,7 +39,7 @@
     icon_card_classes,
   ]|join(' ')|trim %}
 
-<div {{ attributes.addClass(paragraph_classes).addClass('icon-card flex h-full p-4 rounded-lg') }}>
+<article {{ attributes.setAttribute('class', '').addClass(paragraph_classes).addClass('icon-card flex h-full p-4 rounded-lg md:[&>div.frontend-editing-actions]:absolute') }}>
   {{ quick_edit }}
   <div class="media {{ placement_class }}">
     {% if icon %}
@@ -80,4 +80,4 @@
   {% endif %}
 
   </div>
-</div>
+</article>

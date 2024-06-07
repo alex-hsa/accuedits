@@ -1,5 +1,5 @@
-{% stories highlights with { 
-  title: 'AccuEdits/Components/Highlights',
+{% stories icon_cards with { 
+  title: 'AccuEdits/Components/Icon-Cards',
   argTypes: {
     background_pattern: {
       options: ['public://2024-05/beige_droplets.svg', 'public://2024-05/beige_pattern.svg', 'public://2024-05/blue_droplets.svg', 'public://2024-05/blue_swirls.svg', 'public://2024-05/blue_waves.svg', 'public://2024-05/purple_pattern.svg'],
@@ -13,7 +13,7 @@
     
 } %}
 
-  {% story highlights_default with {
+  {% story icon_cards_default with {
     name: 'Default',
       args: {
         background_pattern: 'public://2024-05/blue_swirls.svg',
@@ -34,49 +34,79 @@
             width: 'w-6/12',
           }
         ],
-        highlights_items: [
+        icon_card_items: [
           {
-            heading: 'Flexibility for developers',
-            text: 'Anything you can do in PHP or Drupal, you can do in AccuEdits.',
+            icon: 'pageview',
+            heading: 'User Research',
+            description: 'If a dog chews shoes whose shoes does he choose?',
             ctaText: 'Read more',
-            ctaHref: 'https://www.accuedits.com/read',
+            ctaHref: 'https://www.drupalgeek.com',
             background_color: 'primary',
+            type: 'filled',
+            alignment: 'left',
+            orientation: 'stacked',
+            placement: 'left',
           },
           {
-            heading: 'Creative control for editors',
-            text: 'Editors can structure and publish content the way they want to without a developer.',
-            ctaText: 'Learn more',
-            ctaHref: 'https://www.accuedits.com/learn',
-            background_color: 'info',
+            icon: 'check_circle',
+            heading: 'Strategy & Planning',
+            description: 'If a cat chases mice does it enjoy the hunt?',
+            ctaText: 'Google Website',
+            ctaHref: 'https://www.google.com',
+            background_color: 'accent',
+            type: 'filled',
+            alignment: 'center',
+            orientation: 'stacked',
+            placement: 'middle',
           },
           {
-            heading: 'Frontend freedom for designers',
-            text: 'The simple templating system gives you precise control over style.',
-            ctaText: 'View details',
-            ctaHref: 'https://www.accuedits.com/view',
-            background_color: 'secondary',
-          },
-                  {
-            heading: 'Flexibility for developers',
-            text: 'Anything you can do in PHP or Drupal, you can do in AccuEdits.',
-            ctaText: 'Read more',
-            ctaHref: 'https://www.accuedits.com/read',
-            background_color: 'warning',
-          },
-          {
-            heading: 'Creative control for editors',
-            text: 'Editors can structure and publish content the way they want to without a developer.',
-            ctaText: 'Learn more',
-            ctaHref: 'https://www.accuedits.com/learn',
+            icon: 'app_settings_alt',
+            heading: 'App Design',
+            description: 'Nulla vitae elit libero, a pharetra augue.',
+            ctaText: 'Google Website',
+            ctaHref: 'https://www.google.com',
             background_color: 'error',
+            type: 'filled',
+            alignment: 'right',
+            orientation: 'stacked',
+            placement: 'end',
+          },
+           {
+            icon: 'pageview',
+            heading: 'User Research',
+            description: 'If a dog chews shoes whose shoes does he choose?',
+            ctaText: 'Read more',
+            ctaHref: 'https://www.drupalgeek.com',
+            background_color: 'primary',
+            type: 'filled',
+            alignment: 'left',
+            orientation: 'horizontal',
+            placement: 'left',
           },
           {
-            heading: 'Frontend freedom for designers',
-            text: 'The simple templating system gives you precise control over style.',
-            ctaText: 'View details',
-            ctaHref: 'https://www.accuedits.com/view',
-            background_color: 'success',
-          }
+            icon: 'check_circle',
+            heading: 'Strategy & Planning',
+            description: 'If a cat chases mice does it enjoy the hunt?',
+            ctaText: 'Google Website',
+            ctaHref: 'https://www.google.com',
+            background_color: 'accent',
+            type: 'filled',
+            alignment: 'center',
+            orientation: 'horizontal',
+            placement: 'middle',
+          },
+          {
+            icon: 'app_settings_alt',
+            heading: 'App Design',
+            description: 'Nulla vitae elit libero, a pharetra augue.',
+            ctaText: 'Google Website',
+            ctaHref: 'https://www.google.com',
+            background_color: 'error',
+            type: 'filled',
+            alignment: 'right',
+            orientation: 'horizontal',
+            placement: 'end',
+          },
         ],
       }
   } %}
@@ -111,11 +141,12 @@
       {% endfor %}
     {% endset %}
 
-    {{ include('sanfran:highlights', {
+
+    {{ include('sanfran:icon-cards', {
         background_pattern,
         columns,
         lead_item: storybook_lead_item,
-        highlights_items,
+        icon_card_items,
         quick_edit: '',
         storybook: 'yes',
     }) }}

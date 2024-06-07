@@ -10,6 +10,22 @@
   {% set background_pattern_style = "margin-bottom: 1rem; background-image: url('" ~ background_pattern|file_url ~ "');" %}
 {% endif %}
 
+{% if ('1' in columns) or (columns == '1') %}
+  {% set column_classes = '' %}
+{% elseif ('2' in columns) or (columns == '2') %}
+  {% set column_classes = ' sm:grid-cols-2' %}
+{% elseif ('3' in columns) or (columns == '3') %}
+  {% set column_classes = ' sm:grid-cols-2 md:grid-cols-3' %}
+{% elseif ('4' in columns) or (columns == '4') %}
+  {% set column_classes = ' sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4' %}
+{% elseif ('5' in columns) or (columns == '5') %}
+  {% set column_classes = ' sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5' %}
+{% elseif ('6' in columns) or (columns == '6') %}
+  {% set column_classes = ' sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6' %}
+{% else %}
+  {% set column_classes = ' sm:grid-cols-2 md:grid-cols-3' %}
+{% endif %}
+
 {% set paragraph_classes = [
     paragraph.bundle,
     'paragraph',
@@ -23,17 +39,37 @@
   {{ quick_edit }} 
 
   <div class="lead p-8 rounded-lg"{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
-      {% for key, item in lead_item %}
-          {% if key|first != '#' %}
-              {{ item }}
-          {% endif %}
-      {% endfor %}
+
+      {% if storybook %}
+          {{ lead_item }}
+      {% else %}
+          {% for key, item in lead_item %}
+              {% if key|first != '#' %}
+                  {{ item }}
+              {% endif %}
+          {% endfor %}
+      {% endif %}
   </div>
-  <div class="items grid gap-x-4 gap-y-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-{{ columns }}">
+
+  <div class="items grid gap-x-4 gap-y-4 grid-cols-1{{column_classes}}">
       {% for key, item in highlights_items %}
+
+        {% if storybook %}
+
+          {{ include('sanfran:highlights-item', {
+            heading: item.heading,
+            level: '3',
+            description: item.text,
+            ctaText: item.ctaText,
+            ctaHref: item.ctaHref,
+            background_color: item.background_color,
+          }) }}
+        {% else %}
           {% if key|first != '#' %}
               {{ item }}
           {% endif %}
+        {% endif %}
+
       {% endfor %}
   </div>
 
