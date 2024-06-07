@@ -26,6 +26,27 @@
   {% set column_classes = ' sm:grid-cols-2 md:grid-cols-3' %}
 {% endif %}
 
+
+{% if flip == 'yes' %}
+    {% set flip_class = ' [&>div.lead]:order-2 [&>div.items]:order-1' %}
+{% else %}
+    {% set flip_class = '' %}
+{% endif %}
+
+{% if orientation == 'horizontal' %}
+    {% set orientation_class = 'flex flex-col md:flex-row [&>div.lead_hgroup]:sticky [&>div.lead_hgroup]:top-32 md:[&>div.lead]:w-1/2 md:[&>div.items]:w-1/2 md:[&>div.frontend-editing-actions]:absolute' %}
+    {% set column_classes = '' %}
+     
+    {% if flip == 'yes' %}
+        {% set flip_class = ' [&>div.lead]:order-2 [&>div.items]:order-1' %}
+        {% set orientation_class = orientation_class ~ ' [&>div.lead]:ml-6' %}
+    {% else %}
+        {% set orientation_class = orientation_class ~ ' [&>div.lead]:mr-6' %}
+    {% endif %}
+{% else %}
+    {% set orientation_class = 'flex flex-col rounded-b-lg' %}
+{% endif %}
+
 {% set paragraph_classes = [
     paragraph.bundle,
     'paragraph',
@@ -35,7 +56,7 @@
   ]|join(' ')|trim %}
 
 
-<section {{ attributes.addClass(paragraph_classes).addClass(orientation_class) }}>
+<section {{ attributes.addClass(paragraph_classes).addClass(orientation_class).addClass(flip_class) }}>
   {{ quick_edit }} 
 
   <div class="lead p-8 rounded-lg"{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>

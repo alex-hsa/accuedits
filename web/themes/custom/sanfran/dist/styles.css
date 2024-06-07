@@ -5350,6 +5350,14 @@ section{
   margin-right: 1rem;
 }
 
+.\[\&\>div\.lead\]\:mr-6>div.lead{
+  margin-right: 1.5rem;
+}
+
+.\[\&\>div\.lead\]\:ml-6>div.lead{
+  margin-left: 1.5rem;
+}
+
 .\[\&\>div\.lead\]\:w-5\/12>div.lead{
   width: 41.666667%;
 }
@@ -5375,6 +5383,10 @@ section{
 
 .\[\&\>div\.lead_hgroup\]\:top-32>div.lead hgroup{
   top: 8rem;
+}
+
+.\[\&\>div\.lead_hgroup\]\:mr-6>div.lead hgroup{
+  margin-right: 1.5rem;
 }
 
 .\[\&\>div\.media_iframe\]\:rounded-lg>div.media iframe{
