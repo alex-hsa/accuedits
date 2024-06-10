@@ -15,9 +15,10 @@ paragraph:
   icon_cards: default
   lead: default
   media_cards: default
+  parallel_callout: default
   spotlight: default
-  step_item: default
   steps: default
+  step_item: default
   table: default
-  text_shout: default
   textbox: default
+  text_shout: default

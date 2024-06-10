@@ -1,33 +1,54 @@
 {% stories parallel_callout with { 
-  title: 'AccuEdits/Components/Parallel Callout'
+  title: 'AccuEdits/Components/Parallel Callout',
+  argTypes: {
+    background_color: {
+      options: ['primary', 'secondary', 'accent', 'neutral', 'base-100', 'base-200', 'error', 'info', 'success', 'warning'],
+      control: 'select'
+    },
+    background_pattern: {
+      options: ['public://2024-05/beige_droplets.svg', 'public://2024-05/beige_pattern.svg', 'public://2024-05/blue_droplets.svg', 'public://2024-05/blue_swirls.svg', 'public://2024-05/blue_waves.svg', 'public://2024-05/purple_pattern.svg'],
+      control: 'select'
+    },
+    border: {
+      options: ['no', 'yes'],
+      control: 'radio'
+    },
+    level: {
+      options: ['1', '2', '3', '4', '5', '6'],
+      control: 'select'
+    },
+  }
 } %}
 
   {% story parallel_callout_default with {
     name: 'Default',
     args: {
-      heading: 'Parallel Callout',
-      text: '<ul><li>Live at home or in a shelter.</li><li>Receive Medi-Cal or <a href="https://www.dhcs.ca.gov/services/medi-cal/pages/doyouqualifyformedi-cal.aspx"><strong>qualify for Medi-Cal</strong></a>.</li><li>Demonstrate a need for help with activities of daily living.</li></ul>',
-      ctaText: 'Click me!',
-      ctaHref: 'https://www.sfhsa.org',
-      background_colors: ['lime','red','orange','yellow','green','teal','blue','purple','magenta','gray'],
-      background_color: 'lime',
+      background_color: 'info',
+      background_pattern: 'public://2024-05/blue_droplets.svg',
+      border: 'yes',
+      eyebrow: 'Any questions?',
+      heading: 'Contact Us',
+      description: '<ul><li>Live at home or in a shelter.</li><li>Receive Medi-Cal or <a href="https://www.dhcs.ca.gov/services/medi-cal/pages/doyouqualifyformedi-cal.aspx"><strong>qualify for Medi-Cal</strong></a>.</li><li>Demonstrate a need for help with activities of daily living.</li></ul>',
+      level: 2,
     }
   } %}
 
     {% set hmtl_text = {
       '#type':   'processed_text',
-      '#text':    text,
+      '#text':    description,
       '#format':  'basic_html',
     } %}
 
-    {# {% for background_color in background_colors %} #}
-      {{ include('sanfran:parallel-callout', {
-        heading,
-        limit: '3',
-        description: hmtl_text,
-        background_color,
-      }) }}
-    {# {% endfor %} #}
+    {{ include('sanfran:parallel-callout', {
+      background_color,
+      background_pattern,
+      border,
+      eyebrow,
+      description: hmtl_text,
+      heading,
+      level: '2',
+      quick_edit: '',
+    }) }}
 
   {% endstory %}
 

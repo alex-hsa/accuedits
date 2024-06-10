@@ -30,9 +30,10 @@
 
 {% set background_color = content.field_background_color|field_target_entity.name.entity.name.value|lower|default('') %}
 {% set background_pattern = content.field_background_pattern|field_target_entity.field_media_image.entity.uri.value|default('') %}
-{% set columns = content.field_columns.0|default('') %}
-{% set orientation = content.field_orientation.0['#markup']|lower|default('') %}
 {% set border = content.field_border.0['#markup']|lower|default('') %}
+{% set columns = content.field_columns.0|default('') %}
+{% set flip = content.field_flip.0['#markup']|lower|default('') %}
+{% set orientation = content.field_orientation.0['#markup']|lower|default('') %}
 {% set placement = content.field_placement.0['#markup']|lower|default('') %}
 {% set quick_edit = content.frontend_editing %}
 
@@ -41,9 +42,10 @@
     icon_card_items,
     background_color,
     background_pattern,
-    columns,
-    orientation,
     border,
+    columns,
+    flip,
+    orientation,
     placement,
     quick_edit,
   })

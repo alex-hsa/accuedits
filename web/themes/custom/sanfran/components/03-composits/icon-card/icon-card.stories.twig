@@ -12,10 +12,11 @@
             description: 'If a dog chews shoes whose shoes does he choose?',
             ctaText: 'Read more',
             ctaHref: 'https://www.drupalgeek.com',
-            background_color: 'magenta',
+            background_color: 'primary',
             type: 'elevated',
             alignment: 'left',
             orientation: 'vertical',
+            placement: 'left',
           },
           {
             icon: 'check_circle',
@@ -23,10 +24,11 @@
             description: 'If a cat chases mice does it enjoy the hunt?',
             ctaText: 'Google Website',
             ctaHref: 'https://www.google.com',
-            background_color: 'purple',
+            background_color: 'secondary',
             type: 'elevated',
             alignment: 'center',
             orientation: 'vertical',
+            placement: 'middle',
           },
           {
             icon: 'app_settings_alt',
@@ -34,10 +36,11 @@
             description: 'Nulla vitae elit libero, a pharetra augue.',
             ctaText: 'Google Website',
             ctaHref: 'https://www.google.com',
-            background_color: 'blue',
+            background_color: 'accent',
             type: 'elevated',
             alignment: 'right',
             orientation: 'vertical',
+            placement: 'end',
           },
                     {
             icon: 'pageview',
@@ -45,10 +48,11 @@
             description: 'If a dog chews shoes whose shoes does he choose?',
             ctaText: 'Read more',
             ctaHref: 'https://www.drupalgeek.com',
-            background_color: 'magenta',
+            background_color: 'primary',
             type: 'elevated',
             alignment: 'left',
             orientation: 'horizontal',
+            placement: 'left',
           },
           {
             icon: 'check_circle',
@@ -56,10 +60,11 @@
             description: 'If a cat chases mice does it enjoy the hunt?',
             ctaText: 'Google Website',
             ctaHref: 'https://www.google.com',
-            background_color: 'purple',
+            background_color: 'secondary',
             type: 'elevated',
             alignment: 'center',
             orientation: 'horizontal',
+            placement: 'middle',
           },
           {
             icon: 'app_settings_alt',
@@ -67,16 +72,17 @@
             description: 'Nulla vitae elit libero, a pharetra augue.',
             ctaText: 'Google Website',
             ctaHref: 'https://www.google.com',
-            background_color: 'blue',
+            background_color: 'accent',
             type: 'elevated',
             alignment: 'right',
             orientation: 'horizontal',
+            placement: 'end',
           },
         ]
       }
   } %}
 
-   <h1>Elevated Cards</h1>
+   <h1 class="text-3xl font-bold mb-4">Elevated Cards</h1>
    <div class="grid gap-x-4 gap-y-8 grid-cols-1 md:grid-cols-3"> 
    
       {% for item in icon_card_items %}
@@ -110,6 +116,8 @@
             type: item.type,
             alignment: item.alignment,
             orientation: item.orientation,
+            placement: item.placement,
+            quick_edit: '',
           })
         }}
 
@@ -129,10 +137,11 @@
             description: 'If a dog chews shoes whose shoes does he choose?',
             ctaText: 'Read more',
             ctaHref: 'https://www.drupalgeek.com',
-            background_color: 'red',
+            background_color: 'neutral',
             type: 'filled',
             alignment: 'left',
             orientation: 'vertical',
+            placement: 'left',
           },
           {
             icon: 'check_circle',
@@ -140,10 +149,11 @@
             description: 'If a cat chases mice does it enjoy the hunt?',
             ctaText: 'Google Website',
             ctaHref: 'https://www.google.com',
-            background_color: 'purple',
+            background_color: 'base-200',
             type: 'filled',
             alignment: 'center',
             orientation: 'vertical',
+            placement: 'middle',
           },
           {
             icon: 'app_settings_alt',
@@ -151,10 +161,11 @@
             description: 'Nulla vitae elit libero, a pharetra augue.',
             ctaText: 'Google Website',
             ctaHref: 'https://www.google.com',
-            background_color: 'blue',
+            background_color: 'error',
             type: 'filled',
             alignment: 'right',
             orientation: 'vertical',
+            placement: 'end',
           },
            {
             icon: 'pageview',
@@ -162,10 +173,11 @@
             description: 'If a dog chews shoes whose shoes does he choose?',
             ctaText: 'Read more',
             ctaHref: 'https://www.drupalgeek.com',
-            background_color: 'red',
+            background_color: 'neutral',
             type: 'filled',
             alignment: 'left',
             orientation: 'horizontal',
+            placement: 'left',
           },
           {
             icon: 'check_circle',
@@ -173,10 +185,11 @@
             description: 'If a cat chases mice does it enjoy the hunt?',
             ctaText: 'Google Website',
             ctaHref: 'https://www.google.com',
-            background_color: 'purple',
+            background_color: 'base-200',
             type: 'filled',
             alignment: 'center',
             orientation: 'horizontal',
+            placement: 'middle',
           },
           {
             icon: 'app_settings_alt',
@@ -184,16 +197,17 @@
             description: 'Nulla vitae elit libero, a pharetra augue.',
             ctaText: 'Google Website',
             ctaHref: 'https://www.google.com',
-            background_color: 'blue',
+            background_color: 'error',
             type: 'filled',
             alignment: 'right',
             orientation: 'horizontal',
+            placement: 'end',
           },
         ]
       }
   } %}
 
-   <h1>Filled Cards</h1>
+   <h1 class="text-3xl font-bold mb-4">Filled Cards</h1>
    <div class="grid gap-x-4 gap-y-8 grid-cols-1 md:grid-cols-3"> 
    
       {% for item in icon_card_items %}
@@ -227,6 +241,8 @@
             type: item.type,
             alignment: item.alignment,
             orientation: item.orientation,
+            placement: item.placement,
+            quick_edit: '',
           })
         }}
 
@@ -246,10 +262,11 @@
             description: 'If a dog chews shoes whose shoes does he choose?',
             ctaText: 'Read more',
             ctaHref: 'https://www.drupalgeek.com',
-            background_color: 'magenta',
+            background_color: 'info',
             type: 'outlined',
             alignment: 'left',
             orientation: 'vertical',
+            placement: 'left',
           },
           {
             icon: 'check_circle',
@@ -257,10 +274,11 @@
             description: 'If a cat chases mice does it enjoy the hunt?',
             ctaText: 'Google Website',
             ctaHref: 'https://www.google.com',
-            background_color: 'purple',
+            background_color: 'success',
             type: 'outlined',
             alignment: 'center',
             orientation: 'vertical',
+            placement: 'middle',
           },
           {
             icon: 'app_settings_alt',
@@ -268,10 +286,11 @@
             description: 'Nulla vitae elit libero, a pharetra augue.',
             ctaText: 'Google Website',
             ctaHref: 'https://www.google.com',
-            background_color: 'blue',
+            background_color: 'warning',
             type: 'outlined',
             alignment: 'right',
             orientation: 'vertical',
+            placement: 'end',
           },
           {
             icon: 'pageview',
@@ -279,10 +298,11 @@
             description: 'If a dog chews shoes whose shoes does he choose?',
             ctaText: 'Read more',
             ctaHref: 'https://www.drupalgeek.com',
-            background_color: 'magenta',
+            background_color: 'info',
             type: 'outlined',
             alignment: 'left',
             orientation: 'horizontal',
+            placement: 'left',
           },
           {
             icon: 'check_circle',
@@ -290,10 +310,11 @@
             description: 'If a cat chases mice does it enjoy the hunt?',
             ctaText: 'Google Website',
             ctaHref: 'https://www.google.com',
-            background_color: 'purple',
+            background_color: 'success',
             type: 'outlined',
             alignment: 'center',
             orientation: 'horizontal',
+            placement: 'middle',
           },
           {
             icon: 'app_settings_alt',
@@ -301,16 +322,17 @@
             description: 'Nulla vitae elit libero, a pharetra augue.',
             ctaText: 'Google Website',
             ctaHref: 'https://www.google.com',
-            background_color: 'blue',
+            background_color: 'warning',
             type: 'outlined',
             alignment: 'right',
             orientation: 'horizontal',
+            placement: 'end',
           },
         ]
       }
   } %}
 
-   <h1>Outlined Cards</h1>
+   <h1 class="text-3xl font-bold mb-4">Outlined Cards</h1>
    <div class="grid gap-x-4 gap-y-8 grid-cols-1 md:grid-cols-3"> 
    
       {% for item in icon_card_items %}
@@ -344,6 +366,8 @@
             type: item.type,
             alignment: item.alignment,
             orientation: item.orientation,
+            placement: item.placement,
+            quick_edit: '',
           })
         }}
 

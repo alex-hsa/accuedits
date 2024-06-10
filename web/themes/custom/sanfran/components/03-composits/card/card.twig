@@ -32,15 +32,14 @@
     not paragraph.isPublished() ? 'paragraph--unpublished',
   ]|join(' ')|trim %}
 
-
   
 {% if (link_card == '1') and (ctaHref != '') %} 
   <article>
     {{ quick_edit }}
-    <a href="{{ ctaHref }}"{{ attributes.addClass(classes_paragraph).addClass(link_card_class).addClass(orientation_class).addClass('bg-clip-border bg-base-100 max-w-128 rounded-lg shadow-2xl') }}>
+    <a href="{{ ctaHref }}"{{ attributes.setAttribute('class', '').addClass(classes_paragraph).addClass(link_card_class).addClass(orientation_class).addClass('bg-clip-border bg-base-100 max-w-128 rounded-lg shadow-2xl') }}>
       <div class="items bg-clip-border overflow-hidden relative rounded-r-none rounded-lg shrink-0  w-2/5 [&>figure]:h-full [&>figure_img]:object-cover [&>figure_img]:w-full [&>figure_img]:h-full">
 {% else %}
-  <article{{ attributes.addClass(classes_paragraph).addClass(orientation_class).addClass('bg-base-100 max-w-128 rounded-lg shadow-2xl') }}>
+  <article{{ attributes.setAttribute('class', '').addClass(classes_paragraph).addClass(orientation_class).addClass('bg-base-100 max-w-128 rounded-lg shadow-2xl') }}>
     {{ quick_edit }}
     <div class="items [&>figure]:h-full [&>figure_img]:object-cover [&>figure_img]:w-full [&>figure_img]:h-full">
 {% endif %}
@@ -51,6 +50,8 @@
               image,
               image_alt,
               image_style,
+              storybook,
+              classes,
             })
           }}
         {% endif %}
@@ -58,7 +59,7 @@
         {% if video_remote != '' %} 
             {{ include('sanfran:remote-video', {
                 video_remote,
-                classes: '',
+                classes: 'video-remote',
                 })
             }}
         {% endif %}

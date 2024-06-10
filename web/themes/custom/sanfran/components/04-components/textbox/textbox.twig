@@ -26,7 +26,7 @@
 
 {% set paragraph_classes = [
     paragraph.bundle,
-    'bg-' ~ background_color ~ '/[.1]',
+    'bg-' ~ background_color ~ '/[.25]',
     'paragraph',
     'paragraph--type--' ~ paragraph.bundle|clean_class,
     view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
@@ -34,14 +34,18 @@
   ]|join(' ')|trim %}
 
 
-<section {{ attributes.addClass(paragraph_classes).addClass(border_class).addClass(placement_class).addClass('p-8 rounded-lg [&>div:first-child]:absolute') }}{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
+<section {{ attributes.addClass(paragraph_classes).addClass(border_class).addClass(placement_class).addClass('p-8 rounded-lg [&>div.frontend-editing-actions]:absolute') }}{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
   {{ quick_edit }} 
  
   {# Display Lead paragraph #}
-    {% for key, item in lead_item %}
-      {% if key|first != '#' %}
-          {{ item }}
-      {% endif %}
-    {% endfor %}
+  {% if storybook %}
+      {{ lead_item }}
+  {% else %}
+      {% for key, item in lead_item %}
+          {% if key|first != '#' %}
+              {{ item }}
+          {% endif %}
+      {% endfor %}
+  {% endif %}
 
 </section>

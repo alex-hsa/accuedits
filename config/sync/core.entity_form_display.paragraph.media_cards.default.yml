@@ -4,25 +4,26 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.media_cards.field_background_color
+    - field.field.paragraph.media_cards.field_background_pattern
     - field.field.paragraph.media_cards.field_border
     - field.field.paragraph.media_cards.field_columns
     - field.field.paragraph.media_cards.field_items
     - field.field.paragraph.media_cards.field_lead
     - field.field.paragraph.media_cards.field_link_card
-    - field.field.paragraph.media_cards.field_orientation
     - field.field.paragraph.media_cards.field_placement
     - paragraphs.paragraphs_type.media_cards
   module:
     - field_group
+    - media_library
     - paragraphs
 third_party_settings:
   field_group:
     group_settings:
       children:
         - field_background_color
+        - field_background_pattern
         - field_columns
         - field_placement
-        - field_orientation
         - field_border
       label: Settings
       region: content
@@ -47,16 +48,23 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_background_pattern:
+    type: media_library_widget
+    weight: 4
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
   field_border:
     type: boolean_checkbox
-    weight: 8
+    weight: 7
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_columns:
     type: number
-    weight: 4
+    weight: 5
     region: content
     settings:
       placeholder: ''
@@ -101,15 +109,9 @@ content:
         convert: '0'
         duplicate: duplicate
     third_party_settings: {  }
-  field_orientation:
-    type: options_select
-    weight: 7
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_placement:
     type: options_select
-    weight: 5
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }

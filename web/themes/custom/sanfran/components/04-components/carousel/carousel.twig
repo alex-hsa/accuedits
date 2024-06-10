@@ -1,5 +1,5 @@
 {% if orientation == 'horizontal' %}
-    {% set orientation_class = 'flex flex-col md:flex-row md:[&>div.lead]:w-1/2 md:[&>div.items]:w-1/2 md:[&>div:first-child]:absolute' %}
+    {% set orientation_class = 'flex flex-col md:flex-row md:[&>div.lead]:w-1/2 md:[&>div.items]:w-1/2 md:[&>div.frontend-editing-actions]:absolute' %}
     {% set image_style = 'half_width' %}
 {% else %}
     {% set orientation_class = 'flex flex-col rounded-b-lg' %}
@@ -18,29 +18,37 @@
   {% set border_class = 'rounded-lg' %}
 {% endif %}
 
+
 {% if background_pattern %}
   {% set background_pattern_style = "background-image: url('" ~ background_pattern|file_url ~ "');" %}
 {% endif %}
 
+
 {% set paragraph_classes = [
-    paragraph.bundle,
+    'carousel',
     'paragraph',
-    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    'paragraph--type--carousel',
     view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
     not paragraph.isPublished() ? 'paragraph--unpublished',
     'bg-' ~ background_color ~ '/[.25]',
   ]|join(' ')|trim %}
 
 <section {{ attributes.addClass(paragraph_classes).addClass(orientation_class).addClass(flip_class).addClass(border_class) }}>
+
     {{ quick_edit }}
 
     {# Display Lead paragraph #}
     <div class="lead p-8 rounded-lg"{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
-        {% for key, item in lead_item %}
-            {% if key|first != '#' %}
-                {{ item }}
-            {% endif %}
-        {% endfor %}
+
+        {% if storybook %}
+            {{ lead_item }}
+        {% else %}
+            {% for key, item in lead_item %}
+                {% if key|first != '#' %}
+                    {{ item }}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
     </div>
 
     <div class="items carousel">
@@ -73,7 +81,7 @@
                         {% set carousel_item_target_id = item['#media'].field_media_image.0.target_id %}
                         {% set carousel_item_title = item['#media'].field_media_image.0.alt %} 
                         {# {{ drupal_image(carousel_item_target_id, image_style, { alt: carousel_item_title, title: carousel_item_title, class: 'w-full' } ) }} #}
-                        {{ drupal_image(carousel_item_target_id, image_style, { alt: carousel_item_title, title: carousel_item_title, class: 'w-full' }, responsive=true ) }}
+                        {{ drupal_image(carousel_item_target_id, image_style, { alt: carousel_item_title, title: carousel_item_title, class: 'w-full h-full' }, responsive=true ) }}
                     {% endif %}
                     <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                         <a href="#slide{{prev}}" class="btn btn-circle">❮</a> 

@@ -25,22 +25,18 @@
   */
 #}
 
-{% set heading = content.field_heading.0 %}
-{% set description = content.field_description.0 %}
-{% set ctaText = content.field_cta[0]['#title'] %}
-{% set ctaHref = content.field_cta[0]['#url'] %}
-{% set step_number = content.field_step_number.0 %}
-{% set icon = content.field_icon_material.0 %}
-{% set edit_icon = content.frontend_editing %}
+{% set heading = content.field_heading.0|default('') %}
+{% set description = content.field_description.0|default('') %}
+{% set step_number = content.field_step_number.0|default('') %}
+{% set icon = content.field_icon_material.0|default('') %}
+{% set quick_edit = content.frontend_editing|default('') %}
 
 {{ include('sanfran:step-item', {
+  icon,
+  step_number,
   heading,
   description,
-  ctaText,
-  ctaHref,
-  step_number,
-  icon,
-  edit_icon,
+  quick_edit,
   })
 }}
 

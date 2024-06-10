@@ -1,16 +1,16 @@
-uuid: 2635631d-e6b2-4f42-bc82-bf5e1370b22e
+uuid: d4454df2-d232-407a-8b80-2d82163661d5
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_orientation
-    - paragraphs.paragraphs_type.media_cards
+    - paragraphs.paragraphs_type.highlights
   module:
     - options
-id: paragraph.media_cards.field_orientation
+id: paragraph.highlights.field_orientation
 field_name: field_orientation
 entity_type: paragraph
-bundle: media_cards
+bundle: highlights
 label: Orientation
 description: ''
 required: false

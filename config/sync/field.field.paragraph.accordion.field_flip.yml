@@ -1,0 +1,23 @@
+uuid: 7758a868-0a48-4a54-8fa9-f34d5ed2e8ae
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_flip
+    - paragraphs.paragraphs_type.accordion
+id: paragraph.accordion.field_flip
+field_name: field_flip
+entity_type: paragraph
+bundle: accordion
+label: 'Flip Columns'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

@@ -1,13 +1,52 @@
-{% if alignment == 'center' %}
-  {% set alignment_class = 'text-center' %}
-{% elseif alignment == 'right' %}
-  {% set alignment_class = 'text-right' %}
-{% else  %}
-  {% set alignment_class = 'text-left' %}
-{% endif %}
 
 {% if background_pattern %}
   {% set background_pattern_style = "margin-bottom: 1rem; background-image: url('" ~ background_pattern|file_url ~ "');" %}
+{% endif %}
+
+
+{% if border == 'yes' %}
+  {% set border_class = 'border rounded-lg' %}
+  {% if background_color_class == '' %}
+    {% set border_class = border_class ~ ' p-4' %}
+  {% endif %}
+{% else %}
+  {% set border_class = '' %}
+{% endif %}
+
+{% if ('1' in columns) or (columns == '1') %}
+  {% set column_classes = '' %}
+{% elseif ('2' in columns) or (columns == '2') %}
+  {% set column_classes = ' sm:grid-cols-2' %}
+{% elseif ('3' in columns) or (columns == '3') %}
+  {% set column_classes = ' sm:grid-cols-2 md:grid-cols-3' %}
+{% elseif ('4' in columns) or (columns == '4') %}
+  {% set column_classes = ' sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4' %}
+{% elseif ('5' in columns) or (columns == '5') %}
+  {% set column_classes = ' sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5' %}
+{% elseif ('6' in columns) or (columns == '6') %}
+  {% set column_classes = ' sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6' %}
+{% else %}
+  {% set column_classes = ' sm:grid-cols-2 md:grid-cols-3' %}
+{% endif %}
+
+{% if flip == 'yes' %}
+    {% set flip_class = ' [&>div.lead]:order-2 [&>div.items]:order-1' %}
+{% else %}
+    {% set flip_class = '' %}
+{% endif %}
+
+{% if orientation == 'horizontal' %}
+    {% set orientation_class = 'flex flex-col md:flex-row [&>div.lead_hgroup]:sticky [&>div.lead_hgroup]:top-32 md:[&>div.lead]:w-1/2 md:[&>div.items]:w-1/2 md:[&>div.frontend-editing-actions]:absolute' %}
+    {% set column_classes = '' %}
+     
+    {% if flip == 'yes' %}
+        {% set flip_class = ' [&>div.lead]:order-2 [&>div.items]:order-1' %}
+        {% set orientation_class = orientation_class ~ ' [&>div.lead]:ml-6' %}
+    {% else %}
+        {% set orientation_class = orientation_class ~ ' [&>div.lead]:mr-6' %}
+    {% endif %}
+{% else %}
+    {% set orientation_class = 'flex flex-col rounded-b-lg' %}
 {% endif %}
 
 {% set paragraph_classes = [
@@ -19,21 +58,42 @@
   ]|join(' ')|trim %}
 
 
-<section {{ attributes.addClass(paragraph_classes).addClass(orientation_class) }}>
+<section {{ attributes.addClass(paragraph_classes).addClass(border_class).addClass(orientation_class).addClass(flip_class) }}>
   {{ quick_edit }} 
 
   <div class="lead p-8 rounded-lg"{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
-      {% for key, item in lead_item %}
-          {% if key|first != '#' %}
-              {{ item }}
-          {% endif %}
-      {% endfor %}
+
+      {% if storybook %}
+          {{ lead_item }}
+      {% else %}
+          {% for key, item in lead_item %}
+              {% if key|first != '#' %}
+                  {{ item }}
+              {% endif %}
+          {% endfor %}
+      {% endif %}
+
   </div>
-  <div class="items grid gap-x-4 gap-y-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-{{ columns }}">
+
+  <div class="items grid gap-x-4 gap-y-4 grid-cols-1{{column_classes}}">
       {% for key, item in highlights_items %}
+
+        {% if storybook %}
+
+          {{ include('sanfran:highlights-item', {
+            heading: item.heading,
+            level: '3',
+            description: item.text,
+            ctaText: item.ctaText,
+            ctaHref: item.ctaHref,
+            background_color: item.background_color,
+          }) }}
+        {% else %}
           {% if key|first != '#' %}
               {{ item }}
           {% endif %}
+        {% endif %}
+
       {% endfor %}
   </div>
 

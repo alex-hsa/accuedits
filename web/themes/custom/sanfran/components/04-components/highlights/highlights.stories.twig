@@ -1,34 +1,142 @@
 {% stories highlights with { 
-  title: 'AccuEdits/Components/Highlights'
+  title: 'AccuEdits/Components/Highlights',
+  argTypes: {
+    background_pattern: {
+      options: ['public://2024-05/beige_droplets.svg', 'public://2024-05/beige_pattern.svg', 'public://2024-05/blue_droplets.svg', 'public://2024-05/blue_swirls.svg', 'public://2024-05/blue_waves.svg', 'public://2024-05/purple_pattern.svg'],
+      control: 'select'
+    },
+    border: {
+      options: ['no', 'yes'],
+      control: 'radio'
+    },
+    columns: {
+      options: ['1', '2', '3', '4', '5', '6'],
+      control: 'select'
+    },
+    flip: {
+      options: ['no', 'yes'],
+      control: 'radio'
+    },
+    orientation: {
+      options: ['stacked', 'horizontal'],
+      control: 'select'
+    },
+  }
+    
 } %}
 
   {% story highlights_default with {
     name: 'Default',
       args: {
-        image: 'https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg',
-        image_alt: 'Alt text for the image goes here',
-        heading: 'This Card Title',
-        headingLevel: '2',
-        description: 'If a dog chews shoes whose shoes does he choose?',
-        ctaText: 'Read more',
-        ctaHref: 'https://www.drupalgeek.com',
+        background_pattern: 'public://2024-05/blue_swirls.svg',
+        border: 'no',
+        columns: '3',
+        flip: 'no',
+        orientation: 'stacked',
+        lead_item: [
+          {
+            eyebrow: 'AccuEdits.com',
+            heading: 'Web publishing, streamlined',
+            level: '1',
+            description: 'AccuEdits is quick, stylish, and gives your team all the tools they need to handle large amounts of content efficiently.',
+            ctaText: 'Get Started',
+            ctaHref: 'https://www.accuedits.com/getstarted',
+            cta_title_secondary: 'Why AccuEdits',
+            cta_url_secondary: 'https://www.accuedits.com/why',
+            alignment: 'left',
+            background_color: 'accent',
+            background_glass: 'yes',
+            width: 'w-6/12',
+          }
+        ],
+        highlights_items: [
+          {
+            heading: 'Flexibility for developers',
+            text: 'Anything you can do in PHP or Drupal, you can do in AccuEdits.',
+            ctaText: 'Read more',
+            ctaHref: 'https://www.accuedits.com/read',
+            background_color: 'primary',
+          },
+          {
+            heading: 'Creative control for editors',
+            text: 'Editors can structure and publish content the way they want to without a developer.',
+            ctaText: 'Learn more',
+            ctaHref: 'https://www.accuedits.com/learn',
+            background_color: 'info',
+          },
+          {
+            heading: 'Frontend freedom for designers',
+            text: 'The simple templating system gives you precise control over style.',
+            ctaText: 'View details',
+            ctaHref: 'https://www.accuedits.com/view',
+            background_color: 'secondary',
+          },
+                  {
+            heading: 'Flexibility for developers',
+            text: 'Anything you can do in PHP or Drupal, you can do in AccuEdits.',
+            ctaText: 'Read more',
+            ctaHref: 'https://www.accuedits.com/read',
+            background_color: 'warning',
+          },
+          {
+            heading: 'Creative control for editors',
+            text: 'Editors can structure and publish content the way they want to without a developer.',
+            ctaText: 'Learn more',
+            ctaHref: 'https://www.accuedits.com/learn',
+            background_color: 'error',
+          },
+          {
+            heading: 'Frontend freedom for designers',
+            text: 'The simple templating system gives you precise control over style.',
+            ctaText: 'View details',
+            ctaHref: 'https://www.accuedits.com/view',
+            background_color: 'success',
+          }
+        ],
       }
   } %}
 
-    <div class="grid gap-x-4 gap-y-8 grid-cols-1 md:grid-cols-3">
-      {% for i in 0..2 %}
-        {{ include('sanfran:card', {
-            image,
-            image_alt,
-            heading,
-            headingLevel,
-            description,
-            ctaText,
-            ctaHref,
-          })
-        }}
+    {% set storybook_lead_item %}
+      {% for item in lead_item %}
+        
+        {% if item.description %}
+          {% set hmtl_text = {
+            '#type':   'processed_text',
+            '#text':    item.description,
+            '#format':  'basic_html',
+          } %}
+        {% endif %}
+
+
+        {{ include('sanfran:lead', {
+            eyebrow: item.eyebrow,
+            heading: item.heading,
+            level: '1',
+            description: hmtl_text,
+            ctaText: item.ctaText,
+            ctaHref: item.ctaHref,
+            cta_title_secondary: item.cta_title_secondary,
+            cta_url_secondary: item.cta_url_secondary,
+            alignment: item.alignment,
+            background_glass: item.background_glass,
+            background_color: item.background_color,
+            width: item.width,
+        }) }}
+
       {% endfor %}
-    </div>
+    {% endset %}
+
+    {{ include('sanfran:highlights', {
+        background_pattern,
+        border,
+        columns,
+        flip,
+        orientation,
+        lead_item: storybook_lead_item,
+        highlights_items,
+        quick_edit: '',
+        storybook: 'yes',
+    }) }}
 
   {% endstory %}
 

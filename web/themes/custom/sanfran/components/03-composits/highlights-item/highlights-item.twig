@@ -1,19 +1,22 @@
+
+
 {% if (background_color == 'white') or (background_color == '') %}
   {% set background_color_class = 'border border-l-8' %}
 {% else %}
-  {% set background_color_class = 'bg-base-' ~ background_color ~ ' border-l-8 border-' ~ background_color %}
+  {% set background_color_class = 'bg-' ~ background_color ~ '/[.25] border-l-8 border-' ~ background_color %}
 {% endif %}
 
 {% set classes_paragraph = [
     paragraph.bundle,
-    'bg-' ~ background_color ~ '/[.25]',
     'paragraph',
     'paragraph--type--' ~ paragraph.bundle|clean_class,
     view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
     not paragraph.isPublished() ? 'paragraph--unpublished',
   ]|join(' ')|trim %}
 
-<article {{ attributes.addClass(classes_paragraph).addClass(background_color_class).addClass('flex flex-col h-full p-4 rounded-lg') }}>
+{# The 'setAttribute' clears the 'class' array before populating it to prevent accumulations during loops #}
+<article {{ attributes.setAttribute('class', '').addClass(classes_paragraph).addClass(background_color_class).addClass('flex flex-col h-full p-4 rounded-lg md:[&>div.frontend-editing-actions]:absolute') }}>
+
   {{ quick_edit }}
 
   {% if eyebrow %}

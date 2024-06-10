@@ -6,6 +6,7 @@ entity_types:
     - accordion_item
     - card
     - carousel
+    - eyebrow
     - featured
     - from_library
     - grid
@@ -16,14 +17,15 @@ entity_types:
     - icon_cards
     - lead
     - media_cards
+    - media_single
     - parallel_callout
     - section
     - spotlight
-    - steps
     - step_item
+    - steps
     - table
-    - textbox
     - text_shout
+    - textbox
   paragraphs_library_item:
     - paragraphs_library_item
 sidebar_width: 30

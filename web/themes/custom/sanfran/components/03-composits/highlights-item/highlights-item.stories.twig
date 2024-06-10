@@ -7,8 +7,9 @@
     args: {
       heading: 'Join us at the conference',
       text: '<ul><li>Live at home or in a shelter.</li><li>Receive Medi-Cal or <a href="https://www.dhcs.ca.gov/services/medi-cal/pages/doyouqualifyformedi-cal.aspx"><strong>qualify for Medi-Cal</strong></a>.</li><li>Demonstrate a need for help with activities of daily living.</li></ul>',
-        ctaText: 'Click me!',
+      ctaText: 'Click me!',
       ctaHref: 'https://www.sfhsa.org',
+      background_color: 'error',
     }
   } %}
 
@@ -18,12 +19,14 @@
       '#format':  'basic_html',
     } %}
 
-    {{ include('sanfran:featured', {
+    {{ include('sanfran:highlights-item', {
       heading,
       level: '3',
       description: hmtl_text,
       ctaText,
       ctaHref,
+      background_color,
+      quick_edit,
     }) }}
 
   {% endstory %}

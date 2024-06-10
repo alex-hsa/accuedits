@@ -1,0 +1,23 @@
+uuid: 48a1e43e-45c3-44d8-8dcd-d52f5ca0f13b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_flip
+    - paragraphs.paragraphs_type.highlights
+id: paragraph.highlights.field_flip
+field_name: field_flip
+entity_type: paragraph
+bundle: highlights
+label: 'Flip Columns'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

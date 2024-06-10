@@ -1,12 +1,15 @@
-
-{% set parent = drupal_entity('paragraph', paragraph.parent_id.value|default('')) %}  
-{% set term_id = parent['#paragraph'].field_background_color.value.0.target_id %}
-{% if term_id %} 
-    {% set term_details = drupal_entity('taxonomy_term', term_id|number_format) %} 
-    {% set background_color = term_details['#taxonomy_term'].name.value|lower %}
-    {% set background_color_class = background_color ~ '/[.25]' %}
+{% if not storybook%}
+  {% set parent = drupal_entity('paragraph', paragraph.parent_id.value|default('')) %}  
+  {% set term_id = parent['#paragraph'].field_background_color.value.0.target_id %}
+  {% if term_id %} 
+      {% set term_details = drupal_entity('taxonomy_term', term_id|number_format) %} 
+      {% set background_color = term_details['#taxonomy_term'].name.value|lower %}
+      {% set background_color_class = background_color ~ '/[.25]' %}
+  {% else %}
+      {% set background_color_class = '' %}
+  {% endif %}
 {% else %}
-    {% set background_color_class = '' %}
+    {% set background_color_class = background_color ~ '/[.25]' %}
 {% endif %}
 
 {% set bg_colors_25_opacity = {
@@ -40,13 +43,13 @@
     border_colors_25_opacity[background_color],
   ]|join(' ')|trim %}
 
-<article {{ attributes.addClass(classes_step_item).addClass('border-s-8 ml-8') }}>
-{{ edit_icon  }}
+<article {{ attributes.setAttribute('class', '').addClass(classes_step_item).addClass('border-s-8 ml-8 md:[&>div.frontend-editing-actions]:absolute') }}>
+{{ quick_edit  }}
   <div class="step-marker flex flex-row -ml-9">
   
     <div class="{{ bg_colors_25_opacity[background_color] }} flex h-16 items-center justify-center rounded-full -start-24  w-16">
         {% if icon %}
-          <span class="bg-{{ background_color }}/[.25] flex items-center h-16 justify-center rounded-full shrink-0 w-16 text-4xl text-white">
+          <span class="{{ bg_colors_25_opacity[background_color] }} flex items-center h-16 justify-center rounded-full shrink-0 w-16 text-4xl text-white">
             {{ icon }}
           </span>
         {% else %}
@@ -56,7 +59,7 @@
         {% endif %}
     </div>
 
-    <div class="step-text bg-{{ background_color_class }} mb-12 ml-8 p-6 rounded-md w-full">
+    <div class="step-text {{ bg_colors_25_opacity[background_color] }} mb-12 ml-8 p-6 rounded-md w-full">
 
       {{ include('sanfran:headings', {
           level: '3',

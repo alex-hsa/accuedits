@@ -5,24 +5,89 @@
   {% story carousel_default with {
     name: 'Default',
       args: {
-        heading: 'The Carousel Title',
+        lead_item: [
+          {
+            eyebrow: 'AccuEdits.com',
+            heading: 'Web publishing, streamlined',
+            level: '1',
+            description: 'AccuEdits is quick, stylish, and gives your team all the tools they need to handle large amounts of content efficiently.',
+            ctaText: 'Get Started',
+            ctaHref: 'https://www.accuedits.com/getstarted',
+            cta_title_secondary: 'Why AccuEdits',
+            cta_url_secondary: 'https://www.accuedits.com/why',
+            alignment: 'left',
+            background_color: 'accent',
+            background_glass: 'yes',
+            width: 'w-full',
+          }
+        ],
         carousel_items: [
           {
             image: 'https://accuedits.ddev.site/sites/default/files/2024-03/pexels-golden-gate-bridge-sausalito.jpeg', 
             image_alt: 'This is the Golden Gate Bridge'
           },
-          {image: 'https://accuedits.ddev.site/sites/default/files/2024-03/pexels-victorian-homes-sf.jpeg', image_alt: 'Victorian houses in San Francisco'},
-          {image: 'https://accuedits.ddev.site/sites/default/files/2024-03/pexels-sf-embarcedero.jpeg', image_alt: 'Embacadero sklyline by night in San Francisco'}
-        ]
+          {
+            image: 'https://accuedits.ddev.site/sites/default/files/2024-03/pexels-victorian-homes-sf.jpeg', image_alt: 'Victorian houses in San Francisco'
+          },
+          {
+            image: 'https://accuedits.ddev.site/sites/default/files/2024-03/pexels-sf-embarcedero.jpeg', image_alt: 'Embacadero sklyline by night in San Francisco'
+          }
+        ],
+        background_color: 'white',
+        background_pattern: 'public://2024-05/purple_pattern.svg',
+        border: 'yes',
+        flip: 'yes',
+        orientation: 'horizontal',
       }
   } %}
 
-  {{ include('sanfran:carousel', {
-    storybook: 'true',
-    heading,
-    carousel_items,
-  })
-}}
+    {% set storybook_lead_item %}
+
+      {# {% include '@composits/lead/lead.stories.twig' %} #}
+
+      {% for item in lead_item %}
+        
+        {% if item.description %}
+          {% set hmtl_text = {
+            '#type':   'processed_text',
+            '#text':    item.description,
+            '#format':  'basic_html',
+          } %}
+        {% endif %}
+
+
+        {{ include('sanfran:lead', {
+            eyebrow: item.eyebrow,
+            heading: item.heading,
+            level: '1',
+            description: hmtl_text,
+            ctaText: item.ctaText,
+            ctaHref: item.ctaHref,
+            cta_title_secondary: item.cta_title_secondary,
+            cta_url_secondary: item.cta_url_secondary,
+            alignment: item.alignment,
+            background_glass: item.background_glass,
+            background_color: item.background_color,
+            width: item.width,
+        }) }}
+
+      {% endfor %}
+
+    {% endset %}
+
+    {{ include('sanfran:carousel', {
+      lead_item: storybook_lead_item,
+      background_color,
+      background_pattern,
+      border,
+      flip,
+      orientation,
+      carousel_items,
+      quick_edit: '',
+      storybook: 'true',
+      })
+    }}
+
 
   {% endstory %}
 

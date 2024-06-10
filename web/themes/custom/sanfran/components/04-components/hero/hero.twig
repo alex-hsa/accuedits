@@ -1,11 +1,3 @@
-{% if alignment == 'center' %}
-  {% set alignment_class = 'text-center' %}
-{% elseif alignment == 'right' %}
-  {% set alignment_class = 'text-right' %}
-{% else  %}
-  {% set alignment_class = 'text-left' %}
-{% endif %}
-
 {% if border == 'yes' %}
   {% set border_class = 'border p-4 rounded-lg' %}
 {% else %}
@@ -20,9 +12,8 @@
   {% set placement_class = 'flex flex-row' %}
 {% endif %}
 
-{% set classes_hero = [
-    'hero-banner',
-    'bg-' ~ background_color ~ '/[.25]',
+{% set paragraph_classes = [
+    paragraph.bundle,
     'paragraph',
     'paragraph--type--' ~ paragraph.bundle|clean_class,
     view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
@@ -30,12 +21,17 @@
   ]|join(' ')|trim %}
 
 {% if image is not empty %}
-  {% set attributes = attributes.setAttribute('style', 'background-size: cover; background-image: url("' ~ image|image_style('32_9_2xl_1536x432')|render|striptags|trim|default('') ~ '");') %}
+  {% if storybook %}
+    {% set attributes = attributes.setAttribute('style', 'background-size: cover; background-image: url("https://accuedits.ddev.site' ~ image|image_style('32_9_2xl_1536x432')|render|striptags|trim|default('') ~ '");') %}
+  {% else %}
+    {% set attributes = attributes.setAttribute('style', 'background-size: cover; background-image: url("' ~ image|image_style('32_9_2xl_1536x432')|render|striptags|trim|default('') ~ '");') %}
+  {% endif %}
 {% endif %}
 
+    
+
 <section 
-  {{ attributes.addClass(classes_hero)
-    .addClass(orientation_class)
+  {{ attributes.addClass(paragraph_classes)
     .addClass(border_class)
     .addClass(placement_class)
     .addClass('p-8 place-items-start rounded-lg [&>div:first-child]:absolute') 
@@ -43,11 +39,15 @@
   {{ quick_edit }} 
 
   {# Display Lead paragraph #}
-  {% for key, item in lead_item %}
-    {% if key|first != '#' %}
-        {{ item }}
-    {% endif %}
-  {% endfor %}
+  {% if storybook %}
+      {{ lead_item }}
+  {% else %}
+      {% for key, item in lead_item %}
+          {% if key|first != '#' %}
+              {{ item }}
+          {% endif %}
+      {% endfor %}
+  {% endif %}
 
 </section>
 

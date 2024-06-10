@@ -1,34 +1,126 @@
 {% stories media_cards with { 
-  title: 'AccuEdits/Components/MediaCards'
+  title: 'AccuEdits/Components/Media-Cards',
+  argTypes: {
+    background_color: {
+      options: ['primary', 'secondary', 'accent', 'neutral', 'base-100', 'base-200', 'error', 'info', 'success', 'warning'],
+      control: 'select'
+    },
+    background_pattern: {
+      options: ['public://2024-05/beige_droplets.svg', 'public://2024-05/beige_pattern.svg', 'public://2024-05/blue_droplets.svg', 'public://2024-05/blue_swirls.svg', 'public://2024-05/blue_waves.svg', 'public://2024-05/purple_pattern.svg'],
+      control: 'select'
+    },
+    border: {
+      options: ['no', 'yes'],
+      control: 'radio'
+    },
+    columns: {
+      options: ['1', '2', '3', '4', '5', '6'],
+      control: 'select'
+    },
+    placement: {
+      options: ['start', 'middle', 'end'],
+      control: 'select'
+    },
+  }
 } %}
 
   {% story media_cards_default with {
     name: 'Default',
       args: {
-        image: 'https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg',
-        imageAlt: 'Alt text for the image goes here',
-        heading: 'This Card Title',
-        headingLevel: '2',
-        description: 'If a dog chews shoes whose shoes does he choose?',
-        ctaText: 'Read more',
-        ctaHref: 'https://www.drupalgeek.com',
+        background_color: 'accent',
+        background_pattern: 'public://2024-05/blue_swirls.svg',
+        border: 'no',
+        columns: '3',
+        placement: 'start',
+        lead_item: [
+          {
+            eyebrow: 'For images & videos',
+            heading: 'Media Cards',
+            level: '2',
+            description: 'Cards in this component are displayed in stacked orientation',
+            ctaText: '',
+            ctaHref: '',
+            cta_title_secondary: '',
+            cta_url_secondary: '',
+            alignment: 'left',
+            background_color: 'accent',
+            background_glass: 'yes',
+            width: 'w-6/12',
+          }
+        ],
+        media_cards_items: [
+          {
+            image: 'https://accuedits.ddev.site/sites/default/files/2024-03/pexels-golden-gate-bridge-sausalito.jpeg',
+            image_alt: 'Alt text for the image goes here',
+            heading: 'This Card Title',
+            headingLevel: '2',
+            description: 'If a dog chews shoes whose shoes does he choose?',
+            ctaText: 'Read more',
+            ctaHref: 'https://www.drupalgeek.com',
+          },
+          {
+            image: 'https://accuedits.ddev.site/sites/default/files/2024-03/pexels-golden-gate-bridge-sausalito.jpeg',
+            image_alt: 'Alt text for the image goes here',
+            heading: 'This Card Title',
+            headingLevel: '2',
+            description: 'If a dog chews shoes whose shoes does he choose?',
+            ctaText: 'Read more',
+            ctaHref: 'https://www.drupalgeek.com',
+          },
+          {
+            image: 'https://accuedits.ddev.site/sites/default/files/2024-03/pexels-golden-gate-bridge-sausalito.jpeg',
+            image_alt: 'Alt text for the image goes here',
+            heading: 'This Card Title',
+            headingLevel: '2',
+            description: 'If a dog chews shoes whose shoes does he choose?',
+            ctaText: 'Read more',
+            ctaHref: 'https://www.drupalgeek.com',
+          },
+        ],
       }
-  } %}
+  }%}
 
-    <div class="grid gap-x-4 gap-y-8 grid-cols-1 md:grid-cols-3">
-      {% for i in 0..2 %}
-        {{ include('sanfran:card', {
-            image,
-            imageAlt,
-            heading,
-            headingLevel,
-            description,
-            ctaText,
-            ctaHref,
-          })
-        }}
+    {% set storybook_lead_item %}
+      {% for item in lead_item %}
+        
+        {% if item.description %}
+          {% set hmtl_text = {
+            '#type':   'processed_text',
+            '#text':    item.description,
+            '#format':  'basic_html',
+          } %}
+        {% endif %}
+
+
+        {{ include('sanfran:lead', {
+            eyebrow: item.eyebrow,
+            heading: item.heading,
+            level: '2',
+            description: hmtl_text,
+            ctaText: item.ctaText,
+            ctaHref: item.ctaHref,
+            cta_title_secondary: item.cta_title_secondary,
+            cta_url_secondary: item.cta_url_secondary,
+            alignment: item.alignment,
+            background_glass: item.background_glass,
+            background_color: item.background_color,
+            width: item.width,
+        }) }}
+
       {% endfor %}
-    </div>
+    {% endset %}
+
+    {{ include('sanfran:media-cards', {
+        background_color,
+        background_pattern,
+        border,
+        columns,
+        placement,
+        lead_item: storybook_lead_item,
+        media_cards_items,
+        quick_edit: '',
+        storybook: 'yes',
+    }) }}
 
   {% endstory %}
 
