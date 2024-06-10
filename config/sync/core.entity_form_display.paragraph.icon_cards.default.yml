@@ -7,6 +7,7 @@ dependencies:
     - field.field.paragraph.icon_cards.field_background_pattern
     - field.field.paragraph.icon_cards.field_border
     - field.field.paragraph.icon_cards.field_columns
+    - field.field.paragraph.icon_cards.field_flip
     - field.field.paragraph.icon_cards.field_items
     - field.field.paragraph.icon_cards.field_lead
     - field.field.paragraph.icon_cards.field_link_card
@@ -24,6 +25,7 @@ third_party_settings:
         - field_background_pattern
         - field_background_color
         - field_columns
+        - field_flip
         - field_placement
         - field_orientation
         - field_border
@@ -59,7 +61,7 @@ content:
     third_party_settings: {  }
   field_border:
     type: boolean_checkbox
-    weight: 13
+    weight: 14
     region: content
     settings:
       display_label: true
@@ -70,6 +72,13 @@ content:
     region: content
     settings:
       placeholder: ''
+    third_party_settings: {  }
+  field_flip:
+    type: boolean_checkbox
+    weight: 11
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   field_items:
     type: paragraphs
@@ -113,13 +122,13 @@ content:
     third_party_settings: {  }
   field_orientation:
     type: options_select
-    weight: 12
+    weight: 13
     region: content
     settings: {  }
     third_party_settings: {  }
   field_placement:
     type: options_select
-    weight: 11
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }

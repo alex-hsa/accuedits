@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.highlights.field_background_pattern
+    - field.field.paragraph.highlights.field_border
     - field.field.paragraph.highlights.field_columns
     - field.field.paragraph.highlights.field_flip
     - field.field.paragraph.highlights.field_items
@@ -22,6 +23,7 @@ third_party_settings:
         - field_columns
         - field_flip
         - field_orientation
+        - field_border
       label: Settings
       region: content
       parent_name: ''
@@ -45,6 +47,13 @@ content:
     region: content
     settings:
       media_types: {  }
+    third_party_settings: {  }
+  field_border:
+    type: boolean_checkbox
+    weight: 10
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   field_columns:
     type: number

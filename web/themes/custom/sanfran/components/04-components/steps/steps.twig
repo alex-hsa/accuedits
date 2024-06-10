@@ -1,50 +1,104 @@
-{# Retrieve the background_color value from the /04-component/accordion/accordion.twig file 
-   There might be a shorter way to get to the value
-   ToDo: Replace the next 4 lines with a shorter version
-#}
-
-
-{% if orientation == 'horizontal' %}
-  {% if flip == 'yes' %}
-    {% set orientation_class = 'grid grid-cols-1 md:grid-cols-12 [&>div.frontend-editing-actions]:col-end-12 [&>div.lead]:col-span-5 [&>div.items]:col-span-7 [&>div.lead]:order-2 [&>div.items]:order-1 [&>div.lead_hgroup]:sticky [&>div.lead_hgroup]:top-32' %}
-  {% else %}
-    {% set orientation_class = 'grid grid-cols-1 md:grid-cols-12 [&>div.frontend-editing-actions]:col-end-12 [&>div.lead]:col-span-5 [&>div.items]:col-span-7 [&>div.lead_hgroup]:sticky [&>div.lead_hgroup]:top-32' %}
-  {% endif %}
+{% if background_color %}
+  {% set background_color_class = 'p-4 rounded-lg' %}
 {% else %}
-  {% set orientation_class = '[&>div.lead]:ml-0' %}
+  {% set background_color_class = '' %}
+{% endif %}
+
+{% if background_pattern %}
+  {% set background_pattern_style = "margin-bottom: 1rem; background-image: url('" ~ background_pattern|file_url ~ "');" %}
 {% endif %}
 
 {% if border == 'yes' %}
-  {% set border_class = 'border p-4 rounded-lg' %}
+  {% set border_class = 'border rounded-lg' %}
+  {% if background_color_class == '' %}
+    {% set border_class = border_class ~ ' p-4' %}
+  {% endif %}
 {% else %}
   {% set border_class = '' %}
 {% endif %}
 
+{% if flip == 'yes' %}
+    {% set flip_class = ' [&>div.lead]:order-2 [&>div.items]:order-1' %}
+{% else %}
+    {% set flip_class = '' %}
+{% endif %}
+
+{% if orientation == 'horizontal' %}
+    {% set orientation_class = 'flex flex-col md:flex-row [&>div.lead_hgroup]:sticky [&>div.lead_hgroup]:top-32 md:[&>div.lead]:w-1/2 md:[&>div.items]:w-1/2 md:[&>div.frontend-editing-actions]:absolute' %}
+    {% set column_classes = '' %}
+     
+    {% if flip == 'yes' %}
+        {% set flip_class = ' [&>div.lead]:order-2 [&>div.items]:order-1' %}
+        {% set orientation_class = orientation_class ~ ' [&>div.lead]:ml-6' %}
+    {% else %}
+        {% set orientation_class = orientation_class ~ ' [&>div.lead]:mr-6' %}
+    {% endif %}
+
+{% else %}
+    {% set orientation_class = 'flex flex-col rounded-b-lg' %}
+{% endif %}
+
+{# The class 'steps' prevents the Lead not to be sticky
+   For that reason added class 'steps-not-daisyui', #}
 {% set paragraph_classes = [
-    'steps-accuedits',
+    'steps-not-daisyui', 
     'paragraph',
     'paragraph--type--' ~ paragraph.bundle|clean_class,
     view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
     not paragraph.isPublished() ? 'paragraph--unpublished'
   ]|join(' ')|trim %}
 
-<section {{ attributes.addClass(paragraph_classes).addClass(orientation_class).addClass(border_class).addClass('[&>div.items_article:last-child_div.step-text]:mb-0')}}>
+<section {{ attributes.addClass(paragraph_classes).addClass(background_color_class).addClass(border_class).addClass(orientation_class).addClass(flip_class).addClass('[&>div.items_article:last-child_div.step-text]:mb-0') }}>
     {{ quick_edit }}
 
-    {# Display Lead paragraph #}
-    <div class="lead m-8">
-        {% for key, item in lead_item %}
-            {% if key|first != '#' %}
-                {{ item }}
-            {% endif %}
-        {% endfor %}
+    <div class="lead p-8 rounded-lg"{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
+
+        {% if storybook %}
+            {{ lead_item }}
+        {% else %}
+            {% for key, item in lead_item %}
+                {% if key|first != '#' %}
+                    {{ item }}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
     </div>
 
-    <div class="items left-4 pl-4">   
+    <div class="items">   
         {% for key, item in steps_items %}
-            {% if key|first != '#' %}
-                {{ item }}
+
+          {% if storybook %}
+
+            {% if item.icon is not empty %}
+              {% set material_icon = {
+                '#theme': 'material_icon',
+                '#icon': item.icon,
+                '#family': 'material-icons-two-tone',
+                '#classes': 'text-4xl',
+              } %}
+            {% else %}
+              {% set material_icon = '' %}
             {% endif %}
+            
+              {{ include('sanfran:step-item', {
+                  icon: material_icon,
+                  step_number: item.step_number,
+                  heading: item.heading,
+                  headingLevel: item.headingLevel,
+                  description: item.description,
+                  quick_edit: '',
+                })
+              }}
+
+        {% else %}
+
+          {% if key|first != '#' %}
+              {{ item }}
+          {% endif %}
+
+        {% endif %}
+
         {% endfor %}
     </div>
 

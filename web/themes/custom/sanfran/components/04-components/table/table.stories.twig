@@ -1,5 +1,5 @@
-{% stories media_cards with { 
-  title: 'AccuEdits/Components/Media-Cards',
+{% stories table with { 
+  title: 'AccuEdits/Components/Table',
   argTypes: {
     background_color: {
       options: ['primary', 'secondary', 'accent', 'neutral', 'base-100', 'base-200', 'error', 'info', 'success', 'warning'],
@@ -13,8 +13,12 @@
       options: ['no', 'yes'],
       control: 'radio'
     },
-    columns: {
-      options: ['1', '2', '3', '4', '5', '6'],
+    flip: {
+      options: ['no', 'yes'],
+      control: 'radio'
+    },
+    orientation: {
+      options: ['stacked', 'horizontal'],
       control: 'select'
     },
     placement: {
@@ -24,61 +28,34 @@
   }
 } %}
 
-  {% story media_cards_default with {
+    {% story table_default with {
     name: 'Default',
       args: {
         background_color: 'accent',
         background_pattern: 'public://2024-05/blue_swirls.svg',
         border: 'no',
-        columns: '3',
+        flip: 'no',
+        orientation: 'stacked',
         placement: 'start',
         lead_item: [
           {
-            eyebrow: 'For images & videos',
-            heading: 'Media Cards',
-            level: '2',
-            description: 'Cards in this component are displayed in stacked orientation',
-            ctaText: '',
-            ctaHref: '',
-            cta_title_secondary: '',
-            cta_url_secondary: '',
+            eyebrow: 'AccuEdits.com',
+            heading: 'Web publishing, streamlined',
+            level: '1',
+            description: 'AccuEdits is quick, stylish, and gives your team all the tools they need to handle large amounts of content efficiently.',
+            ctaText: 'Get Started',
+            ctaHref: 'https://www.accuedits.com/getstarted',
+            cta_title_secondary: 'Why AccuEdits',
+            cta_url_secondary: 'https://www.accuedits.com/why',
             alignment: 'left',
             background_color: 'accent',
             background_glass: 'yes',
             width: 'w-6/12',
           }
         ],
-        media_cards_items: [
-          {
-            image: 'https://accuedits.ddev.site/sites/default/files/2024-03/pexels-golden-gate-bridge-sausalito.jpeg',
-            image_alt: 'Alt text for the image goes here',
-            heading: 'This Card Title',
-            headingLevel: '2',
-            description: 'If a dog chews shoes whose shoes does he choose?',
-            ctaText: 'Read more',
-            ctaHref: 'https://www.drupalgeek.com',
-          },
-          {
-            image: 'https://accuedits.ddev.site/sites/default/files/2024-03/pexels-golden-gate-bridge-sausalito.jpeg',
-            image_alt: 'Alt text for the image goes here',
-            heading: 'This Card Title',
-            headingLevel: '2',
-            description: 'If a dog chews shoes whose shoes does he choose?',
-            ctaText: 'Read more',
-            ctaHref: 'https://www.drupalgeek.com',
-          },
-          {
-            image: 'https://accuedits.ddev.site/sites/default/files/2024-03/pexels-golden-gate-bridge-sausalito.jpeg',
-            image_alt: 'Alt text for the image goes here',
-            heading: 'This Card Title',
-            headingLevel: '2',
-            description: 'If a dog chews shoes whose shoes does he choose?',
-            ctaText: 'Read more',
-            ctaHref: 'https://www.drupalgeek.com',
-          },
-        ],
+        table: '<table style="border:1px solid hsl(0, 0%, 60%);"><thead><tr><th>Project name</th><th>Description</th><th><p class="text-align-right">Price</p></th></tr></thead><tbody><tr><td>Invoices</td><td>Add invoice confirmation</td><td><p class="text-align-right">$4,500</p></td></tr><tr><td>Templates</td><td>Refactor templates to use the new templating library</td><td><p class="text-align-right">$9,000</p></td></tr><tr><td>Payments</td><td>Process payments using third party API</td><td><p class="text-align-right">$5,500</p></td></tr><tr><td>Workflow</td><td>Improve account management workflow</td><td><p class="text-align-right">$6,000</p></td></tr><tr><td> </td><td><p class="text-align-right"><strong>Total: </strong></p></td><td><p class="text-align-right"><strong>$25,000</strong></p></td></tr></tbody></table>'
       }
-  }%}
+  } %}
 
     {% set storybook_lead_item %}
       {% for item in lead_item %}
@@ -95,7 +72,7 @@
         {{ include('sanfran:lead', {
             eyebrow: item.eyebrow,
             heading: item.heading,
-            level: '2',
+            level: '1',
             description: hmtl_text,
             ctaText: item.ctaText,
             ctaHref: item.ctaHref,
@@ -110,14 +87,17 @@
       {% endfor %}
     {% endset %}
 
-    {{ include('sanfran:media-cards', {
+
+    {{ include('sanfran:table', {
         background_color,
         background_pattern,
         border,
-        columns,
+        flip,
+        orientation,
         placement,
         lead_item: storybook_lead_item,
-        media_cards_items,
+        accordion_items,
+        table,
         quick_edit: '',
         storybook: 'yes',
     }) }}

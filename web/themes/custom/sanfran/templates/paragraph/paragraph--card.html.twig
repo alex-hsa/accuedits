@@ -34,7 +34,7 @@
 {% set media_image_alt = content.field_media.0['#media'].field_media_image.0.alt|default('') %}
 {% set video_remote = content.field_media.0['#media'].field_media_oembed_video.0.value|default('') %}
 
-{% set quick_edit = content.frontend_editing %}
+{% set quick_edit = content.frontend_editing|default('') %}
    
 {{ include('sanfran:card', {
   image,

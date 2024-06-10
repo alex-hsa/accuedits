@@ -5,8 +5,20 @@
       options: ['public://2024-05/beige_droplets.svg', 'public://2024-05/beige_pattern.svg', 'public://2024-05/blue_droplets.svg', 'public://2024-05/blue_swirls.svg', 'public://2024-05/blue_waves.svg', 'public://2024-05/purple_pattern.svg'],
       control: 'select'
     },
+    border: {
+      options: ['no', 'yes'],
+      control: 'radio'
+    },
     columns: {
       options: ['1', '2', '3', '4', '5', '6'],
+      control: 'select'
+    },
+    flip: {
+      options: ['no', 'yes'],
+      control: 'radio'
+    },
+    orientation: {
+      options: ['stacked', 'horizontal'],
       control: 'select'
     },
   }
@@ -17,7 +29,10 @@
     name: 'Default',
       args: {
         background_pattern: 'public://2024-05/blue_swirls.svg',
+        border: 'no',
         columns: '3',
+        flip: 'no',
+        orientation: 'stacked',
         lead_item: [
           {
             eyebrow: 'AccuEdits.com',
@@ -113,7 +128,10 @@
 
     {{ include('sanfran:highlights', {
         background_pattern,
+        border,
         columns,
+        flip,
+        orientation,
         lead_item: storybook_lead_item,
         highlights_items,
         quick_edit: '',

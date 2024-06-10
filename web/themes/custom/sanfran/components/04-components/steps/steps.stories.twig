@@ -1,10 +1,53 @@
 {% stories steps with { 
-  title: 'AccuEdits/Components/Steps'
+  title: 'AccuEdits/Components/Steps',
+  argTypes: {
+    background_color: {
+      options: ['Select...','primary', 'secondary', 'accent', 'neutral', 'base-100', 'base-200', 'error', 'info', 'success', 'warning'],
+      control: 'select'
+    },
+    background_pattern: {
+      options: ['Select...','public://2024-05/beige_droplets.svg', 'public://2024-05/beige_pattern.svg', 'public://2024-05/blue_droplets.svg', 'public://2024-05/blue_swirls.svg', 'public://2024-05/blue_waves.svg', 'public://2024-05/purple_pattern.svg'],
+      control: 'select'
+    },
+    border: {
+      options: ['no', 'yes'],
+      control: 'radio'
+    },
+    flip: {
+      options: ['no', 'yes'],
+      control: 'radio'
+    },
+    orientation: {
+      options: ['Select...','stacked', 'horizontal'],
+      control: 'select'
+    },
+  }
 } %}
 
     {% story steps_items with {
     name: 'Default',
       args: {
+        background_color: 'primary',
+        background_pattern: 'public://2024-05/blue_swirls.svg',
+        border: 'no',
+        flip: 'no',
+        orientation: 'stacked',
+        lead_item: [
+          {
+            eyebrow: '',
+            heading: 'Steps to Apply',
+            level: '1',
+            description: 'Make sure you follow the steps in order.',
+            ctaText: '',
+            ctaHref: '',
+            cta_title_secondary: '',
+            cta_url_secondary: '',
+            alignment: 'left',
+            background_color: 'accent',
+            background_glass: 'no',
+            width: 'w-6/12',
+          }
+        ],
         steps_items: [
             {
               icon: 'check_circle',
@@ -28,9 +71,52 @@
       }
   } %}
 
-    <ol class="border-s-8 border-accent relative left-4 pl-4"> 
-      {% for item in steps_items %}
+    {% set storybook_lead_item %}
+      {% for item in lead_item %}
+        
+        {% if item.description %}
+          {% set hmtl_text = {
+            '#type':   'processed_text',
+            '#text':    item.description,
+            '#format':  'basic_html',
+          } %}
+        {% endif %}
 
+
+        {{ include('sanfran:lead', {
+            eyebrow: item.eyebrow,
+            heading: item.heading,
+            level: '1',
+            description: hmtl_text,
+            ctaText: item.ctaText,
+            ctaHref: item.ctaHref,
+            cta_title_secondary: item.cta_title_secondary,
+            cta_url_secondary: item.cta_url_secondary,
+            alignment: item.alignment,
+            background_glass: item.background_glass,
+            background_color: item.background_color,
+            width: item.width,
+        }) }}
+
+      {% endfor %}
+    {% endset %}
+
+    {{ include('sanfran:steps', {
+        background_pattern,
+        background_color,
+        border,
+        flip,
+        orientation,
+        placement,
+        lead_item: storybook_lead_item,
+        steps_items,
+        quick_edit: '',
+        storybook: 'yes',
+    }) }}
+
+    {# <div class="relative left-4 pl-4">
+
+      {% for item in steps_items %}
         {% if item.icon is not empty %}
           {% set material_icon = {
             '#theme': 'material_icon',
@@ -48,15 +134,12 @@
               heading: item.heading,
               headingLevel: item.headingLevel,
               description: item.description,
-              ctaText: item.ctaText,
-              ctaHref: item.ctaHref,
+              quick_edit: '',
             })
           }}
-
-        
-    
       {% endfor %}
-      </ol>
+
+      </div> #}
 
   {% endstory %}
 

@@ -1,23 +1,47 @@
 {% stories icon_cards with { 
   title: 'AccuEdits/Components/Icon-Cards',
   argTypes: {
+    background_color: {
+      options: ['primary', 'secondary', 'accent', 'neutral', 'base-100', 'base-200', 'error', 'info', 'success', 'warning'],
+      control: 'select'
+    },
     background_pattern: {
       options: ['public://2024-05/beige_droplets.svg', 'public://2024-05/beige_pattern.svg', 'public://2024-05/blue_droplets.svg', 'public://2024-05/blue_swirls.svg', 'public://2024-05/blue_waves.svg', 'public://2024-05/purple_pattern.svg'],
       control: 'select'
+    },
+    border: {
+      options: ['no', 'yes'],
+      control: 'radio'
     },
     columns: {
       options: ['1', '2', '3', '4', '5', '6'],
       control: 'select'
     },
+    flip: {
+      options: ['no', 'yes'],
+      control: 'radio'
+    },
+    orientation: {
+      options: ['stacked', 'horizontal'],
+      control: 'select'
+    },
+    placement: {
+      options: ['start', 'middle', 'end'],
+      control: 'select'
+    },
   }
-    
 } %}
 
   {% story icon_cards_default with {
     name: 'Default',
       args: {
+        background_color: 'accent',
         background_pattern: 'public://2024-05/blue_swirls.svg',
+        border: 'no',
         columns: '3',
+        flip: 'no',
+        orientation: 'stacked',
+        placement: 'start',
         lead_item: [
           {
             eyebrow: 'AccuEdits.com',
@@ -42,7 +66,7 @@
             ctaText: 'Read more',
             ctaHref: 'https://www.drupalgeek.com',
             background_color: 'primary',
-            type: 'filled',
+            type: 'elevated',
             alignment: 'left',
             orientation: 'stacked',
             placement: 'left',
@@ -54,7 +78,7 @@
             ctaText: 'Google Website',
             ctaHref: 'https://www.google.com',
             background_color: 'accent',
-            type: 'filled',
+            type: 'elevated',
             alignment: 'center',
             orientation: 'stacked',
             placement: 'middle',
@@ -66,7 +90,7 @@
             ctaText: 'Google Website',
             ctaHref: 'https://www.google.com',
             background_color: 'error',
-            type: 'filled',
+            type: 'elevated',
             alignment: 'right',
             orientation: 'stacked',
             placement: 'end',
@@ -78,7 +102,7 @@
             ctaText: 'Read more',
             ctaHref: 'https://www.drupalgeek.com',
             background_color: 'primary',
-            type: 'filled',
+            type: 'outlined',
             alignment: 'left',
             orientation: 'horizontal',
             placement: 'left',
@@ -90,7 +114,7 @@
             ctaText: 'Google Website',
             ctaHref: 'https://www.google.com',
             background_color: 'accent',
-            type: 'filled',
+            type: 'outlined',
             alignment: 'center',
             orientation: 'horizontal',
             placement: 'middle',
@@ -102,7 +126,7 @@
             ctaText: 'Google Website',
             ctaHref: 'https://www.google.com',
             background_color: 'error',
-            type: 'filled',
+            type: 'outlined',
             alignment: 'right',
             orientation: 'horizontal',
             placement: 'end',
@@ -144,9 +168,14 @@
 
     {{ include('sanfran:icon-cards', {
         background_pattern,
+        background_color,
+        border,
         columns,
+        flip,
         lead_item: storybook_lead_item,
         icon_card_items,
+        orientation,
+        placement,
         quick_edit: '',
         storybook: 'yes',
     }) }}

@@ -1,32 +1,90 @@
 {% stories textbox with { 
-  title: 'AccuEdits/Components/Textbox'
+  title: 'AccuEdits/Components/Textbox',
+  argTypes: {
+    background_color: {
+      options: ['Select...','primary', 'secondary', 'accent', 'neutral', 'base-100', 'base-200', 'error', 'info', 'success', 'warning'],
+      control: 'select'
+    },
+    background_pattern: {
+      options: ['Select...','public://2024-05/beige_droplets.svg', 'public://2024-05/beige_pattern.svg', 'public://2024-05/blue_droplets.svg', 'public://2024-05/blue_swirls.svg', 'public://2024-05/blue_waves.svg', 'public://2024-05/purple_pattern.svg'],
+      control: 'select'
+    },
+    border: {
+      options: ['no', 'yes'],
+      control: 'radio'
+    },
+    placement: {
+      options: ['start', 'middle', 'end'],
+      control: 'select'
+    },
+  }
 } %}
 
-  {% story textbox_default with {
-    name: 'Default',
-    args: {
-      heading: 'Wecome to the Page Title component',
-      text: '<ul><li>Live at home or in a shelter.</li><li>Receive Medi-Cal or <a href="https://www.dhcs.ca.gov/services/medi-cal/pages/doyouqualifyformedi-cal.aspx"><strong>qualify for Medi-Cal</strong></a>.</li><li>Demonstrate a need for help with activities of daily living.</li></ul>',
-      ctaText: 'Click me!',
-      ctaHref: 'https://www.sfhsa.org',
-      background_color: '#F7BF35',
-    }
-  } %}
-
-    {% set hmtl_text = {
-      '#type':   'processed_text',
-      '#text':    text,
-      '#format':  'basic_html',
+    {% story textbox_default with {
+      name: 'Default',
+      args: {
+        background_color: 'accent',
+        background_pattern: 'public://2024-05/blue_swirls.svg',
+        border: 'no',
+        placement: 'start',
+        lead_item: [
+          {
+            eyebrow: 'For images & videos',
+            heading: 'Media Cards',
+            level: '2',
+            description: 'Cards in this component are displayed in stacked orientation',
+            ctaText: 'Learn more',
+            ctaHref: '#',
+            cta_title_secondary: '',
+            cta_url_secondary: '',
+            alignment: 'left',
+            background_color: 'accent',
+            background_glass: 'yes',
+            width: 'w-6/12',
+          }
+        ],
+      }
     } %}
+
+    {% set storybook_lead_item %}
+      {% for item in lead_item %}
+        
+        {% if item.description %}
+          {% set hmtl_text = {
+            '#type':   'processed_text',
+            '#text':    item.description,
+            '#format':  'basic_html',
+          } %}
+        {% endif %}
+
+
+        {{ include('sanfran:lead', {
+            eyebrow: item.eyebrow,
+            heading: item.heading,
+            level: '2',
+            description: hmtl_text,
+            ctaText: item.ctaText,
+            ctaHref: item.ctaHref,
+            cta_title_secondary: item.cta_title_secondary,
+            cta_url_secondary: item.cta_url_secondary,
+            alignment: item.alignment,
+            background_glass: item.background_glass,
+            background_color: item.background_color,
+            width: item.width,
+        }) }}
+
+      {% endfor %}
+    {% endset %}
 
 
     {{ include('sanfran:textbox', {
-      heading,
-      level: '2',
-      description: hmtl_text,
-      ctaText,
-      ctaHref,
       background_color,
+      background_pattern,
+      border,
+      placement,
+      lead_item: storybook_lead_item,
+      quick_edit: '',
+      storybook: 'yes',
     }) }}
   {% endstory %}
 

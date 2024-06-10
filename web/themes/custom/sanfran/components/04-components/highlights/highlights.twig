@@ -1,13 +1,16 @@
-{% if alignment == 'center' %}
-  {% set alignment_class = 'text-center' %}
-{% elseif alignment == 'right' %}
-  {% set alignment_class = 'text-right' %}
-{% else  %}
-  {% set alignment_class = 'text-left' %}
-{% endif %}
 
 {% if background_pattern %}
   {% set background_pattern_style = "margin-bottom: 1rem; background-image: url('" ~ background_pattern|file_url ~ "');" %}
+{% endif %}
+
+
+{% if border == 'yes' %}
+  {% set border_class = 'border rounded-lg' %}
+  {% if background_color_class == '' %}
+    {% set border_class = border_class ~ ' p-4' %}
+  {% endif %}
+{% else %}
+  {% set border_class = '' %}
 {% endif %}
 
 {% if ('1' in columns) or (columns == '1') %}
@@ -25,7 +28,6 @@
 {% else %}
   {% set column_classes = ' sm:grid-cols-2 md:grid-cols-3' %}
 {% endif %}
-
 
 {% if flip == 'yes' %}
     {% set flip_class = ' [&>div.lead]:order-2 [&>div.items]:order-1' %}
@@ -56,7 +58,7 @@
   ]|join(' ')|trim %}
 
 
-<section {{ attributes.addClass(paragraph_classes).addClass(orientation_class).addClass(flip_class) }}>
+<section {{ attributes.addClass(paragraph_classes).addClass(border_class).addClass(orientation_class).addClass(flip_class) }}>
   {{ quick_edit }} 
 
   <div class="lead p-8 rounded-lg"{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
@@ -70,6 +72,7 @@
               {% endif %}
           {% endfor %}
       {% endif %}
+
   </div>
 
   <div class="items grid gap-x-4 gap-y-4 grid-cols-1{{column_classes}}">

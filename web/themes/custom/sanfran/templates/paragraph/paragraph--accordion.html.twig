@@ -25,35 +25,26 @@
   */
 #}
 
-{% set eyebrow = content.field_eyebrow.0|default('') %}
-{% set heading = content.field_main_title.0|default('')  %}
-{% set description = content.field_description.0|default('') %}
-{% set ctaText = content.field_cta[0]['#title']|default('') %}
-{% set ctaHref = content.field_cta[0]['#url']|default('') %}
-{% set alignment = content.field_alignment.0['#markup']|lower|default('') %}
 
-{% set lead_item = content.field_lead %}
 {% set background_color = content.field_background_color|field_target_entity.name.entity.name.value|lower %}
 {% set background_pattern = content.field_background_pattern|field_target_entity.field_media_image.entity.uri.value|default('') %}
-{% set orientation = content.field_orientation.0['#markup']|lower|default('') %}
 {% set border = content.field_border.0['#markup']|lower|default('') %}
-{% set quick_edit = content.frontend_editing|default('') %}
+{% set flip = content.field_flip.0['#markup']|lower|default('') %}
+{% set orientation = content.field_orientation.0['#markup']|lower|default('') %}
+{% set placement = content.field_placement.0['#markup']|lower|default('') %}
+{% set lead_item = content.field_lead %}
 {% set accordion_items = content.field_items %}
+{% set quick_edit = content.frontend_editing|default('') %}
 
 {{ include('sanfran:accordion', {
-    eyebrow,
-    heading,
-    description,
-    ctaText,
-    ctaHref,
-    alignment,
-
-    lead_item,
     background_color,
     background_pattern,
-    orientation,
     border,
-    quick_edit,
+    flip,
+    orientation,
+    placement,
+    lead_item,
     accordion_items,
+    quick_edit,
   })
 }}

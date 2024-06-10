@@ -1,9 +1,9 @@
 {% if type == 'elevated' %}
-  {% set icon_card_classes = 'shadow-xl border border-' ~ background_color %}
+  {% set icon_card_classes = 'shadow-xl bg-base-100 border border-' ~ background_color %}
 {% elseif type == 'filled'  %}
   {% set icon_card_classes = 'bg-' ~ background_color ~ '/[.25]' %}
 {% else %}
-  {% set icon_card_classes = 'border-2 border-' ~ background_color %}
+  {% set icon_card_classes = 'bg-base-100 border-2 border-' ~ background_color %}
 {% endif %}
 
 {% if orientation == 'horizontal' %}
@@ -30,16 +30,14 @@
 
 
 {% set paragraph_classes = [
-    paragraph.bundle,
+    paragraph.bundle|clean_class,
     'paragraph',
     'paragraph--type--' ~ paragraph.bundle|clean_class,
     view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
     not paragraph.isPublished() ? 'paragraph--unpublished',
-    orientation_class,
-    icon_card_classes,
   ]|join(' ')|trim %}
 
-<article {{ attributes.setAttribute('class', '').addClass(paragraph_classes).addClass('icon-card flex h-full p-4 rounded-lg md:[&>div.frontend-editing-actions]:absolute') }}>
+<article {{ attributes.setAttribute('class', '').addClass(paragraph_classes).addClass(orientation_class).addClass(icon_card_classes).addClass('icon-card flex h-full p-4 rounded-lg md:[&>div.frontend-editing-actions]:absolute') }}>
   {{ quick_edit }}
   <div class="media {{ placement_class }}">
     {% if icon %}

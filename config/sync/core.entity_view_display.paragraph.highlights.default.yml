@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.highlights.field_background_pattern
+    - field.field.paragraph.highlights.field_border
     - field.field.paragraph.highlights.field_columns
     - field.field.paragraph.highlights.field_flip
     - field.field.paragraph.highlights.field_items
@@ -40,6 +41,16 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
+  field_border:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
   field_columns:
     type: number_integer
     label: hidden
@@ -66,7 +77,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 5
+    weight: 6
     region: content
   field_lead:
     type: entity_reference_revisions_entity_view

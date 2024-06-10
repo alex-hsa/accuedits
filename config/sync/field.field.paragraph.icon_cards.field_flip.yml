@@ -1,0 +1,23 @@
+uuid: b0e80b16-f903-4db8-a046-5b64b50e3f66
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_flip
+    - paragraphs.paragraphs_type.icon_cards
+id: paragraph.icon_cards.field_flip
+field_name: field_flip
+entity_type: paragraph
+bundle: icon_cards
+label: 'Flip Columns'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

@@ -1,8 +1,8 @@
 <figure class="h-full">
 {% if storybook %}
-  <img class="bg-auto" src="{{ image }}" alt="{{ image_alt }}" style="max-width: 480px;" />
+  <img class="bg-auto{{classes}}" src="{{ image }}" alt="{{ image_alt }}" />
 {% else %}
   {# {{ drupal_image(image, image_style, { alt: image_alt, title: image_alt } ) }} #}
-  {{ drupal_image(image, image_style, { alt: image_alt, title: image_alt }, responsive=true ) }}
+  {{ drupal_image(image, image_style, { alt: image_alt, title: image_alt, class: classes }, responsive=true ) }}
 {% endif %}
 </figure>

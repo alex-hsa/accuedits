@@ -4,11 +4,33 @@
   {% set background_color_class = '' %}
 {% endif %}
 
+{% if background_pattern %}
+  {% set background_pattern_style = "margin-bottom: 1rem; background-image: url('" ~ background_pattern|file_url ~ "');" %}
+{% endif %}
+
 {% if border == 'yes' %}
   {% set border_class = 'border p-4 rounded-lg' %}
 {% else %}
   {% set border_class = '' %}
 {% endif %}
+
+
+{% if ('1' in columns) or (columns == '1') %}
+  {% set column_classes = '' %}
+{% elseif ('2' in columns) or (columns == '2') %}
+  {% set column_classes = ' sm:grid-cols-2' %}
+{% elseif ('3' in columns) or (columns == '3') %}
+  {% set column_classes = ' sm:grid-cols-2 md:grid-cols-3' %}
+{% elseif ('4' in columns) or (columns == '4') %}
+  {% set column_classes = ' sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4' %}
+{% elseif ('5' in columns) or (columns == '5') %}
+  {% set column_classes = ' sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5' %}
+{% elseif ('6' in columns) or (columns == '6') %}
+  {% set column_classes = ' sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6' %}
+{% else %}
+  {% set column_classes = ' sm:grid-cols-2 md:grid-cols-3' %}
+{% endif %}
+
 
 {% if placement == 'end' %}
   {% set placement_class = 'flex flex-row-reverse' %}
@@ -20,7 +42,7 @@
 
 {% set paragraph_classes = [
     paragraph.bundle|clean_class,
-    'bg-base-' ~ background_color,
+    'bg-' ~ background_color ~ '/[.25]',
     'paragraph',
     'paragraph--type--' ~ paragraph.bundle|clean_class,
     view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
@@ -32,24 +54,43 @@
 
 <section {{ attributes.addClass(paragraph_classes).addClass(border_class).addClass(background_color_class) }}>
   {{ quick_edit }} 
-  <div class="lead p-8 {{ placement_class }}">
-      {% for key, item in lead_item %}
-          {% if key|first != '#' %}
-              {{ item }}
-          {% endif %}
-      {% endfor %}
+  <div class="lead p-8 {{ placement_class }}"{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
+
+    {% if storybook %}
+        {{ lead_item }}
+    {% else %}
+        {% for key, item in lead_item %}
+            {% if key|first != '#' %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
   </div>
-{% if orientation == 'horizontal' %}
-  <div class="items grid gap-x-4 gap-y-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-{{ columns }}">
-{% else %}
-  <div class="items grid gap-x-4 gap-y-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-{{ columns }}">
-{% endif %}
-  
-      {% for key, item in media_card_items %}
+
+  <div class="items grid gap-x-4 gap-y-8 grid-cols-1{{column_classes}}">
+
+      {% for key, item in media_cards_items %}
+
+        {% if storybook %}
+          {{ include('sanfran:card', {
+            image: item.image,
+            image_alt: item.image_alt,
+            heading: item.heading,
+            headingLevel: item.headingLevel,
+            description: item.description,
+            ctaText: item.ctaText,
+            ctaHref: item.ctaHref,
+            quick_edit: '',
+          }) }}
+        {% else %}
           {% if key|first != '#' %}
               {{ item }}
           {% endif %}
+        {% endif %}
+
       {% endfor %}
+
   </div>
 
 </section>
