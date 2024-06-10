@@ -19,7 +19,6 @@ dependencies:
     - paragraphs.paragraphs_type.spotlight
     - paragraphs.paragraphs_type.steps
     - paragraphs.paragraphs_type.table
-    - paragraphs.paragraphs_type.text_shout
     - paragraphs.paragraphs_type.textbox
   module:
     - entity_reference_revisions
@@ -52,7 +51,6 @@ settings:
       steps: steps
       table: table
       textbox: textbox
-      text_shout: text_shout
     negate: 0
     target_bundles_drag_drop:
       accordion:
