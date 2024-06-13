@@ -1,0 +1,29 @@
+uuid: d5c7288d-1737-4424-97b0-559f3c722bfe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_gradient
+    - paragraphs.paragraphs_type.parallel_callout
+    - taxonomy.vocabulary.background_gradients
+id: paragraph.parallel_callout.field_gradient
+field_name: field_gradient
+entity_type: paragraph
+bundle: parallel_callout
+label: Gradient
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      background_gradients: background_gradients
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,11 +1,21 @@
+{% if background_pattern %}
+  {% set background_pattern_style = "margin-bottom: 1rem; background-image: url('" ~ background_pattern|file_url ~ "');" %}
+{% endif %}
+
+{% if background_gradient %}
+  {% set background_gradient_classes = background_gradient ~ background_color_stops %}
+{% endif %}
+
 {% if border == 'yes' %}
   {% set border_class = 'border p-4 rounded-lg border-' ~ background_color %}
 {% else %}
   {% set border_class = '' %}
 {% endif %}
 
-{% if background_pattern %}
-  {% set background_pattern_style = "margin-bottom: 1rem; background-image: url('" ~ background_pattern|file_url ~ "');" %}
+{% if gradient %}
+    {% set gradient_classes = ' mb-4 ' ~ gradient_direction ~ ' ' ~ gradient %}
+{% else %}
+    {% set gradient_classes = '' %}
 {% endif %}
 
 {% set paragraph_classes = [
@@ -17,7 +27,7 @@
     not paragraph.isPublished() ? 'paragraph--unpublished',
   ]|join(' ')|trim %}
 
-  <section {{ attributes.addClass(paragraph_classes).addClass(border_class).addClass('flex flex-row p-4 rounded-lg') }}{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
+  <section {{ attributes.addClass(paragraph_classes).addClass(border_class).addClass(gradient_classes).addClass('flex flex-row p-4 rounded-lg') }}{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
 
     {{ quick_edit }}
     <div class="lead p-4 pr-8 text-center my-auto w-5/12">

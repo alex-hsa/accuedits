@@ -20,6 +20,12 @@
   {% set background_pattern_style = "margin-bottom: 1rem; background-image: url('" ~ background_pattern|file_url ~ "');" %}
 {% endif %}
 
+{% if gradient %}
+    {% set gradient_classes = 'rounded-l-lg ' ~ gradient_direction ~ ' ' ~ gradient %}
+{% else %}
+    {% set gradient_classes = 'rounded-lg' %}
+{% endif %}
+
 {% if storybook %}
   {% set component_name = 'spotlight' %}
 {% else %}
@@ -42,7 +48,7 @@
   {{ quick_edit }}
  
   {# Display Lead paragraph #}
-  <div class="lead my-auto p-8 rounded-lg w-full md:w-1/2">
+  <div class="lead my-auto p-8 w-full md:w-1/2 {{gradient_classes}}">
 
       {% if storybook %}
           {{ lead_item }}
@@ -57,7 +63,7 @@
   </div>
 
   {# Display either an image or a video #}
-  <div class="media w-full md:w-1/2 [&>figure]:h-full [&>figure_img]:object-cover [&>figure_img]:w-full [&>figure_img]:h-full">
+  <div class="media w-full md:w-1/2 [&>figure]:h-full [&>figure_img]:object-cover [&>figure_img]:w-full [&>figure_img]:h-full [&>figure_iframe]:object-cover [&>figure_iframe]:w-full [&>figure_iframe]:h-full">
     {% if image is not empty %} 
       {{ include('sanfran:figure', {
           image,

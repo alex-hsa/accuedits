@@ -1,0 +1,20 @@
+uuid: 54e7074f-37b3-4ea9-b99a-619182e1973d
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - taxonomy
+id: paragraph.field_gradient_direction
+field_name: field_gradient_direction
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

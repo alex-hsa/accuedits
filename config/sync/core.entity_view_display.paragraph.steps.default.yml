@@ -7,6 +7,8 @@ dependencies:
     - field.field.paragraph.steps.field_background_pattern
     - field.field.paragraph.steps.field_border
     - field.field.paragraph.steps.field_flip
+    - field.field.paragraph.steps.field_gradient
+    - field.field.paragraph.steps.field_gradient_direction
     - field.field.paragraph.steps.field_items
     - field.field.paragraph.steps.field_lead
     - field.field.paragraph.steps.field_orientation
@@ -69,6 +71,34 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_gradient:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: full
+      link: false
+    third_party_settings:
+      sdc_display:
+        enabled: 0
+        component:
+          machine_name: null
+          show_deprecated: 0
+    weight: 4
+    region: content
+  field_gradient_direction:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: full
+      link: false
+    third_party_settings:
+      sdc_display:
+        enabled: 0
+        component:
+          machine_name: null
+          show_deprecated: 0
+    weight: 5
     region: content
   field_items:
     type: entity_reference_revisions_entity_view

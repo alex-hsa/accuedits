@@ -25,13 +25,15 @@
   */
 #}
 
+{% set background_color = content.field_background_color|field_target_entity.name.entity.name.value|lower|default('') %}
+{% set background_pattern = content.field_background_pattern|field_target_entity.field_media_image.entity.uri.value|default('') %}
+{% set border = content.field_border.0['#markup']|lower|default('') %}
+{% set gradient = content.field_gradient|field_target_entity.name.entity.description.value|striptags|default('') %}
+{% set gradient_direction = content.field_gradient_direction|field_target_entity.name.entity.description.value|striptags|default('') %}
 {% set eyebrow = content.field_eyebrow.0|default('') %}
 {% set heading = content.field_main_title.0|default('') %}
 {% set level = content.field_heading_level.0['#markup']|default('') %}
 {% set description = content.field_description.0|default('') %}
-{% set background_color = content.field_background_color|field_target_entity.name.entity.name.value|lower|default('') %}
-{% set background_pattern = content.field_background_pattern|field_target_entity.field_media_image.entity.uri.value|default('') %}
-{% set border = content.field_border.0['#markup']|lower|default('') %}
 {% set quick_edit = content.frontend_editing|default('') %}
 
 
@@ -39,6 +41,8 @@
     background_color,
     background_pattern,
     border,
+    gradient,
+    gradient_direction,
     eyebrow,
     description,
     level,

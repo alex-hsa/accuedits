@@ -18,7 +18,7 @@ block_config: |-
       "hide-mobile-menu": "",
       "auto-arrow": "1",
       "always-show-submenu": "1",
-      "number-columns": 11
+      "number-columns": 9
   }
 menu_config: |-
   {
@@ -53,7 +53,7 @@ menu_config: |-
                           }
                       ],
                       "col_config": {
-                          "width": "2",
+                          "width": "4",
                           "class": "",
                           "hidewcol": "",
                           "showblocktitle": "1"
@@ -85,23 +85,7 @@ menu_config: |-
                           }
                       ],
                       "col_config": {
-                          "width": "3",
-                          "class": "",
-                          "hidewcol": "",
-                          "showblocktitle": "1"
-                      }
-                  },
-                  {
-                      "col_content": [
-                          {
-                              "plugin_id": "menu_link_content:d281cfe0-6d19-43d2-b06e-7556e83e7d00",
-                              "type": "menu_item",
-                              "tb_item_config": [],
-                              "weight": "0"
-                          }
-                      ],
-                      "col_config": {
-                          "width": "3",
+                          "width": "4",
                           "class": "",
                           "hidewcol": "",
                           "showblocktitle": "1"
@@ -134,13 +118,19 @@ menu_config: |-
                               "plugin_id": "menu_link_content:7efc9dfa-1dd9-4d36-a73d-3aba9e743182",
                               "type": "menu_item",
                               "tb_item_config": [],
-                              "weight": "0"
+                              "weight": "-50"
+                          },
+                          {
+                              "plugin_id": "menu_link_content:44ed5224-2a0c-4c6b-b81d-1c3afd047689",
+                              "type": "menu_item",
+                              "tb_item_config": [],
+                              "weight": "-49"
                           },
                           {
                               "plugin_id": "menu_link_content:85c0905a-22f4-43bc-a844-2b4a23d634a0",
                               "type": "menu_item",
                               "tb_item_config": [],
-                              "weight": "0"
+                              "weight": "-48"
                           }
                       ],
                       "col_config": {
@@ -160,7 +150,7 @@ menu_config: |-
           "item_config": {
               "class": "",
               "xicon": "",
-              "caption": "",
+              "caption": "Flexibility for developers",
               "alignsub": "",
               "group": "1",
               "hidewcol": "0",
@@ -169,6 +159,24 @@ menu_config: |-
           }
       },
       "menu_link_content:7efc9dfa-1dd9-4d36-a73d-3aba9e743182": {
+          "rows_content": [],
+          "submenu_config": {
+              "width": "",
+              "class": "",
+              "group": "1"
+          },
+          "item_config": {
+              "class": "",
+              "xicon": "",
+              "caption": "",
+              "alignsub": "",
+              "group": "1",
+              "hidewcol": "0",
+              "hidesub": "0",
+              "label": ""
+          }
+      },
+      "menu_link_content:44ed5224-2a0c-4c6b-b81d-1c3afd047689": {
           "rows_content": [],
           "submenu_config": {
               "width": "",
@@ -362,61 +370,6 @@ menu_config: |-
               "label": ""
           }
       },
-      "menu_link_content:d281cfe0-6d19-43d2-b06e-7556e83e7d00": {
-          "rows_content": [
-              [
-                  {
-                      "col_content": [
-                          {
-                              "plugin_id": "menu_link_content:44ed5224-2a0c-4c6b-b81d-1c3afd047689",
-                              "type": "menu_item",
-                              "tb_item_config": [],
-                              "weight": "-50"
-                          }
-                      ],
-                      "col_config": {
-                          "width": "12",
-                          "class": "",
-                          "hidewcol": "0",
-                          "showblocktitle": "1"
-                      }
-                  }
-              ]
-          ],
-          "submenu_config": {
-              "width": "",
-              "class": "",
-              "group": "1"
-          },
-          "item_config": {
-              "class": "",
-              "xicon": "",
-              "caption": "",
-              "alignsub": "",
-              "group": "1",
-              "hidewcol": "0",
-              "hidesub": "0",
-              "label": ""
-          }
-      },
-      "menu_link_content:44ed5224-2a0c-4c6b-b81d-1c3afd047689": {
-          "rows_content": [],
-          "submenu_config": {
-              "width": "",
-              "class": "",
-              "group": "1"
-          },
-          "item_config": {
-              "class": "",
-              "xicon": "",
-              "caption": "",
-              "alignsub": "",
-              "group": "1",
-              "hidewcol": "0",
-              "hidesub": "0",
-              "label": ""
-          }
-      },
       "menu_link_content:d6bc0b16-3c5f-4361-a6ae-3788c606c72f": {
           "rows_content": [
               [
@@ -544,7 +497,7 @@ menu_config: |-
           "item_config": {
               "class": "",
               "xicon": "",
-              "caption": "",
+              "caption": "Description for Accordion",
               "alignsub": "",
               "group": "1",
               "hidewcol": "0",

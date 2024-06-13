@@ -12,6 +12,12 @@
   {% set border_class = '' %}
 {% endif %}
 
+{% if gradient %}
+    {% set gradient_classes = ' mb-4 ' ~ gradient_direction ~ ' ' ~ gradient %}
+{% else %}
+    {% set gradient_classes = '' %}
+{% endif %}
+
 {% if placement == 'end' %}
   {% set placement_class = 'flex flex-row-reverse' %}
 {% elseif placement == 'middle'%}
@@ -34,7 +40,7 @@
   ]|join(' ')|trim %}
 
 
-<section {{ attributes.addClass(paragraph_classes).addClass(border_class).addClass(placement_class).addClass('p-8 rounded-lg [&>div.frontend-editing-actions]:absolute') }}{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
+<section {{ attributes.addClass(paragraph_classes).addClass(border_class).addClass(placement_class).addClass(gradient_classes).addClass('p-8 rounded-lg [&>div.frontend-editing-actions]:absolute') }}{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
   {{ quick_edit }} 
  
   {# Display Lead paragraph #}

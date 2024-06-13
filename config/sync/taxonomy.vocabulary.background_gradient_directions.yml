@@ -1,0 +1,9 @@
+uuid: 45971b3f-7634-400c-a867-ae0ffc4d8c6c
+langcode: en
+status: true
+dependencies: {  }
+name: 'Background Gradient Directions'
+vid: background_gradient_directions
+description: null
+weight: 0
+new_revision: false

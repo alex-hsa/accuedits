@@ -23,6 +23,12 @@
     {% set flip_class = '' %}
 {% endif %}
 
+{% if gradient %}
+    {% set gradient_classes = ' mb-4 ' ~ gradient_direction ~ ' ' ~ gradient %}
+{% else %}
+    {% set gradient_classes = '' %}
+{% endif %}
+
 {% if placement == 'end' %}
   {% set placement_class = 'flex flex-row-reverse' %}
 {% elseif placement == 'middle'%}
@@ -62,7 +68,7 @@
 
 <section {{ attributes.addClass(paragraph_classes).addClass(background_color_class).addClass(border_class).addClass(flip_class).addClass(orientation_class) }}>
   {{ quick_edit }}
-  <div class="lead p-8 rounded-lg {{ placement_class }}"{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
+  <div class="lead p-8 rounded-lg {{ placement_class }} {{gradient_classes}}"{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
 
       {% if storybook %}
           {{ lead_item }}

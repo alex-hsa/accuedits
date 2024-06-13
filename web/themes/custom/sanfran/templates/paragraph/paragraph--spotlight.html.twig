@@ -31,6 +31,8 @@
 {% set background_color = content.field_background_color|field_target_entity.name.entity.name.value|lower|default('') %}
 {% set background_pattern = content.field_background_pattern|field_target_entity.field_media_image.entity.uri.value|default('') %}
 {% set flip = content.field_flip.0['#markup']|lower|default('') %}
+{% set gradient = content.field_gradient|field_target_entity.name.entity.description.value|striptags|default('') %}
+{% set gradient_direction = content.field_gradient_direction|field_target_entity.name.entity.description.value|striptags|default('') %}
 {% set border = content.field_border.0['#markup']|lower|default('') %}
 {% set lead_item = content.field_lead %}
 {% set quick_edit = content.frontend_editing|default('') %}
@@ -44,8 +46,10 @@
   video_remote,
   background_color,
   background_pattern,
-  flip,
   border,
+  flip,
+  gradient,
+  gradient_direction,
   lead_item,
   quick_edit,
   })
