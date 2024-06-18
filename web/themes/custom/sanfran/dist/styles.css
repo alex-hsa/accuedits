@@ -4220,6 +4220,11 @@ details.collapse summary::-webkit-details-marker{
   border-bottom-left-radius: 0.5rem;
 }
 
+.rounded-l-lg{
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
 .rounded-r-none{
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
@@ -4228,11 +4233,6 @@ details.collapse summary::-webkit-details-marker{
 .rounded-t-lg{
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
-}
-
-.rounded-l-lg{
-  border-top-left-radius: 0.5rem;
-  border-bottom-left-radius: 0.5rem;
 }
 
 .rounded-br-xl{
@@ -5044,6 +5044,10 @@ section{
   display: block;
 }
 
+.tbm-item.level-2{
+  padding-left: 2rem;
+}
+
 @media (min-width: 1024px){
   .lg\:join-horizontal.join{
     flex-direction: row;
@@ -5376,11 +5380,6 @@ section{
 
 .\[\&\>figure\]\:h-full>figure{
   height: 100%;
-}
-
-.\[\&\>figure_i\]\:object-cover>figure i{
-  -o-object-fit: cover;
-     object-fit: cover;
 }
 
 .\[\&\>figure_iframe\]\:h-full>figure iframe{

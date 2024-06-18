@@ -7,8 +7,8 @@
     args: {
       background_color: '',
       background_pattern: '',
-      border: 'yes',
-      gradients: {
+      border: 'no',
+      gradient: {
         "primary_1": "from-primary to-neutral",
         "primary_2": "from-info to-secondary",
         "secondary_1": "from-accent to-primary",
@@ -16,31 +16,32 @@
         "tertiary_1": "from-accent to-error",
         "tertiary_2": "from-warning to-secondary",
       },
-      directions: [' bg-gradient-to-r ',' bg-gradient-to-l '],
+      gradient_direction: [' bg-gradient-to-r ',' bg-gradient-to-l '],
     }
   } %}
 
+    {# This command is for TW generation only #}
     {% set all_background_gradients = {
         primary: 'bg-gradient-to-r from-primary to-neutral',
         primary: 'bg-gradient-to-r from-info to-secondary',
         secondary: 'bg-gradient-to-r from-accent to-primary',
-        secondary: 'bg-gradient-to-r from-error to-warning',
-        tertiary: 'bg-gradient-to-r from-accent to-error',
-        tertiary: 'bg-gradient-to-r from-warning to-secondary',
+        secondary: 'bg-gradient-to-l from-error to-warning',
+        tertiary: 'bg-gradient-to-l from-accent to-error',
+        tertiary: 'bg-gradient-to-l from-warning to-secondary',
     } %} 
 
     <div class="grid gap-x-4 gap-y-8 grid-cols-1 sm:grid-cols-2">
-      
-    {% for key, color_stops in gradients %}
 
-        {% for direction in directions %}
+    {% for key, color_stops in gradient %}
+
+        {% for direction in gradient_direction %}
 
           {{ include('sanfran:parallel-callout', {
             background_color,
-            background_color_stops: color_stops,
-            background_gradient: 'my-0 ' ~ direction,
             background_pattern,
             border,
+            gradient: color_stops,
+            gradient_direction: direction,
             eyebrow: direction,
             description: color_stops,
             heading: key|capitalize|replace({'_': ' '}),

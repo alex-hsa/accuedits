@@ -45,6 +45,7 @@
         "drupal/entity_usage": "^2.0@beta",
         "drupal/field_group": "^3.4",
         "drupal/focal_point": "^2.1",
+        "drupal/fontawesome": "^2.26",
         "drupal/frontend_editing": "^1.7",
         "drupal/gin": "^3.0@RC",
         "drupal/gin_login": "^2.0",
