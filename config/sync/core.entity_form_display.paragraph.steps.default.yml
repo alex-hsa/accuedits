@@ -7,6 +7,8 @@ dependencies:
     - field.field.paragraph.steps.field_background_pattern
     - field.field.paragraph.steps.field_border
     - field.field.paragraph.steps.field_flip
+    - field.field.paragraph.steps.field_gradient
+    - field.field.paragraph.steps.field_gradient_direction
     - field.field.paragraph.steps.field_items
     - field.field.paragraph.steps.field_lead
     - field.field.paragraph.steps.field_orientation
@@ -22,7 +24,8 @@ third_party_settings:
         - field_background_pattern
         - field_background_color
         - field_flip
-        - field_placement
+        - field_gradient
+        - field_gradient_direction
         - field_orientation
         - field_border
       label: Settings
@@ -57,7 +60,7 @@ content:
     third_party_settings: {  }
   field_border:
     type: boolean_checkbox
-    weight: 10
+    weight: 11
     region: content
     settings:
       display_label: true
@@ -68,6 +71,18 @@ content:
     region: content
     settings:
       display_label: true
+    third_party_settings: {  }
+  field_gradient:
+    type: options_select
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_gradient_direction:
+    type: options_select
+    weight: 9
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_items:
     type: paragraphs
@@ -111,7 +126,7 @@ content:
     third_party_settings: {  }
   field_orientation:
     type: options_select
-    weight: 9
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }

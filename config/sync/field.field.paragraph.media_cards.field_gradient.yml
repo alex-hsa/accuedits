@@ -1,0 +1,29 @@
+uuid: fb2e075e-cdb6-4958-afc9-914309127c89
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_gradient
+    - paragraphs.paragraphs_type.media_cards
+    - taxonomy.vocabulary.background_gradients
+id: paragraph.media_cards.field_gradient
+field_name: field_gradient
+entity_type: paragraph
+bundle: media_cards
+label: Gradient
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      background_gradients: background_gradients
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

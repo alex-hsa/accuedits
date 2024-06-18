@@ -1,0 +1,29 @@
+uuid: 3ece8ade-bec0-4cf8-a39e-17e3d9002ae1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_gradient_direction
+    - paragraphs.paragraphs_type.spotlight
+    - taxonomy.vocabulary.background_gradient_directions
+id: paragraph.spotlight.field_gradient_direction
+field_name: field_gradient_direction
+entity_type: paragraph
+bundle: spotlight
+label: 'Gradient Direction'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      background_gradient_directions: background_gradient_directions
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

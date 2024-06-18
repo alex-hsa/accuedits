@@ -30,6 +30,8 @@
 {% set background_color = content.field_background_color|field_target_entity.name.entity.name.value|lower|default('') %}
 {% set border = content.field_border.0['#markup']|lower|default('') %}
 {% set flip = content.field_flip.0['#markup']|lower|default('') %}
+{% set gradient = content.field_gradient|field_target_entity.name.entity.description.value|striptags|default('') %}
+{% set gradient_direction = content.field_gradient_direction|field_target_entity.name.entity.description.value|striptags|default('') %}
 {% set orientation = content.field_orientation.0['#markup']|lower|default('') %}
 {% set steps_items = content.field_items %}
 {% set quick_edit = content.frontend_editing|default('') %}
@@ -40,6 +42,8 @@
     background_pattern,
     border,
     flip,
+    gradient,
+    gradient_direction,
     orientation,
     lead_item,
     steps_items,

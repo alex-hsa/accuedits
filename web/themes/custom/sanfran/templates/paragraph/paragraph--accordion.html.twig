@@ -30,6 +30,8 @@
 {% set background_pattern = content.field_background_pattern|field_target_entity.field_media_image.entity.uri.value|default('') %}
 {% set border = content.field_border.0['#markup']|lower|default('') %}
 {% set flip = content.field_flip.0['#markup']|lower|default('') %}
+{% set gradient = content.field_gradient|field_target_entity.name.entity.description.value|striptags|default('') %}
+{% set gradient_direction = content.field_gradient_direction|field_target_entity.name.entity.description.value|striptags|default('') %}
 {% set orientation = content.field_orientation.0['#markup']|lower|default('') %}
 {% set placement = content.field_placement.0['#markup']|lower|default('') %}
 {% set lead_item = content.field_lead %}
@@ -41,6 +43,8 @@
     background_pattern,
     border,
     flip,
+    gradient,
+    gradient_direction,
     orientation,
     placement,
     lead_item,

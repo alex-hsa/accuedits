@@ -1,0 +1,9 @@
+uuid: ac182e2d-759c-4fcc-9fca-43fd4b7b1326
+langcode: en
+status: true
+dependencies: {  }
+name: 'Background Gradients'
+vid: background_gradients
+description: null
+weight: 0
+new_revision: true

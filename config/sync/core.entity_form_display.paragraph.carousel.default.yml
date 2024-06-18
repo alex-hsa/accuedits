@@ -8,6 +8,8 @@ dependencies:
     - field.field.paragraph.carousel.field_border
     - field.field.paragraph.carousel.field_flip
     - field.field.paragraph.carousel.field_gallery
+    - field.field.paragraph.carousel.field_gradient
+    - field.field.paragraph.carousel.field_gradient_direction
     - field.field.paragraph.carousel.field_lead
     - field.field.paragraph.carousel.field_orientation
     - paragraphs.paragraphs_type.carousel
@@ -22,6 +24,8 @@ third_party_settings:
         - field_background_pattern
         - field_background_color
         - field_flip
+        - field_gradient
+        - field_gradient_direction
         - field_orientation
         - field_border
       label: Settings
@@ -56,7 +60,7 @@ content:
     third_party_settings: {  }
   field_border:
     type: boolean_checkbox
-    weight: 9
+    weight: 11
     region: content
     settings:
       display_label: true
@@ -74,6 +78,18 @@ content:
     region: content
     settings:
       media_types: {  }
+    third_party_settings: {  }
+  field_gradient:
+    type: options_select
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_gradient_direction:
+    type: options_select
+    weight: 9
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_lead:
     type: paragraphs
@@ -97,7 +113,7 @@ content:
     third_party_settings: {  }
   field_orientation:
     type: options_select
-    weight: 8
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }

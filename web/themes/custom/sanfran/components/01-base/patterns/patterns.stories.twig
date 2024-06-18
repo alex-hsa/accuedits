@@ -1,0 +1,61 @@
+{% stories patterns with {
+  title: 'AccuEdits/Base/Patterns',
+  argTypes: {
+    background_color: {
+      options: ['Select...', 'primary', 'secondary', 'accent', 'neutral', 'base-100', 'base-200', 'error', 'info', 'success', 'warning'],
+      control: 'select'
+    },
+    border: {
+      options: ['no', 'yes'],
+      control: 'radio'
+    },
+  }
+} %}
+
+  {% story patterns_default with {
+    name: 'Default', 
+    args: {
+      background_color: 'neutral',
+      border: 'yes',
+      background_gradient_classes: ' my-0',
+      description: 'The background pattern file used is: ',
+      background_patterns: [
+        'public://2024-05/beige_droplets.svg', 
+        'public://2024-05/beige_pattern.svg', 
+        'public://2024-05/blue_droplets.svg', 
+        'public://2024-05/blue_swirls.svg', 
+        'public://2024-05/blue_waves.svg', 
+        'public://2024-05/purple_pattern.svg',
+      ],
+    }
+  } %}
+
+    <div class="grid gap-x-4 gap-y-8 grid-cols-1 sm:grid-cols-2">
+      
+      
+    {% for background_pattern in background_patterns %}
+
+          {% set bgd_pattern = background_pattern|replace({'public://2024-05/': ''}) %}
+          {% set bgd_pattern = bgd_pattern|replace({'.svg': ''}) %}
+          {% set bgd_pattern = bgd_pattern|replace({'_': ' '}) %}
+
+          {{ include('sanfran:parallel-callout', {
+            background_color,
+            background_gradient_classes,
+            background_pattern,
+            border,
+            eyebrow: background_color,
+            description: description ~ background_pattern|replace({'public://2024-05/': ''}),
+            heading: bgd_pattern|title,
+            level: '2',
+            quick_edit: '',
+          }) }} 
+
+
+    {% endfor %}
+   
+    </div>
+  {% endstory %}
+
+
+{% endstories %}

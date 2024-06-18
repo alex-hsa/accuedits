@@ -28,7 +28,7 @@ entity_types:
     - textbox
   paragraphs_library_item:
     - paragraphs_library_item
-sidebar_width: 30
+sidebar_width: 40
 full_width: 80
 ajax_content_update: false
 hover_highlight: false

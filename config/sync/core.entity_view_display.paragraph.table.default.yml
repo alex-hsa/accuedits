@@ -8,12 +8,15 @@ dependencies:
     - field.field.paragraph.table.field_border
     - field.field.paragraph.table.field_description
     - field.field.paragraph.table.field_flip
+    - field.field.paragraph.table.field_gradient
+    - field.field.paragraph.table.field_gradient_direction
     - field.field.paragraph.table.field_lead
     - field.field.paragraph.table.field_orientation
     - paragraphs.paragraphs_type.table
   module:
     - entity_reference_revisions
     - options
+    - sdc_display
     - text
 id: paragraph.table.default
 targetEntityType: paragraph
@@ -64,6 +67,34 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     weight: 8
+    region: content
+  field_gradient:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: full
+      link: false
+    third_party_settings:
+      sdc_display:
+        enabled: 0
+        component:
+          machine_name: null
+          show_deprecated: 0
+    weight: 4
+    region: content
+  field_gradient_direction:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: full
+      link: false
+    third_party_settings:
+      sdc_display:
+        enabled: 0
+        component:
+          machine_name: null
+          show_deprecated: 0
+    weight: 5
     region: content
   field_lead:
     type: entity_reference_revisions_entity_view

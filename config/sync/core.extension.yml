@@ -35,6 +35,9 @@ module:
   file_mdm: 0
   filter: 0
   focal_point: 0
+  fontawesome: 0
+  fontawesome_iconpicker_widget: 0
+  fontawesome_media: 0
   frontend_editing: 0
   gin_login: 0
   help: 0
@@ -45,6 +48,7 @@ module:
   layout_discovery: 0
   layout_paragraphs: 0
   layout_paragraphs_library: 0
+  layout_paragraphs_permissions: 0
   libraries: 0
   link: 0
   masquerade: 0

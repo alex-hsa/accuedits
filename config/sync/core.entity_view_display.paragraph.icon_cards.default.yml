@@ -8,6 +8,8 @@ dependencies:
     - field.field.paragraph.icon_cards.field_border
     - field.field.paragraph.icon_cards.field_columns
     - field.field.paragraph.icon_cards.field_flip
+    - field.field.paragraph.icon_cards.field_gradient
+    - field.field.paragraph.icon_cards.field_gradient_direction
     - field.field.paragraph.icon_cards.field_items
     - field.field.paragraph.icon_cards.field_lead
     - field.field.paragraph.icon_cards.field_link_card
@@ -61,7 +63,7 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 6
+    weight: 8
     region: content
   field_columns:
     type: number_integer
@@ -82,6 +84,34 @@ content:
     third_party_settings: {  }
     weight: 4
     region: content
+  field_gradient:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: full
+      link: false
+    third_party_settings:
+      sdc_display:
+        enabled: 0
+        component:
+          machine_name: null
+          show_deprecated: 0
+    weight: 5
+    region: content
+  field_gradient_direction:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: full
+      link: false
+    third_party_settings:
+      sdc_display:
+        enabled: 0
+        component:
+          machine_name: null
+          show_deprecated: 0
+    weight: 6
+    region: content
   field_items:
     type: entity_reference_revisions_entity_view
     label: hidden
@@ -89,7 +119,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 7
+    weight: 9
     region: content
   field_lead:
     type: entity_reference_revisions_entity_view
@@ -108,20 +138,20 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 9
+    weight: 11
     region: content
   field_orientation:
     type: list_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 5
+    weight: 7
     region: content
   field_placement:
     type: list_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 8
+    weight: 10
     region: content
 hidden: {  }

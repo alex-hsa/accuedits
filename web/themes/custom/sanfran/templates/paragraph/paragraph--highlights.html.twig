@@ -32,6 +32,8 @@
 {% set border = content.field_border.0['#markup']|lower|default('') %}
 {% set columns = content.field_columns.0|default('') %}
 {% set flip = content.field_flip.0['#markup']|lower|default('') %}
+{% set gradient = content.field_gradient|field_target_entity.name.entity.description.value|striptags|default('') %}
+{% set gradient_direction = content.field_gradient_direction|field_target_entity.name.entity.description.value|striptags|default('') %}
 {% set orientation = content.field_orientation.0['#markup']|lower|default('') %}
 {% set quick_edit = content.frontend_editing %}
 
@@ -42,6 +44,8 @@
     border,
     columns,
     flip,
+    gradient,
+    gradient_direction,
     orientation,
     quick_edit,
   })

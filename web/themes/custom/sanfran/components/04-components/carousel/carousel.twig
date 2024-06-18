@@ -1,15 +1,5 @@
-{% if orientation == 'horizontal' %}
-    {% set orientation_class = 'flex flex-col md:flex-row md:[&>div.lead]:w-1/2 md:[&>div.items]:w-1/2 md:[&>div.frontend-editing-actions]:absolute' %}
-    {% set image_style = 'half_width' %}
-{% else %}
-    {% set orientation_class = 'flex flex-col rounded-b-lg' %}
-    {% set image_style = 'full_width' %}
-{% endif %}
-
-{% if flip == 'yes' %}
-    {% set flip_class = '[&>div.lead]:order-2 [&>div.items]:order-1' %}
-{% else %}
-    {% set flip_class = '' %}
+{% if background_pattern %}
+  {% set background_pattern_style = "background-image: url('" ~ background_pattern|file_url ~ "');" %}
 {% endif %}
 
 {% if border == 'yes' %}
@@ -18,11 +8,29 @@
   {% set border_class = 'rounded-lg' %}
 {% endif %}
 
-
-{% if background_pattern %}
-  {% set background_pattern_style = "background-image: url('" ~ background_pattern|file_url ~ "');" %}
+{% if flip == 'yes' %}
+    {% set flip_class = '[&>div.lead]:order-2 [&>div.items]:order-1' %}
+{% else %}
+    {% set flip_class = '' %}
 {% endif %}
 
+{% if gradient %}
+    {% if orientation == 'horizontal' %}
+        {% set gradient_classes = 'rounded-l-lg ' ~ gradient_direction ~ ' ' ~ gradient %}
+    {% else %}
+        {% set gradient_classes = 'rounded-t-lg ' ~ gradient_direction ~ ' ' ~ gradient %}
+    {% endif %}
+{% else %}
+    {% set gradient_classes = 'rounded-lg' %}
+{% endif %}
+
+{% if orientation == 'horizontal' %}
+    {% set orientation_class = 'flex flex-col md:flex-row md:[&>div.lead]:w-1/2 md:[&>div.items]:w-1/2 md:[&>div.frontend-editing-actions]:absolute' %}
+    {% set image_style = 'half_width' %}
+{% else %}
+    {% set orientation_class = 'flex flex-col rounded-b-lg' %}
+    {% set image_style = 'full_width' %}
+{% endif %}
 
 {% set paragraph_classes = [
     'carousel',
@@ -38,7 +46,7 @@
     {{ quick_edit }}
 
     {# Display Lead paragraph #}
-    <div class="lead p-8 rounded-lg"{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
+    <div class="lead p-8 {{gradient_classes}}"{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
 
         {% if storybook %}
             {{ lead_item }}

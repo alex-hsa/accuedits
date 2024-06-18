@@ -264,9 +264,9 @@ module.exports = {
     themes: [{
       accuedits: {
         "primary": "#009CDE",
-        "secondary": "#12285F",
+        "secondary": "#CCEDF9",
         "accent": "#CCBAF4",
-        "neutral": "#1b1b1b",
+        "neutral": "#12285F",
         "base-100": "#FFFFFF",
         "base-200": "#dcdfe4",
         "info": "#006AA9",

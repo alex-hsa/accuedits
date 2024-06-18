@@ -6,12 +6,15 @@ dependencies:
     - field.field.paragraph.textbox.field_background_color
     - field.field.paragraph.textbox.field_background_pattern
     - field.field.paragraph.textbox.field_border
+    - field.field.paragraph.textbox.field_gradient
+    - field.field.paragraph.textbox.field_gradient_direction
     - field.field.paragraph.textbox.field_lead
     - field.field.paragraph.textbox.field_placement
     - paragraphs.paragraphs_type.textbox
   module:
     - entity_reference_revisions
     - options
+    - sdc_display
 id: paragraph.textbox.default
 targetEntityType: paragraph
 bundle: textbox
@@ -44,6 +47,34 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     weight: 6
+    region: content
+  field_gradient:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: full
+      link: false
+    third_party_settings:
+      sdc_display:
+        enabled: 0
+        component:
+          machine_name: null
+          show_deprecated: 0
+    weight: 4
+    region: content
+  field_gradient_direction:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: full
+      link: false
+    third_party_settings:
+      sdc_display:
+        enabled: 0
+        component:
+          machine_name: null
+          show_deprecated: 0
+    weight: 5
     region: content
   field_lead:
     type: entity_reference_revisions_entity_view

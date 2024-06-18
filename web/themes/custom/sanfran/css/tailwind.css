@@ -86,3 +86,7 @@
   .card figure {
     display: block;
   }
+
+  .tbm-item.level-2 {
+    @apply pl-8;
+  }
