@@ -1,12 +1,12 @@
-{% if (flip == 'yes') and (border == 'no') and (background_color == '') %}
+{% if (flip == 'yes') and (border == 'no') and ((background_color == '') and (gradient == '') and (background_pattern == '')) %}
   {% set variant_classes = 'md:flex md:flex-row-reverse md:[&>div.media_img]:rounded-lg md:[&>div.media_iframe]:rounded-lg' %}
-{% elseif (flip == 'yes') and (border == 'no') and (background_color != '') %}
+{% elseif (flip == 'yes') and (border == 'no') and ((background_color != '') or (gradient != '') or (background_pattern != '')) %}
   {% set variant_classes = 'md:flex md:flex-row-reverse md:[&>div.media_img]:rounded-l-lg md:[&>div.media_iframe]:rounded-l-lg rounded-lg' %}
-{% elseif (flip == 'yes') and (border == 'yes') and (background_color != '') %}
+{% elseif (flip == 'yes') and (border == 'yes') and ((background_color != '') or (gradient != '') or (background_pattern != '')) %}
   {% set variant_classes = 'md:flex md:flex-row-reverse md:[&>div.media_img]:rounded-l-lg md:[&>div.media_iframe]:rounded-l-lg border rounded-lg' %}
-{% elseif (flip == 'no') and (border == 'no') and (background_color != '') %}
+{% elseif (flip == 'no') and (border == 'no') and ((background_color != '') or (gradient != '') or (background_pattern != '')) %}
   {% set variant_classes = 'md:flex md:flex-row md:[&>div.media_img]:rounded-r-lg md:[&>div.media_iframe]:rounded-r-lg rounded-lg' %}
-{% elseif (flip == 'no') and (border == 'yes') and (background_color != '') %}
+{% elseif (flip == 'no') and (border == 'yes') and ((background_color != '') or (gradient != '') or (background_pattern != '')) %}
   {% set variant_classes = 'md:flex md:flex-row border rounded-lg md:[&>div.media_img]:rounded-r-lg md:[&>div.media_iframe]:rounded-r-lg' %}
 {% else %}
   {% set variant_classes = 'md:flex md:flex-row md:[&>div.media_img]:rounded-lg md:[&>div.media_iframe]:rounded-lg' %}
@@ -21,7 +21,11 @@
 {% endif %}
 
 {% if gradient %}
+  {% if flip == 'yes' %}
+    {% set gradient_classes = 'rounded-r-lg ' ~ gradient_direction ~ ' ' ~ gradient %}
+  {% else %}
     {% set gradient_classes = 'rounded-l-lg ' ~ gradient_direction ~ ' ' ~ gradient %}
+  {% endif %}
 {% else %}
     {% set gradient_classes = 'rounded-lg' %}
 {% endif %}
@@ -48,7 +52,7 @@
   {{ quick_edit }}
  
   {# Display Lead paragraph #}
-  <div class="lead my-auto p-8 w-full md:w-1/2 {{gradient_classes}}">
+  <div class="lead p-8 w-full md:w-1/2 {{gradient_classes}}">
 
       {% if storybook %}
           {{ lead_item }}

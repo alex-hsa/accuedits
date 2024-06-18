@@ -115,7 +115,9 @@ class InsertComponentForm extends ComponentFormBase {
     else {
       $this->domSelector = '[data-lpb-id="' . $this->layoutParagraphsLayout->id() . '"]';
     }
-    return $this->buildComponentForm($form, $form_state);
+
+    $form_display_mode = $this->layoutParagraphsLayout->getSetting('form_display_mode');
+    return $this->buildComponentForm($form, $form_state, $form_display_mode);
   }
 
   /**
