@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e23e3f04a9f7a0f815c4d4099426a38b",
+    "content-hash": "53934430443bf0d46c921ab9f3698d0c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4116,17 +4116,17 @@
         },
         {
             "name": "drupal/layout_paragraphs",
-            "version": "2.0.4",
+            "version": "2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/layout_paragraphs.git",
-                "reference": "2.0.4"
+                "reference": "2.0.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/layout_paragraphs-2.0.4.zip",
-                "reference": "2.0.4",
-                "shasum": "60062a4c6ca1779ba74881572ebf71b730566cca"
+                "url": "https://ftp.drupal.org/files/projects/layout_paragraphs-2.0.5.zip",
+                "reference": "2.0.5",
+                "shasum": "7063fd980f8cf174d35fa6d749fefe0c8840d015"
             },
             "require": {
                 "drupal/core": "^9.2 || ^10",
@@ -4140,8 +4140,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.0.4",
-                    "datestamp": "1702252843",
+                    "version": "2.0.5",
+                    "datestamp": "1717779453",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4160,6 +4160,10 @@
                 {
                     "name": "justin2pin",
                     "homepage": "https://www.drupal.org/user/278450"
+                },
+                {
+                    "name": "sethhill",
+                    "homepage": "https://www.drupal.org/user/676480"
                 }
             ],
             "description": "Layout Paragraphs",

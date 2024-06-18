@@ -141,7 +141,7 @@ class BuilderTest extends BuilderTestBase {
     $this->drupalGet($this->contentEditUrl);
 
     $page = $this->getSession()->getPage();
-    $this->addTextComponent('Second text item.', '[data-id="2"] .lpb-btn--add.after');
+    $this->addTextComponent('Second text item.', '[data-type="text"] .lpb-btn--add.after');
     $this->assertOrderOfStrings(['Some arbitrary text', 'Second text item.'], 'Second item was not correctly added after the first.');
 
     // Click the new item's move up button.
