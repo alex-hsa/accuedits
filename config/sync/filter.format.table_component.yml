@@ -1,9 +1,7 @@
 uuid: 0941a7a4-6d38-4c6b-83e3-6c3c7491c43a
 langcode: en
 status: true
-dependencies:
-  module:
-    - responsive_tables_filter
+dependencies: {  }
 name: 'Table Component'
 format: table_component
 weight: 0
@@ -17,11 +15,3 @@ filters:
       allowed_html: ''
       filter_html_help: true
       filter_html_nofollow: false
-  filter_responsive_tables_filter:
-    id: filter_responsive_tables_filter
-    provider: responsive_tables_filter
-    status: true
-    weight: 0
-    settings:
-      tablesaw_type: stack
-      tablesaw_persist: 1

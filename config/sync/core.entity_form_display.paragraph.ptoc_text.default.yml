@@ -1,0 +1,37 @@
+uuid: 6b81e3ab-fc4c-48dc-8312-0abef3b9219d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ptoc_text.field_ptoc_body
+    - field.field.paragraph.ptoc_text.field_ptoc_title
+    - paragraphs.paragraphs_type.ptoc_text
+  module:
+    - text
+_core:
+  default_config_hash: OdYoFcMtzuYh_lyFf-JQ_eb8Dl6fhfjY4hbBvOYh9j4
+id: paragraph.ptoc_text.default
+targetEntityType: paragraph
+bundle: ptoc_text
+mode: default
+content:
+  field_ptoc_body:
+    weight: 1
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_ptoc_title:
+    weight: 0
+    settings:
+      size: 20
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

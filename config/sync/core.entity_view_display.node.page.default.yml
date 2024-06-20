@@ -6,12 +6,26 @@ dependencies:
     - field.field.node.page.body
     - field.field.node.page.field_components
     - field.field.node.page.field_parent_page
+    - field.field.node.page.field_ptoc_sections
     - field.field.node.page.field_teaser_image
     - field.field.node.page.field_teaser_text
     - node.type.page
   module:
     - entity_reference_revisions
+    - sdc_display
     - user
+third_party_settings:
+  sdc_display:
+    enabled: false
+    component:
+      machine_name: ''
+    mappings:
+      static:
+        props: {  }
+        slots: {  }
+      dynamic:
+        props: {  }
+        slots: {  }
 _core:
   default_config_hash: M_Y8L5tfmhx7DR143E05YyZSpvgil6VFvqcfBWykalg
 id: node.page.default
@@ -27,6 +41,15 @@ content:
       link: ''
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_ptoc_sections:
+    type: entity_reference_revisions_entity_view
+    label: visually_hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 102
     region: content
 hidden:
   body: true

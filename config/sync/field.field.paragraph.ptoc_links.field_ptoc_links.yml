@@ -1,0 +1,25 @@
+uuid: 1cf71fc4-2287-4ff5-baa3-e6f2bbd9a177
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ptoc_links
+    - paragraphs.paragraphs_type.ptoc_links
+  module:
+    - link
+_core:
+  default_config_hash: 62J4BjMXyeQcX4Cu_2i9tWXd_J4x6m7A6bbxQlM7TbA
+id: paragraph.ptoc_links.field_ptoc_links
+field_name: field_ptoc_links
+entity_type: paragraph
+bundle: ptoc_links
+label: Links
+description: 'These will be formatted as an unordered list underneath the title text.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

@@ -57,21 +57,23 @@
 
   {{ page.help }}
 
-  <main role="main">
+  <main role="main" class="flex flex-col md:flex-row">
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
-    <div class="layout-content">
-      {{ page.content }}
-    </div>{# /.layout-content #}
 
     {% if page.sidebar_first %}
-      <aside class="layout-sidebar-first" role="complementary">
+      <aside class="layout-sidebar-first w-full md:w-1/4 p-4" role="complementary">
         {{ page.sidebar_first }}
       </aside>
     {% endif %}
 
+    <div class="layout-content {% if page.sidebar_first %}w-3/4{% elseif page.sidebar_second %}w-3/4{% else %}w-full{% endif %} p-4">
+      {{ page.content }}
+    </div>{# /.layout-content #}
+
+
     {% if page.sidebar_second %}
-      <aside class="layout-sidebar-second" role="complementary">
+      <aside class="layout-sidebar-second w-full md:w-1/4 p-4" role="complementary">
         {{ page.sidebar_second }}
       </aside>
     {% endif %}

@@ -1,0 +1,25 @@
+_core:
+  default_config_hash: 5oM5r3up8XFxgd-3vcW_lJXnu_jSCeuOlGnvogWbqZE
+extra_body_class: toc-is-active
+min_activate: '3'
+create_auto_ids: 1
+toc_selector: .js-toc-block
+content_selector: .region-content
+heading_selector: 'h2, h3, h4, h5, h6'
+ignore_selector: .visually-hidden
+link_class: toc-link
+extra_link_classes: ''
+active_link_class: is-active-link
+list_class: toc-list
+extra_list_classes: ''
+is_collapsed_class: is-collapsed
+collapsible_class: is-collapsible
+list_item_class: toc-list-item
+collapse_depth: '0'
+ordered_list: 0
+scroll_smooth: 1
+scroll_smooth_duration: '420'
+throttle_timeout: '50'
+position_fixed_selector: .js-toc-block
+position_fixed_class: is-position-fixed
+fixed_sidebar_offset: auto

@@ -1,0 +1,39 @@
+uuid: d2d9c905-9f76-4677-96fa-81d936132ec7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ptoc_sections
+    - paragraphs.paragraphs_type.ptoc_container
+  module:
+    - entity_reference_revisions
+_core:
+  default_config_hash: '-PIBy0RUFAbgqciWQDkXdCMNNJpU2xG5I3p-t-Ei2Jw'
+id: paragraph.ptoc_container.field_ptoc_sections
+field_name: field_ptoc_sections
+entity_type: paragraph
+bundle: ptoc_container
+label: Subsections
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles: null
+    target_bundles_drag_drop:
+      ptoc_container:
+        weight: 5
+        enabled: false
+      ptoc_image:
+        weight: 6
+        enabled: false
+      ptoc_links:
+        weight: 7
+        enabled: false
+      ptoc_text:
+        weight: 8
+        enabled: false
+field_type: entity_reference_revisions

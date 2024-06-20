@@ -1,0 +1,38 @@
+uuid: 4d21e481-28e6-4e75-9d03-85671b552372
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ptoc_image.field_ptoc_image
+    - field.field.paragraph.ptoc_image.field_ptoc_title
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.ptoc_image
+  module:
+    - svg_image
+_core:
+  default_config_hash: EiT7hFQ7tJkRjrd4vdj704ShhU7FeThPyijhL_UzxYk
+id: paragraph.ptoc_image.default
+targetEntityType: paragraph
+bundle: ptoc_image
+mode: default
+content:
+  field_ptoc_image:
+    weight: 1
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  field_ptoc_title:
+    weight: 0
+    settings:
+      size: 20
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

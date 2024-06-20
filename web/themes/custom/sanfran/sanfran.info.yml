@@ -37,5 +37,5 @@ regions:
   page_bottom: Page bottom
   sidebar_second: Right sidebar
 regions_hidden:
-  - sidebar_second
+  - sidebar_second222
 

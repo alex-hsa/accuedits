@@ -1,0 +1,21 @@
+uuid: 1b942adc-11c2-452a-af9b-006097dd27ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ptoc_title
+    - paragraphs.paragraphs_type.ptoc_text
+_core:
+  default_config_hash: deozihUAEOhgJdLvisMQoYTsNuqpZC0em-jtuYF3Y1g
+id: paragraph.ptoc_text.field_ptoc_title
+field_name: field_ptoc_title
+entity_type: paragraph
+bundle: ptoc_text
+label: Title
+description: "This will be displayed prominently above the body text, and will be the only part to show in the table of contents.\r\nKeep it short and to the point!"
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

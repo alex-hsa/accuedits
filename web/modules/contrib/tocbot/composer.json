@@ -1,0 +1,14 @@
+{
+    "name": "drupal/tocbot",
+    "description": "Integrates Tocbot and Drupal to generate a table of contents based on the heading structure of an html document",
+    "type": "drupal-module",
+    "license": "GPL-2.0+",
+    "support": {
+        "issues": "https://drupal.org/project/issues/tocbot",
+        "source": "https://drupal.org/project/tocbot"
+    },
+    "keywords": [
+        "Drupal",
+        "Tocbot"
+    ]
+}

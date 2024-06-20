@@ -1,0 +1,47 @@
+uuid: ccc3e357-d5d5-4d91-8e8e-1a98589034a3
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.ptoc
+    - field.field.paragraph.accordion.field_background_color
+    - field.field.paragraph.accordion.field_background_pattern
+    - field.field.paragraph.accordion.field_border
+    - field.field.paragraph.accordion.field_flip
+    - field.field.paragraph.accordion.field_gradient
+    - field.field.paragraph.accordion.field_gradient_direction
+    - field.field.paragraph.accordion.field_items
+    - field.field.paragraph.accordion.field_lead
+    - field.field.paragraph.accordion.field_orientation
+    - field.field.paragraph.accordion.field_placement
+    - paragraphs.paragraphs_type.accordion
+  module:
+    - sdc_display
+third_party_settings:
+  sdc_display:
+    enabled: false
+    component:
+      machine_name: ''
+    mappings:
+      static:
+        props: {  }
+        slots: {  }
+      dynamic:
+        props: {  }
+        slots: {  }
+id: paragraph.accordion.ptoc
+targetEntityType: paragraph
+bundle: accordion
+mode: ptoc
+content: {  }
+hidden:
+  field_background_color: true
+  field_background_pattern: true
+  field_border: true
+  field_flip: true
+  field_gradient: true
+  field_gradient_direction: true
+  field_items: true
+  field_lead: true
+  field_orientation: true
+  field_placement: true

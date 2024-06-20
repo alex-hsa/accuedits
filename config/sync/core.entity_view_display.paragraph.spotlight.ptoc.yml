@@ -1,0 +1,45 @@
+uuid: 37ac51b8-5290-43f7-97e4-a4d18f2fbba1
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.ptoc
+    - field.field.paragraph.spotlight.field_background_color
+    - field.field.paragraph.spotlight.field_background_pattern
+    - field.field.paragraph.spotlight.field_border
+    - field.field.paragraph.spotlight.field_flip
+    - field.field.paragraph.spotlight.field_gradient
+    - field.field.paragraph.spotlight.field_gradient_direction
+    - field.field.paragraph.spotlight.field_items
+    - field.field.paragraph.spotlight.field_lead
+    - field.field.paragraph.spotlight.field_media
+    - paragraphs.paragraphs_type.spotlight
+  module:
+    - sdc_display
+third_party_settings:
+  sdc_display:
+    enabled: false
+    component:
+      machine_name: ''
+    mappings:
+      static:
+        props: {  }
+        slots: {  }
+      dynamic:
+        props: {  }
+        slots: {  }
+id: paragraph.spotlight.ptoc
+targetEntityType: paragraph
+bundle: spotlight
+mode: ptoc
+content: {  }
+hidden:
+  field_background_color: true
+  field_background_pattern: true
+  field_border: true
+  field_flip: true
+  field_gradient: true
+  field_gradient_direction: true
+  field_items: true
+  field_lead: true
+  field_media: true

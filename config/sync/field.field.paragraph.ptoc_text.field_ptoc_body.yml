@@ -1,0 +1,24 @@
+uuid: d466cdd1-b9e7-4bae-b5e5-ae981eaa38d4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ptoc_body
+    - paragraphs.paragraphs_type.ptoc_text
+  module:
+    - text
+_core:
+  default_config_hash: PDru0ah3r2obhfLUtUjM2Jg1cgJVRc6SBKkDhsHNqjo
+id: paragraph.ptoc_text.field_ptoc_body
+field_name: field_ptoc_body
+entity_type: paragraph
+bundle: ptoc_text
+label: Body
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

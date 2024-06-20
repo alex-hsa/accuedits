@@ -1,0 +1,129 @@
+uuid: 168ce80b-4c32-4206-8d3b-b25d75960420
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ptoc_sections
+    - node.type.page
+    - paragraphs.paragraphs_type.accordion
+    - paragraphs.paragraphs_type.card
+    - paragraphs.paragraphs_type.carousel
+    - paragraphs.paragraphs_type.highlights
+    - paragraphs.paragraphs_type.icon_cards
+    - paragraphs.paragraphs_type.media_cards
+    - paragraphs.paragraphs_type.parallel_callout
+    - paragraphs.paragraphs_type.spotlight
+    - paragraphs.paragraphs_type.steps
+    - paragraphs.paragraphs_type.table
+    - paragraphs.paragraphs_type.textbox
+  module:
+    - entity_reference_revisions
+id: node.page.field_ptoc_sections
+field_name: field_ptoc_sections
+entity_type: node
+bundle: page
+label: Sections
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      accordion: accordion
+      card: card
+      carousel: carousel
+      highlights: highlights
+      icon_cards: icon_cards
+      media_cards: media_cards
+      parallel_callout: parallel_callout
+      spotlight: spotlight
+      steps: steps
+      table: table
+      textbox: textbox
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 28
+        enabled: true
+      accordion_item:
+        weight: 29
+        enabled: false
+      card:
+        weight: 30
+        enabled: true
+      carousel:
+        weight: 31
+        enabled: true
+      eyebrow:
+        weight: 32
+        enabled: false
+      featured:
+        weight: 33
+        enabled: false
+      from_library:
+        weight: 34
+        enabled: false
+      grid:
+        weight: 35
+        enabled: false
+      hero:
+        weight: 36
+        enabled: false
+      highlights:
+        weight: 37
+        enabled: true
+      highlights_item:
+        weight: 38
+        enabled: false
+      icon_card:
+        weight: 39
+        enabled: false
+      icon_cards:
+        weight: 40
+        enabled: true
+      lead:
+        weight: 41
+        enabled: false
+      media_cards:
+        weight: 42
+        enabled: true
+      media_single:
+        weight: 43
+        enabled: false
+      parallel_callout:
+        weight: 44
+        enabled: true
+      ptoc_container:
+        weight: 45
+        enabled: false
+      ptoc_image:
+        weight: 46
+        enabled: false
+      ptoc_links:
+        weight: 47
+        enabled: false
+      ptoc_text:
+        weight: 48
+        enabled: false
+      section:
+        weight: 49
+        enabled: false
+      spotlight:
+        weight: 50
+        enabled: true
+      step_item:
+        weight: 52
+        enabled: false
+      steps:
+        weight: 51
+        enabled: true
+      table:
+        weight: 53
+        enabled: true
+      textbox:
+        weight: 54
+        enabled: true
+field_type: entity_reference_revisions

@@ -1,0 +1,31 @@
+uuid: ee8a1624-fe55-4d2b-9cdc-e7454f847616
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.ptoc
+    - field.field.paragraph.table.field_background_color
+    - field.field.paragraph.table.field_background_pattern
+    - field.field.paragraph.table.field_border
+    - field.field.paragraph.table.field_description
+    - field.field.paragraph.table.field_flip
+    - field.field.paragraph.table.field_gradient
+    - field.field.paragraph.table.field_gradient_direction
+    - field.field.paragraph.table.field_lead
+    - field.field.paragraph.table.field_orientation
+    - paragraphs.paragraphs_type.table
+id: paragraph.table.ptoc
+targetEntityType: paragraph
+bundle: table
+mode: ptoc
+content: {  }
+hidden:
+  field_background_color: true
+  field_background_pattern: true
+  field_border: true
+  field_description: true
+  field_flip: true
+  field_gradient: true
+  field_gradient_direction: true
+  field_lead: true
+  field_orientation: true

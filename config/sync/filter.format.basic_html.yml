@@ -4,7 +4,6 @@ status: true
 dependencies:
   module:
     - editor
-    - responsive_tables_filter
 _core:
   default_config_hash: mclCbTlJwWJORez4Y1eX2MqA0aGjSMAoJb3TaBABcK8
 name: 'Basic HTML'
@@ -35,7 +34,7 @@ filters:
     status: true
     weight: -10
     settings:
-      allowed_html: '<br> <p> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <cite> <dl> <dt> <dd> <a hreflang href> <blockquote cite> <ul type> <ol type start> <strong> <em> <code> <li> <img src alt height width data-entity-uuid data-entity-type data-caption data-align>'
+      allowed_html: '<br> <p> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <cite> <dl> <dt> <dd> <a hreflang href> <blockquote cite> <ul type> <ol type start> <img src alt height width data-entity-uuid data-entity-type data-caption data-align> <strong> <em> <code> <li>'
       filter_html_help: false
       filter_html_nofollow: false
   filter_html_image_secure:
@@ -50,11 +49,3 @@ filters:
     status: true
     weight: 15
     settings: {  }
-  filter_responsive_tables_filter:
-    id: filter_responsive_tables_filter
-    provider: responsive_tables_filter
-    status: false
-    weight: 0
-    settings:
-      tablesaw_type: stack
-      tablesaw_persist: '1'

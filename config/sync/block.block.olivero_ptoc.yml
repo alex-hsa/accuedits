@@ -1,0 +1,27 @@
+uuid: 5cf3170e-c8d8-439d-b15d-11361b18e004
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.ptoc
+  module:
+    - views
+  theme:
+    - olivero
+_core:
+  default_config_hash: GYzPf4vpXBba_TXvQmC7m6jYHiX7Ik7OZhiTgov4bJ4
+id: olivero_ptoc
+theme: olivero
+region: sidebar
+weight: 0
+provider: null
+plugin: 'views_block:ptoc-block_1'
+settings:
+  id: 'views_block:ptoc-block_1'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: none
+  context_mapping: {  }
+visibility: {  }

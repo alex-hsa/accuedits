@@ -1,0 +1,25 @@
+uuid: 60e55463-5283-45ed-9268-ade2ac731160
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+    - tocbot
+  theme:
+    - sanfran
+id: sanfran_tocbottoc
+theme: sanfran
+region: sidebar_second
+weight: -9
+provider: null
+plugin: tocbot_block
+settings:
+  id: tocbot_block
+  label: 'Tocbot TOC'
+  label_display: '0'
+  provider: tocbot
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /components/accordion-component

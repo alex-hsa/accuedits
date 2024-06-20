@@ -1,0 +1,12 @@
+uuid: 7581abad-2d92-4298-bbd8-1d4b06256b78
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 0EmSlS5FOBTWyS6pPlJHjaehp6Z1V6Q0M4Pv8HlwbNk
+id: ptoc_container
+label: Container
+icon_uuid: null
+icon_default: null
+description: null
+behavior_plugins: {  }

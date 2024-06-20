@@ -1,0 +1,31 @@
+uuid: 91b28cb4-7bd6-46dd-8e64-d1e03b8f4a12
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.ptoc
+    - field.field.paragraph.icon_card.field_alignment
+    - field.field.paragraph.icon_card.field_background_color
+    - field.field.paragraph.icon_card.field_container_type
+    - field.field.paragraph.icon_card.field_cta
+    - field.field.paragraph.icon_card.field_description
+    - field.field.paragraph.icon_card.field_heading
+    - field.field.paragraph.icon_card.field_icon_material
+    - field.field.paragraph.icon_card.field_orientation
+    - field.field.paragraph.icon_card.field_placement
+    - paragraphs.paragraphs_type.icon_card
+id: paragraph.icon_card.ptoc
+targetEntityType: paragraph
+bundle: icon_card
+mode: ptoc
+content: {  }
+hidden:
+  field_alignment: true
+  field_background_color: true
+  field_container_type: true
+  field_cta: true
+  field_description: true
+  field_heading: true
+  field_icon_material: true
+  field_orientation: true
+  field_placement: true

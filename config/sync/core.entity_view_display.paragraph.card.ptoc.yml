@@ -1,0 +1,21 @@
+uuid: f62e4e31-ebc9-47b7-8c58-f5b1dbb53754
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.ptoc
+    - field.field.paragraph.card.field_cta
+    - field.field.paragraph.card.field_description
+    - field.field.paragraph.card.field_heading
+    - field.field.paragraph.card.field_media
+    - paragraphs.paragraphs_type.card
+id: paragraph.card.ptoc
+targetEntityType: paragraph
+bundle: card
+mode: ptoc
+content: {  }
+hidden:
+  field_cta: true
+  field_description: true
+  field_heading: true
+  field_media: true

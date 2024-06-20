@@ -1,0 +1,28 @@
+drupal.tocbot:
+  version: VERSION
+  js:
+    js/tocbot-init.js: {}
+  css:
+    theme:
+      css/tocbot-style.css: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+external.tocbot:
+  remote: https://tscanlin.github.io/tocbot/
+  version:  4.12.2
+  license:
+    name: MIT
+    url: http://tscanlin.github.io/tocbot/#license
+    gpl-compatible: true
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.12.2/tocbot.min.js : { type: external, minified: true }
+  css:
+    component:
+      https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.12.2/tocbot.css : { type: external, minified: true }
+internal.tocbot:
+  js:
+    /libraries/tocbot/dist/tocbot.min.js : { minified: true }
+  css:
+    component:
+      /libraries/tocbot/dist/tocbot.css : {}

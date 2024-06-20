@@ -5511,6 +5511,62 @@
             "install-path": "../../web/modules/contrib/tb_megamenu"
         },
         {
+            "name": "drupal/tocbot",
+            "version": "1.0.0-alpha3",
+            "version_normalized": "1.0.0.0-alpha3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/tocbot.git",
+                "reference": "8.x-1.0-alpha3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/tocbot-8.x-1.0-alpha3.zip",
+                "reference": "8.x-1.0-alpha3",
+                "shasum": "e83f62b56c01dcac180c2e22e3a645e47fc1c41b"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0-alpha3",
+                    "datestamp": "1689067449",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "installation-source": "dist",
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "NicholasS",
+                    "homepage": "https://www.drupal.org/user/3487851"
+                },
+                {
+                    "name": "svendecabooter",
+                    "homepage": "https://www.drupal.org/user/35369"
+                }
+            ],
+            "description": "Integrates Tocbot and Drupal to generate a table of contents based on the heading structure of an html document",
+            "homepage": "https://www.drupal.org/project/tocbot",
+            "keywords": [
+                "Drupal",
+                "Tocbot"
+            ],
+            "support": {
+                "source": "https://drupal.org/project/tocbot",
+                "issues": "https://drupal.org/project/issues/tocbot"
+            },
+            "install-path": "../../web/modules/contrib/tocbot"
+        },
+        {
             "name": "drupal/token",
             "version": "1.14.0",
             "version_normalized": "1.14.0.0",
@@ -7491,17 +7547,17 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.11.1",
-            "version_normalized": "1.11.1.0",
+            "version": "1.12.0",
+            "version_normalized": "1.12.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "7284c22080590fb39f2ffa3e9057f10a4ddd0e0c"
+                "reference": "3a6b9a42cd8f8771bd4295d13e1423fa7f3d942c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/7284c22080590fb39f2ffa3e9057f10a4ddd0e0c",
-                "reference": "7284c22080590fb39f2ffa3e9057f10a4ddd0e0c",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/3a6b9a42cd8f8771bd4295d13e1423fa7f3d942c",
+                "reference": "3a6b9a42cd8f8771bd4295d13e1423fa7f3d942c",
                 "shasum": ""
             },
             "require": {
@@ -7509,14 +7565,15 @@
             },
             "conflict": {
                 "doctrine/collections": "<1.6.8",
-                "doctrine/common": "<2.13.3 || >=3,<3.2.2"
+                "doctrine/common": "<2.13.3 || >=3 <3.2.2"
             },
             "require-dev": {
                 "doctrine/collections": "^1.6.8",
                 "doctrine/common": "^2.13.3 || ^3.2.2",
+                "phpspec/prophecy": "^1.10",
                 "phpunit/phpunit": "^7.5.20 || ^8.5.23 || ^9.5.13"
             },
-            "time": "2023-03-08T13:26:56+00:00",
+            "time": "2024-06-12T14:39:25+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -7541,7 +7598,7 @@
             ],
             "support": {
                 "issues": "https://github.com/myclabs/DeepCopy/issues",
-                "source": "https://github.com/myclabs/DeepCopy/tree/1.11.1"
+                "source": "https://github.com/myclabs/DeepCopy/tree/1.12.0"
             },
             "funding": [
                 {
@@ -13700,23 +13757,23 @@
         },
         {
             "name": "symfony/polyfill-php72",
-            "version": "v1.29.0",
-            "version_normalized": "1.29.0.0",
+            "version": "v1.30.0",
+            "version_normalized": "1.30.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php72.git",
-                "reference": "861391a8da9a04cbad2d232ddd9e4893220d6e25"
+                "reference": "10112722600777e02d2745716b70c5db4ca70442"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/861391a8da9a04cbad2d232ddd9e4893220d6e25",
-                "reference": "861391a8da9a04cbad2d232ddd9e4893220d6e25",
+                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/10112722600777e02d2745716b70c5db4ca70442",
+                "reference": "10112722600777e02d2745716b70c5db4ca70442",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1"
             },
-            "time": "2024-01-29T20:11:03+00:00",
+            "time": "2024-06-19T12:30:46+00:00",
             "type": "library",
             "extra": {
                 "thanks": {
@@ -13756,7 +13813,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php72/tree/v1.29.0"
+                "source": "https://github.com/symfony/polyfill-php72/tree/v1.30.0"
             },
             "funding": [
                 {
@@ -13776,23 +13833,23 @@
         },
         {
             "name": "symfony/polyfill-php73",
-            "version": "v1.29.0",
-            "version_normalized": "1.29.0.0",
+            "version": "v1.30.0",
+            "version_normalized": "1.30.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php73.git",
-                "reference": "21bd091060673a1177ae842c0ef8fe30893114d2"
+                "reference": "ec444d3f3f6505bb28d11afa41e75faadebc10a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/21bd091060673a1177ae842c0ef8fe30893114d2",
-                "reference": "21bd091060673a1177ae842c0ef8fe30893114d2",
+                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/ec444d3f3f6505bb28d11afa41e75faadebc10a1",
+                "reference": "ec444d3f3f6505bb28d11afa41e75faadebc10a1",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1"
             },
-            "time": "2024-01-29T20:11:03+00:00",
+            "time": "2024-05-31T15:07:36+00:00",
             "type": "library",
             "extra": {
                 "thanks": {
@@ -13835,7 +13892,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php73/tree/v1.29.0"
+                "source": "https://github.com/symfony/polyfill-php73/tree/v1.30.0"
             },
             "funding": [
                 {
@@ -13855,23 +13912,23 @@
         },
         {
             "name": "symfony/polyfill-php80",
-            "version": "v1.29.0",
-            "version_normalized": "1.29.0.0",
+            "version": "v1.30.0",
+            "version_normalized": "1.30.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
-                "reference": "87b68208d5c1188808dd7839ee1e6c8ec3b02f1b"
+                "reference": "77fa7995ac1b21ab60769b7323d600a991a90433"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/87b68208d5c1188808dd7839ee1e6c8ec3b02f1b",
-                "reference": "87b68208d5c1188808dd7839ee1e6c8ec3b02f1b",
+                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/77fa7995ac1b21ab60769b7323d600a991a90433",
+                "reference": "77fa7995ac1b21ab60769b7323d600a991a90433",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1"
             },
-            "time": "2024-01-29T20:11:03+00:00",
+            "time": "2024-05-31T15:07:36+00:00",
             "type": "library",
             "extra": {
                 "thanks": {
@@ -13918,7 +13975,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php80/tree/v1.29.0"
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.30.0"
             },
             "funding": [
                 {
@@ -13938,23 +13995,23 @@
         },
         {
             "name": "symfony/polyfill-php81",
-            "version": "v1.29.0",
-            "version_normalized": "1.29.0.0",
+            "version": "v1.30.0",
+            "version_normalized": "1.30.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php81.git",
-                "reference": "c565ad1e63f30e7477fc40738343c62b40bc672d"
+                "reference": "3fb075789fb91f9ad9af537c4012d523085bd5af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php81/zipball/c565ad1e63f30e7477fc40738343c62b40bc672d",
-                "reference": "c565ad1e63f30e7477fc40738343c62b40bc672d",
+                "url": "https://api.github.com/repos/symfony/polyfill-php81/zipball/3fb075789fb91f9ad9af537c4012d523085bd5af",
+                "reference": "3fb075789fb91f9ad9af537c4012d523085bd5af",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1"
             },
-            "time": "2024-01-29T20:11:03+00:00",
+            "time": "2024-06-19T12:30:46+00:00",
             "type": "library",
             "extra": {
                 "thanks": {
@@ -13997,7 +14054,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php81/tree/v1.29.0"
+                "source": "https://github.com/symfony/polyfill-php81/tree/v1.30.0"
             },
             "funding": [
                 {

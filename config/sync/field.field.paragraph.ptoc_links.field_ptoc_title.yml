@@ -1,0 +1,21 @@
+uuid: 799107a3-6860-41d5-8c32-e21f614dc2b2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ptoc_title
+    - paragraphs.paragraphs_type.ptoc_links
+_core:
+  default_config_hash: Of2Dt_llaMZhqHMXHacrexKhk9wlx-AbTK4anKGGTJI
+id: paragraph.ptoc_links.field_ptoc_title
+field_name: field_ptoc_title
+entity_type: paragraph
+bundle: ptoc_links
+label: Title
+description: 'This text will appear above the list of links and also in the table of contents.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
