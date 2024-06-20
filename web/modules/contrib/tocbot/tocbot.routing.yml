@@ -1,0 +1,7 @@
+tocbot.settings:
+  path: '/admin/config/content/tocbot'
+  defaults:
+    _form: '\Drupal\tocbot\Form\SettingsForm'
+    _title: 'Tocbot settings'
+  requirements:
+    _permission: 'administer site configuration'

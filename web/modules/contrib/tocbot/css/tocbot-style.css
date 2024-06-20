@@ -1,0 +1,25 @@
+ul.toc-list .toc-list-item {
+  list-style: none;
+}
+.toc-link::before{
+  max-height: 1rem;
+}
+.is-collapsed{
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.is-collapsed .toc-link::before{
+  max-height: 0;
+}
+.is-position-fixed{
+  top: 1rem;
+}
+.js-toc-block{
+  /* keeps the inidicators near the list item */
+  position: relative;
+}
+
+/* Drupal admin toolbar */
+.toolbar-fixed .is-position-fixed{
+  top: calc(100px + 1rem);
+}

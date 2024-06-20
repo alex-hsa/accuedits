@@ -1,0 +1,47 @@
+uuid: 71efc354-6bdc-440a-bc6a-d7680e63ee6c
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.ptoc
+    - field.field.paragraph.media_cards.field_background_color
+    - field.field.paragraph.media_cards.field_background_pattern
+    - field.field.paragraph.media_cards.field_border
+    - field.field.paragraph.media_cards.field_columns
+    - field.field.paragraph.media_cards.field_gradient
+    - field.field.paragraph.media_cards.field_gradient_direction
+    - field.field.paragraph.media_cards.field_items
+    - field.field.paragraph.media_cards.field_lead
+    - field.field.paragraph.media_cards.field_link_card
+    - field.field.paragraph.media_cards.field_placement
+    - paragraphs.paragraphs_type.media_cards
+  module:
+    - sdc_display
+third_party_settings:
+  sdc_display:
+    enabled: false
+    component:
+      machine_name: ''
+    mappings:
+      static:
+        props: {  }
+        slots: {  }
+      dynamic:
+        props: {  }
+        slots: {  }
+id: paragraph.media_cards.ptoc
+targetEntityType: paragraph
+bundle: media_cards
+mode: ptoc
+content: {  }
+hidden:
+  field_background_color: true
+  field_background_pattern: true
+  field_border: true
+  field_columns: true
+  field_gradient: true
+  field_gradient_direction: true
+  field_items: true
+  field_lead: true
+  field_link_card: true
+  field_placement: true

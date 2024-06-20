@@ -1,0 +1,26 @@
+uuid: 11c75e44-52ee-49d2-9ecb-efd29ea0ffd3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ptoc_sections
+    - node.type.ptoc_page
+  module:
+    - entity_reference_revisions
+_core:
+  default_config_hash: HcwClzt_vgwmEnHl4m50E_ndwb6PToXtmWVXl2P7two
+id: node.ptoc_page.field_ptoc_sections
+field_name: field_ptoc_sections
+entity_type: node
+bundle: ptoc_page
+label: Sections
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles: null
+field_type: entity_reference_revisions

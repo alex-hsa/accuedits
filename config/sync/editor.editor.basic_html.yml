@@ -1,4 +1,4 @@
-uuid: 115abbce-ae85-422d-a0d3-89ec960144fe
+uuid: 53a8349a-cb37-4d3e-a766-5cdbd9f808a6
 langcode: en
 status: true
 dependencies:
@@ -6,33 +6,22 @@ dependencies:
     - filter.format.basic_html
   module:
     - ckeditor5
-_core:
-  default_config_hash: rrcLa1jOgI7xezeJia25MS2tmm_3e6VZOQaCIPF9b-I
 format: basic_html
 editor: ckeditor5
 settings:
   toolbar:
     items:
+      - heading
       - bold
       - italic
       - '|'
       - link
-      - '|'
+      - blockQuote
       - bulletedList
       - numberedList
-      - '|'
-      - blockQuote
-      - drupalInsertImage
-      - augmentor
-      - '|'
-      - heading
       - code
-      - '|'
       - sourceEditing
   plugins:
-    augmentor_ckeditor5_augmentor:
-      augmentors:
-        7f12670b-e08a-4da7-bce5-bacf00763a67: 'Demo Augmentor'
     ckeditor5_heading:
       enabled_headings:
         - heading2
@@ -40,8 +29,6 @@ settings:
         - heading4
         - heading5
         - heading6
-    ckeditor5_imageResize:
-      allow_resize: true
     ckeditor5_list:
       properties:
         reversed: false
@@ -57,16 +44,11 @@ settings:
         - '<blockquote cite>'
         - '<ul type>'
         - '<ol type>'
+        - '<img src alt height width data-entity-uuid data-entity-type data-caption data-align>'
         - '<h2 id>'
         - '<h3 id>'
         - '<h4 id>'
         - '<h5 id>'
         - '<h6 id>'
 image_upload:
-  status: true
-  scheme: public
-  directory: inline-images
-  max_size: null
-  max_dimensions:
-    width: null
-    height: null
+  status: false

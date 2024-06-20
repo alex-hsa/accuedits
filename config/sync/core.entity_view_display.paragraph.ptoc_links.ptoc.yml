@@ -1,0 +1,28 @@
+uuid: 2e85f8ce-a928-4f2e-a6c3-655391e237c7
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.ptoc
+    - field.field.paragraph.ptoc_links.field_ptoc_links
+    - field.field.paragraph.ptoc_links.field_ptoc_title
+    - paragraphs.paragraphs_type.ptoc_links
+_core:
+  default_config_hash: qxA9T8d2c2iXFJqIRT75IScwg18dpvVcZpkB9UA7mxI
+id: paragraph.ptoc_links.ptoc
+targetEntityType: paragraph
+bundle: ptoc_links
+mode: ptoc
+content:
+  field_ptoc_title:
+    type: string
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  field_ptoc_links: true
+  uid: true

@@ -1,0 +1,24 @@
+uuid: 0cd8719e-eb8e-4f47-995c-c16434b1359b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ptoc_body
+    - paragraphs.paragraphs_type.ptoc_container
+  module:
+    - text
+_core:
+  default_config_hash: BOLCmhBxX7P_6ZyHSMbQbnpSG0UaEyA4dptqBAdHAtA
+id: paragraph.ptoc_container.field_ptoc_body
+field_name: field_ptoc_body
+entity_type: paragraph
+bundle: ptoc_container
+label: Description
+description: 'This text will appear beneath the title, outside the sub-sections.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

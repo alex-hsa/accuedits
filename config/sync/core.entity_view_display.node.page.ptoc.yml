@@ -1,0 +1,41 @@
+uuid: 1f4331e0-02c8-40d4-b074-adf9df9f6806
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.ptoc
+    - field.field.node.page.body
+    - field.field.node.page.field_components
+    - field.field.node.page.field_parent_page
+    - field.field.node.page.field_ptoc_sections
+    - field.field.node.page.field_teaser_image
+    - field.field.node.page.field_teaser_text
+    - node.type.page
+  module:
+    - entity_reference_revisions
+    - user
+id: node.page.ptoc
+targetEntityType: node
+bundle: page
+mode: ptoc
+content:
+  field_ptoc_sections:
+    type: entity_reference_revisions_entity_view
+    label: visually_hidden
+    settings:
+      view_mode: ptoc
+      link: ''
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  body: true
+  field_components: true
+  field_parent_page: true
+  field_teaser_image: true
+  field_teaser_text: true

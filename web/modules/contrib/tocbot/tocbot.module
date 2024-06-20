@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * Creates an automatic TOC using tocbot js library.
+ */
+
+use Drupal\Core\File\FileSystem;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function tocbot_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.tocbot':
+      $filepath = FileSystem::dirname(__FILE__) . '/README.md';
+      if (file_exists($filepath)) {
+        $readme = file_get_contents($filepath);
+      }
+      return '<pre>' . $readme . '</pre>';
+  }
+}

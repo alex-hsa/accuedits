@@ -70,7 +70,6 @@ module:
   quick_node_clone: 0
   require_revision_log_message: 0
   responsive_image: 0
-  responsive_tables_filter: 0
   sdc: 0
   sdc_display: 0
   sdc_tags: 0
@@ -85,6 +84,7 @@ module:
   taxonomy: 0
   tb_megamenu: 0
   text: 0
+  tocbot: 0
   token: 0
   toolbar: 0
   twig_field_value: 0

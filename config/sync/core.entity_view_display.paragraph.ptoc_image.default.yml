@@ -1,0 +1,37 @@
+uuid: cdfefee9-7da3-4190-9818-a524fd77c077
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ptoc_image.field_ptoc_image
+    - field.field.paragraph.ptoc_image.field_ptoc_title
+    - paragraphs.paragraphs_type.ptoc_image
+  module:
+    - svg_image
+_core:
+  default_config_hash: ruPmM-anl8sqairSYNKLO4Dk1LtUSVRBfsCwBH_zRRI
+id: paragraph.ptoc_image.default
+targetEntityType: paragraph
+bundle: ptoc_image
+mode: default
+content:
+  field_ptoc_image:
+    type: image
+    weight: 1
+    label: visually_hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    region: content
+  field_ptoc_title:
+    weight: 0
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  created: true
+  uid: true

@@ -66,6 +66,7 @@
         "drupal/storybook": "^1.0@beta",
         "drupal/svg_image": "^3.0",
         "drupal/tb_megamenu": "^3.0@alpha",
+        "drupal/tocbot": "^1.0@alpha",
         "drupal/token": "^1.14",
         "drupal/twig_field_value": "^2.0",
         "drupal/twig_tweak": "^3.3",

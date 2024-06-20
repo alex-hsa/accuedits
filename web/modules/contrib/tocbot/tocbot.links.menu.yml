@@ -1,0 +1,4 @@
+tocbot.settings:
+  title: 'Tocbot settings'
+  parent: system.admin_config_content
+  route_name: tocbot.settings

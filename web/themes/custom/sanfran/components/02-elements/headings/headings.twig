@@ -4,7 +4,10 @@
   classes,
 ]|join(' ')|trim %}
 
-<h{{level}} class="{{ classes }}">
+
+{% set heading_id = text['#context'].value|lower|replace({' ': '-'}) %}
+{# {{dump(heading_id)}} #}
+<h{{level}} id="{{heading_id}}" class="{{classes}}">
   {% if url %}
     {{ include('sanfran:link', {
         text: heading,

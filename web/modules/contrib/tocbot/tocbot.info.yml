@@ -1,0 +1,11 @@
+name: Tocbot
+type: module
+description: 'Integrates Tocbot and Drupal to generate a table of contents based on the heading structure of an html document.'
+core_version_requirement: ^8 || ^9 || ^10
+package: Content
+configure: tocbot.settings
+
+# Information added by Drupal.org packaging script on 2023-07-11
+version: '8.x-1.0-alpha3'
+project: 'tocbot'
+datestamp: 1689067452

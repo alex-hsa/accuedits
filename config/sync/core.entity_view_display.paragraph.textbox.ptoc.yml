@@ -1,0 +1,27 @@
+uuid: 3260d43b-75a3-44f3-9709-9b5acdff93a0
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.ptoc
+    - field.field.paragraph.textbox.field_background_color
+    - field.field.paragraph.textbox.field_background_pattern
+    - field.field.paragraph.textbox.field_border
+    - field.field.paragraph.textbox.field_gradient
+    - field.field.paragraph.textbox.field_gradient_direction
+    - field.field.paragraph.textbox.field_lead
+    - field.field.paragraph.textbox.field_placement
+    - paragraphs.paragraphs_type.textbox
+id: paragraph.textbox.ptoc
+targetEntityType: paragraph
+bundle: textbox
+mode: ptoc
+content: {  }
+hidden:
+  field_background_color: true
+  field_background_pattern: true
+  field_border: true
+  field_gradient: true
+  field_gradient_direction: true
+  field_lead: true
+  field_placement: true

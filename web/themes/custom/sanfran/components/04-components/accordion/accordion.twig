@@ -66,6 +66,17 @@
     not paragraph.isPublished() ? 'paragraph--unpublished',
   ]|join(' ')|trim %}
 
+
+{# Get the Paragraph data for 'paragraph.id'  #}
+{% set parent = drupal_entity('paragraph', paragraph.id.value) %}
+{# Get the Paragraph data for 'Lead' paragraph  #}
+{% set lead = drupal_entity('paragraph', parent['#paragraph'].field_lead.value.0.target_id) %}
+{# Retrieve the headline of the Lead  #}
+{% set headline = lead['#paragraph'].field_main_title.value %}
+{% set anchor_name = headline|lower|replace({' ': '-'}) %}
+{# {{dump(anchor_name)}} 
+<a class="auto-anchor" title="{{ headline }}" href="#{{ anchor_name }}">#</a>#}
+
 <section {{ attributes.addClass(paragraph_classes).addClass(background_color_class).addClass(border_class).addClass(flip_class).addClass(orientation_class) }}>
   {{ quick_edit }}
   <div class="lead p-8 rounded-lg {{ placement_class }} {{gradient_classes}}"{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>

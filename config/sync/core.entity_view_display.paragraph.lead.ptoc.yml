@@ -1,0 +1,54 @@
+uuid: adfdf757-c3f3-4d60-a02b-fe20ac247e3d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.ptoc
+    - field.field.paragraph.lead.field_alignment
+    - field.field.paragraph.lead.field_background_color
+    - field.field.paragraph.lead.field_background_glass
+    - field.field.paragraph.lead.field_cta
+    - field.field.paragraph.lead.field_cta_secondary
+    - field.field.paragraph.lead.field_description
+    - field.field.paragraph.lead.field_eyebrow
+    - field.field.paragraph.lead.field_heading_level
+    - field.field.paragraph.lead.field_main_title
+    - field.field.paragraph.lead.field_width
+    - paragraphs.paragraphs_type.lead
+  module:
+    - sdc_display
+third_party_settings:
+  sdc_display:
+    enabled: false
+    component:
+      machine_name: ''
+    mappings:
+      static:
+        props: {  }
+        slots: {  }
+      dynamic:
+        props: {  }
+        slots: {  }
+id: paragraph.lead.ptoc
+targetEntityType: paragraph
+bundle: lead
+mode: ptoc
+content:
+  field_main_title:
+    type: string
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_alignment: true
+  field_background_color: true
+  field_background_glass: true
+  field_cta: true
+  field_cta_secondary: true
+  field_description: true
+  field_eyebrow: true
+  field_heading_level: true
+  field_width: true

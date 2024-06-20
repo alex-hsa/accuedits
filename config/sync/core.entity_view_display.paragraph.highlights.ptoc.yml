@@ -1,0 +1,45 @@
+uuid: c0973b0d-a008-401e-b33e-02f8b5796d06
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.ptoc
+    - field.field.paragraph.highlights.field_background_pattern
+    - field.field.paragraph.highlights.field_border
+    - field.field.paragraph.highlights.field_columns
+    - field.field.paragraph.highlights.field_flip
+    - field.field.paragraph.highlights.field_gradient
+    - field.field.paragraph.highlights.field_gradient_direction
+    - field.field.paragraph.highlights.field_items
+    - field.field.paragraph.highlights.field_lead
+    - field.field.paragraph.highlights.field_orientation
+    - paragraphs.paragraphs_type.highlights
+  module:
+    - sdc_display
+third_party_settings:
+  sdc_display:
+    enabled: false
+    component:
+      machine_name: ''
+    mappings:
+      static:
+        props: {  }
+        slots: {  }
+      dynamic:
+        props: {  }
+        slots: {  }
+id: paragraph.highlights.ptoc
+targetEntityType: paragraph
+bundle: highlights
+mode: ptoc
+content: {  }
+hidden:
+  field_background_pattern: true
+  field_border: true
+  field_columns: true
+  field_flip: true
+  field_gradient: true
+  field_gradient_direction: true
+  field_items: true
+  field_lead: true
+  field_orientation: true

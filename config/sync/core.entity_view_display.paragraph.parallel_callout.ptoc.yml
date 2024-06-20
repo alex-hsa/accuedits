@@ -1,0 +1,52 @@
+uuid: f458c64f-fa29-4a67-bf91-1d8462ed573f
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.ptoc
+    - field.field.paragraph.parallel_callout.field_background_color
+    - field.field.paragraph.parallel_callout.field_background_pattern
+    - field.field.paragraph.parallel_callout.field_border
+    - field.field.paragraph.parallel_callout.field_description
+    - field.field.paragraph.parallel_callout.field_eyebrow
+    - field.field.paragraph.parallel_callout.field_gradient
+    - field.field.paragraph.parallel_callout.field_gradient_direction
+    - field.field.paragraph.parallel_callout.field_heading_level
+    - field.field.paragraph.parallel_callout.field_main_title
+    - paragraphs.paragraphs_type.parallel_callout
+  module:
+    - sdc_display
+third_party_settings:
+  sdc_display:
+    enabled: false
+    component:
+      machine_name: ''
+    mappings:
+      static:
+        props: {  }
+        slots: {  }
+      dynamic:
+        props: {  }
+        slots: {  }
+id: paragraph.parallel_callout.ptoc
+targetEntityType: paragraph
+bundle: parallel_callout
+mode: ptoc
+content:
+  field_main_title:
+    type: string
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_background_color: true
+  field_background_pattern: true
+  field_border: true
+  field_description: true
+  field_eyebrow: true
+  field_gradient: true
+  field_gradient_direction: true
+  field_heading_level: true

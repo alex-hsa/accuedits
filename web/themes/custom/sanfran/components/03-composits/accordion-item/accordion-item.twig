@@ -31,9 +31,9 @@
 <article {{ attributes.setAttribute('class', '').addClass(classes_accordion_item).addClass(background_color_class).addClass('collapse collapse-arrow mb-2 rounded-lg') }}>
     {{ quick_edit }}
     <input type="radio" name="{{ accordion_radio_id }}" /> 
-    <h2 class="collapse-title text-xl font-medium">
+    <h3 class="collapse-title text-xl font-medium">
         {{ heading }}
-    </h2>
+    </h3>
     <div class="collapse-content"> 
         {% if description %}
             {{ include('sanfran:wysiwyg', {

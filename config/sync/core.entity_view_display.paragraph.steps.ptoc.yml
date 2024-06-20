@@ -1,0 +1,45 @@
+uuid: 23a9a673-2105-44dc-bfb3-18a0822ab4a9
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.ptoc
+    - field.field.paragraph.steps.field_background_color
+    - field.field.paragraph.steps.field_background_pattern
+    - field.field.paragraph.steps.field_border
+    - field.field.paragraph.steps.field_flip
+    - field.field.paragraph.steps.field_gradient
+    - field.field.paragraph.steps.field_gradient_direction
+    - field.field.paragraph.steps.field_items
+    - field.field.paragraph.steps.field_lead
+    - field.field.paragraph.steps.field_orientation
+    - paragraphs.paragraphs_type.steps
+  module:
+    - sdc_display
+third_party_settings:
+  sdc_display:
+    enabled: false
+    component:
+      machine_name: ''
+    mappings:
+      static:
+        props: {  }
+        slots: {  }
+      dynamic:
+        props: {  }
+        slots: {  }
+id: paragraph.steps.ptoc
+targetEntityType: paragraph
+bundle: steps
+mode: ptoc
+content: {  }
+hidden:
+  field_background_color: true
+  field_background_pattern: true
+  field_border: true
+  field_flip: true
+  field_gradient: true
+  field_gradient_direction: true
+  field_items: true
+  field_lead: true
+  field_orientation: true
