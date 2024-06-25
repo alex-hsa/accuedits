@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\system\Functional\Cache;
 
+use Drupal\Core\Cache\Cache;
+
 /**
  * Tests our clearing is done the proper way.
  *
  * @group Cache
  */
-use Drupal\Core\Cache\Cache;
-
 class ClearTest extends CacheTestBase {
 
   /**
@@ -31,7 +31,7 @@ class ClearTest extends CacheTestBase {
   /**
    * Tests drupal_flush_all_caches().
    */
-  public function testFlushAllCaches() {
+  public function testFlushAllCaches(): void {
     // Create cache entries for each flushed cache bin.
     $bins = Cache::getBins();
     $this->assertNotEmpty($bins, 'Cache::getBins() returned bins to flush.');

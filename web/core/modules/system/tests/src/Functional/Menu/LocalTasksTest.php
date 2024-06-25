@@ -7,6 +7,7 @@ namespace Drupal\Tests\system\Functional\Menu;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Url;
 use Drupal\Tests\BrowserTestBase;
+use Drupal\Tests\taxonomy\Traits\TaxonomyTestTrait;
 
 // cspell:ignore ragdoll
 
@@ -16,6 +17,8 @@ use Drupal\Tests\BrowserTestBase;
  * @group Menu
  */
 class LocalTasksTest extends BrowserTestBase {
+
+  use TaxonomyTestTrait;
 
   /**
    * Modules to enable.
@@ -103,7 +106,7 @@ class LocalTasksTest extends BrowserTestBase {
   /**
    * Tests the plugin based local tasks.
    */
-  public function testPluginLocalTask() {
+  public function testPluginLocalTask(): void {
     // Verify local tasks defined in the hook.
     $this->drupalGet(Url::fromRoute('menu_test.tasks_default'));
     $this->assertLocalTasks([
@@ -210,7 +213,7 @@ class LocalTasksTest extends BrowserTestBase {
   /**
    * Tests that local task blocks are configurable to show a specific level.
    */
-  public function testLocalTaskBlock() {
+  public function testLocalTaskBlock(): void {
     // Remove the default block and create a new one.
     $this->sut->delete();
 
@@ -259,7 +262,7 @@ class LocalTasksTest extends BrowserTestBase {
   /**
    * Tests that local tasks blocks cache is invalidated correctly.
    */
-  public function testLocalTaskBlockCache() {
+  public function testLocalTaskBlockCache(): void {
     $this->drupalLogin($this->drupalCreateUser([
       'administer content types',
       'administer permissions',
@@ -300,6 +303,70 @@ class LocalTasksTest extends BrowserTestBase {
       ['entity.entity_view_display.node.default', ['node_type' => 'page']],
       ['entity.node_type.entity_permissions_form', ['node_type' => 'page']],
     ]);
+  }
+
+  /**
+   * Tests local task block URLs for entities with path aliases.
+   */
+  public function testLocalTaskBlockUrl(): void {
+    // Install the necessary modules for the test.
+    \Drupal::service('module_installer')->install(['path', 'taxonomy']);
+    $this->drupalCreateContentType(['type' => 'article']);
+    $vocab = $this->createVocabulary(['vid' => 'tags']);
+
+    $web_user = $this->drupalCreateUser([
+      'create article content',
+      'edit own article content',
+      'create url aliases',
+      'create terms in tags',
+      'edit terms in tags',
+    ]);
+
+    // Create node and taxonomy term entities with path aliases.
+    $entities = [
+      'node' => $this->drupalCreateNode([
+        'type' => 'article',
+        'path' => [
+          'alias' => '/original-node-alias',
+        ],
+        'uid' => $web_user->id(),
+      ]),
+      'term' => $this->createTerm($vocab, [
+        'path' => [
+          'alias' => '/original-term-alias',
+        ],
+        'uid' => $web_user->id(),
+      ]),
+    ];
+
+    $this->drupalLogin($web_user);
+    // Test the local task block URLs for both node and term entities.
+    foreach ($entities as $entity_type => $entity) {
+      $this->drupalGet($entity->toUrl());
+      $this->assertSameLocalTaskUrl('/original-' . $entity_type . '-alias');
+
+      $this->drupalGet($entity->toUrl('edit-form'));
+      $new_alias = '/original-' . $entity_type . '-alias-updated';
+      $edit = ['path[0][alias]' => $new_alias];
+      $this->submitForm($edit, 'Save');
+
+      $this->assertSameLocalTaskUrl($new_alias);
+      $this->drupalGet($entity->toUrl('edit-form'));
+      $this->assertSameLocalTaskUrl($new_alias);
+    }
+  }
+
+  /**
+   * Asserts that the local task URL matches the expected alias.
+   *
+   * @param string $alias
+   *   The expected path alias.
+   */
+  protected function assertSameLocalTaskUrl(string $alias): void {
+    // Assert that the href attribute of the 'View' link contains the expected
+    // alias.
+    $link = $this->assertSession()->elementExists('xpath', '//a[text()="View"]');
+    $this->assertStringContainsString($alias, $link->getAttribute('href'));
   }
 
 }

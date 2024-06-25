@@ -28,7 +28,7 @@ class PhpTransliterationTest extends TestCase {
    *
    * @dataProvider providerTestPhpTransliterationRemoveDiacritics
    */
-  public function testRemoveDiacritics($original, $expected) {
+  public function testRemoveDiacritics($original, $expected): void {
     $transliterator_class = new PhpTransliteration();
     $result = $transliterator_class->removeDiacritics($original);
     $this->assertEquals($expected, $result);
@@ -91,7 +91,7 @@ class PhpTransliterationTest extends TestCase {
    *
    * @dataProvider providerTestPhpTransliteration
    */
-  public function testPhpTransliteration(string $langcode, string $original, string $expected, string $unknown_character = '?', int $max_length = NULL): void {
+  public function testPhpTransliteration(string $langcode, string $original, string $expected, string $unknown_character = '?', ?int $max_length = NULL): void {
     $transliterator_class = new PhpTransliteration();
     $actual = $transliterator_class->transliterate($original, $langcode, $unknown_character, $max_length);
     $this->assertSame($expected, $actual);
@@ -225,7 +225,7 @@ class PhpTransliterationTest extends TestCase {
    *
    * @covers ::readLanguageOverrides
    */
-  public function testSafeInclude() {
+  public function testSafeInclude(): void {
     // The overrides in the transliteration data directory transliterates 0x82
     // into "safe" but the overrides one directory higher transliterates the
     // same character into "security hole". So by using "../index" as the

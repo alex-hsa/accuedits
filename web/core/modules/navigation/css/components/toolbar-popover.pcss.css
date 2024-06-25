@@ -59,7 +59,10 @@
 
     padding-block-start: var(--admin-toolbar-space-16);
     transform: translateX(0);
-    filter: drop-shadow(0 0 72px rgba(0, 0, 0, 0.2)) drop-shadow(0 0 8px rgba(0, 0, 0, 0.04)) drop-shadow(0 0 40px rgba(0, 0, 0, 0.06));
+    box-shadow:
+      0 0 72px rgba(0, 0, 0, 0.2),
+      0 0 8px rgba(0, 0, 0, 0.04),
+      0 0 40px rgba(0, 0, 0, 0.06);
     inline-size: var(--admin-toolbar-popover-width);
     inset-block-start: 0;
     inset-inline-start: 1px;
@@ -88,9 +91,9 @@
 }
 
 [data-admin-toolbar="collapsed"] [data-toolbar-popover-wrapper] {
-  transform: translateX(calc((16 * var(--admin-toolbar-rem) * -1) + var(--drupal-displace-offset-left)));
+  transform: translateX(calc((16 * var(--admin-toolbar-rem) * -1) + var(--drupal-displace-offset-left, var(--admin-toolbar-space-72))));
 
   [dir="rtl"] & {
-    transform: translateX(calc((16 * var(--admin-toolbar-rem)) + var(--drupal-displace-offset-right)));
+    transform: translateX(calc((16 * var(--admin-toolbar-rem)) + var(--drupal-displace-offset-right, var(--admin-toolbar-space-72))));
   }
 }

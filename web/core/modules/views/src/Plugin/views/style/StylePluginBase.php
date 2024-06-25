@@ -124,7 +124,7 @@ abstract class StylePluginBase extends PluginBase {
    * The style options might come externally as the style can be sourced from at
    * least two locations. If it's not included, look on the display.
    */
-  public function init(ViewExecutable $view, DisplayPluginBase $display, array &$options = NULL) {
+  public function init(ViewExecutable $view, DisplayPluginBase $display, ?array &$options = NULL) {
     parent::init($view, $display, $options);
 
     if ($this->usesRowPlugin() && $display->getOption('row')) {
@@ -284,7 +284,7 @@ abstract class StylePluginBase extends PluginBase {
     // Only fields-based views can handle grouping.  Style plugins can also exclude
     // themselves from being groupable by setting their "usesGrouping" property
     // to FALSE.
-    // @TODO: Document "usesGrouping" in docs.php when docs.php is written.
+    // @todo Document "usesGrouping" in docs.php when docs.php is written.
     if ($this->usesFields() && $this->usesGrouping()) {
       $options = ['' => $this->t('- None -')];
       $field_labels = $this->displayHandler->getFieldLabels(TRUE);
@@ -538,26 +538,26 @@ abstract class StylePluginBase extends PluginBase {
    *   A nested set structure is generated if multiple grouping fields are used.
    *
    *   @code
-   *   array(
-   *     'grouping_field_1:grouping_1' => array(
+   *   [
+   *     'grouping_field_1:grouping_1' => [
    *       'group' => 'grouping_field_1:content_1',
    *       'level' => 0,
-   *       'rows' => array(
-   *         'grouping_field_2:grouping_a' => array(
+   *       'rows' => [
+   *         'grouping_field_2:grouping_a' => [
    *           'group' => 'grouping_field_2:content_a',
    *           'level' => 1,
-   *           'rows' => array(
+   *           'rows' => [
    *             $row_index_1 => $row_1,
    *             $row_index_2 => $row_2,
    *             // ...
-   *           )
-   *         ),
-   *       ),
-   *     ),
-   *     'grouping_field_1:grouping_2' => array(
+   *           ]
+   *         ],
+   *       ],
+   *     ],
+   *     'grouping_field_1:grouping_2' => [
    *       // ...
-   *     ),
-   *   )
+   *     ],
+   *   ]
    *   @endcode
    */
   public function renderGrouping($records, $groupings = [], $group_rendered = NULL) {
@@ -632,7 +632,7 @@ abstract class StylePluginBase extends PluginBase {
 
     // If this parameter isn't explicitly set, modify the output to be fully
     // backward compatible to code before Views 7.x-3.0-rc2.
-    // @TODO Remove this as soon as possible e.g. October 2020
+    // @todo Remove this as soon as possible e.g. October 2020
     if ($group_rendered === NULL) {
       $old_style_sets = [];
       foreach ($sets as $group) {

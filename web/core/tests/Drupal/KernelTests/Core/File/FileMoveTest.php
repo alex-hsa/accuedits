@@ -20,7 +20,7 @@ class FileMoveTest extends FileTestBase {
   /**
    * Move a normal file.
    */
-  public function testNormal() {
+  public function testNormal(): void {
     // Create a file for testing
     $uri = $this->createUri();
 
@@ -46,14 +46,14 @@ class FileMoveTest extends FileTestBase {
     $this->assertFileDoesNotExist($new_filepath);
     $this->assertFilePermissions($newer_filepath, Settings::get('file_chmod_file', FileSystem::CHMOD_FILE));
 
-    // TODO: test moving to a directory (rather than full directory/file path)
-    // TODO: test creating and moving normal files (rather than streams)
+    // @todo Test moving to a directory (rather than full directory/file path)
+    // @todo Test creating and moving normal files (rather than streams)
   }
 
   /**
    * Try to move a missing file.
    */
-  public function testMissing() {
+  public function testMissing(): void {
     // Move non-existent file.
     $this->expectException(FileNotExistsException::class);
     \Drupal::service('file_system')->move($this->randomMachineName(), $this->randomMachineName());
@@ -62,7 +62,7 @@ class FileMoveTest extends FileTestBase {
   /**
    * Try to move a file onto itself.
    */
-  public function testOverwriteSelf() {
+  public function testOverwriteSelf(): void {
     // Create a file for testing.
     $uri = $this->createUri();
 

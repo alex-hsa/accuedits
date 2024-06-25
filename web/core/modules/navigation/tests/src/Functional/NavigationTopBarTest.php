@@ -51,12 +51,10 @@ class NavigationTopBarTest extends BrowserTestBase {
     parent::setUp();
     // Create and log in an administrative user.
     $this->adminUser = $this->drupalCreateUser([
-      'administer navigation_block',
       'administer site configuration',
       'access administration pages',
       'access navigation',
       'bypass node access',
-      'configure any layout',
     ]);
     $this->drupalLogin($this->adminUser);
 
@@ -77,7 +75,7 @@ class NavigationTopBarTest extends BrowserTestBase {
   /**
    * Tests the top bar visibility.
    */
-  public function testTopBarVisibility() {
+  public function testTopBarVisibility(): void {
     $this->drupalGet($this->node->toUrl());
 
     // Top Bar is not visible if the feature flag module is disabled.

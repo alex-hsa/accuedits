@@ -81,12 +81,15 @@ class TestDiscovery {
 
     $existing = $this->classLoader->getPrefixesPsr4();
 
-    // Add PHPUnit test namespaces of Drupal core.
-    $this->testNamespaces['Drupal\\Tests\\'] = [$this->root . '/core/tests/Drupal/Tests'];
-    $this->testNamespaces['Drupal\\BuildTests\\'] = [$this->root . '/core/tests/Drupal/BuildTests'];
-    $this->testNamespaces['Drupal\\KernelTests\\'] = [$this->root . '/core/tests/Drupal/KernelTests'];
-    $this->testNamespaces['Drupal\\FunctionalTests\\'] = [$this->root . '/core/tests/Drupal/FunctionalTests'];
+    // Add PHPUnit test namespaces of Drupal core. Order the namespaces by the
+    // test types that tend to be slowest first, to optimize overall test times
+    // when multiple different test types are run concurrently by the same test
+    // runner.
     $this->testNamespaces['Drupal\\FunctionalJavascriptTests\\'] = [$this->root . '/core/tests/Drupal/FunctionalJavascriptTests'];
+    $this->testNamespaces['Drupal\\FunctionalTests\\'] = [$this->root . '/core/tests/Drupal/FunctionalTests'];
+    $this->testNamespaces['Drupal\\BuildTests\\'] = [$this->root . '/core/tests/Drupal/BuildTests'];
+    $this->testNamespaces['Drupal\\Tests\\'] = [$this->root . '/core/tests/Drupal/Tests'];
+    $this->testNamespaces['Drupal\\KernelTests\\'] = [$this->root . '/core/tests/Drupal/KernelTests'];
     $this->testNamespaces['Drupal\\TestTools\\'] = [$this->root . '/core/tests/Drupal/TestTools'];
 
     $this->availableExtensions = [];
@@ -121,7 +124,9 @@ class TestDiscovery {
    * @param string $extension
    *   (optional) The name of an extension to limit discovery to; e.g., 'node'.
    * @param string[] $types
-   *   An array of included test types.
+   *   (optional) An array of included test types.
+   * @param string|null $directory
+   *   (optional) Limit discovered tests to a specific directory.
    *
    * @return array
    *   An array of tests keyed by the group name. If a test is annotated to
@@ -129,20 +134,20 @@ class TestDiscovery {
    *   to.
    *
    * @code
-   *     $groups['block'] => array(
-   *       'Drupal\Tests\block\Functional\BlockTest' => array(
+   *     $groups['block'] => [
+   *       'Drupal\Tests\block\Functional\BlockTest' => [
    *         'name' => 'Drupal\Tests\block\Functional\BlockTest',
    *         'description' => 'Tests block UI CRUD functionality.',
    *         'group' => 'block',
    *         'groups' => ['block', 'group2', 'group3'],
-   *       ),
-   *     );
+   *       ],
+   *     ];
    * @endcode
    *
    * @todo Remove singular grouping; retain list of groups in 'group' key.
    * @see https://www.drupal.org/node/2296615
    */
-  public function getTestClasses($extension = NULL, array $types = []) {
+  public function getTestClasses($extension = NULL, array $types = [], ?string $directory = NULL) {
     if (!isset($extension) && empty($types)) {
       if (!empty($this->testClasses)) {
         return $this->testClasses;
@@ -150,7 +155,7 @@ class TestDiscovery {
     }
     $list = [];
 
-    $classmap = $this->findAllClassFiles($extension);
+    $classmap = $this->findAllClassFiles($extension, $directory);
 
     // Prevent expensive class loader lookups for each reflected test class by
     // registering the complete classmap of test classes to the class loader.
@@ -202,12 +207,14 @@ class TestDiscovery {
    *
    * @param string $extension
    *   (optional) The name of an extension to limit discovery to; e.g., 'node'.
+   * @param string|null $directory
+   *   (optional) Limit discovered tests to a specific directory.
    *
    * @return array
    *   A classmap containing all discovered class files; i.e., a map of
    *   fully-qualified classnames to path names.
    */
-  public function findAllClassFiles($extension = NULL) {
+  public function findAllClassFiles($extension = NULL, ?string $directory = NULL) {
     $classmap = [];
     $namespaces = $this->registerTestNamespaces();
     if (isset($extension)) {
@@ -217,7 +224,7 @@ class TestDiscovery {
     }
     foreach ($namespaces as $namespace => $paths) {
       foreach ($paths as $path) {
-        if (!is_dir($path)) {
+        if (!is_dir($path) || (!is_null($directory) && !str_contains($path, $directory))) {
           continue;
         }
         $classmap += static::scanDirectory($namespace, $path);

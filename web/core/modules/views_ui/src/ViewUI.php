@@ -286,8 +286,8 @@ class ViewUI implements ViewEntityInterface {
    * This will also provide a hidden op operator because the forms plugin
    * doesn't seem to properly provide which button was clicked.
    *
-   * TODO: Is the hidden op operator still here somewhere, or is that part of the
-   * docblock outdated?
+   * @todo Is the hidden op operator still here somewhere, or is that part of
+   *   the docblock outdated?
    */
   public function getStandardButtons(&$form, FormStateInterface $form_state, $form_id, $name = NULL) {
     $form['actions'] = [
@@ -982,7 +982,7 @@ class ViewUI implements ViewEntityInterface {
   /**
    * {@inheritdoc}
    */
-  public static function loadMultiple(array $ids = NULL) {
+  public static function loadMultiple(?array $ids = NULL) {
     return View::loadMultiple($ids);
   }
 
@@ -1052,7 +1052,7 @@ class ViewUI implements ViewEntityInterface {
   /**
    * {@inheritdoc}
    */
-  public function access($operation = 'view', AccountInterface $account = NULL, $return_as_object = FALSE) {
+  public function access($operation = 'view', ?AccountInterface $account = NULL, $return_as_object = FALSE) {
     return $this->storage->access($operation, $account, $return_as_object);
   }
 

@@ -169,7 +169,7 @@ function views_theme($existing, $type, $theme, $path) {
       // For each theme registration, we have a base directory to check for the
       // templates folder. This will be relative to the root of the given module
       // folder, so we always need a module definition.
-      // @todo: watchdog or exception?
+      // @todo Watchdog or exception?
       if (!isset($def['provider']) || !$module_handler->moduleExists($def['provider'])) {
         continue;
       }
@@ -363,7 +363,7 @@ function views_theme_suggestions_container_alter(array &$suggestions, array $var
  * @see \Drupal\views\Plugin\Block\ViewsBlock::addContextualLinks()
  * @see template_preprocess_views_view()
  */
-function views_add_contextual_links(&$render_element, $location, $display_id, array $view_element = NULL) {
+function views_add_contextual_links(&$render_element, $location, $display_id, ?array $view_element = NULL) {
   if (!isset($view_element)) {
     $view_element = $render_element;
   }

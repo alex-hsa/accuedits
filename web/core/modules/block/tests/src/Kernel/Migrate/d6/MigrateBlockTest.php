@@ -77,7 +77,7 @@ class MigrateBlockTest extends MigrateDrupal6TestBase {
    *
    * @internal
    */
-  public function assertEntity(string $id, array $visibility, string $region, string $theme, int $weight, array $settings = NULL, bool $status = TRUE): void {
+  public function assertEntity(string $id, array $visibility, string $region, string $theme, int $weight, ?array $settings = NULL, bool $status = TRUE): void {
     $block = Block::load($id);
     $this->assertInstanceOf(Block::class, $block);
     $this->assertSame($visibility, $block->getVisibility());
@@ -95,7 +95,7 @@ class MigrateBlockTest extends MigrateDrupal6TestBase {
   /**
    * Tests the block migration.
    */
-  public function testBlockMigration() {
+  public function testBlockMigration(): void {
     $blocks = Block::loadMultiple();
     $this->assertCount(25, $blocks);
 
