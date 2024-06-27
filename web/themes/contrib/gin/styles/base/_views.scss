@@ -88,13 +88,14 @@
   margin-right: var(--gin-spacing-xs);
 }
 
+.views-exposed-form .form-item--no-label,
+.views-exposed-form__item.views-exposed-form__item.views-exposed-form__item--actions {
+  margin-block: var(--gin-spacing-s) 0;
+  align-self: flex-end;
+}
+
 .gin-layer-wrapper {
   padding: var(--gin-spacing-l);
-
-  @include mq($to: large) {
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-  }
 
   & + .gin-layer-wrapper {
     margin-top: var(--gin-spacing-l);
