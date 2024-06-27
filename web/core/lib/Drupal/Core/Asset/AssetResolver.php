@@ -107,7 +107,7 @@ class AssetResolver implements AssetResolverInterface {
     // representative set before then expanding the list to include all
     // dependencies.
     // @see Drupal\FunctionalTests\Core\Asset\AssetOptimizationTestUmami
-    // @todo: https://www.drupal.org/project/drupal/issues/1945262
+    // @todo https://www.drupal.org/project/drupal/issues/1945262
     $libraries = $assets->getLibraries();
     if ($libraries) {
       $libraries = $this->libraryDependencyResolver->getMinimalRepresentativeSubset($libraries);
@@ -121,7 +121,7 @@ class AssetResolver implements AssetResolverInterface {
   /**
    * {@inheritdoc}
    */
-  public function getCssAssets(AttachedAssetsInterface $assets, $optimize, LanguageInterface $language = NULL) {
+  public function getCssAssets(AttachedAssetsInterface $assets, $optimize, ?LanguageInterface $language = NULL) {
     if (!$assets->getLibraries()) {
       return [];
     }
@@ -225,7 +225,7 @@ class AssetResolver implements AssetResolverInterface {
   /**
    * {@inheritdoc}
    */
-  public function getJsAssets(AttachedAssetsInterface $assets, $optimize, LanguageInterface $language = NULL) {
+  public function getJsAssets(AttachedAssetsInterface $assets, $optimize, ?LanguageInterface $language = NULL) {
     if (!$assets->getLibraries() && !$assets->getSettings()) {
       return [[], []];
     }

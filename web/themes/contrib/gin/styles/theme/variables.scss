@@ -116,7 +116,7 @@
   --gin-border-color-layer: rgba(0, 0, 0, .08);
   --gin-border-color-layer2: #d4d4d8;
   --gin-border-color-table: rgba(0, 0, 0, .1);
-  --gin-border-color-table-header: rgba(0, 0, 0, .2);
+  --gin-border-color-table-header: rgba(0, 0, 0, .3);
   --gin-border-color-form-element: #8E929C;
 
   --size-summary-border-radius: calc(var(--gin-border-m) - 1px);
@@ -184,6 +184,9 @@
   --input-line-height: var(--gin-spacing-l);
   --input-padding-horizontal: var(--gin-spacing-s);
   --input-padding-vertical: var(--gin-spacing-xs);
+
+  // Tooltips
+  --gin-tooltip-bg: #232429;
 
   // Claro
   --jui-dialog-z-index: 1260;
@@ -285,4 +288,7 @@
   // Color pattern
   --gin-pattern-fallback: var(--gin-bg-layer2);
   --gin-pattern: var(--gin-border-color);
+
+  // Tooltips
+  --gin-tooltip-bg: var(--gin-bg-layer3);
 }

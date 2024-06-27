@@ -2,7 +2,7 @@ name: Gin
 type: theme
 base theme: claro
 description: 'Admin theme with a strong focus on improving the Editorial Experience'
-core_version_requirement: ^9 || ^10
+core_version_requirement: ^9 || ^10 || ^11
 
 # These dependencies will not allow the installation of Gin at all if gin_toolbar is not activated.
 # A bit harsh, so we'll continue to just rely on the composer requirement for now.
@@ -19,6 +19,10 @@ libraries-override:
   media_library/view:
     js:
       js/media_library.view.js: js/overrides/media_library.view.js
+
+  core/drupal.tableselect:
+    js:
+      misc/tableselect.js: js/overrides/tableselect.js
 
   # Gin overrides: disable
   # needed override to overcome dialog styling issues
@@ -41,7 +45,17 @@ libraries-override:
       theme:
         css/theme/colors.css: false
 
+  core/drupal.tableheader:
+    js:
+      misc/tableheader.js: false
+    css:
+      component:
+        css/components/sticky-header.module.css: false
+        misc/components/sticky-header.module.css: false
+
 libraries-extend:
+  core/drupal.message:
+    - gin/messages
   core/drupal.tableselect:
     - gin/tableselect
   core/drupal.tableheader:
@@ -137,7 +151,7 @@ regions:
 regions_hidden:
   - sidebar_first
 
-# Information added by Drupal.org packaging script on 2024-04-09
-version: '8.x-3.0-rc10'
+# Information added by Drupal.org packaging script on 2024-06-14
+version: '8.x-3.0-rc11'
 project: 'gin'
-datestamp: 1712686348
+datestamp: 1718351209

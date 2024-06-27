@@ -18,7 +18,7 @@ class ProjectCoreCompatibilityTest extends UnitTestCase {
    * @covers ::setReleaseMessage
    * @dataProvider providerSetProjectCoreCompatibilityRanges
    */
-  public function testSetProjectCoreCompatibilityRanges(array $project_data, $core_data, array $supported_branches, array $core_releases, array $expected_releases, array $expected_security_updates) {
+  public function testSetProjectCoreCompatibilityRanges(array $project_data, $core_data, array $supported_branches, array $core_releases, array $expected_releases, array $expected_security_updates): void {
     $project_compatibility = new ProjectCoreCompatibility($core_data, $core_releases, $supported_branches);
     $project_compatibility->setStringTranslation($this->getStringTranslationStub());
     $project_compatibility->setReleaseMessage($project_data);
@@ -152,6 +152,53 @@ class ProjectCoreCompatibilityTest extends UnitTestCase {
         'core_compatible' => FALSE,
         'core_compatibility_message' => 'Requires Drupal core: 8.9.0, 8.9.2, 9.0.1 to 9.0.2',
       ],
+    ];
+    return $test_cases;
+  }
+
+  /**
+   * @covers ::isCoreCompatible
+   * @dataProvider providerIsCoreCompatible
+   *
+   * @param string $constraint
+   *   The core_version_constraint to test.
+   * @param string $installed_core
+   *   The installed version of core to compare against.
+   * @param bool $expected
+   *   The expected result.
+   */
+  public function testIsCoreCompatible(string $constraint, string $installed_core, bool $expected): void {
+    $core_data['existing_version'] = $installed_core;
+    $project_compatibility = new ProjectCoreCompatibility($core_data, [], []);
+    $reflection = new \ReflectionClass(ProjectCoreCompatibility::class);
+    $reflection_method = $reflection->getMethod('isCoreCompatible');
+    $result = $reflection_method->invokeArgs($project_compatibility, [$constraint]);
+    $this->assertSame($expected, $result);
+  }
+
+  /**
+   * Data provider for testIsCoreCompatible().
+   */
+  public static function providerIsCoreCompatible(): array {
+    $test_cases['compatible exact'] = [
+      '10.3.0',
+      '10.3.0',
+      TRUE,
+    ];
+    $test_cases['compatible with OR'] = [
+      '^9 || ^10',
+      '10.3.0',
+      TRUE,
+    ];
+    $test_cases['incompatible'] = [
+      '^10',
+      '11.0.0',
+      FALSE,
+    ];
+    $test_cases['broken'] = [
+      '^^11',
+      '11.0.0',
+      FALSE,
     ];
     return $test_cases;
   }

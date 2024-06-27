@@ -4051,6 +4051,10 @@ details.collapse summary::-webkit-details-marker{
   width: 25%;
 }
 
+.w-3\/4{
+  width: 75%;
+}
+
 .w-4\/12{
   width: 33.333333%;
 }
@@ -4085,14 +4089,6 @@ details.collapse summary::-webkit-details-marker{
 
 .w-full{
   width: 100%;
-}
-
-.w-1\/4{
-  width: 25%;
-}
-
-.w-3\/4{
-  width: 75%;
 }
 
 .max-w-md{
@@ -4233,6 +4229,11 @@ details.collapse summary::-webkit-details-marker{
   border-bottom-left-radius: 0.5rem;
 }
 
+.rounded-r-lg{
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
 .rounded-r-none{
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
@@ -4241,11 +4242,6 @@ details.collapse summary::-webkit-details-marker{
 .rounded-t-lg{
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
-}
-
-.rounded-r-lg{
-  border-top-right-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
 }
 
 .rounded-br-xl{
@@ -5181,12 +5177,12 @@ section{
     width: 50%;
   }
 
-  .md\:w-4\/5{
-    width: 80%;
-  }
-
   .md\:w-1\/4{
     width: 25%;
+  }
+
+  .md\:w-4\/5{
+    width: 80%;
   }
 
   .md\:grid-cols-12{

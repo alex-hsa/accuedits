@@ -68,7 +68,7 @@ class ToolbarCacheContextsTest extends BrowserTestBase {
   /**
    * Tests toolbar cache integration.
    */
-  public function testCacheIntegration() {
+  public function testCacheIntegration(): void {
     $this->installExtraModules(['csrf_test', 'dynamic_page_cache']);
     $this->drupalLogin($this->adminUser);
     $this->drupalGet('test-page');
@@ -82,7 +82,7 @@ class ToolbarCacheContextsTest extends BrowserTestBase {
   /**
    * Tests toolbar cache contexts.
    */
-  public function testToolbarCacheContextsCaller() {
+  public function testToolbarCacheContextsCaller(): void {
     // Test with default combination and permission to see toolbar.
     $this->assertToolbarCacheContexts(['user', 'session'], 'Expected cache contexts found for default combination and permission to see toolbar.');
 
@@ -114,7 +114,7 @@ class ToolbarCacheContextsTest extends BrowserTestBase {
    *
    * @internal
    */
-  protected function assertToolbarCacheContexts(array $cache_contexts, string $message = NULL): void {
+  protected function assertToolbarCacheContexts(array $cache_contexts, ?string $message = NULL): void {
     // Default cache contexts that should exist on all test cases.
     $default_cache_contexts = [
       'languages:language_interface',

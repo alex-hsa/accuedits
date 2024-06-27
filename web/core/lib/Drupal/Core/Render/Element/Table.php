@@ -23,8 +23,8 @@ use Drupal\Component\Utility\Html as HtmlUtility;
  * - #empty: Text to display when no rows are present.
  * - #responsive: Indicates whether to add the drupal.tableresponsive library
  *   providing responsive tables.  Defaults to TRUE.
- * - #sticky: Indicates whether to add the drupal.tableheader library that makes
- *   table headers always visible at the top of the page. Defaults to FALSE.
+ * - #sticky: Indicates whether to make the table headers sticky at
+ *   the top of the page. Defaults to FALSE.
  * - #footer: Table footer rows, in the same format as the #rows property.
  * - #caption: A localized string for the <caption> tag.
  *
@@ -335,44 +335,44 @@ class Table extends FormElementBase {
    *
    * Simple example usage:
    * @code
-   * $form['table'] = array(
+   * $form['table'] = [
    *   '#type' => 'table',
-   *   '#header' => array($this->t('Title'), array('data' => $this->t('Operations'), 'colspan' => '1')),
+   *   '#header' => [$this->t('Title'), ['data' => $this->t('Operations'), 'colspan' => '1']],
    *   // Optionally, to add tableDrag support:
-   *   '#tabledrag' => array(
-   *     array(
+   *   '#tabledrag' => [
+   *     [
    *       'action' => 'order',
    *       'relationship' => 'sibling',
    *       'group' => 'thing-weight',
-   *     ),
-   *   ),
-   * );
+   *     ],
+   *   ],
+   * ];
    * foreach ($things as $row => $thing) {
    *   $form['table'][$row]['#weight'] = $thing['weight'];
    *
-   *   $form['table'][$row]['title'] = array(
+   *   $form['table'][$row]['title'] = [
    *     '#type' => 'textfield',
    *     '#default_value' => $thing['title'],
-   *   );
+   *   ];
    *
    *   // Optionally, to add tableDrag support:
    *   $form['table'][$row]['#attributes']['class'][] = 'draggable';
-   *   $form['table'][$row]['weight'] = array(
+   *   $form['table'][$row]['weight'] = [
    *     '#type' => 'textfield',
-   *     '#title' => $this->t('Weight for @title', array('@title' => $thing['title'])),
+   *     '#title' => $this->t('Weight for @title', ['@title' => $thing['title']]),
    *     '#title_display' => 'invisible',
    *     '#size' => 4,
    *     '#default_value' => $thing['weight'],
-   *     '#attributes' => array('class' => array('thing-weight')),
+   *     '#attributes' => ['class' => ['thing-weight']],
    *   );
    *
    *   // The amount of link columns should be identical to the 'colspan'
    *   // attribute in #header above.
-   *   $form['table'][$row]['edit'] = array(
+   *   $form['table'][$row]['edit'] = [
    *     '#type' => 'link',
    *     '#title' => $this->t('Edit'),
    *     '#url' => Url::fromRoute('entity.test_entity.edit_form', ['test_entity' => $row]),
-   *   );
+   *   ];
    * }
    * @endcode
    *
@@ -420,9 +420,7 @@ class Table extends FormElementBase {
     // Add sticky headers, if applicable.
     if (count($element['#header']) && $element['#sticky']) {
       $element['#attached']['library'][] = 'core/drupal.tableheader';
-      // Add 'sticky-enabled' class to the table to identify it for JS.
-      // This is needed to target tables constructed by this function.
-      $element['#attributes']['class'][] = 'sticky-enabled';
+      $element['#attributes']['class'][] = 'sticky-header';
     }
     // If the table has headers and it should react responsively to columns hidden
     // with the classes represented by the constants RESPONSIVE_PRIORITY_MEDIUM

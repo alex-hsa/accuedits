@@ -17,21 +17,21 @@ bundle: ptoc_image
 mode: default
 content:
   field_ptoc_image:
+    type: image_image
     weight: 1
+    region: content
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
-    type: image_image
-    region: content
   field_ptoc_title:
+    type: string_textfield
     weight: 0
+    region: content
     settings:
       size: 20
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
 hidden:
   created: true
   status: true

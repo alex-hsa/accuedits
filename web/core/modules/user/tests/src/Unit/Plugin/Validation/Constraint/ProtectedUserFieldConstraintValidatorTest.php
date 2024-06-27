@@ -44,7 +44,7 @@ class ProtectedUserFieldConstraintValidatorTest extends UnitTestCase {
   /**
    * Perform the validation.
    */
-  protected function validate($items, string $name = NULL): void {
+  protected function validate($items, ?string $name = NULL): void {
     $constraint = new ProtectedUserFieldConstraint();
 
     // If a violation is expected, then the context's addViolation method will
@@ -69,7 +69,7 @@ class ProtectedUserFieldConstraintValidatorTest extends UnitTestCase {
   /**
    * @covers ::validate
    */
-  public function testValidate() {
+  public function testValidate(): void {
     // Case 1: Validation context should not be touched if no items are passed.
     $this->validate(NULL);
 

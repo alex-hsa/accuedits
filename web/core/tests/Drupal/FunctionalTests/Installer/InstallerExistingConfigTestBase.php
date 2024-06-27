@@ -22,7 +22,7 @@ abstract class InstallerExistingConfigTestBase extends InstallerTestBase {
   protected $profile = NULL;
 
   /**
-   * @todo
+   * @todo Fill out docblock.
    */
   protected $existingSyncDirectory = FALSE;
 
@@ -134,7 +134,7 @@ abstract class InstallerExistingConfigTestBase extends InstallerTestBase {
   /**
    * Confirms that the installation installed the configuration correctly.
    */
-  public function testConfigSync() {
+  public function testConfigSync(): void {
     // After installation there is no snapshot and nothing to import.
     $change_list = $this->configImporter()->getStorageComparer()->getChangelist();
     $expected = [

@@ -47,7 +47,10 @@ body {
   position: absolute;
   inset-block-start: 0;
   inset-inline-start: 0;
-  width: var(--admin-toolbar-sidebar-width);
+
+  @media (--admin-toolbar-desktop) {
+    width: var(--admin-toolbar-sidebar-width);
+  }
 }
 
 /**
@@ -249,7 +252,6 @@ body {
  */
 .admin-toolbar__scroll-wrapper {
   display: flex;
-  overflow-x: hidden;
   overflow-y: auto;
   flex-direction: column;
   height: 100%;
@@ -264,6 +266,7 @@ body {
 
   @media (--admin-toolbar-desktop) {
     display: contents;
+    overflow-y: unset;
     background: none;
   }
 }

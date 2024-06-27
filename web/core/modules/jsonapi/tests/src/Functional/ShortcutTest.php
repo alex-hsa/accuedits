@@ -159,7 +159,7 @@ class ShortcutTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  public function testCollectionFilterAccess() {
+  public function testCollectionFilterAccess(): void {
     $label_field_name = 'title';
     // Verify the expected behavior in the common case: default shortcut set.
     $this->grantPermissionsToTestedRole(['customize shortcut links']);
@@ -198,7 +198,7 @@ class ShortcutTest extends ResourceTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static function getExpectedCollectionCacheability(AccountInterface $account, array $collection, array $sparse_fieldset = NULL, $filtered = FALSE) {
+  protected static function getExpectedCollectionCacheability(AccountInterface $account, array $collection, ?array $sparse_fieldset = NULL, $filtered = FALSE) {
     $cacheability = parent::getExpectedCollectionCacheability($account, $collection, $sparse_fieldset, $filtered);
     if ($filtered) {
       $cacheability->addCacheContexts(['user']);

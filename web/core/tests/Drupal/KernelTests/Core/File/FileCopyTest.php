@@ -20,7 +20,7 @@ class FileCopyTest extends FileTestBase {
   /**
    * Copy a normal file.
    */
-  public function testNormal() {
+  public function testNormal(): void {
     // Create a file for testing
     $uri = $this->createUri();
 
@@ -43,14 +43,14 @@ class FileCopyTest extends FileTestBase {
     $this->assertFileExists($newer_filepath);
     $this->assertFilePermissions($newer_filepath, Settings::get('file_chmod_file', FileSystem::CHMOD_FILE));
 
-    // TODO: test copying to a directory (rather than full directory/file path)
-    // TODO: test copying normal files using normal paths (rather than only streams)
+    // @todo Test copying to a directory (rather than full directory/file path)
+    // @todo Test copying normal files using normal paths (rather than only streams)
   }
 
   /**
    * Copy a non-existent file.
    */
-  public function testNonExistent() {
+  public function testNonExistent(): void {
     // Copy non-existent file
     $desired_filepath = $this->randomMachineName();
     $this->assertFileDoesNotExist($desired_filepath);
@@ -62,7 +62,7 @@ class FileCopyTest extends FileTestBase {
   /**
    * Copy a file onto itself.
    */
-  public function testOverwriteSelf() {
+  public function testOverwriteSelf(): void {
     // Create a file for testing
     $uri = $this->createUri();
 

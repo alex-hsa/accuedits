@@ -59,7 +59,7 @@ class ContactSitewideTest extends BrowserTestBase {
   /**
    * Tests configuration options and the site-wide contact form.
    */
-  public function testSiteWideContact() {
+  public function testSiteWideContact(): void {
     // Tests name and email fields for authenticated and anonymous users.
     $this->drupalLogin($this->drupalCreateUser([
       'access site-wide contact form',
@@ -118,7 +118,7 @@ class ContactSitewideTest extends BrowserTestBase {
     // User form could not be changed or deleted.
     // Cannot use ::assertNoLinkByHref as it does partial URL matching and with
     // field_ui enabled admin/structure/contact/manage/personal/fields exists.
-    // @todo: See https://www.drupal.org/node/2031223 for the above.
+    // @todo See https://www.drupal.org/node/2031223 for the above.
     $url = Url::fromRoute('entity.contact_form.edit_form', ['contact_form' => 'personal'])->toString();
     $this->assertSession()->elementNotExists('xpath', "//a[@href='{$url}']");
     $this->assertSession()->linkByHrefNotExists('admin/structure/contact/manage/personal/delete');
@@ -440,7 +440,7 @@ class ContactSitewideTest extends BrowserTestBase {
   /**
    * Tests auto-reply on the site-wide contact form.
    */
-  public function testAutoReply() {
+  public function testAutoReply(): void {
     // Create and log in administrative user.
     $admin_user = $this->drupalCreateUser([
       'access site-wide contact form',

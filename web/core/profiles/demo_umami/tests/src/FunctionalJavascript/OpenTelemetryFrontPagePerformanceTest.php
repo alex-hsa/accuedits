@@ -23,10 +23,10 @@ class OpenTelemetryFrontPagePerformanceTest extends PerformanceTestBase {
   /**
    * Logs front page tracing data with a cold cache.
    */
-  public function testFrontPageColdCache() {
-    // @todo: Chromedriver doesn't collect tracing performance logs for the very
-    // first request in a test, so warm it up.
-    // See https://www.drupal.org/project/drupal/issues/3379750
+  public function testFrontPageColdCache(): void {
+    // @todo Chromedriver doesn't collect tracing performance logs for the very
+    //   first request in a test, so warm it up.
+    //   https://www.drupal.org/project/drupal/issues/3379750
     $this->drupalGet('user/login');
     $this->rebuildAll();
     $this->collectPerformanceData(function () {
@@ -40,7 +40,7 @@ class OpenTelemetryFrontPagePerformanceTest extends PerformanceTestBase {
    *
    * Hot here means that all possible caches are warmed.
    */
-  public function testFrontPageHotCache() {
+  public function testFrontPageHotCache(): void {
     // Request the page twice so that asset aggregates and image derivatives are
     // definitely cached in the browser cache. The first response builds the
     // file and serves from PHP with private, no-store headers. The second
@@ -67,7 +67,7 @@ class OpenTelemetryFrontPagePerformanceTest extends PerformanceTestBase {
     $this->assertSame(1, $performance_data->getScriptCount());
     $this->assertLessThan(7500, $performance_data->getScriptBytes());
     $this->assertSame(2, $performance_data->getStylesheetCount());
-    $this->assertLessThan(42000, $performance_data->getStylesheetBytes());
+    $this->assertLessThan(40400, $performance_data->getStylesheetBytes());
   }
 
   /**
@@ -76,7 +76,7 @@ class OpenTelemetryFrontPagePerformanceTest extends PerformanceTestBase {
    * Cool here means that 'global' site caches are warm but anything
    * specific to the front page is cold.
    */
-  public function testFrontPageCoolCache() {
+  public function testFrontPageCoolCache(): void {
     // First of all visit the front page to ensure the image style exists.
     $this->drupalGet('<front>');
     $this->rebuildAll();

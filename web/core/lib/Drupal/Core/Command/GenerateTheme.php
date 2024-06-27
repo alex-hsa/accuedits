@@ -37,9 +37,14 @@ class GenerateTheme extends Command {
   private $root;
 
   /**
-   * {@inheritdoc}
+   * GenerateTheme constructor.
+   *
+   * @param string|null $name
+   *   The name of the command; passing null means it must be set in configure().
+   * @param string|null $root
+   *   The path for the Drupal root.
    */
-  public function __construct(string $name = NULL, ?string $root = NULL) {
+  public function __construct(?string $name = NULL, ?string $root = NULL) {
     parent::__construct($name);
 
     $this->root = $root ?? dirname(__DIR__, 5);
