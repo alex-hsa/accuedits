@@ -14,8 +14,7 @@
       control: 'radio'
     },
     level: {
-      options: ['1', '2', '3', '4', '5', '6'],
-      control: 'select'
+      control: { type: 'number', min:1, max:6, step: 1 }
     },
     width: {
       options: ['w-1/12', 'w-2/12', 'w-3/12', 'w-4/12', 'w-5/12', 'w-6/12', 'w-7/12', 'w-8/12', 'w-9/12', 'w-10/12', 'w-11/12', 'w-full'],
@@ -29,7 +28,7 @@
     args: {
         eyebrow: 'AccuEdits.com',
         heading: 'Web publishing, streamlined',
-        level: '1',
+        level: 1,
         text: 'AccuEdits is quick, stylish, and gives your team all the tools they need to handle large amounts of content efficiently.',
         ctaText: 'Get Started',
         ctaHref: 'https://www.accuedits.com/getstarted',
@@ -52,7 +51,7 @@
     {{ include('sanfran:lead', {
         eyebrow,
         heading,
-        level: '1',
+        level,
         description,
         ctaText,
         ctaHref,

@@ -22,6 +22,8 @@
   ]|join(' ')|trim %}
 
 
+
+
 <hgroup {{ attributes.addClass(paragraph_classes).addClass(alignment_class).addClass(background_glass_classes).addClass('rounded-2xl ' ~ width) }}>
   {{ quick_edit }} 
 
@@ -34,12 +36,15 @@
   {% endif %}
 
   {% if heading %}
+      {% set level_number = level|number_format %}
+
       {{ include('sanfran:headings', {
-          level,
+          level: level_number,
           text: heading,
+          storybook,
           })
       }}
-  {% endif %}
+  {% endif %} 
 
   {% if description %}
       {{ include('sanfran:wysiwyg', {
@@ -66,6 +71,6 @@
             ctaHref: cta_url_secondary,
             })
         }}
-    {% endif %}
+    {% endif %} 
   </div>
 </hgroup>

@@ -4,15 +4,18 @@
   classes,
 ]|join(' ')|trim %}
 
+{% if storybook %}
+  {% set heading_id = '1234' %}
+{% else %}
+  {% set heading_id = text['#context'].value|lower|replace({' ': '-'}) %}
+{% endif %}
 
-{% set heading_id = text['#context'].value|lower|replace({' ': '-'}) %}
-{# {{dump(heading_id)}} #}
-<h{{level}} id="{{heading_id}}" class="{{classes}}">
+<h{{ level }} id="{{heading_id}}" class="{{classes}}">
   {% if url %}
     {{ include('sanfran:link', {
-        text: heading,
+        text,
         url,
         })
     }}
   {% else %}{{ text }}{% endif %}
-</h{{level}}>
+</h{{ level }}>
