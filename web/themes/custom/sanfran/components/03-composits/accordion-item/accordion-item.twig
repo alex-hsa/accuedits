@@ -4,7 +4,8 @@
 #}
 {% if storybook %}
      {% set accordion_id = 1234 %}
-     {% set background_color_class = 'bg-primary/[.25]' %}
+     {# {% set background_color_class = 'bg-primary/[.25]' %} #}
+     {% set background_color_class = 'bg-' ~ background_color ~ '/[.25]' %}
 {% else %}
     {% set accordion_id = paragraph.parent_id.value %}
     {% set parent = drupal_entity('paragraph', accordion_id) %}  

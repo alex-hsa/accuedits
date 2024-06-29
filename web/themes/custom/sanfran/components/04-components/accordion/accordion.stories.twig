@@ -2,11 +2,11 @@
   title: 'AccuEdits/Components/Accordion',
   argTypes: {
     background_color: {
-      options: ['primary', 'secondary', 'accent', 'neutral', 'base-100', 'base-200', 'error', 'info', 'success', 'warning'],
+      options: ['Select...','primary', 'secondary', 'accent', 'neutral', 'base-100', 'base-200', 'error', 'info', 'success', 'warning'],
       control: 'select'
     },
     background_pattern: {
-      options: ['public://2024-05/beige_droplets.svg', 'public://2024-05/beige_pattern.svg', 'public://2024-05/blue_droplets.svg', 'public://2024-05/blue_swirls.svg', 'public://2024-05/blue_waves.svg', 'public://2024-05/purple_pattern.svg'],
+      options: ['Select...','public://2024-05/beige_droplets.svg', 'public://2024-05/beige_pattern.svg', 'public://2024-05/blue_droplets.svg', 'public://2024-05/blue_swirls.svg', 'public://2024-05/blue_waves.svg', 'public://2024-05/purple_pattern.svg'],
       control: 'select'
     },
     border: {
@@ -41,7 +41,7 @@
           {
             eyebrow: 'AccuEdits.com',
             heading: 'Web publishing, streamlined',
-            level: '1',
+            level: 1,
             description: 'AccuEdits is quick, stylish, and gives your team all the tools they need to handle large amounts of content efficiently.',
             ctaText: 'Get Started',
             ctaHref: 'https://www.accuedits.com/getstarted',
@@ -57,32 +57,26 @@
           {
             heading: 'This is an Accordion Title',
             description: 'If a dog chews shoes whose shoes does he choose?',
-            background_color: 'primary',
           },
           {
             heading: 'This is an Accordion Title',
             description: 'If a dog chews shoes whose shoes does he choose?',
-            background_color: 'primary',
           },
           {
             heading: 'This is an Accordion Title',
             description: 'If a dog chews shoes whose shoes does he choose?',
-            background_color: 'primary',
           },
            {
             heading: 'This is an Accordion Title',
             description: 'If a dog chews shoes whose shoes does he choose?',
-            background_color: 'primary',
           },
           {
             heading: 'This is an Accordion Title',
             description: 'If a dog chews shoes whose shoes does he choose?',
-            background_color: 'primary',
           },
           {
             heading: 'This is an Accordion Title',
             description: 'If a dog chews shoes whose shoes does he choose?',
-            background_color: 'primary',
           },
         ],
       }
@@ -103,7 +97,7 @@
         {{ include('sanfran:lead', {
             eyebrow: item.eyebrow,
             heading: item.heading,
-            level: '1',
+            level: item.level,
             description: hmtl_text,
             ctaText: item.ctaText,
             ctaHref: item.ctaHref,
@@ -113,12 +107,11 @@
             background_glass: item.background_glass,
             background_color: item.background_color,
             width: item.width,
+            storybook: 'yes',
         }) }}
 
       {% endfor %}
     {% endset %}
-
-{{dump(storybook_lead_item)}}
 
     {{ include('sanfran:accordion', {
         background_pattern,
