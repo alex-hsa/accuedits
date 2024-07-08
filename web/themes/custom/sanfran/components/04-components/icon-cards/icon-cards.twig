@@ -1,3 +1,4 @@
+
 {% if background_color %}
   {% set background_color_class = 'p-4 rounded-lg' %}
 {% else %}
@@ -5,7 +6,20 @@
 {% endif %}
 
 {% if background_pattern %}
-  {% set background_pattern_style = "margin-bottom: 1rem; background-image: url('" ~ background_pattern|file_url ~ "');" %}
+  {% if storybook %}
+    {% set background_pattern = background_pattern|file_url|replace({'https://accuedits.ddev.site' : ''})  %}
+    {% set background_pattern_class = "bg-[url('" ~ background_pattern ~ "')]" %}
+  {% else %}
+    {% set background_pattern_class = "bg-[url('" ~ background_pattern|file_url ~ "')]" %}
+  {% endif %}
+  
+  {% if orientation != 'horizontal' %}
+    {% if flip == 'yes' %}
+      {% set background_pattern_class = "mt-4 " ~ background_pattern_class %}
+    {% else %}
+      {% set background_pattern_class = "mb-4 " ~ background_pattern_class %}
+    {% endif %}
+  {% endif %}
 {% endif %}
 
 {% if border == 'yes' %}
@@ -81,7 +95,7 @@
 <section {{ attributes.addClass(paragraph_classes).addClass(background_color_class).addClass(border_class).addClass(flip_class).addClass(orientation_class).addClass(placement_class) }}>
   {{ quick_edit }} 
 
-  <div class="lead p-8 rounded-lg {{ placement_class }}{{gradient_classes}}"{% if background_pattern_style %} style="{{ background_pattern_style }}"{% endif %}>
+  <div class="lead p-8 rounded-lg {{ placement_class }}{{gradient_classes}}{% if background_pattern_class %} {{ background_pattern_class }}{% endif %}">
   
       {% if storybook %}
           {{ lead_item }}

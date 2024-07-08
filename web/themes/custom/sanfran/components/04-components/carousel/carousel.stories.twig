@@ -1,10 +1,47 @@
 {% stories carousel with { 
-  title: 'AccuEdits/Components/Carousel'
+  title: 'AccuEdits/Components/Carousel',
+  argTypes: {
+    background_color: {
+      options: ['Select...','primary', 'secondary', 'accent', 'neutral', 'base-100', 'base-200', 'error', 'info', 'success', 'warning'],
+      control: 'select'
+    },
+    background_pattern: {
+      options: ['Select...','public://2024-05/beige_droplets.svg', 'public://2024-05/beige_pattern.svg', 'public://2024-05/blue_droplets.svg', 'public://2024-05/blue_swirls.svg', 'public://2024-05/blue_waves.svg', 'public://2024-05/purple_pattern.svg'],
+      control: 'select'
+    },
+    border: {
+      options: ['no', 'yes'],
+      control: 'radio'
+    },
+    flip: {
+      options: ['no', 'yes'],
+      control: 'radio'
+    },
+    gradient: {
+      options: ['Select...','from-primary to-neutral', 'from-info to-secondary','from-accent to-primary', 'from-error to-warning','from-accent to-error', 'from-warning to-secondary'],
+      control: 'select'
+    },
+    gradient_direction: {
+      options: ['Select...','bg-gradient-to-r', 'bg-gradient-to-l'],
+      control: 'select'
+    },
+    orientation: {
+      options: ['stacked', 'horizontal'],
+      control: 'select'
+    },
+  }
 } %}
 
   {% story carousel_default with {
     name: 'Default',
       args: {
+        background_color: '',
+        background_pattern: '',
+        border: 'yes',
+        flip: 'yes',
+        gradient: 'from-accent to-primary',
+        gradient_direction: 'bg-gradient-to-r',
+        orientation: 'horizontal',
         lead_item: [
           {
             eyebrow: 'AccuEdits.com',
@@ -33,11 +70,6 @@
             image: 'https://accuedits.ddev.site/sites/default/files/2024-03/pexels-sf-embarcedero.jpeg', image_alt: 'Embacadero sklyline by night in San Francisco'
           }
         ],
-        background_color: 'white',
-        background_pattern: 'public://2024-05/purple_pattern.svg',
-        border: 'yes',
-        flip: 'yes',
-        orientation: 'horizontal',
       }
   } %}
 
@@ -81,6 +113,8 @@
       background_pattern,
       border,
       flip,
+      gradient,
+      gradient_direction,
       orientation,
       carousel_items,
       quick_edit: '',

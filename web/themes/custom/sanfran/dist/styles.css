@@ -542,6 +542,41 @@ html{
   --er: 68.0874% 0.181861 29.648655;
 }
 
+@media (prefers-color-scheme: dark){
+  :root{
+    color-scheme: light;
+    --b2: 93% 0 0;
+    --b3: 86% 0 0;
+    --in: 72.06% 0.191 231.6;
+    --su: 64.8% 0.150 160;
+    --wa: 84.71% 0.199 83.87;
+    --er: 71.76% 0.221 22.18;
+    --inc: 0% 0 0;
+    --suc: 0% 0 0;
+    --wac: 0% 0 0;
+    --erc: 0% 0 0;
+    --rounded-box: 1rem;
+    --rounded-btn: 0.5rem;
+    --rounded-badge: 1.9rem;
+    --border-btn: 1px;
+    --tab-border: 1px;
+    --tab-radius: 0.5rem;
+    --p: 65.0593% 0.139807 119.92656;
+    --pc: 33.3872% 0.040618 162.240129;
+    --s: 61.3028% 0.202368 261.294233;
+    --sc: 100% 0 0;
+    --a: 72.7725% 0.149783 33.200363;
+    --ac: 0% 0 0;
+    --n: 35.5192% 0.032071 262.988584;
+    --nc: 98.4625% 0.001706 247.838921;
+    --b1: 100% 0 0;
+    --bc: 35.5192% 0.032071 262.988584;
+    --animation-btn: 0;
+    --animation-input: 0;
+    --btn-focus-scale: 1;
+  }
+}
+
 [data-theme=accuedits]{
   --p: 65.6968% 0.144466 237.46759;
   --b3: 83.9593% 0.007016 260.731552;
@@ -604,6 +639,72 @@ html{
   --su: 50.5665% 0.139468 137.169089;
   --wa: 85.0515% 0.167534 85.511375;
   --er: 68.0874% 0.181861 29.648655;
+}
+
+[data-theme=emerald]{
+  color-scheme: light;
+  --b2: 93% 0 0;
+  --b3: 86% 0 0;
+  --in: 72.06% 0.191 231.6;
+  --su: 64.8% 0.150 160;
+  --wa: 84.71% 0.199 83.87;
+  --er: 71.76% 0.221 22.18;
+  --inc: 0% 0 0;
+  --suc: 0% 0 0;
+  --wac: 0% 0 0;
+  --erc: 0% 0 0;
+  --rounded-box: 1rem;
+  --rounded-btn: 0.5rem;
+  --rounded-badge: 1.9rem;
+  --border-btn: 1px;
+  --tab-border: 1px;
+  --tab-radius: 0.5rem;
+  --p: 65.0593% 0.139807 119.92656;
+  --pc: 33.3872% 0.040618 162.240129;
+  --s: 61.3028% 0.202368 261.294233;
+  --sc: 100% 0 0;
+  --a: 72.7725% 0.149783 33.200363;
+  --ac: 0% 0 0;
+  --n: 35.5192% 0.032071 262.988584;
+  --nc: 98.4625% 0.001706 247.838921;
+  --b1: 100% 0 0;
+  --bc: 35.5192% 0.032071 262.988584;
+  --animation-btn: 0;
+  --animation-input: 0;
+  --btn-focus-scale: 1;
+}
+
+:root:has(input.theme-controller[value=emerald]:checked){
+  color-scheme: light;
+  --b2: 93% 0 0;
+  --b3: 86% 0 0;
+  --in: 72.06% 0.191 231.6;
+  --su: 64.8% 0.150 160;
+  --wa: 84.71% 0.199 83.87;
+  --er: 71.76% 0.221 22.18;
+  --inc: 0% 0 0;
+  --suc: 0% 0 0;
+  --wac: 0% 0 0;
+  --erc: 0% 0 0;
+  --rounded-box: 1rem;
+  --rounded-btn: 0.5rem;
+  --rounded-badge: 1.9rem;
+  --border-btn: 1px;
+  --tab-border: 1px;
+  --tab-radius: 0.5rem;
+  --p: 65.0593% 0.139807 119.92656;
+  --pc: 33.3872% 0.040618 162.240129;
+  --s: 61.3028% 0.202368 261.294233;
+  --sc: 100% 0 0;
+  --a: 72.7725% 0.149783 33.200363;
+  --ac: 0% 0 0;
+  --n: 35.5192% 0.032071 262.988584;
+  --nc: 98.4625% 0.001706 247.838921;
+  --b1: 100% 0 0;
+  --bc: 35.5192% 0.032071 262.988584;
+  --animation-btn: 0;
+  --animation-input: 0;
+  --btn-focus-scale: 1;
 }
 
 [data-theme=dim]{
@@ -670,6 +771,138 @@ html{
   --su: 86.1717% 0.142187 166.534048;
   --wa: 86.1634% 0.142236 94.818679;
   --er: 82.4189% 0.09957 33.756357;
+}
+
+[data-theme=forest]{
+  color-scheme: dark;
+  --b2: 17.522% 0.007709 17.911578;
+  --b3: 16.2032% 0.007129 17.911578;
+  --in: 72.06% 0.191 231.6;
+  --su: 64.8% 0.150 160;
+  --wa: 84.71% 0.199 83.87;
+  --er: 71.76% 0.221 22.18;
+  --bc: 83.7682% 0.001658 17.911578;
+  --sc: 13.9553% 0.027077 168.327128;
+  --ac: 14.1257% 0.02389 185.713193;
+  --nc: 86.1397% 0.007806 171.364646;
+  --inc: 0% 0 0;
+  --suc: 0% 0 0;
+  --wac: 0% 0 0;
+  --erc: 0% 0 0;
+  --rounded-box: 1rem;
+  --rounded-badge: 1.9rem;
+  --animation-btn: 0.25s;
+  --animation-input: .2s;
+  --btn-focus-scale: 0.95;
+  --border-btn: 1px;
+  --tab-border: 1px;
+  --tab-radius: 0.5rem;
+  --p: 68.6283% 0.185567 148.958922;
+  --pc: 0% 0 0;
+  --s: 69.7764% 0.135385 168.327128;
+  --a: 70.6285% 0.119451 185.713193;
+  --n: 30.6985% 0.039032 171.364646;
+  --b1: 18.8409% 0.00829 17.911578;
+  --rounded-btn: 1.9rem;
+}
+
+:root:has(input.theme-controller[value=forest]:checked){
+  color-scheme: dark;
+  --b2: 17.522% 0.007709 17.911578;
+  --b3: 16.2032% 0.007129 17.911578;
+  --in: 72.06% 0.191 231.6;
+  --su: 64.8% 0.150 160;
+  --wa: 84.71% 0.199 83.87;
+  --er: 71.76% 0.221 22.18;
+  --bc: 83.7682% 0.001658 17.911578;
+  --sc: 13.9553% 0.027077 168.327128;
+  --ac: 14.1257% 0.02389 185.713193;
+  --nc: 86.1397% 0.007806 171.364646;
+  --inc: 0% 0 0;
+  --suc: 0% 0 0;
+  --wac: 0% 0 0;
+  --erc: 0% 0 0;
+  --rounded-box: 1rem;
+  --rounded-badge: 1.9rem;
+  --animation-btn: 0.25s;
+  --animation-input: .2s;
+  --btn-focus-scale: 0.95;
+  --border-btn: 1px;
+  --tab-border: 1px;
+  --tab-radius: 0.5rem;
+  --p: 68.6283% 0.185567 148.958922;
+  --pc: 0% 0 0;
+  --s: 69.7764% 0.135385 168.327128;
+  --a: 70.6285% 0.119451 185.713193;
+  --n: 30.6985% 0.039032 171.364646;
+  --b1: 18.8409% 0.00829 17.911578;
+  --rounded-btn: 1.9rem;
+}
+
+[data-theme=lemonade]{
+  color-scheme: light;
+  --b2: 91.8003% 0.0186 123.72;
+  --b3: 84.8906% 0.0172 123.72;
+  --bc: 19.742% 0.004 123.72;
+  --pc: 11.784% 0.0398 134.6;
+  --sc: 15.55% 0.0392 111.09;
+  --ac: 17.078% 0.0402 100.73;
+  --nc: 86.196% 0.015 108.6;
+  --inc: 17.238% 0.0094 224.14;
+  --suc: 17.238% 0.0094 157.85;
+  --wac: 17.238% 0.0094 102.15;
+  --erc: 17.238% 0.0094 25.85;
+  --rounded-box: 1rem;
+  --rounded-btn: 0.5rem;
+  --rounded-badge: 1.9rem;
+  --animation-btn: 0.25s;
+  --animation-input: .2s;
+  --btn-focus-scale: 0.95;
+  --border-btn: 1px;
+  --tab-border: 1px;
+  --tab-radius: 0.5rem;
+  --p: 58.92% 0.199 134.6;
+  --s: 77.75% 0.196 111.09;
+  --a: 85.39% 0.201 100.73;
+  --n: 30.98% 0.075 108.6;
+  --b1: 98.71% 0.02 123.72;
+  --in: 86.19% 0.047 224.14;
+  --su: 86.19% 0.047 157.85;
+  --wa: 86.19% 0.047 102.15;
+  --er: 86.19% 0.047 25.85;
+}
+
+:root:has(input.theme-controller[value=lemonade]:checked){
+  color-scheme: light;
+  --b2: 91.8003% 0.0186 123.72;
+  --b3: 84.8906% 0.0172 123.72;
+  --bc: 19.742% 0.004 123.72;
+  --pc: 11.784% 0.0398 134.6;
+  --sc: 15.55% 0.0392 111.09;
+  --ac: 17.078% 0.0402 100.73;
+  --nc: 86.196% 0.015 108.6;
+  --inc: 17.238% 0.0094 224.14;
+  --suc: 17.238% 0.0094 157.85;
+  --wac: 17.238% 0.0094 102.15;
+  --erc: 17.238% 0.0094 25.85;
+  --rounded-box: 1rem;
+  --rounded-btn: 0.5rem;
+  --rounded-badge: 1.9rem;
+  --animation-btn: 0.25s;
+  --animation-input: .2s;
+  --btn-focus-scale: 0.95;
+  --border-btn: 1px;
+  --tab-border: 1px;
+  --tab-radius: 0.5rem;
+  --p: 58.92% 0.199 134.6;
+  --s: 77.75% 0.196 111.09;
+  --a: 85.39% 0.201 100.73;
+  --n: 30.98% 0.075 108.6;
+  --b1: 98.71% 0.02 123.72;
+  --in: 86.19% 0.047 224.14;
+  --su: 86.19% 0.047 157.85;
+  --wa: 86.19% 0.047 102.15;
+  --er: 86.19% 0.047 25.85;
 }
 
 *, ::before, ::after{
@@ -4036,6 +4269,10 @@ details.collapse summary::-webkit-details-marker{
   margin-right: 2rem;
 }
 
+.mt-4{
+  margin-top: 1rem;
+}
+
 .block{
   display: block;
 }
@@ -4740,6 +4977,30 @@ details.collapse summary::-webkit-details-marker{
 
 .bg-warning\/\[\.75\]{
   background-color: var(--fallback-wa,oklch(var(--wa)/.75));
+}
+
+.bg-\[url\(\'\/sites\/default\/files\/2024-05\/beige_droplets\.svg\'\)\]{
+  background-image: url('/sites/default/files/2024-05/beige_droplets.svg');
+}
+
+.bg-\[url\(\'\/sites\/default\/files\/2024-05\/beige_pattern\.svg\'\)\]{
+  background-image: url('/sites/default/files/2024-05/beige_pattern.svg');
+}
+
+.bg-\[url\(\'\/sites\/default\/files\/2024-05\/blue_droplets\.svg\'\)\]{
+  background-image: url('/sites/default/files/2024-05/blue_droplets.svg');
+}
+
+.bg-\[url\(\'\/sites\/default\/files\/2024-05\/blue_swirls\.svg\'\)\]{
+  background-image: url('/sites/default/files/2024-05/blue_swirls.svg');
+}
+
+.bg-\[url\(\'\/sites\/default\/files\/2024-05\/blue_waves\.svg\'\)\]{
+  background-image: url('/sites/default/files/2024-05/blue_waves.svg');
+}
+
+.bg-\[url\(\'\/sites\/default\/files\/2024-05\/purple_pattern\.svg\'\)\]{
+  background-image: url('/sites/default/files/2024-05/purple_pattern.svg');
 }
 
 .bg-gradient-to-l{

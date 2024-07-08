@@ -17,6 +17,14 @@
       options: ['no', 'yes'],
       control: 'radio'
     },
+    gradient: {
+      options: ['Select...','from-primary to-neutral', 'from-info to-secondary','from-accent to-primary', 'from-error to-warning','from-accent to-error', 'from-warning to-secondary'],
+      control: 'select'
+    },
+    gradient_direction: {
+      options: ['Select...','bg-gradient-to-r', 'bg-gradient-to-l'],
+      control: 'select'
+    },
     orientation: {
       options: ['stacked', 'horizontal'],
       control: 'select'
@@ -32,9 +40,11 @@
     name: 'Default',
       args: {
         background_color: 'accent',
-        background_pattern: 'public://2024-05/blue_swirls.svg',
+        background_pattern: '',
         border: 'no',
         flip: 'no',
+        gradient: 'from-accent to-primary',
+        gradient_direction: 'bg-gradient-to-r',
         orientation: 'stacked',
         placement: 'start',
         lead_item: [
@@ -119,6 +129,8 @@
         border,
         columns,
         flip,
+        gradient,
+        gradient_direction,
         lead_item: storybook_lead_item,
         accordion_items,
         orientation,

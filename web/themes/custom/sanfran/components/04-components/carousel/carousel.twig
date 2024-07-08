@@ -16,9 +16,17 @@
 
 {% if gradient %}
     {% if orientation == 'horizontal' %}
-        {% set gradient_classes = 'rounded-l-lg ' ~ gradient_direction ~ ' ' ~ gradient %}
+        {% if flip == 'yes' %}
+            {% set gradient_classes = 'rounded-r-lg ' ~ gradient_direction ~ ' ' ~ gradient %}
+        {% else %}
+            {% set gradient_classes = 'rounded-l-lg ' ~ gradient_direction ~ ' ' ~ gradient %}
+        {% endif %}
     {% else %}
-        {% set gradient_classes = 'rounded-t-lg ' ~ gradient_direction ~ ' ' ~ gradient %}
+        {% if flip == 'yes' %}
+            {% set gradient_classes = 'rounded-b-lg ' ~ gradient_direction ~ ' ' ~ gradient %}
+        {% else %}
+            {% set gradient_classes = 'rounded-t-lg ' ~ gradient_direction ~ ' ' ~ gradient %}
+        {% endif %}
     {% endif %}
 {% else %}
     {% set gradient_classes = 'rounded-lg' %}
