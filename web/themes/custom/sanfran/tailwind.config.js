@@ -31,6 +31,12 @@ module.exports = {
     'bg-info',
     'bg-success',
     'bg-warning',
+    'bg-[url(\'/sites/default/files/2024-05/beige_droplets.svg\')]',
+    'bg-[url(\'/sites/default/files/2024-05/beige_pattern.svg\')]',
+    'bg-[url(\'/sites/default/files/2024-05/blue_droplets.svg\')]',
+    'bg-[url(\'/sites/default/files/2024-05/blue_swirls.svg\')]',
+    'bg-[url(\'/sites/default/files/2024-05/blue_waves.svg\')]',
+    'bg-[url(\'/sites/default/files/2024-05/purple_pattern.svg\')]',
     'text-gray',
     'text-primary',
     'text-secondary',
@@ -274,10 +280,17 @@ module.exports = {
         "warning": "#FFC423",
         "error": "#F46351",
         },
+      emerald: {
+          ...require("daisyui/src/theming/themes")["emerald"],
+          primary: "#859b26",
+        },
     },
+
       "dim",
+      "forest",
+      "lemonade",
     ], // false: only light + dark | true: all themes | array: specific themes like this ["light", "dark", "cupcake"]
-    darkTheme: "accuedits", // name of one of the included themes for dark mode
+    darkTheme: "emerald", // name of one of the included themes for dark mode
     base: true, // applies background color and foreground color for root element by default
     styled: true, // include daisyUI colors and design decisions for all components
     utils: true, // adds responsive and modifier utility classes

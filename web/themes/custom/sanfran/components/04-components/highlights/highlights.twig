@@ -36,9 +36,21 @@
 {% endif %}
 
 {% if gradient %}
-    {% set gradient_classes = ' mb-4 ' ~ gradient_direction ~ ' ' ~ gradient %}
+    {% if orientation == 'horizontal' %}
+        {% if flip == 'yes' %}
+            {% set gradient_classes = gradient_direction ~ ' ' ~ gradient %}
+        {% else %}
+            {% set gradient_classes = gradient_direction ~ ' ' ~ gradient %}
+        {% endif %}
+    {% else %}
+        {% if flip == 'yes' %}
+            {% set gradient_classes = ' mt-4 ' ~ gradient_direction ~ ' ' ~ gradient %}
+        {% else %}
+            {% set gradient_classes = ' mb-4 ' ~ gradient_direction ~ ' ' ~ gradient %}
+        {% endif %}
+    {% endif %}
 {% else %}
-    {% set gradient_classes = '' %}
+    {% set gradient_classes = 'rounded-lg' %}
 {% endif %}
 
 {% if orientation == 'horizontal' %}
