@@ -11,6 +11,7 @@ dependencies:
     - field.field.paragraph.icon_card.field_description
     - field.field.paragraph.icon_card.field_heading
     - field.field.paragraph.icon_card.field_icon_material
+    - field.field.paragraph.icon_card.field_media
     - field.field.paragraph.icon_card.field_orientation
     - field.field.paragraph.icon_card.field_placement
     - paragraphs.paragraphs_type.icon_card
@@ -27,5 +28,6 @@ hidden:
   field_description: true
   field_heading: true
   field_icon_material: true
+  field_media: true
   field_orientation: true
   field_placement: true

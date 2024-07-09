@@ -45,6 +45,16 @@
           {{ icon }}
       </div>
     {% endif %}
+
+    {% if (image != '') and ((image != '/')) %} 
+      {{ include('sanfran:figure', {
+          image,
+          image_alt,
+          storybook,
+          classes,
+        })
+      }}
+    {% endif %}
   </div>
   
 

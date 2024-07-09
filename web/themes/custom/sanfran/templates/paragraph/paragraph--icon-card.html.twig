@@ -26,6 +26,8 @@
 #}
 
 {% set icon = content.field_icon_material.0|default('') %}
+{% set image = content.field_media|field_target_entity.field_media_image.entity.uri.value|default('') %}
+{% set media_image_alt = content.field_media.0['#media'].field_media_image.0.alt|default('test') %}
 {% set heading = content.field_heading.0|default('') %}
 {% set description = content.field_description.0|default('') %}
 {% set ctaText = content.field_cta[0]['#title']|default('') %}
@@ -41,6 +43,8 @@
 
 {{ include('sanfran:icon-card', {
     icon,
+    image,
+    image_alt: media_image_alt,
     heading,
     description,
     ctaText,

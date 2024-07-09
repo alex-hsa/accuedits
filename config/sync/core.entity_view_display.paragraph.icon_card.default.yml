@@ -10,6 +10,7 @@ dependencies:
     - field.field.paragraph.icon_card.field_description
     - field.field.paragraph.icon_card.field_heading
     - field.field.paragraph.icon_card.field_icon_material
+    - field.field.paragraph.icon_card.field_media
     - field.field.paragraph.icon_card.field_orientation
     - field.field.paragraph.icon_card.field_placement
     - paragraphs.paragraphs_type.icon_card
@@ -17,7 +18,20 @@ dependencies:
     - link
     - material_icons
     - options
+    - sdc_display
     - text
+third_party_settings:
+  sdc_display:
+    enabled: false
+    component:
+      machine_name: ''
+    mappings:
+      static:
+        props: {  }
+        slots: {  }
+      dynamic:
+        props: {  }
+        slots: {  }
 id: paragraph.icon_card.default
 targetEntityType: paragraph
 bundle: icon_card
@@ -77,6 +91,15 @@ content:
     type: material_icons
     label: hidden
     settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_media:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
     third_party_settings: {  }
     weight: 0
     region: content

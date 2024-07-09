@@ -4579,6 +4579,10 @@ details.collapse summary::-webkit-details-marker{
   border-inline-start-width: 8px;
 }
 
+.border-t{
+  border-top-width: 1px;
+}
+
 .border-solid{
   border-style: solid;
 }
@@ -5087,16 +5091,6 @@ details.collapse summary::-webkit-details-marker{
 
 .p-8{
   padding: 2rem;
-}
-
-.px-10{
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-}
-
-.py-8{
-  padding-top: 2rem;
-  padding-bottom: 2rem;
 }
 
 .pb-0{

@@ -95,24 +95,27 @@
 <section {{ attributes.addClass(paragraph_classes).addClass(background_color_class).addClass(border_class).addClass(flip_class).addClass(orientation_class).addClass(placement_class) }}>
   {{ quick_edit }} 
 
-  <div class="lead p-8 rounded-lg {{ placement_class }}{{gradient_classes}}{% if background_pattern_class %} {{ background_pattern_class }}{% endif %}">
-  
-      {% if storybook %}
-          {{ lead_item }}
-      {% else %}
-          {% for key, item in lead_item %}
-              {% if key|first != '#' %}
-                  {{ item }}
-              {% endif %}
-          {% endfor %}
-      {% endif %}
+  {% if lead_item %}
+    <div class="lead p-8 rounded-lg {{ placement_class }}{{gradient_classes}}{% if background_pattern_class %} {{ background_pattern_class }}{% endif %}">
+    
+        {% if storybook %}
+            {{ lead_item }}
+        {% else %}
+            {% for key, item in lead_item %}
+                {% if key|first != '#' %}
+                    {{ item }}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
 
-  </div>
-{% if orientation == 'horizontal' %}
-  <div class="items grid gap-x-4 gap-y-8 grid-cols-1{{column_classes}}">
-{% else %}
-  <div class="items grid gap-x-4 gap-y-8 grid-cols-1{{column_classes}}">
-{% endif %}
+    </div>
+  {% endif %}
+
+  {% if orientation == 'horizontal' %}
+    <div class="items grid gap-x-4 gap-y-8 grid-cols-1{{column_classes}}">
+  {% else %}
+    <div class="items grid gap-x-4 gap-y-8 grid-cols-1{{column_classes}}">
+  {% endif %}
   
       {% for key, item in icon_card_items %}
 
@@ -143,9 +146,11 @@
             quick_edit: '',
           }) }}
         {% else %}
+        
           {% if key|first != '#' %}
               {{ item }}
           {% endif %}
+
         {% endif %}
 
       {% endfor %}

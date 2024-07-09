@@ -21,56 +21,57 @@
     not paragraph.isPublished() ? 'paragraph--unpublished',
   ]|join(' ')|trim %}
 
+{% if heading %}
 
+  <hgroup {{ attributes.addClass(paragraph_classes).addClass(alignment_class).addClass(background_glass_classes).addClass('rounded-2xl ' ~ width) }}>
+    {{ quick_edit }} 
 
-
-<hgroup {{ attributes.addClass(paragraph_classes).addClass(alignment_class).addClass(background_glass_classes).addClass('rounded-2xl ' ~ width) }}>
-  {{ quick_edit }} 
-
-  {% if eyebrow %}
-      {{ include('sanfran:eyebrow', {
-          eyebrow,
-          background_color,
-          })
-      }}
-  {% endif %}
-
-  {% if heading %}
-      {% set level_number = level|number_format %}
-
-      {{ include('sanfran:headings', {
-          level: level_number,
-          text: heading,
-          storybook,
-          })
-      }}
-  {% endif %} 
-
-  {% if description %}
-      {{ include('sanfran:wysiwyg', {
-          wysiwyg: description,
-          classes: 'pb-0',
-          })
-      }}
-  {% endif %}
-
-  <div class="hero--cta">
-    {% if ctaText is not empty %}
-      {{ include('sanfran:button', {
-          type: 'btn-primary',
-          ctaText,
-          ctaHref,
-          })
-      }}
+    {% if eyebrow %}
+        {{ include('sanfran:eyebrow', {
+            eyebrow,
+            background_color,
+            })
+        }}
     {% endif %}
-  
-    {% if cta_title_secondary is not empty %}
-        {{ include('sanfran:button', {
-            type: 'btn-outline btn-neutral',
-            ctaText: cta_title_secondary,
-            ctaHref: cta_url_secondary,
+
+    {% if heading %}
+        {% set level_number = level|number_format %}
+
+        {{ include('sanfran:headings', {
+            level: level_number,
+            text: heading,
+            storybook,
             })
         }}
     {% endif %} 
-  </div>
-</hgroup>
+
+    {% if description %}
+        {{ include('sanfran:wysiwyg', {
+            wysiwyg: description,
+            classes: 'pb-0',
+            })
+        }}
+    {% endif %}
+
+    <div class="hero--cta">
+      {% if ctaText is not empty %}
+        {{ include('sanfran:button', {
+            type: 'btn-primary',
+            ctaText,
+            ctaHref,
+            })
+        }}
+      {% endif %}
+    
+      {% if cta_title_secondary is not empty %}
+          {{ include('sanfran:button', {
+              type: 'btn-outline btn-neutral',
+              ctaText: cta_title_secondary,
+              ctaHref: cta_url_secondary,
+              })
+          }}
+      {% endif %} 
+    </div>
+  </hgroup>
+
+{% endif %} 
