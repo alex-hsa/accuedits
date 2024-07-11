@@ -3,8 +3,8 @@
 /** @type { import('@storybook/server-webpack5').StorybookConfig } */
 const config = {
   "stories": [
-    "../components/**/*.mdx",
-    "../components/**/*.stories.@(json)"
+    "../src/**/*.mdx",
+    "../src/**/*.stories.@(json|yaml|yml)"
   ],
   "addons": [
     "@storybook/addon-webpack5-compiler-swc",

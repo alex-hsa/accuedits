@@ -1,0 +1,41 @@
+uuid: 8c0b470d-d655-475f-9728-9ddbe9fa26b1
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.kb.body
+    - field.field.node.kb.field_product
+    - field.field.node.kb.field_tags
+    - node.type.kb
+  module:
+    - text
+    - user
+id: node.kb.teaser
+targetEntityType: node
+bundle: kb
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_tags:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_product: true

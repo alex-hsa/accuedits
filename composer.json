@@ -35,6 +35,7 @@
         "drupal/admin_toolbar": "^3.4",
         "drupal/all_entity_preview": "^1.0@alpha",
         "drupal/bg_image_formatter": "^1.17",
+        "drupal/block_field": "^1.0@RC",
         "drupal/content_templates": "^1.1",
         "drupal/core-composer-scaffold": "10.3.0-beta1",
         "drupal/core-dev": "^10.2",

@@ -1,0 +1,18 @@
+uuid: df9e2e46-399b-4e5f-ba55-18ad406ca0f0
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Knowledge base'
+type: kb
+description: null
+help: null
+new_revision: true
+preview_mode: 0
+display_submitted: true

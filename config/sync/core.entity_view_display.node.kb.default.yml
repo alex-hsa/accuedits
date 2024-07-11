@@ -1,0 +1,59 @@
+uuid: 4fa2fe19-7753-4097-9626-809f23468608
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.kb.body
+    - field.field.node.kb.field_product
+    - field.field.node.kb.field_tags
+    - node.type.kb
+  module:
+    - sdc_display
+    - text
+    - user
+third_party_settings:
+  sdc_display:
+    enabled: false
+    component:
+      machine_name: ''
+    mappings:
+      static:
+        props: {  }
+        slots: {  }
+      dynamic:
+        props: {  }
+        slots: {  }
+id: node.kb.default
+targetEntityType: node
+bundle: kb
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_product:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_tags:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden: {  }

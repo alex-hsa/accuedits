@@ -283,6 +283,7 @@ module.exports = {
       emerald: {
           ...require("daisyui/src/theming/themes")["emerald"],
           primary: "#859b26",
+          neutral: "#62721c",
         },
     },
 
