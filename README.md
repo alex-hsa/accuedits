@@ -10,9 +10,4 @@ UI elements. AccuEdits is heavily integrated with
 [Storybook](https://storybook.js.org/) and the [Storybook module](https://www.drupal.org/project/storybook), allowing Drupal
 and Storybook to share the same markup.
 
-View a screenshot of [Accuedits Homepagge](https://www.accuedits.com/homepage_full.png).
-
-For more information, view the
-[Gesso USWDS GitHub repo](https://github.com/forumone/gesso-uswds). To submit bug
-reports or feature requests, visit the
-[Gesso USWDS issue queue](https://github.com/forumone/gesso-uswds/issues).
+View a screenshot of [Accuedits Homepage](https://www.accuedits.com/homepage_full.png).
