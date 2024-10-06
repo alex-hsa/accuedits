@@ -8,4 +8,4 @@ AccuEdits leverages [Tailwind CSS](https://www.tailwindcss.com/) to organize sty
 
 AccuEdits is heavily integrated with [Storybook](https://storybook.js.org/) and the [Storybook module](https://www.drupal.org/project/storybook), allowing Drupal and Storybook to share the same markup.
 
-View a screenshot of [AccuEdits Homepage](https://www.accuedits.com/homepage_full.png).
+View a screenshot of [AccuEdits homepage](https://www.accuedits.com/homepage_full.png).
